@@ -1,10 +1,11 @@
 import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaEnvelope, FaWhatsapp, FaInstagram } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope, FaWhatsapp, FaInstagram, FaDownload } from 'react-icons/fa';
 import React from 'react';
+import cvFile from '../assets/file/Hafidz_Zakky_Senior_Front_End_Engineer.pdf';
 
 const Contact = () => {
 	return (
-		<section className='relative py-20 min-h-[50vh] flex items-center justify-center' id="contact">
+		<section className='relative py-20 min-h-[50vh] flex items-center justify-center' id='contact'>
 			{/* Background decoration */}
 			<div className='absolute inset-0 overflow-hidden pointer-events-none'>
 				<div className='absolute -top-24 -right-24 w-96 h-96 bg-primary/10 rounded-full blur-3xl opacity-30'></div>
@@ -23,8 +24,8 @@ const Contact = () => {
 				</h2>
 
 				<p className='text-lg text-base-content/80 max-w-2xl mx-auto mb-12 leading-relaxed'>
-					I'm currently open to new opportunities and collaborations. Whether you have a project in mind or just want to
-					connect, feel free to reach out!
+					I'm currently open to new opportunities and collaborations. Whether you have a project in mind or just want to connect,
+					feel free to reach out!
 				</p>
 
 				{/* Bento Grid Layout */}
@@ -83,6 +84,19 @@ const Contact = () => {
 						<span className='font-bold text-xl'>WhatsApp</span>
 					</BentoCard>
 				</div>
+
+				{/* Download CV Button */}
+				<motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className='mb-16'>
+					<motion.a
+						whileHover={{ scale: 1.05 }}
+						whileTap={{ scale: 0.95 }}
+						href={cvFile}
+						download='Hafidz_Zakky_CV.pdf'
+						className='btn btn-secondary btn-lg gap-2 shadow-lg shadow-secondary/30 hover:shadow-secondary/50 transition-all rounded-full text-white px-8'
+					>
+						<FaDownload /> Download CV
+					</motion.a>
+				</motion.div>
 
 				<div className='mt-16 text-base-content/40 text-sm'>
 					<p>© {new Date().getFullYear()} Hafidz Zakky D. All rights reserved.</p>

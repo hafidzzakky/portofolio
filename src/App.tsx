@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Lenis from 'lenis';
 import { motion, useScroll, useTransform, useMotionValueEvent, AnimatePresence } from 'framer-motion';
+import { FaArrowUp } from 'react-icons/fa';
 import Hero from './sections/Hero';
 // import WorldMap from './sections/WorldMap';
 import Summary from './sections/Summary';
@@ -17,6 +18,7 @@ function App() {
 	const y2 = useTransform(scrollY, [0, 500], [0, -150]);
 
 	const [isHeaderVisible, setIsHeaderVisible] = useState(false);
+	const [isBackToTopVisible, setIsBackToTopVisible] = useState(false);
 
 	useMotionValueEvent(scrollY, 'change', (latest) => {
 		if (latest > 100) {
@@ -24,7 +26,17 @@ function App() {
 		} else {
 			setIsHeaderVisible(false);
 		}
+
+		if (latest > 500) {
+			setIsBackToTopVisible(true);
+		} else {
+			setIsBackToTopVisible(false);
+		}
 	});
+
+	const scrollToTop = () => {
+		window.scrollTo({ top: 0, behavior: 'smooth' });
+	};
 
 	useEffect(() => {
 		const lenis = new Lenis({
@@ -199,16 +211,28 @@ function App() {
 				</div>
 
 				<Projects />
-				
+
 				<div className='container mx-auto px-4 py-8 md:py-16'>
 					<Contact />
 				</div>
 
-				<footer className='footer footer-center p-10 bg-base-200/50 text-base-content rounded mt-20 backdrop-blur-sm'>
-					<aside>
-						<p>Copyright © {new Date().getFullYear()} - All right reserved by Hafidz Zakky D</p>
-					</aside>
-				</footer>
+				{/* Floating Action Button (Scroll to Top) */}
+				<AnimatePresence>
+					{isBackToTopVisible && (
+						<motion.button
+							initial={{ opacity: 0, scale: 0.5 }}
+							animate={{ opacity: 1, scale: 1 }}
+							exit={{ opacity: 0, scale: 0.5 }}
+							whileHover={{ scale: 1.1 }}
+							whileTap={{ scale: 0.9 }}
+							onClick={scrollToTop}
+							className='fixed bottom-8 right-8 z-50 p-4 rounded-full bg-primary text-primary-content shadow-lg hover:shadow-xl transition-all'
+							aria-label='Scroll to top'
+						>
+							<FaArrowUp className='text-xl' />
+						</motion.button>
+					)}
+				</AnimatePresence>
 			</div>
 		</div>
 	);
