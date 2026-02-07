@@ -2,9 +2,6 @@
 
 A modern, interactive personal portfolio website built with React, TypeScript, and Vite. This project showcases my skills, projects, and experience with a unique touch of Indonesian traditional culture (Wayang theme) integrated into a modern design.
 
-![Portfolio Preview](src/assets/image/traditional/wayang.svg)
-_(Note: You can update this image path with a real screenshot of your website later)_
-
 ## 🌟 Key Features
 
 - **Interactive Hero Section**: Features a custom parallax effect that responds to both mouse movement and scrolling, creating a deep, immersive 3D feel using Wayang and Gunungan elements.
