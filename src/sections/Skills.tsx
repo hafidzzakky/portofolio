@@ -78,10 +78,10 @@ const Skills = () => {
 								{category.skills.map((skill, idx) => (
 									<div
 										key={idx}
-										className='group relative bg-base-100/30 hover:bg-primary/20 backdrop-blur-sm border border-white/10 hover:border-primary/50 rounded-lg px-3 py-2 transition-all duration-300 flex items-center gap-2 cursor-default'
+										className='group relative bg-primary/10 hover:bg-primary/20 backdrop-blur-sm border border-primary/10 hover:border-primary/50 rounded-lg px-3 py-2 transition-all duration-300 flex items-center gap-2 cursor-default'
 									>
-										<div className='w-1.5 h-1.5 rounded-full bg-primary/60 group-hover:bg-primary group-hover:shadow-[0_0_8px_rgba(var(--p),0.8)] transition-all'></div>
-										<span className='font-medium text-base-content/80 group-hover:text-base-content transition-colors'>
+										<div className='w-1.5 h-1.5 rounded-full bg-primary/80 group-hover:bg-primary group-hover:shadow-[0_0_8px_rgba(var(--p),0.8)] transition-all'></div>
+										<span className='font-medium text-primary group-hover:text-primary-content transition-colors'>
 											{skill}
 										</span>
 									</div>
