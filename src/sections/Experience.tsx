@@ -97,7 +97,7 @@ const ExperienceCard = ({ exp, index }: { exp: (typeof experiences)[0]; index: n
 								</ul>
 
 								{/* Tech Stack when Open - at the bottom */}
-								<div className='flex flex-wrap gap-2 mt-6 pt-4 border-t border-white/5'>
+								<div className='flex flex-wrap gap-2 mt-6 pt-4 border-t border-base-content/10'>
 									{exp.techStack?.map((tech, idx) => (
 										<span
 											key={idx}
