@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.leaflet-tile {
+	filter: inherit;
+	visibility: inherit;
+}
+
+/* Fix for Leaflet grid lines/gaps between tiles - Reverted due to visibility issues */
+/* .leaflet-tile-container img {
+	width: 100.5% !important;
+	height: 100.5% !important;
+	transform: translate3d(0, 0, 0);
+} */
