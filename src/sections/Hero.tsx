@@ -84,7 +84,7 @@ const Hero = () => {
 							whileTap={{ scale: 0.95 }}
 							href={cvFile}
 							download='Hafidz_Zakky_CV.pdf'
-							className='btn btn-secondary btn-lg gap-2 shadow-lg shadow-secondary/30 hover:shadow-secondary/50 transition-all'
+							className='btn btn-secondary btn-lg gap-2 shadow-lg shadow-secondary/30 hover:shadow-secondary/50 transition-all text-white'
 						>
 							<FaDownload /> Download CV
 						</motion.a>
