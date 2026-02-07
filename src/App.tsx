@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import Lenis from 'lenis';
 import { motion, useScroll, useTransform, useMotionValueEvent, AnimatePresence } from 'framer-motion';
-import { FaArrowUp } from 'react-icons/fa';
 import Hero from './sections/Hero';
 // import WorldMap from './sections/WorldMap';
 // import Summary from './sections/Summary';
@@ -18,7 +17,6 @@ function App() {
 	const y2 = useTransform(scrollY, [0, 500], [0, -150]);
 
 	const [isHeaderVisible, setIsHeaderVisible] = useState(false);
-	const [isBackToTopVisible, setIsBackToTopVisible] = useState(false);
 	const [activeSection, setActiveSection] = useState('hero');
 
 	useMotionValueEvent(scrollY, 'change', (latest) => {
@@ -26,12 +24,6 @@ function App() {
 			setIsHeaderVisible(true);
 		} else {
 			setIsHeaderVisible(false);
-		}
-
-		if (latest > 500) {
-			setIsBackToTopVisible(true);
-		} else {
-			setIsBackToTopVisible(false);
 		}
 
 		// Determine active section
@@ -47,10 +39,6 @@ function App() {
 			}
 		}
 	});
-
-	const scrollToTop = () => {
-		window.scrollTo({ top: 0, behavior: 'smooth' });
-	};
 
 	const scrollToSection = (id: string) => {
 		const element = document.getElementById(id);
@@ -109,11 +97,11 @@ function App() {
 				<AnimatePresence>
 					{isHeaderVisible && (
 						<motion.div
-							initial={{ y: -100, opacity: 0 }}
-							animate={{ y: 0, opacity: 1 }}
-							exit={{ y: -100, opacity: 0 }}
+							initial={{ opacity: 0, scale: 0.9 }}
+							animate={{ opacity: 1, scale: 1 }}
+							exit={{ opacity: 0, scale: 0.9 }}
 							transition={{ duration: 0.3 }}
-							className='fixed top-4 left-0 right-0 z-50 flex justify-center px-4'
+							className='fixed z-50 flex justify-center px-4 left-0 right-0 top-auto bottom-6 md:top-4 md:bottom-auto'
 						>
 							<div className='px-6 py-2 rounded-full bg-base-100/80 backdrop-blur-md border border-white/20 shadow-lg flex items-center gap-6 md:gap-8'>
 								<div
@@ -274,24 +262,6 @@ function App() {
 						<span className='text-primary'>Tailwind CSS</span>
 					</p>
 				</footer>
-
-				{/* Floating Action Button (Scroll to Top) */}
-				<AnimatePresence>
-					{isBackToTopVisible && (
-						<motion.button
-							initial={{ opacity: 0, scale: 0.5 }}
-							animate={{ opacity: 1, scale: 1 }}
-							exit={{ opacity: 0, scale: 0.5 }}
-							whileHover={{ scale: 1.1 }}
-							whileTap={{ scale: 0.9 }}
-							onClick={scrollToTop}
-							className='fixed bottom-8 right-8 z-50 p-4 rounded-full bg-gradient-to-r from-primary to-secondary text-white shadow-lg hover:shadow-xl transition-all border-none'
-							aria-label='Scroll to top'
-						>
-							<FaArrowUp className='text-xl' />
-						</motion.button>
-					)}
-				</AnimatePresence>
 			</div>
 		</div>
 	);
