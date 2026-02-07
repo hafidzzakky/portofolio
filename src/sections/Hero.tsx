@@ -115,10 +115,12 @@ const Hero = () => {
 						whileInView={{ opacity: 1, y: 0 }}
 						viewport={{ once: true }}
 						transition={{ delay: 0.5, duration: 0.8 }}
-						className='mt-12 w-full'
+						className='mt-12 w-full flex flex-col items-center lg:items-start'
 					>
-						<p className='text-sm text-base-content/50 font-mono mb-4 uppercase tracking-widest'>Tech Stack</p>
-						<div className='flex gap-6 text-3xl text-base-content/40'>
+						<p className='text-sm text-base-content/50 font-mono mb-4 uppercase tracking-widest text-center lg:text-left'>
+							Tech Stack
+						</p>
+						<div className='flex gap-6 text-3xl text-base-content/40 justify-center lg:justify-start w-full lg:w-auto flex-wrap'>
 							<motion.div
 								whileHover={{ scale: 1.2, color: '#61DAFB', opacity: 1 }}
 								className='transition-all cursor-pointer'
@@ -163,29 +165,29 @@ const Hero = () => {
 							</motion.div>
 						</div>
 					</motion.div>
+
+					{/* Scroll Down Indicator */}
+					<motion.div
+						initial={{ opacity: 0, y: 10 }}
+						animate={{ opacity: 1, y: 0 }}
+						transition={{ delay: 1, duration: 1 }}
+						className='mt-16 w-full flex flex-col items-center gap-2 lg:absolute lg:bottom-10 lg:left-1/2 lg:-translate-x-1/2 lg:mt-0'
+					>
+						<span className='text-xs uppercase tracking-widest opacity-50'>Scroll Down</span>
+						<div className='w-[30px] h-[50px] rounded-full border-2 border-base-content/30 flex justify-center p-2'>
+							<motion.div
+								animate={{ y: [0, 12, 0] }}
+								transition={{ duration: 1.5, repeat: Infinity, repeatType: 'loop' }}
+								className='w-1.5 h-1.5 rounded-full bg-primary mb-1'
+							/>
+						</div>
+					</motion.div>
 				</motion.div>
 
 				<div className='hidden lg:block lg:col-span-5'>
 					<HeroParallax />
 				</div>
 			</div>
-
-			{/* Scroll Down Indicator */}
-			<motion.div
-				initial={{ opacity: 0, y: 10 }}
-				animate={{ opacity: 1, y: 0 }}
-				transition={{ delay: 1, duration: 1 }}
-				className='absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2'
-			>
-				<span className='text-xs uppercase tracking-widest opacity-50'>Scroll Down</span>
-				<div className='w-[30px] h-[50px] rounded-full border-2 border-base-content/30 flex justify-center p-2'>
-					<motion.div
-						animate={{ y: [0, 12, 0] }}
-						transition={{ duration: 1.5, repeat: Infinity, repeatType: 'loop' }}
-						className='w-1.5 h-1.5 rounded-full bg-primary mb-1'
-					/>
-				</div>
-			</motion.div>
 		</section>
 	);
 };
