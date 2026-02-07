@@ -257,15 +257,6 @@ function App() {
 				<div className='container mx-auto px-4 pb-20'>
 					<Contact />
 				</div>
-
-				{/* Footer */}
-				<footer className='py-8 text-center text-base-content/40 text-sm relative z-10'>
-					<p>© {new Date().getFullYear()} Hafidz Zakky. All rights reserved.</p>
-					<p className='mt-2'>
-						Built with <span className='text-primary'>React</span>, <span className='text-primary'>TypeScript</span>, &{' '}
-						<span className='text-primary'>Tailwind CSS</span>
-					</p>
-				</footer>
 			</div>
 		</div>
 	);
