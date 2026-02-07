@@ -6,6 +6,7 @@ const experiences = [
 		company: 'PT. Petrosea, Tbk – Jakarta',
 		role: 'Senior Front End Engineer',
 		period: 'May 2020 – Present',
+		techStack: ['React', 'TypeScript', 'Next.js', 'Redux', 'Tailwind CSS', 'Ant Design', 'Jest', 'GitLab CI/CD'],
 		points: [
 			'Owned front-end architecture for enterprise-scale React applications supporting mining operations across multiple sites.',
 			'Led development of the Minerva SaaS platform using React, TypeScript, and Next.js, delivering scalable dashboards with SSR/SSG and contributing to an estimated 30% increase in production efficiency.',
@@ -20,6 +21,7 @@ const experiences = [
 		company: 'PT. Merdeka Copper Gold, Tbk – Jakarta',
 		role: 'Front End Engineer',
 		period: 'Jun 2019 – May 2020',
+		techStack: ['React Native', 'JavaScript', 'Redux', 'Mobile Dev', 'Real-time Systems'],
 		points: [
 			'Developed React Native applications for procurement monitoring and approvals, improving efficiency by 35%.',
 			'Built safety and risk monitoring systems for real-time incident, inspection, and observation reporting in mining areas.',
@@ -30,6 +32,7 @@ const experiences = [
 		company: 'PT. Mitra Integrasi Informatika – Jakarta',
 		role: 'Front End Engineer',
 		period: 'Jan 2018 – Jun 2019',
+		techStack: ['React', 'Hybrid Apps', 'Geolocation', 'Banking Ecosystem'],
 		points: [
 			'Developed React-based and hybrid mobile applications for enterprise banking clients within the BNI ecosystem.',
 			'Built BNI Digimap, a geolocation-based merchant clustering and analysis application.',
@@ -92,11 +95,38 @@ const ExperienceCard = ({ exp, index }: { exp: (typeof experiences)[0]; index: n
 										</li>
 									))}
 								</ul>
+
+								{/* Tech Stack when Open - at the bottom */}
+								<div className='flex flex-wrap gap-2 mt-6 pt-4 border-t border-white/5'>
+									{exp.techStack?.map((tech, idx) => (
+										<span
+											key={idx}
+											className='px-3 py-1 text-xs font-medium rounded-full bg-base-300/50 border border-white/5 text-base-content/70'
+										>
+											{tech}
+										</span>
+									))}
+								</div>
 							</motion.div>
 						)}
 					</AnimatePresence>
 
-					{!isOpen && <p className='text-xs text-base-content/40 mt-2 italic'>Click to view details...</p>}
+					{!isOpen && (
+						<>
+							{/* Tech Stack when Closed - above click to view */}
+							<div className='flex flex-wrap gap-2 mt-4 mb-2'>
+								{exp.techStack?.map((tech, idx) => (
+									<span
+										key={idx}
+										className='px-3 py-1 text-xs font-medium rounded-full bg-base-300/50 border border-white/5 text-base-content/70'
+									>
+										{tech}
+									</span>
+								))}
+							</div>
+							<p className='text-xs text-base-content/40 mt-2 italic'>Click to view details...</p>
+						</>
+					)}
 				</div>
 			</div>
 		</motion.div>
