@@ -113,7 +113,7 @@ const Projects = () => {
 					hasTrack={false}
 				>
 					<div className='relative'>
-						<div className='w-full [mask-image:linear-gradient(to_right,transparent_0,transparent_0px,black_40px,black_calc(100%_-_40px),transparent_calc(100%_-_0px),transparent_100%)] md:[mask-image:linear-gradient(to_right,transparent_0px,transparent_50px,black_175px,black_calc(100%_-_175px),transparent_calc(100%_-_50px),transparent_100%)]'>
+						<div className='w-full [mask-image:linear-gradient(to_right,transparent_0,transparent_0px,black_20px,black_calc(100%_-_20px),transparent_calc(100%_-_0px),transparent_100%)] md:[mask-image:none]'>
 							<SplideTrack className='!overflow-visible relative z-10'>
 								{projects.map((project, index) => (
 									<SplideSlide key={index} className='w-[85vw] md:w-[400px]'>
@@ -175,7 +175,7 @@ const Projects = () => {
 						</div>
 
 						{/* Custom Arrows */}
-						<div className='splide__arrows pointer-events-none'>
+						<div className='splide__arrows pointer-events-none hidden md:block'>
 							<button
 								className='splide__arrow splide__arrow--prev !bg-transparent !border-0 !w-auto !h-auto !flex !items-center !justify-center !absolute !left-1 md:!left-2 !top-1/2 !-translate-y-1/2 !z-50 text-base-content hover:text-primary transition-all duration-300 hover:scale-125 [&>svg]:!transform-none pointer-events-auto'
 								type='button'
