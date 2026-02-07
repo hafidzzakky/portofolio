@@ -212,9 +212,7 @@ function App() {
 
 				<Projects />
 
-				<div className='container mx-auto px-4 py-8 md:py-16'>
-					<Contact />
-				</div>
+				<Contact />
 
 				{/* Floating Action Button (Scroll to Top) */}
 				<AnimatePresence>
@@ -226,7 +224,7 @@ function App() {
 							whileHover={{ scale: 1.1 }}
 							whileTap={{ scale: 0.9 }}
 							onClick={scrollToTop}
-							className='fixed bottom-8 right-8 z-50 p-4 rounded-full bg-primary text-primary-content shadow-lg hover:shadow-xl transition-all'
+							className='fixed bottom-8 right-8 z-50 p-4 rounded-full bg-gradient-to-r from-primary to-secondary text-white shadow-lg hover:shadow-xl transition-all border-none'
 							aria-label='Scroll to top'
 						>
 							<FaArrowUp className='text-xl' />
