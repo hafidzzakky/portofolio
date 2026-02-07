@@ -28,65 +28,60 @@ const Contact = () => {
 				</p>
 
 				{/* Bento Grid Layout */}
-				<div className='max-w-5xl mx-auto mb-16'>
-					<div className='grid grid-cols-1 lg:grid-cols-2 gap-4'>
-						{/* Large Block - LinkedIn (Replaces Twitter) */}
-						<BentoCard
-							href='https://www.linkedin.com/in/hafidzzakkyd/'
-							className='lg:row-span-2 h-full min-h-[300px] flex flex-col justify-between bg-[#0077b5] text-white hover:bg-[#006396]'
-						>
-							<div className='flex justify-between items-start w-full'>
-								<span className='text-lg font-bold'>LinkedIn</span>
-								<FaLinkedin className='text-4xl' />
-							</div>
-							<div className='text-left mt-8'>
-								<h3 className='text-3xl font-bold mb-2'>Connect with me</h3>
-								<p className='opacity-90'>Let's grow our professional network.</p>
-							</div>
-                            <div className="absolute -bottom-10 -right-10 opacity-20 transform rotate-12">
-                                <FaLinkedin className="text-9xl" />
-                            </div>
-						</BentoCard>
-
-						{/* Right Side Grid */}
-						<div className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
-							{/* Github (Small) */}
-							<BentoCard
-								href='https://github.com/hafidzzakky'
-								className='aspect-square flex flex-col justify-center items-center bg-[#24292e] text-white hover:bg-[#1b1f23]'
-							>
-								<FaGithub className='text-5xl mb-4' />
-								<span className='font-bold text-xl'>Github</span>
-							</BentoCard>
-
-							{/* Email (Small) */}
-							<BentoCard
-								href='mailto:hafidzzakky@gmail.com'
-								className='aspect-square flex flex-col justify-center items-center bg-red-500 text-white hover:bg-red-600'
-							>
-								<FaEnvelope className='text-5xl mb-4' />
-								<span className='font-bold text-xl'>Email</span>
-							</BentoCard>
-
-							{/* Instagram (Replaces LinkedIn Small) */}
-							<BentoCard
-								href='https://instagram.com/'
-								className='aspect-square flex flex-col justify-center items-center bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-500 text-white'
-							>
-								<FaInstagram className='text-5xl mb-4' />
-								<span className='font-bold text-xl'>Instagram</span>
-							</BentoCard>
-
-							{/* WhatsApp (Replaces Threads) */}
-							<BentoCard
-								href='https://wa.me/6281395212257'
-								className='aspect-square flex flex-col justify-center items-center bg-[#25D366] text-white hover:bg-[#20bd5a]'
-							>
-								<FaWhatsapp className='text-5xl mb-4' />
-								<span className='font-bold text-xl'>WhatsApp</span>
-							</BentoCard>
+				<div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto mb-16'>
+					{/* Large Block - LinkedIn (Replaces Twitter) */}
+					<BentoCard
+						href='https://www.linkedin.com/in/hafidzzakkyd/'
+						className='col-span-1 sm:col-span-2 lg:col-span-2 lg:row-span-2 flex flex-col justify-between bg-[#0077b5] text-white hover:bg-[#006396] min-h-[250px]'
+					>
+						<div className='flex justify-between items-start w-full'>
+							<span className='text-lg font-bold'>LinkedIn</span>
+							<FaLinkedin className='text-4xl' />
 						</div>
-					</div>
+						<div className='text-left mt-8'>
+							<h3 className='text-3xl font-bold mb-2'>Connect with me</h3>
+							<p className='opacity-90'>Let's grow our professional network.</p>
+						</div>
+						<div className='absolute -bottom-10 -right-10 opacity-20 transform rotate-12'>
+							<FaLinkedin className='text-9xl' />
+						</div>
+					</BentoCard>
+
+					{/* Github (Small) */}
+					<BentoCard
+						href='https://github.com/hafidzzakky'
+						className='aspect-square flex flex-col justify-center items-center bg-[#24292e] text-white hover:bg-[#1b1f23]'
+					>
+						<FaGithub className='text-5xl mb-4' />
+						<span className='font-bold text-xl'>Github</span>
+					</BentoCard>
+
+					{/* Email (Small) */}
+					<BentoCard
+						href='mailto:hafidzzakky@gmail.com'
+						className='aspect-square flex flex-col justify-center items-center bg-red-500 text-white hover:bg-red-600'
+					>
+						<FaEnvelope className='text-5xl mb-4' />
+						<span className='font-bold text-xl'>Email</span>
+					</BentoCard>
+
+					{/* Instagram (Replaces LinkedIn Small) */}
+					<BentoCard
+						href='https://instagram.com/'
+						className='aspect-square flex flex-col justify-center items-center bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-500 text-white'
+					>
+						<FaInstagram className='text-5xl mb-4' />
+						<span className='font-bold text-xl'>Instagram</span>
+					</BentoCard>
+
+					{/* WhatsApp (Replaces Threads) */}
+					<BentoCard
+						href='https://wa.me/6281395212257'
+						className='aspect-square flex flex-col justify-center items-center bg-[#25D366] text-white hover:bg-[#20bd5a]'
+					>
+						<FaWhatsapp className='text-5xl mb-4' />
+						<span className='font-bold text-xl'>WhatsApp</span>
+					</BentoCard>
 				</div>
 
 				<div className='mt-16 text-base-content/40 text-sm'>
