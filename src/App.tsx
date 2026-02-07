@@ -19,6 +19,7 @@ function App() {
 
 	const [isHeaderVisible, setIsHeaderVisible] = useState(false);
 	const [isBackToTopVisible, setIsBackToTopVisible] = useState(false);
+	const [activeSection, setActiveSection] = useState('hero');
 
 	useMotionValueEvent(scrollY, 'change', (latest) => {
 		if (latest > 100) {
@@ -31,6 +32,19 @@ function App() {
 			setIsBackToTopVisible(true);
 		} else {
 			setIsBackToTopVisible(false);
+		}
+
+		// Determine active section
+		const sections = ['hero', 'skills', 'experience', 'projects', 'contact'];
+		for (const section of sections) {
+			const element = document.getElementById(section);
+			if (element) {
+				const rect = element.getBoundingClientRect();
+				if (rect.top <= 200 && rect.bottom >= 200) {
+					setActiveSection(section);
+					break;
+				}
+			}
 		}
 	});
 
@@ -112,16 +126,28 @@ function App() {
 								</div>
 
 								<nav className='flex items-center gap-4 md:gap-6 text-sm font-medium text-base-content/80'>
-									<button onClick={() => scrollToSection('skills')} className='hover:text-primary transition-colors'>
+									<button
+										onClick={() => scrollToSection('skills')}
+										className={`hover:text-primary transition-colors ${activeSection === 'skills' ? 'text-primary' : ''}`}
+									>
 										Skills
 									</button>
-									<button onClick={() => scrollToSection('experience')} className='hover:text-primary transition-colors'>
+									<button
+										onClick={() => scrollToSection('experience')}
+										className={`hover:text-primary transition-colors ${activeSection === 'experience' ? 'text-primary' : ''}`}
+									>
 										Experience
 									</button>
-									<button onClick={() => scrollToSection('projects')} className='hover:text-primary transition-colors'>
+									<button
+										onClick={() => scrollToSection('projects')}
+										className={`hover:text-primary transition-colors ${activeSection === 'projects' ? 'text-primary' : ''}`}
+									>
 										Projects
 									</button>
-									<button onClick={() => scrollToSection('contact')} className='hover:text-primary transition-colors'>
+									<button
+										onClick={() => scrollToSection('contact')}
+										className={`hover:text-primary transition-colors ${activeSection === 'contact' ? 'text-primary' : ''}`}
+									>
 										Contact
 									</button>
 								</nav>
