@@ -36,7 +36,7 @@ const Hero = () => {
 						Hafidz <br /> Zakky D
 					</h1>
 
-					<div className='h-12 mb-6 overflow-hidden'>
+					<div className='min-h-[5rem] md:min-h-[3rem] mb-6 overflow-hidden flex items-center lg:items-start'>
 						<AnimatePresence mode='wait'>
 							<motion.h3
 								key={roleIndex}
