@@ -23,7 +23,7 @@ const Hero = () => {
 	}, []);
 
 	return (
-		<section id='hero' className='min-h-[90vh] flex items-center relative'>
+		<section id='hero' className='min-h-[90vh] flex items-start pt-32 lg:items-center lg:pt-0 relative'>
 			<div className='grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full'>
 				<motion.div
 					initial={{ opacity: 0, x: -50 }}
