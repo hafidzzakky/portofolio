@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaEnvelope, FaWhatsapp } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope, FaWhatsapp, FaInstagram } from 'react-icons/fa';
 import React from 'react';
 
 const Contact = () => {
 	return (
-		<section className='relative py-20 min-h-[50vh] flex items-center justify-center'>
+		<section className='relative py-20 min-h-[50vh] flex items-center justify-center' id="contact">
 			{/* Background decoration */}
 			<div className='absolute inset-0 overflow-hidden pointer-events-none'>
 				<div className='absolute -top-24 -right-24 w-96 h-96 bg-primary/10 rounded-full blur-3xl opacity-30'></div>
@@ -27,32 +27,66 @@ const Contact = () => {
 					connect, feel free to reach out!
 				</p>
 
-				<div className='grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-16'>
-					<ContactCard
-						icon={<FaEnvelope />}
-						title='Email'
-						value='hafidzzakky@gmail.com'
-						href='mailto:hafidzzakky@gmail.com'
-						color='text-red-400'
-					/>
-					<ContactCard
-						icon={<FaLinkedin />}
-						title='LinkedIn'
-						value='Hafidz Zakky D'
-						href='https://www.linkedin.com/in/hafidzzakkyd/'
-						color='text-blue-500'
-					/>
-					<ContactCard
-						icon={<FaWhatsapp />}
-						title='WhatsApp'
-						value='+62 813-9521-2257'
-						href='https://wa.me/6281395212257'
-						color='text-green-500'
-					/>
-				</div>
+				{/* Bento Grid Layout */}
+				<div className='max-w-5xl mx-auto mb-16'>
+					<div className='grid grid-cols-1 lg:grid-cols-2 gap-4'>
+						{/* Large Block - LinkedIn (Replaces Twitter) */}
+						<BentoCard
+							href='https://www.linkedin.com/in/hafidzzakkyd/'
+							className='lg:row-span-2 h-full min-h-[300px] flex flex-col justify-between bg-[#0077b5] text-white hover:bg-[#006396]'
+						>
+							<div className='flex justify-between items-start w-full'>
+								<span className='text-lg font-bold'>LinkedIn</span>
+								<FaLinkedin className='text-4xl' />
+							</div>
+							<div className='text-left mt-8'>
+								<h3 className='text-3xl font-bold mb-2'>Connect with me</h3>
+								<p className='opacity-90'>Let's grow our professional network.</p>
+							</div>
+                            <div className="absolute -bottom-10 -right-10 opacity-20 transform rotate-12">
+                                <FaLinkedin className="text-9xl" />
+                            </div>
+						</BentoCard>
 
-				<div className='flex justify-center gap-8'>
-					<SocialLink href='https://github.com/hafidzzakky' icon={<FaGithub />} label='GitHub' />
+						{/* Right Side Grid */}
+						<div className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
+							{/* Github (Small) */}
+							<BentoCard
+								href='https://github.com/hafidzzakky'
+								className='aspect-square flex flex-col justify-center items-center bg-[#24292e] text-white hover:bg-[#1b1f23]'
+							>
+								<FaGithub className='text-5xl mb-4' />
+								<span className='font-bold text-xl'>Github</span>
+							</BentoCard>
+
+							{/* Email (Small) */}
+							<BentoCard
+								href='mailto:hafidzzakky@gmail.com'
+								className='aspect-square flex flex-col justify-center items-center bg-red-500 text-white hover:bg-red-600'
+							>
+								<FaEnvelope className='text-5xl mb-4' />
+								<span className='font-bold text-xl'>Email</span>
+							</BentoCard>
+
+							{/* Instagram (Replaces LinkedIn Small) */}
+							<BentoCard
+								href='https://instagram.com/'
+								className='aspect-square flex flex-col justify-center items-center bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-500 text-white'
+							>
+								<FaInstagram className='text-5xl mb-4' />
+								<span className='font-bold text-xl'>Instagram</span>
+							</BentoCard>
+
+							{/* WhatsApp (Replaces Threads) */}
+							<BentoCard
+								href='https://wa.me/6281395212257'
+								className='aspect-square flex flex-col justify-center items-center bg-[#25D366] text-white hover:bg-[#20bd5a]'
+							>
+								<FaWhatsapp className='text-5xl mb-4' />
+								<span className='font-bold text-xl'>WhatsApp</span>
+							</BentoCard>
+						</div>
+					</div>
 				</div>
 
 				<div className='mt-16 text-base-content/40 text-sm'>
@@ -66,45 +100,22 @@ const Contact = () => {
 	);
 };
 
-interface ContactCardProps {
-	icon: React.ReactNode;
-	title: string;
-	value: string;
+interface BentoCardProps {
+	children: React.ReactNode;
+	className?: string;
 	href: string;
-	color: string;
 }
 
-const ContactCard: React.FC<ContactCardProps> = ({ icon, title, value, href, color }) => (
+const BentoCard: React.FC<BentoCardProps> = ({ children, className, href }) => (
 	<motion.a
 		href={href}
 		target='_blank'
 		rel='noopener noreferrer'
-		whileHover={{ y: -5 }}
-		className='flex flex-col items-center p-8 rounded-2xl bg-base-100/30 backdrop-blur-md border border-white/10 shadow-lg hover:shadow-xl hover:border-primary/30 transition-all group'
+		whileHover={{ scale: 1.02 }}
+		whileTap={{ scale: 0.98 }}
+		className={`relative overflow-hidden rounded-3xl p-8 shadow-lg transition-all duration-300 ${className}`}
 	>
-		<div className={`text-4xl mb-4 ${color} group-hover:scale-110 transition-transform duration-300`}>{icon}</div>
-		<h3 className='text-xl font-bold mb-2'>{title}</h3>
-		<p className='text-base-content/70 group-hover:text-primary transition-colors'>{value}</p>
-	</motion.a>
-);
-
-interface SocialLinkProps {
-	href: string;
-	icon: React.ReactNode;
-	label: string;
-}
-
-const SocialLink: React.FC<SocialLinkProps> = ({ href, icon, label }) => (
-	<motion.a
-		href={href}
-		target='_blank'
-		rel='noopener noreferrer'
-		whileHover={{ scale: 1.1 }}
-		whileTap={{ scale: 0.95 }}
-		className='text-3xl text-base-content/60 hover:text-primary transition-colors'
-		title={label}
-	>
-		{icon}
+		{children}
 	</motion.a>
 );
 
