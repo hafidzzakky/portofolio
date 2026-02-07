@@ -1,8 +1,9 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaMapMarkerAlt, FaDownload } from 'react-icons/fa';
 import { SiReact, SiTypescript, SiTailwindcss, SiNextdotjs, SiNodedotjs, SiGraphql } from 'react-icons/si';
 import { useState, useEffect } from 'react';
 import HeroParallax from '../components/HeroParallax';
+import cvFile from '../assets/file/Hafidz_Zakky_Senior_Front_End_Engineer.pdf';
 
 const Hero = () => {
 	const roles = [
@@ -78,6 +79,15 @@ const Hero = () => {
 						>
 							<FaGithub /> GitHub
 						</motion.a>
+						<motion.a
+							whileHover={{ scale: 1.05 }}
+							whileTap={{ scale: 0.95 }}
+							href={cvFile}
+							download='Hafidz_Zakky_CV.pdf'
+							className='btn btn-secondary btn-lg gap-2 shadow-lg shadow-secondary/30 hover:shadow-secondary/50 transition-all'
+						>
+							<FaDownload /> Download CV
+						</motion.a>
 					</div>
 
 					<div className='flex flex-wrap gap-6 mt-12 text-base-content/70 font-mono text-sm'>
@@ -87,26 +97,6 @@ const Hero = () => {
 						>
 							<FaMapMarkerAlt className='text-primary' /> <span>Jakarta, Indonesia</span>
 						</motion.div>
-						<motion.a
-							whileHover={{ scale: 1.05, borderColor: 'rgba(var(--p), 0.8)', backgroundColor: 'rgba(var(--b2), 0.8)' }}
-							whileTap={{ scale: 0.95 }}
-							href='https://wa.me/6281395212257'
-							target='_blank'
-							rel='noopener noreferrer'
-							className='flex items-center gap-2 px-3 py-1 rounded-full bg-base-200/50 backdrop-blur-sm border border-base-300 transition-all cursor-pointer'
-						>
-							<FaPhone className='text-primary' /> <span>0813-9521-2257</span>
-						</motion.a>
-						<motion.a
-							whileHover={{ scale: 1.05, borderColor: 'rgba(var(--p), 0.8)', backgroundColor: 'rgba(var(--b2), 0.8)' }}
-							whileTap={{ scale: 0.95 }}
-							href='https://github.com/hafidzzakky'
-							target='_blank'
-							rel='noopener noreferrer'
-							className='flex items-center gap-2 px-3 py-1 rounded-full bg-base-200/50 backdrop-blur-sm border border-base-300 transition-all cursor-pointer'
-						>
-							<FaGithub className='text-primary' /> <span>hafidzzakky</span>
-						</motion.a>
 					</div>
 
 					{/* Tech Stack Marquee */}
