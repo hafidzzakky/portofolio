@@ -244,13 +244,17 @@ function App() {
 						</ul>
 					</div>
 				</div>
-				<div className='container mx-auto px-4 pb-20'>
+				<div className='container mx-auto px-4'>
 					<Hero />
 					{/* <Summary /> */}
 					<Skills />
 					<Experience />
 					{/* <Education /> */}
-					<Projects />
+				</div>
+
+				<Projects />
+
+				<div className='container mx-auto px-4 pb-20'>
 					<Contact />
 				</div>
 
