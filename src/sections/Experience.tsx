@@ -157,7 +157,7 @@ const ExperienceCard = ({ exp, index }: { exp: (typeof experiences)[0]; index: n
 
 const Experience = () => {
 	return (
-		<section>
+		<section id='experience' className='py-20'>
 			<motion.div
 				initial={{ opacity: 0, y: 20 }}
 				whileInView={{ opacity: 1, y: 0 }}

@@ -4,10 +4,10 @@ import { motion, useScroll, useTransform, useMotionValueEvent, AnimatePresence }
 import { FaArrowUp } from 'react-icons/fa';
 import Hero from './sections/Hero';
 // import WorldMap from './sections/WorldMap';
-import Summary from './sections/Summary';
+// import Summary from './sections/Summary';
 import Skills from './sections/Skills';
 import Experience from './sections/Experience';
-import Education from './sections/Education';
+// import Education from './sections/Education';
 import Projects from './sections/Projects';
 import Contact from './sections/Contact';
 import AbstractBackground from './sections/AbstractBackground';
@@ -36,6 +36,13 @@ function App() {
 
 	const scrollToTop = () => {
 		window.scrollTo({ top: 0, behavior: 'smooth' });
+	};
+
+	const scrollToSection = (id: string) => {
+		const element = document.getElementById(id);
+		if (element) {
+			element.scrollIntoView({ behavior: 'smooth' });
+		}
 	};
 
 	useEffect(() => {
@@ -92,11 +99,32 @@ function App() {
 							animate={{ y: 0, opacity: 1 }}
 							exit={{ y: -100, opacity: 0 }}
 							transition={{ duration: 0.3 }}
-							className='fixed top-4 left-4 z-50'
+							className='fixed top-4 left-0 right-0 z-50 flex justify-center px-4'
 						>
-							<div className='px-6 py-2 rounded-full bg-base-100/30 backdrop-blur-md border border-white/20 shadow-lg text-base-content font-bold text-lg flex items-center gap-2'>
-								<div className='w-3 h-3 rounded-full bg-primary animate-pulse'></div>
-								Hafidz Zakky D
+							<div className='px-6 py-2 rounded-full bg-base-100/80 backdrop-blur-md border border-white/20 shadow-lg flex items-center gap-6 md:gap-8'>
+								<div
+									className='flex items-center gap-2 cursor-pointer'
+									onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+								>
+									<div className='w-3 h-3 rounded-full bg-primary animate-pulse'></div>
+									<span className='text-base-content font-bold text-lg hidden md:block'>Hafidz Zakky D</span>
+									<span className='text-base-content font-bold text-lg md:hidden'>HZD</span>
+								</div>
+
+								<nav className='flex items-center gap-4 md:gap-6 text-sm font-medium text-base-content/80'>
+									<button onClick={() => scrollToSection('skills')} className='hover:text-primary transition-colors'>
+										Skills
+									</button>
+									<button onClick={() => scrollToSection('experience')} className='hover:text-primary transition-colors'>
+										Experience
+									</button>
+									<button onClick={() => scrollToSection('projects')} className='hover:text-primary transition-colors'>
+										Projects
+									</button>
+									<button onClick={() => scrollToSection('contact')} className='hover:text-primary transition-colors'>
+										Contact
+									</button>
+								</nav>
 							</div>
 						</motion.div>
 					)}
@@ -202,17 +230,24 @@ function App() {
 						</ul>
 					</div>
 				</div>
-				<div className='container mx-auto px-4 py-8 md:py-16 space-y-24 md:space-y-32'>
+				<div className='container mx-auto px-4 pb-20'>
 					<Hero />
-					<Summary />
+					{/* <Summary /> */}
 					<Skills />
 					<Experience />
-					<Education />
+					{/* <Education /> */}
+					<Projects />
+					<Contact />
 				</div>
 
-				<Projects />
-
-				<Contact />
+				{/* Footer */}
+				<footer className='py-8 text-center text-base-content/40 text-sm relative z-10'>
+					<p>© {new Date().getFullYear()} Hafidz Zakky. All rights reserved.</p>
+					<p className='mt-2'>
+						Built with <span className='text-primary'>React</span>, <span className='text-primary'>TypeScript</span>, &{' '}
+						<span className='text-primary'>Tailwind CSS</span>
+					</p>
+				</footer>
 
 				{/* Floating Action Button (Scroll to Top) */}
 				<AnimatePresence>
