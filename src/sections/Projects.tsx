@@ -154,7 +154,7 @@ const Projects = () => {
 														href={project.links.github}
 														target='_blank'
 														rel='noopener noreferrer'
-														className='btn btn-sm md:btn-md btn-outline gap-2 hover:bg-primary hover:text-white hover:border-primary'
+														className='btn btn-sm md:btn-md btn-outline gap-2 hover:bg-primary hover:text-primary-content hover:border-primary'
 													>
 														<FaGithub /> Code
 													</a>

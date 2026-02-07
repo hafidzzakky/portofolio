@@ -6,7 +6,29 @@ const experiences = [
 		company: 'PT. Petrosea, Tbk – Jakarta',
 		role: 'Senior Front End Engineer',
 		period: 'May 2020 – Present',
-		techStack: ['React', 'TypeScript', 'Next.js', 'Redux', 'Tailwind CSS', 'Ant Design', 'Jest', 'GitLab CI/CD'],
+		techStack: [
+			'React',
+			'React Native',
+			'TypeScript',
+			'JavaScript',
+			'Next.js',
+			'Nuxt.js',
+			'Vue',
+			'Vite',
+			'Redux',
+			'leaflet',
+
+			'Tailwind CSS',
+			'Ant Design',
+			'Material UI',
+			'DaisyUI',
+			'Jest',
+			'GitLab CI/CD',
+			'Android',
+			'IOS',
+			'Aikido',
+			'Real-time Systems',
+		],
 		points: [
 			'Owned front-end architecture for enterprise-scale React applications supporting mining operations across multiple sites.',
 			'Led development of the Minerva SaaS platform using React, TypeScript, and Next.js, delivering scalable dashboards with SSR/SSG and contributing to an estimated 30% increase in production efficiency.',
@@ -101,7 +123,7 @@ const ExperienceCard = ({ exp, index }: { exp: (typeof experiences)[0]; index: n
 									{exp.techStack?.map((tech, idx) => (
 										<span
 											key={idx}
-											className='px-3 py-1 text-xs font-semibold rounded-full bg-primary/10 border border-primary/20 text-primary'
+											className='px-3 py-1 text-xs font-semibold rounded-full bg-primary/10 border border-primary/20 text-primary hover:bg-primary hover:text-primary-content transition-colors cursor-default'
 										>
 											{tech}
 										</span>
@@ -118,7 +140,7 @@ const ExperienceCard = ({ exp, index }: { exp: (typeof experiences)[0]; index: n
 								{exp.techStack?.map((tech, idx) => (
 									<span
 										key={idx}
-										className='px-3 py-1 text-xs font-semibold rounded-full bg-primary/10 border border-primary/20 text-primary'
+										className='px-3 py-1 text-xs font-semibold rounded-full bg-primary/10 border border-primary/20 text-primary hover:bg-primary hover:text-primary-content transition-colors cursor-default'
 									>
 										{tech}
 									</span>
