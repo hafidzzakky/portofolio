@@ -39,59 +39,59 @@ const HeroParallax = () => {
 	// Wayang (Front)
 	const wayangX = useTransform(mouseX, [-0.5, 0.5], [10, -10]);
 	const wayangMouseY = useTransform(mouseY, [-0.5, 0.5], [10, -10]);
-	const wayangY = useTransform([wayangMouseY, layerFront], ([m, s]) => m + s);
+	const wayangY = useTransform([wayangMouseY, layerFront], ([m, s]: any) => m + s);
 
 	// Big Gunungan (Mid)
 	const gununganBigX = useTransform(mouseX, [-0.5, 0.5], [20, -20]);
 	const gununganBigMouseY = useTransform(mouseY, [-0.5, 0.5], [20, -20]);
-	const gununganBigY = useTransform([gununganBigMouseY, layerMid], ([m, s]) => m + s);
+	const gununganBigY = useTransform([gununganBigMouseY, layerMid], ([m, s]: any) => m + s);
 
 	// Small Gunungan (Back)
 	const gununganSmallX = useTransform(mouseX, [-0.5, 0.5], [10, -10]);
 	const gununganSmallMouseY = useTransform(mouseY, [-0.5, 0.5], [10, -10]);
-	const gununganSmallY = useTransform([gununganSmallMouseY, layerBack], ([m, s]) => m + s);
+	const gununganSmallY = useTransform([gununganSmallMouseY, layerBack], ([m, s]: any) => m + s);
 
 	// Circle (Back)
 	const circleX = useTransform(mouseX, [-0.5, 0.5], [10, -10]);
 	const circleMouseY = useTransform(mouseY, [-0.5, 0.5], [10, -10]);
-	const circleY = useTransform([circleMouseY, layerBack], ([m, s]) => m + s);
+	const circleY = useTransform([circleMouseY, layerBack], ([m, s]: any) => m + s);
 
 	// Clouds
 
 	// Awan 1 (Front Right)
 	const cloud1X = useTransform(mouseX, [-0.5, 0.5], [-30, 30]);
 	const cloud1MouseY = useTransform(mouseY, [-0.5, 0.5], [-5, 5]);
-	const cloud1Y = useTransform([cloud1MouseY, layerFront], ([m, s]) => m + s);
+	const cloud1Y = useTransform([cloud1MouseY, layerFront], ([m, s]: any) => m + s);
 
 	// Awan 1 (Mid Left - Flipped)
 	const cloud2X = useTransform(mouseX, [-0.5, 0.5], [30, -30]);
 	const cloud2MouseY = useTransform(mouseY, [-0.5, 0.5], [5, -5]);
-	const cloud2Y = useTransform([cloud2MouseY, layerMid], ([m, s]) => m + s);
+	const cloud2Y = useTransform([cloud2MouseY, layerMid], ([m, s]: any) => m + s);
 
 	// Awan 5 (Back Left - behind gunungan?)
 	const cloud3X = useTransform(mouseX, [-0.5, 0.5], [-15, 15]);
 	const cloud3MouseY = useTransform(mouseY, [-0.5, 0.5], [-15, 15]);
-	const cloud3Y = useTransform([cloud3MouseY, layerBack], ([m, s]) => m + s);
+	const cloud3Y = useTransform([cloud3MouseY, layerBack], ([m, s]: any) => m + s);
 
 	// Awan 2 (Front Right - small)
 	const cloud4X = useTransform(mouseX, [-0.5, 0.5], [15, -15]);
 	const cloud4MouseY = useTransform(mouseY, [-0.5, 0.5], [15, -15]);
-	const cloud4Y = useTransform([cloud4MouseY, layerFront], ([m, s]) => m + s);
+	const cloud4Y = useTransform([cloud4MouseY, layerFront], ([m, s]: any) => m + s);
 
 	// Awan 5 (Back Bottom Left)
 	const cloud5X = useTransform(mouseX, [-0.5, 0.5], [-25, 25]);
 	const cloud5MouseY = useTransform(mouseY, [-0.5, 0.5], [-10, 10]);
-	const cloud5Y = useTransform([cloud5MouseY, layerBack], ([m, s]) => m + s);
+	const cloud5Y = useTransform([cloud5MouseY, layerBack], ([m, s]: any) => m + s);
 
 	// Awan 4 (Mid Bottom Center)
 	const cloud6X = useTransform(mouseX, [-0.5, 0.5], [35, -35]);
 	const cloud6MouseY = useTransform(mouseY, [-0.5, 0.5], [10, -10]);
-	const cloud6Y = useTransform([cloud6MouseY, layerMid], ([m, s]) => m + s);
+	const cloud6Y = useTransform([cloud6MouseY, layerMid], ([m, s]: any) => m + s);
 
 	// Awan 3 (Back Bottom Right)
 	const cloud7X = useTransform(mouseX, [-0.5, 0.5], [-20, 20]);
 	const cloud7MouseY = useTransform(mouseY, [-0.5, 0.5], [-8, 8]);
-	const cloud7Y = useTransform([cloud7MouseY, layerBack], ([m, s]) => m + s);
+	const cloud7Y = useTransform([cloud7MouseY, layerBack], ([m, s]: any) => m + s);
 
 	return (
 		<motion.div
