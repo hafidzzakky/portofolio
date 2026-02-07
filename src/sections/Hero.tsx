@@ -165,7 +165,9 @@ const Hero = () => {
 					</motion.div>
 				</motion.div>
 
-				<HeroParallax />
+				<div className='hidden lg:block lg:col-span-5'>
+					<HeroParallax />
+				</div>
 			</div>
 
 			{/* Scroll Down Indicator */}
