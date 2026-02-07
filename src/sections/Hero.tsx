@@ -166,12 +166,12 @@ const Hero = () => {
 						</div>
 					</motion.div>
 
-					{/* Scroll Down Indicator */}
+					{/* Scroll Down Indicator - Mobile Only */}
 					<motion.div
 						initial={{ opacity: 0, y: 10 }}
 						animate={{ opacity: 1, y: 0 }}
 						transition={{ delay: 1, duration: 1 }}
-						className='mt-16 w-full flex flex-col items-center gap-2 lg:absolute lg:bottom-10 lg:left-1/2 lg:-translate-x-1/2 lg:mt-0'
+						className='lg:hidden mt-16 w-full flex flex-col items-center gap-2'
 					>
 						<span className='text-xs uppercase tracking-widest opacity-50'>Scroll Down</span>
 						<div className='w-[30px] h-[50px] rounded-full border-2 border-base-content/30 flex justify-center p-2'>
@@ -188,6 +188,23 @@ const Hero = () => {
 					<HeroParallax />
 				</div>
 			</div>
+
+			{/* Scroll Down Indicator - Desktop Only */}
+			<motion.div
+				initial={{ opacity: 0, y: 10 }}
+				animate={{ opacity: 1, y: 0 }}
+				transition={{ delay: 1, duration: 1 }}
+				className='hidden lg:flex absolute bottom-10 left-1/2 -translate-x-1/2 flex-col items-center gap-2'
+			>
+				<span className='text-xs uppercase tracking-widest opacity-50'>Scroll Down</span>
+				<div className='w-[30px] h-[50px] rounded-full border-2 border-base-content/30 flex justify-center p-2'>
+					<motion.div
+						animate={{ y: [0, 12, 0] }}
+						transition={{ duration: 1.5, repeat: Infinity, repeatType: 'loop' }}
+						className='w-1.5 h-1.5 rounded-full bg-primary mb-1'
+					/>
+				</div>
+			</motion.div>
 		</section>
 	);
 };
