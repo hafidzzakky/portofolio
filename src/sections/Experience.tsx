@@ -101,7 +101,7 @@ const ExperienceCard = ({ exp, index }: { exp: (typeof experiences)[0]; index: n
 									{exp.techStack?.map((tech, idx) => (
 										<span
 											key={idx}
-											className='px-3 py-1 text-xs font-medium rounded-full bg-base-300/50 border border-white/5 text-base-content/70'
+											className='px-3 py-1 text-xs font-semibold rounded-full bg-primary/20 border border-primary/20 text-primary-content/90'
 										>
 											{tech}
 										</span>
@@ -118,7 +118,7 @@ const ExperienceCard = ({ exp, index }: { exp: (typeof experiences)[0]; index: n
 								{exp.techStack?.map((tech, idx) => (
 									<span
 										key={idx}
-										className='px-3 py-1 text-xs font-medium rounded-full bg-base-300/50 border border-white/5 text-base-content/70'
+										className='px-3 py-1 text-xs font-semibold rounded-full bg-primary/20 border border-primary/20 text-primary-content/90'
 									>
 										{tech}
 									</span>
