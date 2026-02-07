@@ -113,7 +113,7 @@ const Projects = () => {
 					hasTrack={false}
 				>
 					<div className='relative'>
-						<div className='w-full md:[mask-image:linear-gradient(to_right,transparent_0,transparent_0px,black_20px,black_calc(100%_-_20px),transparent_calc(100%_-_0px),transparent_100%)]'>
+						<div className='w-full md:[mask-image:linear-gradient(to_right,transparent,black_128px,black_calc(100%_-_128px),transparent)]'>
 							<SplideTrack className='!overflow-visible relative z-10'>
 								{projects.map((project, index) => (
 									<SplideSlide key={index} className='w-[85vw] md:w-[400px]'>
