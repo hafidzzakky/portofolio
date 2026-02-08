@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import { projects as showcaseProjects } from '../data/projects';
 
@@ -112,6 +112,8 @@ const ShowcaseCard = ({ project }: { project: (typeof showcaseProjects)[0] }) =>
 
 const Showcase = () => {
 	const [selectedCategory, setSelectedCategory] = useState('All');
+	const sectionRef = useRef(null);
+	const isInView = useInView(sectionRef, { amount: 0.1, margin: '-10% 0px -10% 0px' });
 
 	// Extract unique categories from all projects
 	const categories = ['All', ...Array.from(new Set(showcaseProjects.flatMap((project) => project.tags)))];
@@ -121,7 +123,7 @@ const Showcase = () => {
 		selectedCategory === 'All' ? showcaseProjects : showcaseProjects.filter((project) => project.tags.includes(selectedCategory));
 
 	return (
-		<section className='py-20 relative' id='projects'>
+		<section ref={sectionRef} className='py-20 relative' id='projects'>
 			<div className='container mx-auto px-4'>
 				<motion.div
 					initial={{ opacity: 0, y: 20 }}
@@ -135,8 +137,8 @@ const Showcase = () => {
 					<p className='text-base-content/60 max-w-2xl mx-auto'>A collection of my work. Hover to see details and slideshow.</p>
 				</motion.div>
 
-				{/* Category Filter */}
-				<div className='flex flex-wrap justify-center gap-2 mb-12'>
+				{/* Category Filter - Desktop */}
+				<div className='hidden md:flex flex-wrap justify-center gap-2 mb-12'>
 					{categories.map((category) => (
 						<button
 							key={category}
@@ -151,6 +153,33 @@ const Showcase = () => {
 						</button>
 					))}
 				</div>
+
+				{/* Mobile Horizontal Filter - Above Navbar */}
+				<AnimatePresence>
+					{isInView && (
+						<motion.div
+							initial={{ y: 50, opacity: 0 }}
+							animate={{ y: 0, opacity: 1 }}
+							exit={{ y: 50, opacity: 0 }}
+							transition={{ duration: 0.3 }}
+							className='md:hidden fixed left-4 right-4 bottom-24 z-40 flex gap-2 p-2 bg-base-100/90 backdrop-blur-md rounded-2xl border border-base-content/10 shadow-xl overflow-x-auto scrollbar-hide'
+						>
+							{categories.map((category) => (
+								<button
+									key={category}
+									onClick={() => setSelectedCategory(category)}
+									className={`flex-shrink-0 px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all duration-200 ${
+										selectedCategory === category
+											? 'bg-primary text-primary-content shadow-md'
+											: 'hover:bg-base-200 text-base-content/70 bg-base-200/50'
+									}`}
+								>
+									{category}
+								</button>
+							))}
+						</motion.div>
+					)}
+				</AnimatePresence>
 
 				{/* Masonry Layout using CSS Columns */}
 				<div className='columns-1 sm:columns-2 lg:columns-3 gap-6'>

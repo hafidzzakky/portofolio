@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaEnvelope, FaWhatsapp, FaInstagram, FaDownload } from 'react-icons/fa';
 import React from 'react';
 import cvFile from '../assets/file/Hafidz_Zakky_Senior_Front_End_Engineer.pdf';
+import User3D from '../components/User3D';
 
 const Contact = () => {
 	return (
@@ -48,14 +49,13 @@ const Contact = () => {
 						</div>
 					</BentoCard>
 
-					{/* Github (Small) */}
-					<BentoCard
-						href='https://github.com/hafidzzakky'
-						className='aspect-square flex flex-col justify-center items-center bg-[#24292e] text-white hover:bg-[#1b1f23]'
+					{/* 3D Model Box (Replaces WhatsApp) */}
+					<motion.div
+						whileHover={{ scale: 1.02 }}
+						className='aspect-square relative overflow-hidden rounded-3xl bg-gradient-to-br from-white via-indigo-50 to-purple-100 dark:from-white/10 dark:via-indigo-900/20 dark:to-purple-900/20 shadow-lg'
 					>
-						<FaGithub className='text-5xl mb-4' />
-						<span className='font-bold text-xl'>Github</span>
-					</BentoCard>
+						<User3D className='w-full h-full' />
+					</motion.div>
 
 					{/* Email (Small) */}
 					<BentoCard
@@ -75,13 +75,13 @@ const Contact = () => {
 						<span className='font-bold text-xl'>Instagram</span>
 					</BentoCard>
 
-					{/* WhatsApp (Replaces Threads) */}
+					{/* Github (Small) */}
 					<BentoCard
-						href='https://wa.me/6281395212257'
-						className='aspect-square flex flex-col justify-center items-center bg-[#25D366] text-white hover:bg-[#20bd5a]'
+						href='https://github.com/hafidzzakky'
+						className='aspect-square flex flex-col justify-center items-center bg-[#24292e] text-white hover:bg-[#1b1f23]'
 					>
-						<FaWhatsapp className='text-5xl mb-4' />
-						<span className='font-bold text-xl'>WhatsApp</span>
+						<FaGithub className='text-5xl mb-4' />
+						<span className='font-bold text-xl'>Github</span>
 					</BentoCard>
 				</div>
 

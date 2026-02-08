@@ -47,7 +47,7 @@ const HeroParallax = () => {
 	const gununganBigY = useTransform([gununganBigMouseY, layerMid], ([m, s]: number[]) => m + s);
 
 	// Small Gunungan (Back)
-	const gununganSmallX = useTransform(mouseX, [-0.5, 0.5], [10, -10]);
+	const gununganSmallX = useTransform(mouseX, [-0.5, 0.5], [20, -20]);
 	const gununganSmallMouseY = useTransform(mouseY, [-0.5, 0.5], [10, -10]);
 	const gununganSmallY = useTransform([gununganSmallMouseY, layerBack], ([m, s]: number[]) => m + s);
 

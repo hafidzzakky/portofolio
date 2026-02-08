@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Lenis from 'lenis';
 import { motion, useScroll, useTransform, useMotionValueEvent, AnimatePresence } from 'framer-motion';
+import { PiCode, PiBriefcase, PiGraduationCap, PiRocketLaunch, PiEnvelopeSimple } from 'react-icons/pi';
 import Hero from './sections/Hero';
 // import WorldMap from './sections/WorldMap';
 // import Summary from './sections/Summary';
@@ -114,37 +115,30 @@ function App() {
 									<span className='text-base-content font-bold text-lg md:hidden'>HZD</span>
 								</div>
 
-								<nav className='flex items-center gap-4 md:gap-6 text-sm font-medium text-base-content/80'>
-									<button
-										onClick={() => scrollToSection('skills')}
-										className={`hover:text-primary transition-colors ${activeSection === 'skills' ? 'text-primary' : ''}`}
-									>
-										Skills
-									</button>
-									<button
-										onClick={() => scrollToSection('experience')}
-										className={`hover:text-primary transition-colors ${activeSection === 'experience' ? 'text-primary' : ''}`}
-									>
-										Experience
-									</button>
-									<button
-										onClick={() => scrollToSection('education')}
-										className={`hover:text-primary transition-colors ${activeSection === 'education' ? 'text-primary' : ''}`}
-									>
-										Education
-									</button>
-									<button
-										onClick={() => scrollToSection('projects')}
-										className={`hover:text-primary transition-colors ${activeSection === 'projects' ? 'text-primary' : ''}`}
-									>
-										Projects
-									</button>
-									<button
-										onClick={() => scrollToSection('contact')}
-										className={`hover:text-primary transition-colors ${activeSection === 'contact' ? 'text-primary' : ''}`}
-									>
-										Contact
-									</button>
+								<nav className='flex items-center gap-2 md:gap-4 text-sm font-medium'>
+									{[
+										{ id: 'skills', icon: PiCode, label: 'Skills' },
+										{ id: 'experience', icon: PiBriefcase, label: 'Experience' },
+										{ id: 'education', icon: PiGraduationCap, label: 'Education' },
+										{ id: 'projects', icon: PiRocketLaunch, label: 'Projects' },
+										{ id: 'contact', icon: PiEnvelopeSimple, label: 'Contact' },
+									].map((item) => (
+										<button
+											key={item.id}
+											onClick={() => scrollToSection(item.id)}
+											className={`relative flex items-center justify-center p-2.5 md:px-4 md:py-2 rounded-full transition-all duration-300 ${
+												activeSection === item.id
+													? 'bg-primary text-primary-content shadow-lg shadow-primary/25 scale-105'
+													: 'text-base-content/60 hover:text-primary hover:bg-base-200/30'
+											}`}
+											title={item.label}
+										>
+											<span className='hidden md:inline'>{item.label}</span>
+											<span className='md:hidden'>
+												<item.icon size={22} />
+											</span>
+										</button>
+									))}
 								</nav>
 							</div>
 						</motion.div>
