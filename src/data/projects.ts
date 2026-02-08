@@ -96,9 +96,9 @@ export const projects: Project[] = [
 			demo: '#',
 		},
 		images: [
-			'https://placehold.co/600x400/1a1a1a/ffffff?text=E-Commerce',
-			'https://placehold.co/600x400/2a2a2a/ffffff?text=Analytics+View',
-			'https://placehold.co/600x400/3a3a3a/ffffff?text=Inventory',
+			'https://placehold.co/600x400/1a1a1a/ffffff?text=SAKA EIS',
+			'https://placehold.co/600x400/2a2a2a/ffffff?text=SAKA Admin',
+			'https://placehold.co/600x400/3a3a3a/ffffff?text=SAKA JCS',
 		],
 	},
 	{
@@ -112,9 +112,9 @@ export const projects: Project[] = [
 			demo: '#',
 		},
 		images: [
-			'https://placehold.co/600x800/1a1a1a/ffffff?text=Task+App',
-			'https://placehold.co/600x800/2a2a2a/ffffff?text=Kanban+Board',
-			'https://placehold.co/600x800/3a3a3a/ffffff?text=Team+View',
+			'https://placehold.co/600x800/1a1a1a/ffffff?text=VesselTracker',
+			'https://placehold.co/600x800/2a2a2a/ffffff?text=AdminVessel',
+			'https://placehold.co/600x800/3a3a3a/ffffff?text=ChartPerformance',
 		],
 	},
 	{
