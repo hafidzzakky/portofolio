@@ -44,7 +44,7 @@ const Hero = () => {
 								animate={{ y: 0, opacity: 1 }}
 								exit={{ y: -20, opacity: 0 }}
 								transition={{ duration: 0.5 }}
-								className='text-2xl md:text-3xl font-semibold text-secondary inline-block'
+								className='text-2xl md:text-3xl font-semibold text-primary inline-block'
 							>
 								{roles[roleIndex]}
 							</motion.h3>
