@@ -22,6 +22,12 @@ function App() {
 	const [isLoading, setIsLoading] = useState(true);
 	const [isHeaderVisible, setIsHeaderVisible] = useState(false);
 	const [activeSection, setActiveSection] = useState('hero');
+	const [theme, setTheme] = useState(localStorage.getItem('theme') || 'mytheme');
+
+	useEffect(() => {
+		localStorage.setItem('theme', theme);
+		document.documentElement.setAttribute('data-theme', theme);
+	}, [theme]);
 
 	useEffect(() => {
 		// Simulate initial loading time for assets/3D models
@@ -195,79 +201,28 @@ function App() {
 							tabIndex={0}
 							className='dropdown-content z-[1] p-2 shadow-2xl bg-base-300 rounded-box w-52 max-h-96 overflow-y-auto'
 						>
-							<li>
-								<input
-									type='radio'
-									name='theme-dropdown'
-									className='theme-controller btn btn-sm btn-block btn-ghost justify-start'
-									aria-label='Professional'
-									value='mytheme'
-									defaultChecked
-								/>
-							</li>
-							<li>
-								<input
-									type='radio'
-									name='theme-dropdown'
-									className='theme-controller btn btn-sm btn-block btn-ghost justify-start'
-									aria-label='Light'
-									value='light'
-								/>
-							</li>
-							<li>
-								<input
-									type='radio'
-									name='theme-dropdown'
-									className='theme-controller btn btn-sm btn-block btn-ghost justify-start'
-									aria-label='Dark'
-									value='dark'
-								/>
-							</li>
-							<li>
-								<input
-									type='radio'
-									name='theme-dropdown'
-									className='theme-controller btn btn-sm btn-block btn-ghost justify-start'
-									aria-label='Cyberpunk'
-									value='cyberpunk'
-								/>
-							</li>
-							<li>
-								<input
-									type='radio'
-									name='theme-dropdown'
-									className='theme-controller btn btn-sm btn-block btn-ghost justify-start'
-									aria-label='Retro'
-									value='retro'
-								/>
-							</li>
-							<li>
-								<input
-									type='radio'
-									name='theme-dropdown'
-									className='theme-controller btn btn-sm btn-block btn-ghost justify-start'
-									aria-label='Synthwave'
-									value='synthwave'
-								/>
-							</li>
-							<li>
-								<input
-									type='radio'
-									name='theme-dropdown'
-									className='theme-controller btn btn-sm btn-block btn-ghost justify-start'
-									aria-label='Luxury'
-									value='luxury'
-								/>
-							</li>
-							<li>
-								<input
-									type='radio'
-									name='theme-dropdown'
-									className='theme-controller btn btn-sm btn-block btn-ghost justify-start'
-									aria-label='Dracula'
-									value='dracula'
-								/>
-							</li>
+							{[
+								{ id: 'mytheme', label: 'Professional' },
+								{ id: 'light', label: 'Light' },
+								{ id: 'dark', label: 'Dark' },
+								{ id: 'cyberpunk', label: 'Cyberpunk' },
+								{ id: 'retro', label: 'Retro' },
+								{ id: 'synthwave', label: 'Synthwave' },
+								{ id: 'luxury', label: 'Luxury' },
+								{ id: 'dracula', label: 'Dracula' },
+							].map((t) => (
+								<li key={t.id}>
+									<input
+										type='radio'
+										name='theme-dropdown'
+										className='theme-controller btn btn-sm btn-block btn-ghost justify-start'
+										aria-label={t.label}
+										value={t.id}
+										checked={theme === t.id}
+										onChange={() => setTheme(t.id)}
+									/>
+								</li>
+							))}
 						</ul>
 					</div>
 				</div>
