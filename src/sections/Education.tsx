@@ -3,7 +3,7 @@ import { FaGraduationCap } from 'react-icons/fa';
 
 const Education = () => {
 	return (
-		<section>
+		<section id='education' className='py-20'>
 			<motion.div
 				initial='hidden'
 				whileInView='show'

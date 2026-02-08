@@ -6,7 +6,7 @@ import Hero from './sections/Hero';
 // import Summary from './sections/Summary';
 import Skills from './sections/Skills';
 import Experience from './sections/Experience';
-// import Education from './sections/Education';
+import Education from './sections/Education';
 // import Projects from './sections/Projects';
 import Showcase from './sections/Showcase';
 import Contact from './sections/Contact';
@@ -28,7 +28,7 @@ function App() {
 		}
 
 		// Determine active section
-		const sections = ['hero', 'skills', 'experience', 'projects', 'contact'];
+		const sections = ['hero', 'skills', 'experience', 'education', 'projects', 'contact'];
 		for (const section of sections) {
 			const element = document.getElementById(section);
 			if (element) {
@@ -126,6 +126,12 @@ function App() {
 										className={`hover:text-primary transition-colors ${activeSection === 'experience' ? 'text-primary' : ''}`}
 									>
 										Experience
+									</button>
+									<button
+										onClick={() => scrollToSection('education')}
+										className={`hover:text-primary transition-colors ${activeSection === 'education' ? 'text-primary' : ''}`}
+									>
+										Education
 									</button>
 									<button
 										onClick={() => scrollToSection('projects')}
@@ -250,7 +256,7 @@ function App() {
 					{/* <Summary /> */}
 					<Skills />
 					<Experience />
-					{/* <Education /> */}
+					<Education />
 				</div>
 
 				{/* <Projects /> */}
