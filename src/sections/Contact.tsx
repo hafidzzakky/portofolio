@@ -71,7 +71,7 @@ const Contact = () => {
 
 					{/* Instagram (Replaces LinkedIn Small) */}
 					<BentoCard
-						href='https://instagram.com/'
+						href='https://instagram.com/hafidzzakkyd'
 						className='aspect-square flex flex-col justify-center items-center bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-500 text-white'
 					>
 						<FaInstagram className='text-5xl mb-4' />
