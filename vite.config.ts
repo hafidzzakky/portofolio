@@ -35,6 +35,21 @@ export default defineConfig(({ mode }) => {
 							type: 'image/png',
 						},
 					],
+					screenshots: [
+						{
+							src: 'og-image.jpg',
+							sizes: '1200x630',
+							type: 'image/jpeg',
+							form_factor: 'wide',
+							label: 'Desktop',
+						},
+						{
+							src: 'og-image.jpg',
+							sizes: '1200x630',
+							type: 'image/jpeg',
+							label: 'Mobile',
+						},
+					],
 				},
 			}),
 		],
