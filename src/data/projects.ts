@@ -28,10 +28,6 @@ import merdekaSafety1 from '../assets/image/portfolio/merdeka/merdeka-safety/mer
 import merdekaSafety2 from '../assets/image/portfolio/merdeka/merdeka-safety/merdeka-safety-detail2.jpg';
 import merdekaSafety3 from '../assets/image/portfolio/merdeka/merdeka-safety/merdeka-safety-detail3.jpg';
 
-import minex1 from '../assets/image/portfolio/petrosea/minex/Screenshot 2024-10-11 at 14.32.12.png';
-import minex2 from '../assets/image/portfolio/petrosea/minex/Screenshot 2024-10-11 at 14.32.22.png';
-import minex3 from '../assets/image/portfolio/petrosea/minex/Screenshot 2024-10-11 at 14.32.42.png';
-
 import difaCare1 from '../assets/image/portfolio/difacare/1.png';
 import difaCare2 from '../assets/image/portfolio/difacare/2.png';
 import difaCare3 from '../assets/image/portfolio/difacare/3.png';
