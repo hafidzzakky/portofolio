@@ -16,7 +16,7 @@ export const projects: Project[] = [
 		title: 'Saka EIS - Electronic Invoice SAKA',
 		tags: ['React', 'Next JS', 'Tailwind', 'Ant Design'],
 		description:
-			'A comprehensive dashboard for managing online stores, featuring real-time analytics, inventory management, and order tracking.',
+			"An integrated ecosystem of three applications (EIS, Admin, JCS) for end-to-end invoice processing. Features dynamic approval workflows, barcode scanning, vendor management, and JCS tracking. Includes a unique 'Incognito' mode for seamless Vendor POV simulation.",
 		links: {
 			github: '#',
 			demo: '#',
