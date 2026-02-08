@@ -28,61 +28,7 @@ const getTechIcon = (tag: string) => {
 	}
 };
 
-// Placeholder data - Replace with actual project details
-const projects = [
-	{
-		title: 'E-Commerce Dashboard',
-		description:
-			'A comprehensive dashboard for managing online stores, featuring real-time analytics, inventory management, and order tracking.',
-		tags: ['React', 'TypeScript', 'Tailwind', 'Node.js'],
-		links: {
-			github: '#',
-			demo: '#',
-		},
-		image: 'https://placehold.co/600x400/1a1a1a/ffffff?text=E-Commerce',
-	},
-	{
-		title: 'Task Management App',
-		description: 'A collaborative task management tool with drag-and-drop kanban boards, team assignments, and progress tracking.',
-		tags: ['Vue.js', 'Firebase', 'Pinia'],
-		links: {
-			github: '#',
-			demo: '#',
-		},
-		image: 'https://placehold.co/600x400/1a1a1a/ffffff?text=Task+App',
-	},
-	{
-		title: 'Weather Forecast',
-		description:
-			'A beautiful weather application providing detailed forecasts, air quality index, and interactive maps using open weather APIs.',
-		tags: ['React Native', 'Expo', 'WeatherAPI'],
-		links: {
-			github: '#',
-			demo: '#',
-		},
-		image: 'https://placehold.co/600x400/1a1a1a/ffffff?text=Weather+App',
-	},
-	{
-		title: 'Social Media Feed',
-		description: 'A responsive social media feed clone with infinite scrolling, image optimization, and real-time interactions.',
-		tags: ['React', 'Tailwind', 'Node.js'],
-		links: {
-			github: '#',
-			demo: '#',
-		},
-		image: 'https://placehold.co/600x400/1a1a1a/ffffff?text=Social+Feed',
-	},
-	{
-		title: 'Crypto Tracker',
-		description: 'A cryptocurrency tracking application with live price updates, historical charts, and portfolio management.',
-		tags: ['React', 'TypeScript', 'Firebase'],
-		links: {
-			github: '#',
-			demo: '#',
-		},
-		image: 'https://placehold.co/600x400/1a1a1a/ffffff?text=Crypto+Tracker',
-	},
-];
+import { projects } from '../data/projects';
 
 const Projects = () => {
 	return (
@@ -120,7 +66,7 @@ const Projects = () => {
 										<div className='relative w-full h-64 md:h-[400px] overflow-hidden shadow-xl group cursor-pointer rounded-xl'>
 											{/* Background Image */}
 											<img
-												src={project.image}
+												src={project.images[0]}
 												alt={project.title}
 												className='w-full h-full object-cover transition-transform duration-700 group-hover:scale-110'
 											/>
