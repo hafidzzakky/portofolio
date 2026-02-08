@@ -227,7 +227,7 @@ function App() {
 					</div>
 				</div>
 				<div className='container mx-auto px-4'>
-					<Hero />
+					<Hero theme={theme} />
 					{/* <Summary /> */}
 					<Skills />
 					<Experience />

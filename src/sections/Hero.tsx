@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import HeroParallax from '../components/HeroParallax';
 import cvFile from '../assets/file/Hafidz_Zakky_Senior_Front_End_Engineer.pdf';
 
-const Hero = () => {
+const Hero = ({ theme }: { theme: string }) => {
 	const roles = [
 		'Senior Front End Engineer',
 		'React Specialist',
@@ -44,7 +44,9 @@ const Hero = () => {
 								animate={{ y: 0, opacity: 1 }}
 								exit={{ y: -20, opacity: 0 }}
 								transition={{ duration: 0.5 }}
-								className='text-2xl md:text-3xl font-semibold text-primary inline-block'
+								className={`text-2xl md:text-3xl font-semibold inline-block ${
+									theme === 'luxury' ? 'text-primary' : 'text-secondary'
+								}`}
 							>
 								{roles[roleIndex]}
 							</motion.h3>
