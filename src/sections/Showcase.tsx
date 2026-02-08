@@ -67,7 +67,7 @@ const ShowcaseCard = ({ project }: { project: (typeof showcaseProjects)[0] }) =>
 					</p>
 
 					{/* Links */}
-					<div className='flex gap-4 mt-4 translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-150'>
+					{/* <div className='flex gap-4 mt-4 translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-150'>
 						<a
 							href={project.links.github}
 							target='_blank'
@@ -86,7 +86,7 @@ const ShowcaseCard = ({ project }: { project: (typeof showcaseProjects)[0] }) =>
 						>
 							<FaExternalLinkAlt className='text-base' />
 						</a>
-					</div>
+					</div> */}
 
 					{/* Progress Indicator */}
 					<div className='flex gap-1 mt-4 translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-200'>
