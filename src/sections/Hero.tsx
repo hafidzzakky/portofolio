@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaMapMarkerAlt, FaDownload } from 'react-icons/fa';
-import { SiReact, SiTypescript, SiTailwindcss, SiNextdotjs, SiNodedotjs, SiGraphql } from 'react-icons/si';
+import { SiReact, SiTypescript, SiTailwindcss, SiNextdotjs, SiNodedotjs, SiVite, SiNuxtdotjs, SiVuedotjs } from 'react-icons/si';
 import { useState, useEffect } from 'react';
 import HeroParallax from '../components/HeroParallax';
 import cvFile from '../assets/file/Hafidz_Zakky_Senior_Front_End_Engineer.pdf';
@@ -147,11 +147,25 @@ const Hero = () => {
 								<SiNodedotjs />
 							</motion.div>
 							<motion.div
-								whileHover={{ scale: 1.2, color: '#E10098', opacity: 1 }}
+								whileHover={{ scale: 1.2, color: '#646CFF', opacity: 1 }}
 								className='transition-all cursor-pointer'
-								title='GraphQL'
+								title='Vite'
 							>
-								<SiGraphql />
+								<SiVite />
+							</motion.div>
+							<motion.div
+								whileHover={{ scale: 1.2, color: '#4FC08D', opacity: 1 }}
+								className='transition-all cursor-pointer'
+								title='Vue.js'
+							>
+								<SiVuedotjs />
+							</motion.div>
+							<motion.div
+								whileHover={{ scale: 1.2, color: '#00DC82', opacity: 1 }}
+								className='transition-all cursor-pointer'
+								title='Nuxt.js'
+							>
+								<SiNuxtdotjs />
 							</motion.div>
 						</div>
 					</motion.div>
