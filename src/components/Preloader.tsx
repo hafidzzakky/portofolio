@@ -18,17 +18,17 @@ const Preloader = () => {
 					}}
 					className='relative z-10'
 				>
-					<img src={gunungan} alt='Loading...' className='w-32 h-auto drop-shadow-2xl' />
+					<img src={gunungan} alt='Loading...' className='w-24 h-auto drop-shadow-2xl' />
 				</motion.div>
 
-				<motion.div
-					initial={{ width: 0 }}
-					animate={{ width: '100%' }}
-					transition={{ duration: 2, ease: 'easeInOut' }}
-					className='h-1 bg-primary mt-8 rounded-full w-48 overflow-hidden'
-				>
-					<div className='h-full w-full bg-primary/30' />
-				</motion.div>
+				<div className='mt-8 h-1 w-48 bg-base-200 rounded-full overflow-hidden'>
+					<motion.div
+						initial={{ width: 0 }}
+						animate={{ width: '100%' }}
+						transition={{ duration: 2, ease: 'easeInOut' }}
+						className='h-full bg-orange-500'
+					/>
+				</div>
 				<motion.p
 					initial={{ opacity: 0, y: 10 }}
 					animate={{ opacity: 1, y: 0 }}
