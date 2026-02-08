@@ -29,9 +29,9 @@ const showcaseProjects = [
 			demo: '#',
 		},
 		images: [
-			'https://placehold.co/600x400/1a1a1a/ffffff?text=Task+App',
-			'https://placehold.co/600x400/2a2a2a/ffffff?text=Kanban+Board',
-			'https://placehold.co/600x400/3a3a3a/ffffff?text=Team+View',
+			'https://placehold.co/600x800/1a1a1a/ffffff?text=Task+App',
+			'https://placehold.co/600x800/2a2a2a/ffffff?text=Kanban+Board',
+			'https://placehold.co/600x800/3a3a3a/ffffff?text=Team+View',
 		],
 	},
 	{
@@ -45,9 +45,9 @@ const showcaseProjects = [
 			demo: '#',
 		},
 		images: [
-			'https://placehold.co/600x400/1a1a1a/ffffff?text=Weather+App',
-			'https://placehold.co/600x400/2a2a2a/ffffff?text=Forecast+Details',
-			'https://placehold.co/600x400/3a3a3a/ffffff?text=Map+View',
+			'https://placehold.co/600x600/1a1a1a/ffffff?text=Weather+App',
+			'https://placehold.co/600x600/2a2a2a/ffffff?text=Forecast+Details',
+			'https://placehold.co/600x600/3a3a3a/ffffff?text=Map+View',
 		],
 	},
 	{
@@ -60,9 +60,9 @@ const showcaseProjects = [
 			demo: '#',
 		},
 		images: [
-			'https://placehold.co/600x400/1a1a1a/ffffff?text=Social+Feed',
-			'https://placehold.co/600x400/2a2a2a/ffffff?text=Post+Detail',
-			'https://placehold.co/600x400/3a3a3a/ffffff?text=User+Profile',
+			'https://placehold.co/600x500/1a1a1a/ffffff?text=Social+Feed',
+			'https://placehold.co/600x500/2a2a2a/ffffff?text=Post+Detail',
+			'https://placehold.co/600x500/3a3a3a/ffffff?text=User+Profile',
 		],
 	},
 	{
@@ -75,9 +75,9 @@ const showcaseProjects = [
 			demo: '#',
 		},
 		images: [
-			'https://placehold.co/600x400/1a1a1a/ffffff?text=Crypto+Tracker',
-			'https://placehold.co/600x400/2a2a2a/ffffff?text=Market+Chart',
-			'https://placehold.co/600x400/3a3a3a/ffffff?text=Portfolio',
+			'https://placehold.co/600x700/1a1a1a/ffffff?text=Crypto+Tracker',
+			'https://placehold.co/600x700/2a2a2a/ffffff?text=Market+Chart',
+			'https://placehold.co/600x700/3a3a3a/ffffff?text=Portfolio',
 		],
 	},
 	{
@@ -90,9 +90,9 @@ const showcaseProjects = [
 			demo: '#',
 		},
 		images: [
-			'https://placehold.co/600x400/1a1a1a/ffffff?text=Crypto+Tracker',
-			'https://placehold.co/600x400/2a2a2a/ffffff?text=Price+Alerts',
-			'https://placehold.co/600x400/3a3a3a/ffffff?text=Settings',
+			'https://placehold.co/600x450/1a1a1a/ffffff?text=Crypto+Tracker',
+			'https://placehold.co/600x450/2a2a2a/ffffff?text=Price+Alerts',
+			'https://placehold.co/600x450/3a3a3a/ffffff?text=Settings',
 		],
 	},
 ];
@@ -213,7 +213,7 @@ const Showcase = () => {
 				</motion.div>
 
 				{/* Masonry Layout using CSS Columns */}
-				<div className='columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6'>
+				<div className='columns-1 sm:columns-2 lg:columns-3 gap-6'>
 					{showcaseProjects.map((project) => (
 						<ShowcaseCard key={project.id} project={project} />
 					))}
