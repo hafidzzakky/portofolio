@@ -83,9 +83,9 @@ export const projects: Project[] = [
 			demo: '#',
 		},
 		images: [
-			'https://placehold.co/600x700/1a1a1a/ffffff?text=Crypto+Tracker',
-			'https://placehold.co/600x700/2a2a2a/ffffff?text=Market+Chart',
-			'https://placehold.co/600x700/3a3a3a/ffffff?text=Portfolio',
+			'https://placehold.co/600x700/1a1a1a/ffffff?text=Senja+Care+1',
+			'https://placehold.co/600x700/2a2a2a/ffffff?text=Senja+Care+2',
+			'https://placehold.co/600x700/3a3a3a/ffffff?text=Senja+Care+3',
 		],
 	},
 	{
