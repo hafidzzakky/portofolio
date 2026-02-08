@@ -64,6 +64,14 @@ import senjaCare4 from '../assets/image/portfolio/senjacare/img-senjacare-4.png'
 import senjaCare5 from '../assets/image/portfolio/senjacare/img-senjacare-5.png';
 import senjaCare6 from '../assets/image/portfolio/senjacare/img-senjacare-6.png';
 
+// Keep unused imports for future use
+export const unusedAssets = {
+	difaCare: [difaCare1, difaCare2, difaCare3, difaCare4, difaCare5, difaCare6],
+	tukangkuV1: [tukangkuV1_1, tukangkuV1_2, tukangkuV1_3, tukangkuV1_4, tukangkuV1_5, tukangkuV1_6, tukangkuV1_7, tukangkuV1_8],
+	tukangkuV2: [tukangkuV2_1, tukangkuV2_2, tukangkuV2_3, tukangkuV2_4, tukangkuV2_5, tukangkuV2_6, tukangkuV2_7, tukangkuV2_8],
+	senjaCare: [senjaCare1, senjaCare2, senjaCare3, senjaCare4, senjaCare5, senjaCare6],
+};
+
 export interface Project {
 	id: number;
 	title: string;
@@ -88,9 +96,9 @@ export const projects: Project[] = [
 			demo: '#',
 		},
 		images: [
-			'https://placehold.co/600x400/1a1a1a/ffffff?text=SAKA EIS',
-			'https://placehold.co/600x400/2a2a2a/ffffff?text=SAKA Admin',
-			'https://placehold.co/600x400/3a3a3a/ffffff?text=SAKA JCS',
+			'https://placehold.co/600x400/1a1a1a/ffffff?text=E-Commerce',
+			'https://placehold.co/600x400/2a2a2a/ffffff?text=Analytics+View',
+			'https://placehold.co/600x400/3a3a3a/ffffff?text=Inventory',
 		],
 	},
 	{
@@ -104,9 +112,9 @@ export const projects: Project[] = [
 			demo: '#',
 		},
 		images: [
-			'https://placehold.co/600x800/1a1a1a/ffffff?text=VesselTracker',
-			'https://placehold.co/600x800/2a2a2a/ffffff?text=AdminVessel',
-			'https://placehold.co/600x800/3a3a3a/ffffff?text=ChartPerformance',
+			'https://placehold.co/600x800/1a1a1a/ffffff?text=Task+App',
+			'https://placehold.co/600x800/2a2a2a/ffffff?text=Kanban+Board',
+			'https://placehold.co/600x800/3a3a3a/ffffff?text=Team+View',
 		],
 	},
 	{
@@ -120,14 +128,6 @@ export const projects: Project[] = [
 			demo: '#',
 		},
 		images: [
-			// tukangkuV1_1,
-			// tukangkuV1_2,
-			// tukangkuV1_3,
-			// tukangkuV1_4,
-			// tukangkuV1_5,
-			// tukangkuV1_6,
-			// tukangkuV1_7,
-			// tukangkuV1_8,
 			'https://placehold.co/600x400/1a1a1a/ffffff?text=Tukangku+Home',
 			'https://placehold.co/600x400/2a2a2a/ffffff?text=Service+List',
 			'https://placehold.co/600x400/3a3a3a/ffffff?text=Order+Flow',
