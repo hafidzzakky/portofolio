@@ -12,14 +12,25 @@ import Education from './sections/Education';
 import Showcase from './sections/Showcase';
 import Contact from './sections/Contact';
 import AbstractBackground from './sections/AbstractBackground';
+import Preloader from './components/Preloader';
 
 function App() {
 	const { scrollY, scrollYProgress } = useScroll();
 	const y1 = useTransform(scrollY, [0, 500], [0, 200]);
 	const y2 = useTransform(scrollY, [0, 500], [0, -150]);
 
+	const [isLoading, setIsLoading] = useState(true);
 	const [isHeaderVisible, setIsHeaderVisible] = useState(false);
 	const [activeSection, setActiveSection] = useState('hero');
+
+	useEffect(() => {
+		// Simulate initial loading time for assets/3D models
+		const timer = setTimeout(() => {
+			setIsLoading(false);
+		}, 2000);
+
+		return () => clearTimeout(timer);
+	}, []);
 
 	useMotionValueEvent(scrollY, 'change', (latest) => {
 		if (latest > 100) {
@@ -88,6 +99,8 @@ function App() {
 
 	return (
 		<div className='min-h-screen text-base-content font-sans antialiased selection:bg-primary selection:text-primary-content overflow-hidden relative'>
+			<AnimatePresence mode='wait'>{isLoading && <Preloader />}</AnimatePresence>
+
 			{/* Scroll Progress Bar */}
 			<motion.div className='fixed top-0 left-0 right-0 h-1 bg-primary origin-left z-[100]' style={{ scaleX: scrollYProgress }} />
 
