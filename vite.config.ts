@@ -4,7 +4,7 @@ import { VitePWA } from 'vite-plugin-pwa';
 
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
-	const baseUrl = mode === 'production' ? '/portofolio/' : '/';
+	const baseUrl = '/';
 
 	return {
 		base: baseUrl,
