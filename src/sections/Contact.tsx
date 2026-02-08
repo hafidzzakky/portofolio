@@ -1,8 +1,9 @@
 import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaEnvelope, FaInstagram, FaDownload } from 'react-icons/fa';
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import cvFile from '../assets/file/Hafidz_Zakky_Senior_Front_End_Engineer.pdf';
-import User3D from '../components/User3D';
+
+const User3D = lazy(() => import('../components/User3D'));
 
 const Contact = () => {
 	return (
@@ -54,7 +55,9 @@ const Contact = () => {
 						whileHover={{ scale: 1.02 }}
 						className='aspect-square relative overflow-hidden rounded-3xl bg-gradient-to-br from-white via-indigo-50 to-purple-100 dark:from-white/10 dark:via-indigo-900/20 dark:to-purple-900/20 shadow-lg'
 					>
-						<User3D className='w-full h-full' />
+						<Suspense fallback={<div className='w-full h-full animate-pulse bg-gray-200/20' />}>
+							<User3D className='w-full h-full' />
+						</Suspense>
 					</motion.div>
 
 					{/* Email (Small) */}

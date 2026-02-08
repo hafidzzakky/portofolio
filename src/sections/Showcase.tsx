@@ -21,91 +21,86 @@ const ShowcaseCard = ({ project }: { project: (typeof showcaseProjects)[0] }) =>
 
 	return (
 		<motion.div
-			initial={{ opacity: 0, y: 20 }}
-			whileInView={{ opacity: 1, y: 0 }}
-			viewport={{ once: true }}
-			className='break-inside-avoid mb-6 rounded-2xl overflow-hidden relative group bg-base-200 shadow-lg hover:shadow-2xl transition-all duration-300'
+			layout
+			initial={{ opacity: 0, scale: 0.9 }}
+			animate={{ opacity: 1, scale: 1 }}
+			exit={{ opacity: 0, scale: 0.9 }}
+			transition={{ duration: 0.3 }}
+			whileHover={{ y: -5, transition: { duration: 0.3 } }}
+			className='break-inside-avoid mb-6 rounded-2xl overflow-hidden relative group bg-base-200 shadow-lg hover:shadow-2xl transition-shadow duration-300'
 			onMouseEnter={() => setIsHovered(true)}
 			onMouseLeave={() => setIsHovered(false)}
 		>
-			<motion.div
-				layout
-				initial={{ opacity: 0, scale: 0.8 }}
-				animate={{ opacity: 1, scale: 1 }}
-				exit={{ opacity: 0, scale: 0.8 }}
-				transition={{ duration: 0.3 }}
-			>
-				{/* Image Container */}
-				<div className='relative w-full overflow-hidden bg-base-300'>
-					{/* Aspect Ratio Maintainer based on first image */}
-					<div className='relative'>
-						<img
-							src={project.images[0]}
-							alt={project.title}
-							className='w-full h-auto object-cover opacity-0' // Invisible spacer
+			{/* Image Container */}
+			<div className='relative w-full overflow-hidden bg-base-300'>
+				{/* Aspect Ratio Maintainer based on first image */}
+				<div className='relative'>
+					<img
+						src={project.images[0]}
+						alt={project.title}
+						className='w-full h-auto object-cover opacity-0' // Invisible spacer
+					/>
+					<AnimatePresence mode='popLayout'>
+						<motion.img
+							key={currentImage}
+							src={project.images[currentImage]}
+							alt={`${project.title} view ${currentImage + 1}`}
+							initial={{ opacity: 0 }}
+							animate={{ opacity: 1 }}
+							exit={{ opacity: 0 }}
+							transition={{ duration: 0.5 }}
+							className='absolute inset-0 w-full h-full object-cover'
 						/>
-						<AnimatePresence mode='popLayout'>
-							<motion.img
-								key={currentImage}
-								src={project.images[currentImage]}
-								alt={`${project.title} view ${currentImage + 1}`}
-								initial={{ opacity: 0 }}
-								animate={{ opacity: 1 }}
-								exit={{ opacity: 0 }}
-								transition={{ duration: 0.5 }}
-								className='absolute inset-0 w-full h-full object-cover'
-							/>
-						</AnimatePresence>
+					</AnimatePresence>
+				</div>
+
+				{/* Overlay Gradient */}
+				<div className='absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6'>
+					<h3 className='text-white text-xl font-bold translate-y-4 group-hover:translate-y-0 transition-transform duration-300'>
+						{project.title}
+					</h3>
+					<p className='text-white/80 text-xs mt-1 translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75'>
+						{project.tags.join(', ')}
+					</p>
+					<p className='text-white/70 text-sm mt-3 line-clamp-3 translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-100'>
+						{project.description}
+					</p>
+
+					{/* Links */}
+					<div className='flex gap-4 mt-4 translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-150'>
+						<a
+							href={project.links.github}
+							target='_blank'
+							rel='noopener noreferrer'
+							className='btn btn-sm btn-circle btn-ghost text-white hover:bg-white/20'
+							title='View Code'
+						>
+							<FaGithub className='text-lg' />
+						</a>
+						<a
+							href={project.links.demo}
+							target='_blank'
+							rel='noopener noreferrer'
+							className='btn btn-sm btn-circle btn-ghost text-white hover:bg-white/20'
+							title='View Demo'
+						>
+							<FaExternalLinkAlt className='text-base' />
+						</a>
 					</div>
 
-					{/* Overlay Gradient */}
-					<div className='absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6'>
-						<h3 className='text-white text-xl font-bold translate-y-4 group-hover:translate-y-0 transition-transform duration-300'>
-							{project.title}
-						</h3>
-						<p className='text-white/80 text-xs mt-1 translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75'>
-							{project.tags.join(', ')}
-						</p>
-						<p className='text-white/70 text-sm mt-3 line-clamp-3 translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-100'>
-							{project.description}
-						</p>
-
-						{/* Links */}
-						<div className='flex gap-4 mt-4 translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-150'>
-							<a
-								href={project.links.github}
-								target='_blank'
-								rel='noopener noreferrer'
-								className='btn btn-sm btn-circle btn-ghost text-white hover:bg-white/20'
-								title='View Code'
-							>
-								<FaGithub className='text-lg' />
-							</a>
-							<a
-								href={project.links.demo}
-								target='_blank'
-								rel='noopener noreferrer'
-								className='btn btn-sm btn-circle btn-ghost text-white hover:bg-white/20'
-								title='View Demo'
-							>
-								<FaExternalLinkAlt className='text-base' />
-							</a>
-						</div>
-
-						{/* Progress Indicator */}
-						<div className='flex gap-1 mt-4 translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-200'>
-							{project.images.map((_, idx) => (
-								<div
-									key={idx}
-									className={`h-1 rounded-full transition-all duration-300 ${
-										currentImage === idx ? 'w-4 bg-primary' : 'w-1 bg-white/30'
-									}`}
-								/>
-							))}
-						</div>
+					{/* Progress Indicator */}
+					<div className='flex gap-1 mt-4 translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-200'>
+						{project.images.map((_, idx) => (
+							<div
+								key={idx}
+								className={`h-1 rounded-full transition-all duration-300 ${
+									currentImage === idx ? 'w-4 bg-primary' : 'w-1 bg-white/30'
+								}`}
+							/>
+						))}
 					</div>
 				</div>
-			</motion.div>
+			</div>
 		</motion.div>
 	);
 };

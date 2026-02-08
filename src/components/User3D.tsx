@@ -29,6 +29,4 @@ const User3D = ({ className = 'w-full h-[300px] md:h-[400px]' }: { className?: s
 	);
 };
 
-useGLTF.preload(userModelPath);
-
 export default User3D;

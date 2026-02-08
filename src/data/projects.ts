@@ -28,46 +28,6 @@ import merdekaSafety1 from '../assets/image/portfolio/merdeka/merdeka-safety/mer
 import merdekaSafety2 from '../assets/image/portfolio/merdeka/merdeka-safety/merdeka-safety-detail2.jpg';
 import merdekaSafety3 from '../assets/image/portfolio/merdeka/merdeka-safety/merdeka-safety-detail3.jpg';
 
-import difaCare1 from '../assets/image/portfolio/difacare/1.png';
-import difaCare2 from '../assets/image/portfolio/difacare/2.png';
-import difaCare3 from '../assets/image/portfolio/difacare/3.png';
-import difaCare4 from '../assets/image/portfolio/difacare/4.png';
-import difaCare5 from '../assets/image/portfolio/difacare/5.png';
-import difaCare6 from '../assets/image/portfolio/difacare/6.png';
-
-import tukangkuV1_1 from '../assets/image/portfolio/tukangku/v1/tukangku-1.png';
-import tukangkuV1_2 from '../assets/image/portfolio/tukangku/v1/tukangku-2.png';
-import tukangkuV1_3 from '../assets/image/portfolio/tukangku/v1/tukangku-3.png';
-import tukangkuV1_4 from '../assets/image/portfolio/tukangku/v1/tukangku-4.png';
-import tukangkuV1_5 from '../assets/image/portfolio/tukangku/v1/tukangku-5.png';
-import tukangkuV1_6 from '../assets/image/portfolio/tukangku/v1/tukangku-6.png';
-import tukangkuV1_7 from '../assets/image/portfolio/tukangku/v1/tukangku-7.png';
-import tukangkuV1_8 from '../assets/image/portfolio/tukangku/v1/tukangku-8.png';
-
-import tukangkuV2_1 from '../assets/image/portfolio/tukangku/v2/1.png';
-import tukangkuV2_2 from '../assets/image/portfolio/tukangku/v2/2.png';
-import tukangkuV2_3 from '../assets/image/portfolio/tukangku/v2/3.png';
-import tukangkuV2_4 from '../assets/image/portfolio/tukangku/v2/4.png';
-import tukangkuV2_5 from '../assets/image/portfolio/tukangku/v2/5.png';
-import tukangkuV2_6 from '../assets/image/portfolio/tukangku/v2/6.png';
-import tukangkuV2_7 from '../assets/image/portfolio/tukangku/v2/7.png';
-import tukangkuV2_8 from '../assets/image/portfolio/tukangku/v2/8.png';
-
-import senjaCare1 from '../assets/image/portfolio/senjacare/img-senjacare-1.png';
-import senjaCare2 from '../assets/image/portfolio/senjacare/img-senjacare-2.png';
-import senjaCare3 from '../assets/image/portfolio/senjacare/img-senjacare-3.png';
-import senjaCare4 from '../assets/image/portfolio/senjacare/img-senjacare-4.png';
-import senjaCare5 from '../assets/image/portfolio/senjacare/img-senjacare-5.png';
-import senjaCare6 from '../assets/image/portfolio/senjacare/img-senjacare-6.png';
-
-// Keep unused imports for future use
-export const unusedAssets = {
-	difaCare: [difaCare1, difaCare2, difaCare3, difaCare4, difaCare5, difaCare6],
-	tukangkuV1: [tukangkuV1_1, tukangkuV1_2, tukangkuV1_3, tukangkuV1_4, tukangkuV1_5, tukangkuV1_6, tukangkuV1_7, tukangkuV1_8],
-	tukangkuV2: [tukangkuV2_1, tukangkuV2_2, tukangkuV2_3, tukangkuV2_4, tukangkuV2_5, tukangkuV2_6, tukangkuV2_7, tukangkuV2_8],
-	senjaCare: [senjaCare1, senjaCare2, senjaCare3, senjaCare4, senjaCare5, senjaCare6],
-};
-
 export interface Project {
 	id: number;
 	title: string;

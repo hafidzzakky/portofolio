@@ -34,7 +34,8 @@ const Education = () => {
 						hidden: { opacity: 0, y: 20 },
 						show: { opacity: 1, y: 0 },
 					}}
-					className='card bg-base-100/30 backdrop-blur-md shadow-xl border border-white/20 hover:bg-base-100/40 transition-all duration-300'
+					whileHover={{ y: -5, transition: { duration: 0.3 } }}
+					className='card bg-base-100/30 backdrop-blur-md shadow-xl border border-white/20 hover:bg-base-100/40 transition-colors duration-300'
 				>
 					<div className='card-body p-6 flex flex-col md:flex-row items-start gap-6'>
 						<div className='text-primary p-4 bg-base-100/50 rounded-2xl border border-white/10 shadow-lg backdrop-blur-sm'>

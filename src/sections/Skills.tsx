@@ -70,7 +70,8 @@ const Skills = () => {
 					<motion.div
 						key={index}
 						variants={item}
-						className='card bg-base-100/30 backdrop-blur-md shadow-xl border border-white/20 hover:bg-base-100/40 hover:-translate-y-1 transition-all duration-300'
+						whileHover={{ y: -5, transition: { duration: 0.3 } }}
+						className='card bg-base-100/30 backdrop-blur-md shadow-xl border border-white/20 hover:bg-base-100/40 transition-colors duration-300'
 					>
 						<div className='card-body p-5'>
 							<h3 className='card-title text-lg text-primary mb-3'>{category.title}</h3>
