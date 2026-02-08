@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
-import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import { projects as showcaseProjects } from '../data/projects';
 
 const ShowcaseCard = ({ project }: { project: (typeof showcaseProjects)[0] }) => {
