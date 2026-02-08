@@ -1,56 +1,98 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 
-// Placeholder data - replace with actual project screenshots
 const showcaseProjects = [
 	{
 		id: 1,
-		title: 'E-Commerce Dashboard',
-		category: 'Web Application',
+		title: 'Saka EIS - Electronic Invoice SAKA',
+		category: 'React, Next JS, Tailwind, Ant Design',
+		description:
+			'A comprehensive dashboard for managing online stores, featuring real-time analytics, inventory management, and order tracking.',
+		links: {
+			github: '#',
+			demo: '#',
+		},
 		images: [
-			'https://placehold.co/600x400/1a1a1a/ffffff?text=Dashboard+View+1',
-			'https://placehold.co/600x400/2a2a2a/ffffff?text=Analytics+Chart',
-			'https://placehold.co/600x400/3a3a3a/ffffff?text=User+Management',
+			'https://placehold.co/600x400/1a1a1a/ffffff?text=E-Commerce',
+			'https://placehold.co/600x400/2a2a2a/ffffff?text=Analytics+View',
+			'https://placehold.co/600x400/3a3a3a/ffffff?text=Inventory',
 		],
 	},
 	{
 		id: 2,
-		title: 'Travel Booking App',
-		category: 'Mobile App',
+		title: 'SAKA Vessel Tracker',
+		category: 'React, Next JS, Tailwind, Ant Design, Leaflet',
+		description: 'A collaborative task management tool with drag-and-drop kanban boards, team assignments, and progress tracking.',
+		links: {
+			github: '#',
+			demo: '#',
+		},
 		images: [
-			'https://placehold.co/400x800/0f4c81/ffffff?text=Home+Screen',
-			'https://placehold.co/400x800/1f5c91/ffffff?text=Search+Result',
-			'https://placehold.co/400x800/2f6ca1/ffffff?text=Booking+Detail',
+			'https://placehold.co/600x400/1a1a1a/ffffff?text=Task+App',
+			'https://placehold.co/600x400/2a2a2a/ffffff?text=Kanban+Board',
+			'https://placehold.co/600x400/3a3a3a/ffffff?text=Team+View',
 		],
 	},
 	{
 		id: 3,
-		title: 'Finance Landing Page',
-		category: 'Website',
+		title: 'Tukangku.co',
+		category: 'React, Next JS, Tailwind, Ant Design',
+		description:
+			'A beautiful weather application providing detailed forecasts, air quality index, and interactive maps using open weather APIs.',
+		links: {
+			github: '#',
+			demo: '#',
+		},
 		images: [
-			'https://placehold.co/600x800/004d40/ffffff?text=Hero+Section',
-			'https://placehold.co/600x800/00695c/ffffff?text=Features+Grid',
-			'https://placehold.co/600x800/00796b/ffffff?text=Testimonials',
+			'https://placehold.co/600x400/1a1a1a/ffffff?text=Weather+App',
+			'https://placehold.co/600x400/2a2a2a/ffffff?text=Forecast+Details',
+			'https://placehold.co/600x400/3a3a3a/ffffff?text=Map+View',
 		],
 	},
 	{
 		id: 4,
-		title: 'Social Media Analytics',
-		category: 'SaaS Platform',
+		title: 'Tukangku.co v2',
+		category: 'React, Vite, Tailwind, Ant Design',
+		description: 'A responsive social media feed clone with infinite scrolling, image optimization, and real-time interactions.',
+		links: {
+			github: '#',
+			demo: '#',
+		},
 		images: [
-			'https://placehold.co/800x600/4a148c/ffffff?text=Overview',
-			'https://placehold.co/800x600/6a1b9a/ffffff?text=Report+Generator',
-			'https://placehold.co/800x600/7b1fa2/ffffff?text=Settings',
+			'https://placehold.co/600x400/1a1a1a/ffffff?text=Social+Feed',
+			'https://placehold.co/600x400/2a2a2a/ffffff?text=Post+Detail',
+			'https://placehold.co/600x400/3a3a3a/ffffff?text=User+Profile',
 		],
 	},
 	{
 		id: 5,
-		title: 'Healthcare Portal',
-		category: 'Web System',
+		title: 'Senja Care App',
+		category: 'React Native, Native wind, Firebase, Expo, IOS, Android',
+		description: 'A cryptocurrency tracking application with live price updates, historical charts, and portfolio management.',
+		links: {
+			github: '#',
+			demo: '#',
+		},
 		images: [
-			'https://placehold.co/600x500/b71c1c/ffffff?text=Patient+List',
-			'https://placehold.co/600x500/c62828/ffffff?text=Medical+Records',
-			'https://placehold.co/600x500/d32f2f/ffffff?text=Appointments',
+			'https://placehold.co/600x400/1a1a1a/ffffff?text=Crypto+Tracker',
+			'https://placehold.co/600x400/2a2a2a/ffffff?text=Market+Chart',
+			'https://placehold.co/600x400/3a3a3a/ffffff?text=Portfolio',
+		],
+	},
+	{
+		id: 6,
+		title: 'DifaCare',
+		category: 'React, Vite, Tailwind, Ant Design',
+		description: 'A cryptocurrency tracking application with live price updates, historical charts, and portfolio management.',
+		links: {
+			github: '#',
+			demo: '#',
+		},
+		images: [
+			'https://placehold.co/600x400/1a1a1a/ffffff?text=Crypto+Tracker',
+			'https://placehold.co/600x400/2a2a2a/ffffff?text=Price+Alerts',
+			'https://placehold.co/600x400/3a3a3a/ffffff?text=Settings',
 		],
 	},
 ];
@@ -82,7 +124,7 @@ const ShowcaseCard = ({ project }: { project: (typeof showcaseProjects)[0] }) =>
 		>
 			{/* Image Container */}
 			<div className='relative w-full overflow-hidden bg-base-300'>
-				{/* Aspect Ratio Maintainer based on first image (simplified here as auto height) */}
+				{/* Aspect Ratio Maintainer based on first image */}
 				<div className='relative'>
 					<img
 						src={project.images[0]}
@@ -104,15 +146,41 @@ const ShowcaseCard = ({ project }: { project: (typeof showcaseProjects)[0] }) =>
 				</div>
 
 				{/* Overlay Gradient */}
-				<div className='absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6'>
+				<div className='absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6'>
 					<h3 className='text-white text-xl font-bold translate-y-4 group-hover:translate-y-0 transition-transform duration-300'>
 						{project.title}
 					</h3>
-					<p className='text-white/80 text-sm translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75'>
+					<p className='text-white/80 text-xs mt-1 translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75'>
 						{project.category}
 					</p>
+					<p className='text-white/70 text-sm mt-3 line-clamp-3 translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-100'>
+						{project.description}
+					</p>
+
+					{/* Links */}
+					<div className='flex gap-4 mt-4 translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-150'>
+						<a
+							href={project.links.github}
+							target='_blank'
+							rel='noopener noreferrer'
+							className='btn btn-sm btn-circle btn-ghost text-white hover:bg-white/20'
+							title='View Code'
+						>
+							<FaGithub className='text-lg' />
+						</a>
+						<a
+							href={project.links.demo}
+							target='_blank'
+							rel='noopener noreferrer'
+							className='btn btn-sm btn-circle btn-ghost text-white hover:bg-white/20'
+							title='View Demo'
+						>
+							<FaExternalLinkAlt className='text-base' />
+						</a>
+					</div>
+
 					{/* Progress Indicator */}
-					<div className='flex gap-1 mt-3 translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-100'>
+					<div className='flex gap-1 mt-4 translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-200'>
 						{project.images.map((_, idx) => (
 							<div
 								key={idx}
@@ -130,7 +198,7 @@ const ShowcaseCard = ({ project }: { project: (typeof showcaseProjects)[0] }) =>
 
 const Showcase = () => {
 	return (
-		<section className='py-20 relative' id='showcase'>
+		<section className='py-20 relative' id='projects'>
 			<div className='container mx-auto px-4'>
 				<motion.div
 					initial={{ opacity: 0, y: 20 }}
@@ -139,11 +207,9 @@ const Showcase = () => {
 					className='text-center mb-12'
 				>
 					<h2 className='text-3xl md:text-5xl font-bold mb-4'>
-						<span className='bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary'>Project Gallery</span>
+						<span className='bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary'>Project Showcase</span>
 					</h2>
-					<p className='text-base-content/60 max-w-2xl mx-auto'>
-						A visual collection of my latest works. Hover over any project to explore more details.
-					</p>
+					<p className='text-base-content/60 max-w-2xl mx-auto'>A collection of my work. Hover to see details and slideshow.</p>
 				</motion.div>
 
 				{/* Masonry Layout using CSS Columns */}

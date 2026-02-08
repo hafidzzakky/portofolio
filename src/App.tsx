@@ -7,7 +7,7 @@ import Hero from './sections/Hero';
 import Skills from './sections/Skills';
 import Experience from './sections/Experience';
 // import Education from './sections/Education';
-import Projects from './sections/Projects';
+// import Projects from './sections/Projects';
 import Showcase from './sections/Showcase';
 import Contact from './sections/Contact';
 import AbstractBackground from './sections/AbstractBackground';
@@ -253,7 +253,7 @@ function App() {
 					{/* <Education /> */}
 				</div>
 
-				<Projects />
+				{/* <Projects /> */}
 				<Showcase />
 
 				<div className='container mx-auto px-4 pb-20'>
