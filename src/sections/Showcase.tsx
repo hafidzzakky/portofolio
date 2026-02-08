@@ -6,7 +6,7 @@ const showcaseProjects = [
 	{
 		id: 1,
 		title: 'Saka EIS - Electronic Invoice SAKA',
-		category: 'React, Next JS, Tailwind, Ant Design',
+		tags: ['React', 'Next JS', 'Tailwind', 'Ant Design'],
 		description:
 			'A comprehensive dashboard for managing online stores, featuring real-time analytics, inventory management, and order tracking.',
 		links: {
@@ -22,7 +22,7 @@ const showcaseProjects = [
 	{
 		id: 2,
 		title: 'SAKA Vessel Tracker',
-		category: 'React, Next JS, Tailwind, Ant Design, Leaflet',
+		tags: ['React', 'Next JS', 'Tailwind', 'Ant Design', 'Leaflet'],
 		description: 'A collaborative task management tool with drag-and-drop kanban boards, team assignments, and progress tracking.',
 		links: {
 			github: '#',
@@ -37,7 +37,7 @@ const showcaseProjects = [
 	{
 		id: 3,
 		title: 'Tukangku.co',
-		category: 'React, Next JS, Tailwind, Ant Design',
+		tags: ['React', 'Next JS', 'Tailwind', 'Ant Design'],
 		description:
 			'A beautiful weather application providing detailed forecasts, air quality index, and interactive maps using open weather APIs.',
 		links: {
@@ -53,7 +53,7 @@ const showcaseProjects = [
 	{
 		id: 4,
 		title: 'Tukangku.co v2',
-		category: 'React, Vite, Tailwind, Ant Design',
+		tags: ['React', 'Vite', 'Tailwind', 'Ant Design'],
 		description: 'A responsive social media feed clone with infinite scrolling, image optimization, and real-time interactions.',
 		links: {
 			github: '#',
@@ -68,7 +68,7 @@ const showcaseProjects = [
 	{
 		id: 5,
 		title: 'Senja Care App',
-		category: 'React Native, Native wind, Firebase, Expo, IOS, Android',
+		tags: ['React Native', 'Native wind', 'Firebase', 'Expo', 'IOS', 'Android'],
 		description: 'A cryptocurrency tracking application with live price updates, historical charts, and portfolio management.',
 		links: {
 			github: '#',
@@ -83,7 +83,7 @@ const showcaseProjects = [
 	{
 		id: 6,
 		title: 'DifaCare',
-		category: 'React, Vite, Tailwind, Ant Design',
+		tags: ['React', 'Vite', 'Tailwind', 'Ant Design'],
 		description: 'A cryptocurrency tracking application with live price updates, historical charts, and portfolio management.',
 		links: {
 			github: '#',
@@ -151,7 +151,7 @@ const ShowcaseCard = ({ project }: { project: (typeof showcaseProjects)[0] }) =>
 						{project.title}
 					</h3>
 					<p className='text-white/80 text-xs mt-1 translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75'>
-						{project.category}
+						{project.tags.join(', ')}
 					</p>
 					<p className='text-white/70 text-sm mt-3 line-clamp-3 translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-100'>
 						{project.description}
