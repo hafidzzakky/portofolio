@@ -8,6 +8,7 @@ import Skills from './sections/Skills';
 import Experience from './sections/Experience';
 // import Education from './sections/Education';
 import Projects from './sections/Projects';
+import Showcase from './sections/Showcase';
 import Contact from './sections/Contact';
 import AbstractBackground from './sections/AbstractBackground';
 
@@ -253,6 +254,7 @@ function App() {
 				</div>
 
 				<Projects />
+				<Showcase />
 
 				<div className='container mx-auto px-4 pb-20'>
 					<Contact />
