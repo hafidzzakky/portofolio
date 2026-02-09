@@ -15,7 +15,7 @@ export default defineConfig(() => {
 				devOptions: {
 					enabled: true,
 				},
-				includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'mask-icon.svg'],
+				includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'mask-icon.svg', 'gunungan-icon.svg'],
 				manifest: {
 					name: 'Hafidz Zakky - Portfolio',
 					short_name: 'Hafidz Porto',
@@ -25,14 +25,10 @@ export default defineConfig(() => {
 					scope: baseUrl,
 					icons: [
 						{
-							src: 'pwa-192x192.png',
-							sizes: '192x192',
-							type: 'image/png',
-						},
-						{
-							src: 'pwa-512x512.png',
-							sizes: '512x512',
-							type: 'image/png',
+							src: 'gunungan-icon.svg',
+							sizes: 'any',
+							type: 'image/svg+xml',
+							purpose: 'any maskable',
 						},
 					],
 					screenshots: [

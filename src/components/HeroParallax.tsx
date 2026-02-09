@@ -1,4 +1,4 @@
-import { motion, useMotionValue, useTransform, useScroll } from 'framer-motion';
+import { motion, useMotionValue, useTransform, useScroll, useSpring } from 'framer-motion';
 import { useEffect } from 'react';
 
 import bgBulat from '../assets/image/traditional/v2/bg bulat.svg';
@@ -14,6 +14,12 @@ import awan5 from '../assets/image/traditional/v2/awan 5.svg';
 const HeroParallax = () => {
 	const mouseX = useMotionValue(0);
 	const mouseY = useMotionValue(0);
+
+	// Smooth out mouse movements to reduce jitter/lag perception
+	const springConfig = { damping: 25, stiffness: 120, mass: 0.5 };
+	const smoothX = useSpring(mouseX, springConfig);
+	const smoothY = useSpring(mouseY, springConfig);
+
 	const { scrollY } = useScroll();
 
 	useEffect(() => {
@@ -35,62 +41,63 @@ const HeroParallax = () => {
 	const layerFront = useTransform(scrollY, [0, 100], [0, 10]);
 
 	// Parallax Transforms (Mouse + Scroll)
+	// Using smoothX/smoothY instead of raw mouseX/mouseY
 
 	// Wayang (Front)
-	const wayangX = useTransform(mouseX, [-0.5, 0.5], [10, -10]);
-	const wayangMouseY = useTransform(mouseY, [-0.5, 0.5], [10, -10]);
+	const wayangX = useTransform(smoothX, [-0.5, 0.5], [10, -10]);
+	const wayangMouseY = useTransform(smoothY, [-0.5, 0.5], [10, -10]);
 	const wayangY = useTransform([wayangMouseY, layerFront], ([m, s]: number[]) => m + s);
 
 	// Big Gunungan (Mid)
-	const gununganBigX = useTransform(mouseX, [-0.5, 0.5], [20, -20]);
-	const gununganBigMouseY = useTransform(mouseY, [-0.5, 0.5], [20, -20]);
+	const gununganBigX = useTransform(smoothX, [-0.5, 0.5], [20, -20]);
+	const gununganBigMouseY = useTransform(smoothY, [-0.5, 0.5], [20, -20]);
 	const gununganBigY = useTransform([gununganBigMouseY, layerMid], ([m, s]: number[]) => m + s);
 
 	// Small Gunungan (Back)
-	const gununganSmallX = useTransform(mouseX, [-0.5, 0.5], [20, -20]);
-	const gununganSmallMouseY = useTransform(mouseY, [-0.5, 0.5], [10, -10]);
+	const gununganSmallX = useTransform(smoothX, [-0.5, 0.5], [20, -20]);
+	const gununganSmallMouseY = useTransform(smoothY, [-0.5, 0.5], [10, -10]);
 	const gununganSmallY = useTransform([gununganSmallMouseY, layerBack], ([m, s]: number[]) => m + s);
 
 	// Circle (Back)
-	const circleX = useTransform(mouseX, [-0.5, 0.5], [10, -10]);
-	const circleMouseY = useTransform(mouseY, [-0.5, 0.5], [10, -10]);
+	const circleX = useTransform(smoothX, [-0.5, 0.5], [10, -10]);
+	const circleMouseY = useTransform(smoothY, [-0.5, 0.5], [10, -10]);
 	const circleY = useTransform([circleMouseY, layerBack], ([m, s]: number[]) => m + s);
 
 	// Clouds
 
 	// Awan 1 (Front Right)
-	const cloud1X = useTransform(mouseX, [-0.5, 0.5], [-30, 30]);
-	const cloud1MouseY = useTransform(mouseY, [-0.5, 0.5], [-5, 5]);
+	const cloud1X = useTransform(smoothX, [-0.5, 0.5], [-30, 30]);
+	const cloud1MouseY = useTransform(smoothY, [-0.5, 0.5], [-5, 5]);
 	const cloud1Y = useTransform([cloud1MouseY, layerFront], ([m, s]: number[]) => m + s);
 
 	// Awan 1 (Mid Left - Flipped)
-	const cloud2X = useTransform(mouseX, [-0.5, 0.5], [30, -30]);
-	const cloud2MouseY = useTransform(mouseY, [-0.5, 0.5], [5, -5]);
+	const cloud2X = useTransform(smoothX, [-0.5, 0.5], [30, -30]);
+	const cloud2MouseY = useTransform(smoothY, [-0.5, 0.5], [5, -5]);
 	const cloud2Y = useTransform([cloud2MouseY, layerMid], ([m, s]: number[]) => m + s);
 
 	// Awan 5 (Back Left - behind gunungan?)
-	const cloud3X = useTransform(mouseX, [-0.5, 0.5], [-15, 15]);
-	const cloud3MouseY = useTransform(mouseY, [-0.5, 0.5], [-15, 15]);
+	const cloud3X = useTransform(smoothX, [-0.5, 0.5], [-15, 15]);
+	const cloud3MouseY = useTransform(smoothY, [-0.5, 0.5], [-15, 15]);
 	const cloud3Y = useTransform([cloud3MouseY, layerBack], ([m, s]: number[]) => m + s);
 
 	// Awan 2 (Front Right - small)
-	const cloud4X = useTransform(mouseX, [-0.5, 0.5], [15, -15]);
-	const cloud4MouseY = useTransform(mouseY, [-0.5, 0.5], [15, -15]);
+	const cloud4X = useTransform(smoothX, [-0.5, 0.5], [15, -15]);
+	const cloud4MouseY = useTransform(smoothY, [-0.5, 0.5], [15, -15]);
 	const cloud4Y = useTransform([cloud4MouseY, layerFront], ([m, s]: number[]) => m + s);
 
 	// Awan 5 (Back Bottom Left)
-	const cloud5X = useTransform(mouseX, [-0.5, 0.5], [-25, 25]);
-	const cloud5MouseY = useTransform(mouseY, [-0.5, 0.5], [-10, 10]);
+	const cloud5X = useTransform(smoothX, [-0.5, 0.5], [-25, 25]);
+	const cloud5MouseY = useTransform(smoothY, [-0.5, 0.5], [-10, 10]);
 	const cloud5Y = useTransform([cloud5MouseY, layerBack], ([m, s]: number[]) => m + s);
 
 	// Awan 4 (Mid Bottom Center)
-	const cloud6X = useTransform(mouseX, [-0.5, 0.5], [35, -35]);
-	const cloud6MouseY = useTransform(mouseY, [-0.5, 0.5], [10, -10]);
+	const cloud6X = useTransform(smoothX, [-0.5, 0.5], [35, -35]);
+	const cloud6MouseY = useTransform(smoothY, [-0.5, 0.5], [10, -10]);
 	const cloud6Y = useTransform([cloud6MouseY, layerMid], ([m, s]: number[]) => m + s);
 
 	// Awan 3 (Back Bottom Right)
-	const cloud7X = useTransform(mouseX, [-0.5, 0.5], [-20, 20]);
-	const cloud7MouseY = useTransform(mouseY, [-0.5, 0.5], [-8, 8]);
+	const cloud7X = useTransform(smoothX, [-0.5, 0.5], [-20, 20]);
+	const cloud7MouseY = useTransform(smoothY, [-0.5, 0.5], [-8, 8]);
 	const cloud7Y = useTransform([cloud7MouseY, layerBack], ([m, s]: number[]) => m + s);
 
 	return (
@@ -102,6 +109,7 @@ const HeroParallax = () => {
 		>
 			{/* Background Circle */}
 			<motion.img
+				decoding="async"
 				style={{ x: circleX, y: circleY, willChange: 'transform' }}
 				src={bgBulat}
 				alt='Background Circle'
@@ -110,12 +118,14 @@ const HeroParallax = () => {
 
 			{/* Awan 1 */}
 			<motion.img
+				decoding="async"
 				style={{ x: cloud1X, y: cloud1Y, willChange: 'transform' }}
 				src={awan1}
 				alt='Cloud small'
 				className='absolute opacity-100 z-[3] top-[10px] w-[173px] right-[10px]'
 			/>
 			<motion.img
+				decoding="async"
 				style={{ x: cloud2X, y: cloud2Y, willChange: 'transform' }}
 				src={awan1}
 				alt='Cloud small'
@@ -123,12 +133,14 @@ const HeroParallax = () => {
 			/>
 			{/* Gunungan 1 */}
 			<motion.img
+				decoding="async"
 				style={{ x: gununganSmallX, y: gununganSmallY, willChange: 'transform' }}
 				src={gunungan2}
 				alt='Gunungan small'
 				className='absolute opacity-100 z-1 top-[-40px] w-[180px] left-1/3'
 			/>
 			<motion.img
+				decoding="async"
 				style={{ x: cloud3X, y: cloud3Y, willChange: 'transform' }}
 				src={awan5}
 				alt='Cloud small bottom gunungan 1'
@@ -136,6 +148,7 @@ const HeroParallax = () => {
 			/>
 
 			<motion.img
+				decoding="async"
 				style={{ x: cloud4X, y: cloud4Y, willChange: 'transform' }}
 				src={awan2}
 				alt='Cloud small'
@@ -143,6 +156,7 @@ const HeroParallax = () => {
 			/>
 
 			<motion.img
+				decoding="async"
 				style={{ x: gununganBigX, y: gununganBigY, willChange: 'transform' }}
 				src={gunungan}
 				alt='Gunungan big'
@@ -150,6 +164,7 @@ const HeroParallax = () => {
 			/>
 
 			<motion.img
+				decoding="async"
 				style={{ x: wayangX, y: wayangY, willChange: 'transform' }}
 				src={wayang}
 				alt='Wayang big'
@@ -157,18 +172,21 @@ const HeroParallax = () => {
 			/>
 
 			<motion.img
+				decoding="async"
 				style={{ x: cloud5X, y: cloud5Y, willChange: 'transform' }}
 				src={awan5}
 				alt='Cloud medium bottom'
 				className='absolute opacity-100 z-[1] w-[300px] bottom-[-40px] left-[-65px]'
 			/>
 			<motion.img
+				decoding="async"
 				style={{ x: cloud6X, y: cloud6Y, willChange: 'transform' }}
 				src={awan4}
 				alt='Cloud big bottom'
 				className='absolute opacity-100 z-[4] w-[400px] bottom-[-115px] left-[15px]'
 			/>
 			<motion.img
+				decoding="async"
 				style={{ x: cloud7X, y: cloud7Y, willChange: 'transform' }}
 				src={awan3}
 				alt='Cloud big bottom right'
