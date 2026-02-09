@@ -110,14 +110,14 @@ function App() {
 			{/* Scroll Progress Bar */}
 			<motion.div className='fixed top-0 left-0 right-0 h-1 bg-primary origin-left z-[100]' style={{ scaleX: scrollYProgress }} />
 
-			{/* Parallax Background Elements */}
+			{/* Parallax Background Elements - Optimized with Radial Gradients instead of Blur filter */}
 			<motion.div
 				style={{ y: y1 }}
-				className='fixed top-0 right-0 w-[800px] h-[800px] bg-primary/20 rounded-full blur-[120px] -z-10 pointer-events-none translate-x-1/3 -translate-y-1/4'
+				className='fixed top-0 right-0 w-[800px] h-[800px] bg-[radial-gradient(circle_at_center,rgba(var(--p),0.15)_0%,transparent_70%)] -z-10 pointer-events-none translate-x-1/3 -translate-y-1/4'
 			/>
 			<motion.div
 				style={{ y: y2 }}
-				className='fixed bottom-0 left-0 w-[600px] h-[600px] bg-secondary/20 rounded-full blur-[100px] -z-10 pointer-events-none -translate-x-1/3 translate-y-1/4'
+				className='fixed bottom-0 left-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_center,rgba(var(--s),0.15)_0%,transparent_70%)] -z-10 pointer-events-none -translate-x-1/3 translate-y-1/4'
 			/>
 
 			{/* Abstract Background */}

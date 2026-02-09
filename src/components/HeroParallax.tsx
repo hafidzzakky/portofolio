@@ -102,7 +102,7 @@ const HeroParallax = () => {
 		>
 			{/* Background Circle */}
 			<motion.img
-				style={{ x: circleX, y: circleY }}
+				style={{ x: circleX, y: circleY, willChange: 'transform' }}
 				src={bgBulat}
 				alt='Background Circle'
 				className='absolute  w-[450px] md:w-[650px] opacity-100 z-0'
@@ -110,66 +110,66 @@ const HeroParallax = () => {
 
 			{/* Awan 1 */}
 			<motion.img
-				style={{ x: cloud1X, y: cloud1Y }}
+				style={{ x: cloud1X, y: cloud1Y, willChange: 'transform' }}
 				src={awan1}
 				alt='Cloud small'
 				className='absolute opacity-100 z-[3] top-[10px] w-[173px] right-[10px]'
 			/>
 			<motion.img
-				style={{ x: cloud2X, y: cloud2Y }}
+				style={{ x: cloud2X, y: cloud2Y, willChange: 'transform' }}
 				src={awan1}
 				alt='Cloud small'
 				className='absolute opacity-100 z-1 top-[20px] w-[150px] left-[10px] scale-x-[-1]'
 			/>
 			{/* Gunungan 1 */}
 			<motion.img
-				style={{ x: gununganSmallX, y: gununganSmallY }}
+				style={{ x: gununganSmallX, y: gununganSmallY, willChange: 'transform' }}
 				src={gunungan2}
 				alt='Gunungan small'
 				className='absolute opacity-100 z-1 top-[-40px] w-[180px] left-1/3'
 			/>
 			<motion.img
-				style={{ x: cloud3X, y: cloud3Y }}
+				style={{ x: cloud3X, y: cloud3Y, willChange: 'transform' }}
 				src={awan5}
 				alt='Cloud small bottom gunungan 1'
 				className='absolute opacity-100 z-2  w-[250px] top-[180px] left-[155px]'
 			/>
 
 			<motion.img
-				style={{ x: cloud4X, y: cloud4Y }}
+				style={{ x: cloud4X, y: cloud4Y, willChange: 'transform' }}
 				src={awan2}
 				alt='Cloud small'
 				className='absolute opacity-100 z-[3] top-[150px] w-[118px] right-[10px]'
 			/>
 
 			<motion.img
-				style={{ x: gununganBigX, y: gununganBigY }}
+				style={{ x: gununganBigX, y: gununganBigY, willChange: 'transform' }}
 				src={gunungan}
 				alt='Gunungan big'
 				className='absolute opacity-100 z-2 right-[10px] top-[85px] w-[260px]'
 			/>
 
 			<motion.img
-				style={{ x: wayangX, y: wayangY }}
+				style={{ x: wayangX, y: wayangY, willChange: 'transform' }}
 				src={wayang}
 				alt='Wayang big'
 				className='absolute opacity-100 z-[2] w-[460px] top-[100px] left-[-130px]'
 			/>
 
 			<motion.img
-				style={{ x: cloud5X, y: cloud5Y }}
+				style={{ x: cloud5X, y: cloud5Y, willChange: 'transform' }}
 				src={awan5}
 				alt='Cloud medium bottom'
 				className='absolute opacity-100 z-[1] w-[300px] bottom-[-40px] left-[-65px]'
 			/>
 			<motion.img
-				style={{ x: cloud6X, y: cloud6Y }}
+				style={{ x: cloud6X, y: cloud6Y, willChange: 'transform' }}
 				src={awan4}
 				alt='Cloud big bottom'
 				className='absolute opacity-100 z-[4] w-[400px] bottom-[-115px] left-[15px]'
 			/>
 			<motion.img
-				style={{ x: cloud7X, y: cloud7Y }}
+				style={{ x: cloud7X, y: cloud7Y, willChange: 'transform' }}
 				src={awan3}
 				alt='Cloud big bottom right'
 				className='absolute opacity-100 z-[3] w-[400px] bottom-[-55px] right-[-40px]'
