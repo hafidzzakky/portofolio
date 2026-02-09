@@ -22,7 +22,7 @@ function App() {
 	const [isLoading, setIsLoading] = useState(true);
 	const [isHeaderVisible, setIsHeaderVisible] = useState(false);
 	const [activeSection, setActiveSection] = useState('hero');
-	const [theme, setTheme] = useState(localStorage.getItem('theme') || 'mytheme');
+	const [theme, setTheme] = useState(localStorage.getItem('theme') || 'luxury');
 
 	useEffect(() => {
 		localStorage.setItem('theme', theme);
