@@ -110,7 +110,6 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
 										initial={{ width: '0%' }}
 										animate={{ width: '100%' }}
 										transition={{ duration: 3, ease: 'linear' }}
-										layoutId='activeProgress'
 									/>
 								)}
 							</motion.div>
