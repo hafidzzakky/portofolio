@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Lenis from 'lenis';
-import { motion, useScroll, useTransform, useMotionValueEvent, AnimatePresence } from 'framer-motion';
+import { motion, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-motion';
 import { PiCode, PiBriefcase, PiGraduationCap, PiRocketLaunch, PiEnvelopeSimple } from 'react-icons/pi';
 import Hero from './sections/Hero';
 // import WorldMap from './sections/WorldMap';
@@ -11,13 +11,10 @@ import Education from './sections/Education';
 // import Projects from './sections/Projects';
 import Showcase from './sections/Showcase';
 import Contact from './sections/Contact';
-import AbstractBackground from './sections/AbstractBackground';
 import Preloader from './components/Preloader';
 
 function App() {
 	const { scrollY, scrollYProgress } = useScroll();
-	const y1 = useTransform(scrollY, [0, 500], [0, 200]);
-	const y2 = useTransform(scrollY, [0, 500], [0, -150]);
 
 	const [isLoading, setIsLoading] = useState(true);
 	const [isHeaderVisible, setIsHeaderVisible] = useState(false);
@@ -111,17 +108,11 @@ function App() {
 			<motion.div className='fixed top-0 left-0 right-0 h-1 bg-primary origin-left z-[100]' style={{ scaleX: scrollYProgress }} />
 
 			{/* Parallax Background Elements - Optimized with Radial Gradients instead of Blur filter */}
-			<motion.div
-				style={{ y: y1 }}
-				className='fixed top-0 right-0 w-[800px] h-[800px] bg-[radial-gradient(circle_at_center,rgba(var(--p),0.15)_0%,transparent_70%)] -z-10 pointer-events-none translate-x-1/3 -translate-y-1/4'
-			/>
-			<motion.div
-				style={{ y: y2 }}
-				className='fixed bottom-0 left-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_center,rgba(var(--s),0.15)_0%,transparent_70%)] -z-10 pointer-events-none -translate-x-1/3 translate-y-1/4'
-			/>
+			<div className='fixed top-0 right-0 w-[800px] h-[800px] bg-[radial-gradient(circle_at_center,rgba(var(--p),0.15)_0%,transparent_70%)] -z-10 pointer-events-none translate-x-1/3 -translate-y-1/4' />
+			<div className='fixed bottom-0 left-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_center,rgba(var(--s),0.15)_0%,transparent_70%)] -z-10 pointer-events-none -translate-x-1/3 translate-y-1/4' />
 
-			{/* Abstract Background */}
-			<AbstractBackground scrollY={scrollY} />
+			{/* Abstract Background - Disabled for performance */}
+			{/* <AbstractBackground scrollY={scrollY} /> */}
 
 			{/* World Map Background with Zoom Effect - Disabled for now */}
 			{/* <WorldMap scrollY={scrollY} /> */}
@@ -137,7 +128,7 @@ function App() {
 							transition={{ duration: 0.3 }}
 							className='fixed z-50 flex justify-center px-4 left-0 right-0 top-auto bottom-6 md:top-4 md:bottom-auto'
 						>
-							<div className='px-6 py-2 rounded-full bg-base-100/80 backdrop-blur-md border border-white/20 shadow-lg flex items-center gap-6 md:gap-8'>
+							<div className='px-6 py-2 rounded-full bg-base-100/95 border border-white/20 shadow-lg flex items-center gap-6 md:gap-8'>
 								<div
 									className='flex items-center gap-2 cursor-pointer'
 									onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
