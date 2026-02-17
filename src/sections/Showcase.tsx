@@ -153,14 +153,14 @@ const ShowcaseCard = ({ project, onClick }: { project: (typeof showcaseProjects)
 	const [isHovered, setIsHovered] = useState(false);
 
 	useEffect(() => {
-		let interval: ReturnType<typeof setInterval>;
-		if (isHovered && project.images.length > 1) {
-			interval = setInterval(() => {
-				setCurrentImage((prev) => (prev + 1) % project.images.length);
-			}, 1500); // Switch image every 1.5 seconds
-		} else {
-			setCurrentImage(0); // Reset to first image when not hovered
+		if (!isHovered || project.images.length <= 1) {
+			return;
 		}
+
+		const interval = setInterval(() => {
+			setCurrentImage((prev) => (prev + 1) % project.images.length);
+		}, 1500);
+
 		return () => clearInterval(interval);
 	}, [isHovered, project.images.length]);
 
@@ -174,7 +174,10 @@ const ShowcaseCard = ({ project, onClick }: { project: (typeof showcaseProjects)
 			whileHover={{ y: -5, transition: { duration: 0.3 } }}
 			className='break-inside-avoid mb-6 rounded-2xl overflow-hidden relative group bg-base-200 shadow-lg hover:shadow-2xl transition-shadow duration-300 cursor-pointer'
 			onMouseEnter={() => setIsHovered(true)}
-			onMouseLeave={() => setIsHovered(false)}
+			onMouseLeave={() => {
+				setIsHovered(false);
+				setCurrentImage(0);
+			}}
 			onClick={onClick}
 		>
 			{/* Image Container */}

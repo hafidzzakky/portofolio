@@ -1,32 +1,71 @@
-import digiPayroll from '../assets/image/portfolio/bni/digi-payroll/digipayroll.jpg';
-import digiPayroll1 from '../assets/image/portfolio/bni/digi-payroll/digipayroll-detail.jpg';
-import digiPayroll2 from '../assets/image/portfolio/bni/digi-payroll/digipayroll-detail2.jpg';
-import digiPayroll3 from '../assets/image/portfolio/bni/digi-payroll/digipayroll-detail3.jpg';
+import digiPayroll from '../assets/image/portfolio/bni/digi-payroll/digipayroll.webp';
+import digiPayroll1 from '../assets/image/portfolio/bni/digi-payroll/digipayroll-detail2.webp';
+import digiPayroll2 from '../assets/image/portfolio/bni/digi-payroll/digipayroll-detail3.webp';
 
-import digimap from '../assets/image/portfolio/bni/digimap/digimap.jpg';
-import digimap1 from '../assets/image/portfolio/bni/digimap/digimap-detail.jpg';
-import digimap2 from '../assets/image/portfolio/bni/digimap/digimap-detail2.jpg';
-import digimap3 from '../assets/image/portfolio/bni/digimap/digimap-detail3.jpg';
+import digimap from '../assets/image/portfolio/bni/digimap/digimap.webp';
+import digimap1 from '../assets/image/portfolio/bni/digimap/digimap-detail2.webp';
+import digimap2 from '../assets/image/portfolio/bni/digimap/digimap-detail3.webp';
 
-import digimudik from '../assets/image/portfolio/bni/digimudik/digimudik.jpg';
-import digimudik1 from '../assets/image/portfolio/bni/digimudik/digimudik-detail.jpg';
-import digimudik2 from '../assets/image/portfolio/bni/digimudik/digimudik-detail2.jpg';
-import digimudik3 from '../assets/image/portfolio/bni/digimudik/digimudik-detail3.jpg';
+import digimudik from '../assets/image/portfolio/bni/digimudik/digimudik.webp';
+import digimudik1 from '../assets/image/portfolio/bni/digimudik/digimudik-detail2.webp';
+import digimudik2 from '../assets/image/portfolio/bni/digimudik/digimudik-detail3.webp';
 
-import eAbsensi from '../assets/image/portfolio/bni/e-absensi/eabsensi.jpg';
-import eAbsensi1 from '../assets/image/portfolio/bni/e-absensi/eabsensi-detail.jpg';
-import eAbsensi2 from '../assets/image/portfolio/bni/e-absensi/eabsensi-detail2.jpg';
-import eAbsensi3 from '../assets/image/portfolio/bni/e-absensi/eabsensi-detail3.jpg';
+import eAbsensi from '../assets/image/portfolio/bni/e-absensi/eabsensi.webp';
+import eAbsensi1 from '../assets/image/portfolio/bni/e-absensi/eabsensi-detail2.webp';
+import eAbsensi2 from '../assets/image/portfolio/bni/e-absensi/eabsensi-detail3.webp';
 
-import myOffice from '../assets/image/portfolio/bni/my-office/myOffice.jpg';
-import myOffice1 from '../assets/image/portfolio/bni/my-office/my-office-detail.jpg';
-import myOffice2 from '../assets/image/portfolio/bni/my-office/my-office-detail2.jpg';
-import myOffice3 from '../assets/image/portfolio/bni/my-office/my-office-detail3.jpg';
+import myOffice from '../assets/image/portfolio/bni/my-office/myOffice.webp';
+import myOffice1 from '../assets/image/portfolio/bni/my-office/my-office-detail2.webp';
+import myOffice2 from '../assets/image/portfolio/bni/my-office/my-office-detail3.webp';
 
-import merdekaSafety from '../assets/image/portfolio/merdeka/merdeka-safety/merdeka-safety.jpg';
-import merdekaSafety1 from '../assets/image/portfolio/merdeka/merdeka-safety/merdeka-safety-detail.jpg';
-import merdekaSafety2 from '../assets/image/portfolio/merdeka/merdeka-safety/merdeka-safety-detail2.jpg';
-import merdekaSafety3 from '../assets/image/portfolio/merdeka/merdeka-safety/merdeka-safety-detail3.jpg';
+import merdekaSafety from '../assets/image/portfolio/merdeka/merdeka-safety/merdeka-safety.webp';
+import merdekaSafety1 from '../assets/image/portfolio/merdeka/merdeka-safety/merdeka-safety-detail.webp';
+import merdekaSafety2 from '../assets/image/portfolio/merdeka/merdeka-safety/merdeka-safety-detail2.webp';
+import merdekaSafety3 from '../assets/image/portfolio/merdeka/merdeka-safety/merdeka-safety-detail3.webp';
+
+import tukangkuV1_1 from '../assets/image/portfolio/tukangku/v1/tukangku-1.webp';
+import tukangkuV1_2 from '../assets/image/portfolio/tukangku/v1/tukangku-2.webp';
+import tukangkuV1_3 from '../assets/image/portfolio/tukangku/v1/tukangku-3.webp';
+import tukangkuV1_4 from '../assets/image/portfolio/tukangku/v1/tukangku-4.webp';
+import tukangkuV1_5 from '../assets/image/portfolio/tukangku/v1/tukangku-5.webp';
+import tukangkuV1_6 from '../assets/image/portfolio/tukangku/v1/tukangku-6.webp';
+import tukangkuV1_7 from '../assets/image/portfolio/tukangku/v1/tukangku-7.webp';
+import tukangkuV1_8 from '../assets/image/portfolio/tukangku/v1/tukangku-8.webp';
+
+import tukangkuV2_1 from '../assets/image/portfolio/tukangku/v2/1.webp';
+import tukangkuV2_2 from '../assets/image/portfolio/tukangku/v2/2.webp';
+import tukangkuV2_3 from '../assets/image/portfolio/tukangku/v2/3.webp';
+import tukangkuV2_4 from '../assets/image/portfolio/tukangku/v2/4.webp';
+import tukangkuV2_5 from '../assets/image/portfolio/tukangku/v2/5.webp';
+import tukangkuV2_6 from '../assets/image/portfolio/tukangku/v2/6.webp';
+import tukangkuV2_7 from '../assets/image/portfolio/tukangku/v2/7.webp';
+import tukangkuV2_8 from '../assets/image/portfolio/tukangku/v2/8.webp';
+
+import difacare1 from '../assets/image/portfolio/difacare/1.webp';
+import difacare2 from '../assets/image/portfolio/difacare/2.webp';
+import difacare3 from '../assets/image/portfolio/difacare/3.webp';
+import difacare4 from '../assets/image/portfolio/difacare/4.webp';
+import difacare5 from '../assets/image/portfolio/difacare/5.webp';
+import difacare6 from '../assets/image/portfolio/difacare/6.webp';
+
+import senja1 from '../assets/image/portfolio/senjacare/img-1.webp';
+import senja2 from '../assets/image/portfolio/senjacare/img-2.webp';
+import senja3 from '../assets/image/portfolio/senjacare/img-3.webp';
+import senja4 from '../assets/image/portfolio/senjacare/img-4.webp';
+import senja5 from '../assets/image/portfolio/senjacare/img-5.webp';
+
+import saka0 from '../assets/image/portfolio/saka/0.webp';
+import saka1 from '../assets/image/portfolio/saka/1.webp';
+import sakaEisMain from '../assets/image/portfolio/saka/eis-1.webp';
+import sakaEisDetail1 from '../assets/image/portfolio/saka/eis-1.1.webp';
+import sakaEisDetail2 from '../assets/image/portfolio/saka/eis-1.2.webp';
+import sakaEisDetail3 from '../assets/image/portfolio/saka/eis-1.5.webp';
+import sakaEisDetail4 from '../assets/image/portfolio/saka/eis-1.6.webp';
+import sakaJcs1 from '../assets/image/portfolio/saka/jcs-1.1.webp';
+import sakaJcs2 from '../assets/image/portfolio/saka/jcs-1.2.webp';
+import sakaJcs3 from '../assets/image/portfolio/saka/jcs-1.3.webp';
+import sakaJcs4 from '../assets/image/portfolio/saka/jcs-2.1.webp';
+import sakaJcs5 from '../assets/image/portfolio/saka/jcs-2.2.webp';
 
 export interface Project {
 	id: number;
@@ -52,9 +91,18 @@ export const projects: Project[] = [
 			demo: '#',
 		},
 		images: [
-			'https://placehold.co/600x400/1a1a1a/ffffff?text=SAKA EIS',
-			'https://placehold.co/600x400/2a2a2a/ffffff?text=SAKA Admin',
-			'https://placehold.co/600x400/3a3a3a/ffffff?text=SAKA JCS',
+			saka0,
+			saka1,
+			sakaEisMain,
+			sakaEisDetail1,
+			sakaEisDetail2,
+			sakaEisDetail3,
+			sakaEisDetail4,
+			sakaJcs1,
+			sakaJcs2,
+			sakaJcs3,
+			sakaJcs4,
+			sakaJcs5,
 		],
 	},
 	{
@@ -83,11 +131,7 @@ export const projects: Project[] = [
 			github: '#',
 			demo: '#',
 		},
-		images: [
-			'https://placehold.co/600x400/1a1a1a/ffffff?text=Tukangku+Home',
-			'https://placehold.co/600x400/2a2a2a/ffffff?text=Service+List',
-			'https://placehold.co/600x400/3a3a3a/ffffff?text=Order+Flow',
-		],
+		images: [tukangkuV1_1, tukangkuV1_2, tukangkuV1_3, tukangkuV1_4, tukangkuV1_5, tukangkuV1_6, tukangkuV1_7, tukangkuV1_8],
 	},
 	{
 		id: 4,
@@ -99,11 +143,7 @@ export const projects: Project[] = [
 			github: '#',
 			demo: '#',
 		},
-		images: [
-			'https://placehold.co/600x400/1a1a1a/ffffff?text=Tukangku+Home',
-			'https://placehold.co/600x400/2a2a2a/ffffff?text=Consultation',
-			'https://placehold.co/600x400/3a3a3a/ffffff?text=Material+Catalog',
-		],
+		images: [tukangkuV2_1, tukangkuV2_2, tukangkuV2_3, tukangkuV2_4, tukangkuV2_5, tukangkuV2_6, tukangkuV2_7, tukangkuV2_8],
 	},
 	{
 		id: 5,
@@ -115,11 +155,7 @@ export const projects: Project[] = [
 			github: '#',
 			demo: '#',
 		},
-		images: [
-			'https://placehold.co/600x700/1a1a1a/ffffff?text=SenjaCare',
-			'https://placehold.co/600x700/2a2a2a/ffffff?text=SenjaCarePartner',
-			'https://placehold.co/600x700/3a3a3a/ffffff?text=SenjaCareChat',
-		],
+		images: [senja1, senja2, senja3, senja4, senja5],
 	},
 	{
 		id: 6,
@@ -131,11 +167,7 @@ export const projects: Project[] = [
 			github: '#',
 			demo: '#',
 		},
-		images: [
-			'https://placehold.co/600x400/1a1a1a/ffffff?text=DifaCare+Dashboard',
-			'https://placehold.co/600x400/2a2a2a/ffffff?text=Consultation+Flow',
-			'https://placehold.co/600x400/3a3a3a/ffffff?text=Community+Forum',
-		],
+		images: [difacare1, difacare2, difacare3, difacare4, difacare5, difacare6],
 	},
 	{
 		id: 7,
@@ -146,7 +178,7 @@ export const projects: Project[] = [
 			github: '#',
 			demo: '#',
 		},
-		images: [digiPayroll, digiPayroll1, digiPayroll2, digiPayroll3],
+		images: [digiPayroll, digiPayroll1, digiPayroll2],
 	},
 	{
 		id: 8,
@@ -157,7 +189,7 @@ export const projects: Project[] = [
 			github: '#',
 			demo: '#',
 		},
-		images: [digimap, digimap1, digimap2, digimap3],
+		images: [digimap, digimap1, digimap2],
 	},
 	{
 		id: 9,
@@ -168,7 +200,7 @@ export const projects: Project[] = [
 			github: '#',
 			demo: '#',
 		},
-		images: [digimudik, digimudik1, digimudik2, digimudik3],
+		images: [digimudik, digimudik1, digimudik2],
 	},
 	{
 		id: 10,
@@ -179,7 +211,7 @@ export const projects: Project[] = [
 			github: '#',
 			demo: '#',
 		},
-		images: [eAbsensi, eAbsensi1, eAbsensi2, eAbsensi3],
+		images: [eAbsensi, eAbsensi1, eAbsensi2],
 	},
 	{
 		id: 11,
@@ -190,7 +222,7 @@ export const projects: Project[] = [
 			github: '#',
 			demo: '#',
 		},
-		images: [myOffice, myOffice1, myOffice2, myOffice3],
+		images: [myOffice, myOffice1, myOffice2],
 	},
 	{
 		id: 12,
