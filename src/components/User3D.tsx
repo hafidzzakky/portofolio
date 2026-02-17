@@ -20,7 +20,6 @@ const User3D = ({ className = 'w-full h-[300px] md:h-[400px]' }: { className?: s
 						<Model />
 					</Float>
 					<Environment preset='city' />
-					{/* Shadows moved further down or removed as we focus on upper body */}
 					<ContactShadows position={[0, -5, 0]} opacity={0.4} scale={10} blur={2.5} far={4} />
 				</Suspense>
 				<OrbitControls enableZoom={false} autoRotate={false} minPolarAngle={Math.PI / 2} maxPolarAngle={Math.PI / 2} />

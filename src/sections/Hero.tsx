@@ -109,7 +109,7 @@ const Hero = ({ theme }: { theme: string }) => {
 						transition={{ delay: 0.5, duration: 0.8 }}
 						className='mt-12 w-full flex flex-col items-center lg:items-start'
 					>
-						<p className='text-sm text-base-content/50 font-mono mb-4 uppercase tracking-widest text-center lg:text-left'>
+						<p className='text-sm text-base-content font-mono mb-4 uppercase tracking-widest text-center lg:text-left'>
 							Tech Stack
 						</p>
 						<div className='flex gap-6 text-3xl text-base-content/40 justify-center lg:justify-start w-full lg:w-auto flex-wrap'>
