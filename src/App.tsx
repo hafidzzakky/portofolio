@@ -12,6 +12,7 @@ import Education from './sections/Education';
 import Showcase from './sections/Showcase';
 import Contact from './sections/Contact';
 import Preloader from './components/Preloader';
+import StaticAbstractBackground from './sections/StaticAbstractBackground';
 
 function App() {
 	const { scrollY, scrollYProgress } = useScroll();
@@ -107,11 +108,17 @@ function App() {
 			{/* Scroll Progress Bar */}
 			<motion.div className='fixed top-0 left-0 right-0 h-1 bg-primary origin-left z-[100]' style={{ scaleX: scrollYProgress }} />
 
-			{/* Parallax Background Elements - Optimized with Radial Gradients instead of Blur filter */}
-			<div className='fixed top-0 right-0 w-[800px] h-[800px] bg-[radial-gradient(circle_at_center,rgba(var(--p),0.15)_0%,transparent_70%)] -z-10 pointer-events-none translate-x-1/3 -translate-y-1/4' />
-			<div className='fixed bottom-0 left-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_center,rgba(var(--s),0.15)_0%,transparent_70%)] -z-10 pointer-events-none -translate-x-1/3 translate-y-1/4' />
+			{/* Fixed soft background spots like DaisyUI hero */}
+			<div
+				className='fixed inset-0 -z-10 pointer-events-none'
+				style={{
+					background:
+						'radial-gradient(circle at 40% 35%, var(--bg-spot-1) -200%, transparent 45%), radial-gradient(circle at 60% 40%, var(--bg-spot-2) -200%, transparent 40%)',
+				}}
+			/>
 
-			{/* Abstract Background - Disabled for performance */}
+			{/* Static abstract background clone (no motion, fixed to viewport) */}
+			<StaticAbstractBackground />
 			{/* <AbstractBackground scrollY={scrollY} /> */}
 
 			{/* World Map Background with Zoom Effect - Disabled for now */}

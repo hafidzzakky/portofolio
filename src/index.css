@@ -7,6 +7,18 @@
 	visibility: inherit;
 }
 
+html[data-theme] {
+	--bg-glow-primary: var(--p);
+	--bg-glow-secondary: var(--s);
+	--bg-spot-1: rgb(var(--in) / 0.16);
+	--bg-spot-2: rgb(var(--su) / 0.14);
+}
+
+html[data-theme='luxury'] {
+	--bg-glow-primary: 22 33 61;
+	--bg-glow-secondary: 22 33 61;
+}
+
 /* Fix for Leaflet grid lines/gaps between tiles - Reverted due to visibility issues */
 /* .leaflet-tile-container img {
 	width: 100.5% !important;

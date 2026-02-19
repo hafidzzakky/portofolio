@@ -1,11 +1,11 @@
-import { motion, useTransform, MotionValue } from 'framer-motion';
+import { motion, useTransform } from 'framer-motion';
+import type { MotionValue } from 'framer-motion';
 
 interface AbstractBackgroundProps {
 	scrollY: MotionValue<number>;
 }
 
 const AbstractBackground = ({ scrollY }: AbstractBackgroundProps) => {
-	// Parallax and transformation effects
 	const rotate = useTransform(scrollY, [0, 1000], [0, 45]);
 	const scale = useTransform(scrollY, [0, 1000], [1, 1.5]);
 	const y1 = useTransform(scrollY, [0, 1000], [0, 200]);
@@ -14,19 +14,16 @@ const AbstractBackground = ({ scrollY }: AbstractBackgroundProps) => {
 
 	return (
 		<div className='fixed inset-0 w-full h-full -z-20 pointer-events-none overflow-hidden'>
-			{/* Large Gradient Blob 1 */}
 			<motion.div
 				style={{ rotate, scale, y: y1, opacity }}
 				className='absolute top-[-20%] left-[-10%] w-[80vw] h-[80vw] rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 blur-[100px] will-change-transform'
 			/>
 
-			{/* Large Gradient Blob 2 */}
 			<motion.div
 				style={{ rotate: rotate, scale, y: y2, opacity }}
 				className='absolute bottom-[-20%] right-[-10%] w-[80vw] h-[80vw] rounded-full bg-gradient-to-tl from-secondary/20 to-primary/20 blur-[100px] will-change-transform'
 			/>
 
-			{/* Grid Pattern Overlay */}
 			<div
 				className='absolute inset-0 opacity-20'
 				style={{
@@ -34,7 +31,6 @@ const AbstractBackground = ({ scrollY }: AbstractBackgroundProps) => {
 				}}
 			/>
 
-			{/* Floating Shapes */}
 			<motion.div
 				animate={{
 					y: [0, -50, 0],
