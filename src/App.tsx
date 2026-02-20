@@ -118,7 +118,7 @@ function App() {
 			/>
 
 			{/* Static abstract background clone (no motion, fixed to viewport) */}
-			<StaticAbstractBackground />
+			<StaticAbstractBackground isLuxury={theme === 'luxury'} />
 			{/* <AbstractBackground scrollY={scrollY} /> */}
 
 			{/* World Map Background with Zoom Effect - Disabled for now */}
