@@ -1,20 +1,14 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
+import { Splide, SplideSlide } from '@splidejs/react-splide';
+import '@splidejs/react-splide/css';
 import { projects as showcaseProjects, type Project } from '../data/projects';
 import { PiX, PiCaretLeft, PiCaretRight } from 'react-icons/pi';
 
 const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => void }) => {
 	const [currentImage, setCurrentImage] = useState(0);
-
-	// Auto-slide logic
-	useEffect(() => {
-		// Reset progress bar animation when slide changes
-		const interval = setInterval(() => {
-			setCurrentImage((prev) => (prev + 1) % project.images.length);
-		}, 3000); // 3 seconds per slide
-
-		return () => clearInterval(interval);
-	}, [project.images.length, currentImage]); // Add currentImage dependency to reset timer on manual change
+	const [isHovered, setIsHovered] = useState(false);
+	const splideRef = useRef<any>(null);
 
 	// Lock body scroll when modal is open
 	useEffect(() => {
@@ -23,9 +17,6 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
 			document.body.style.overflow = 'unset';
 		};
 	}, []);
-
-	const nextImage = () => setCurrentImage((prev) => (prev + 1) % project.images.length);
-	const prevImage = () => setCurrentImage((prev) => (prev - 1 + project.images.length) % project.images.length);
 
 	return (
 		<motion.div
@@ -40,7 +31,7 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
 				animate={{ scale: 1, opacity: 1 }}
 				exit={{ scale: 0.9, opacity: 0 }}
 				transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-				className='relative w-full max-w-5xl bg-base-100 rounded-3xl overflow-hidden shadow-2xl flex flex-col md:flex-row max-h-[90vh]'
+				className='relative w-full max-w-6xl bg-base-100 rounded-3xl overflow-hidden shadow-2xl flex flex-col md:flex-row md:items-stretch max-h-[90vh]'
 				onClick={(e) => e.stopPropagation()}
 			>
 				{/* Close Button */}
@@ -52,36 +43,61 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
 				</button>
 
 				{/* Image Section */}
-				<div className='w-full md:w-2/3 relative bg-base-200 flex items-center justify-center overflow-hidden h-auto min-h-[300px] group'>
-					<AnimatePresence mode='popLayout'>
-						<motion.img
-							key={currentImage}
-							src={project.images[currentImage]}
-							alt={`${project.title} view ${currentImage + 1}`}
-							initial={{ opacity: 0, x: 100 }}
-							animate={{ opacity: 1, x: 0 }}
-							exit={{ opacity: 0, x: -100 }}
-							transition={{ duration: 0.5 }}
-							className='w-full h-auto max-h-[80vh] object-contain block'
-						/>
-					</AnimatePresence>
+				<div
+					className='w-full md:w-7/12 relative flex items-center justify-center overflow-hidden h-auto min-h-[300px] md:max-h-[80vh] group'
+					onMouseEnter={() => setIsHovered(true)}
+					onMouseLeave={() => setIsHovered(false)}
+				>
+					<Splide
+						options={{
+							type: 'slide',
+							rewind: true,
+							start: 0,
+							perPage: 1,
+							gap: '1rem',
+							arrows: false,
+							pagination: false,
+							autoplay: true,
+							interval: 3000,
+							pauseOnHover: true,
+							pauseOnFocus: true,
+							speed: 600,
+							drag: 'free',
+						}}
+						onMounted={(splide) => {
+							splide.go(0);
+						}}
+						onMoved={(_, newIndex: number) => setCurrentImage(newIndex)}
+						ref={(splide) => {
+							splideRef.current = splide;
+						}}
+						className='w-full h-full'
+					>
+						{project.images.map((src, idx) => (
+							<SplideSlide key={idx} className='flex items-center justify-center'>
+								<div className='w-full h-full flex items-center justify-center rounded-3xl overflow-hidden bg-base-100/5'>
+									<img src={src} alt={`${project.title} view ${idx + 1}`} className='w-full h-full object-cover block' />
+								</div>
+							</SplideSlide>
+						))}
+					</Splide>
 
 					{/* Navigation Arrows */}
 					<button
 						onClick={(e) => {
 							e.stopPropagation();
-							prevImage();
+							splideRef.current && splideRef.current.go('<');
 						}}
-						className='absolute left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 flex items-center justify-center rounded-full bg-black/20 backdrop-blur-md text-white hover:bg-black/50 transition-all opacity-0 group-hover:opacity-100'
+						className='hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 items-center justify-center rounded-full bg-black/20 backdrop-blur-md text-white hover:bg-black/50 transition-all opacity-0 group-hover:opacity-100'
 					>
 						<PiCaretLeft className='text-xl' />
 					</button>
 					<button
 						onClick={(e) => {
 							e.stopPropagation();
-							nextImage();
+							splideRef.current && splideRef.current.go('>');
 						}}
-						className='absolute right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 flex items-center justify-center rounded-full bg-black/20 backdrop-blur-md text-white hover:bg-black/50 transition-all opacity-0 group-hover:opacity-100'
+						className='hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 items-center justify-center rounded-full bg-black/20 backdrop-blur-md text-white hover:bg-black/50 transition-all opacity-0 group-hover:opacity-100'
 					>
 						<PiCaretRight className='text-xl' />
 					</button>
@@ -101,10 +117,12 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
 								}`}
 								onClick={(e) => {
 									e.stopPropagation();
-									setCurrentImage(idx);
+									if (splideRef.current) {
+										splideRef.current.go(idx);
+									}
 								}}
 							>
-								{currentImage === idx && (
+								{currentImage === idx && !isHovered && (
 									<motion.div
 										className='absolute top-0 left-0 h-full bg-secondary/90'
 										initial={{ width: '0%' }}
@@ -118,7 +136,7 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
 				</div>
 
 				{/* Content Section */}
-				<div className='w-full md:w-1/3 p-6 md:p-8 overflow-y-auto bg-base-100'>
+				<div className='w-full md:w-5/12 p-6 md:p-8 bg-base-100 flex flex-col md:h-full md:max-h-[80vh] overflow-y-auto'>
 					<div className='flex flex-col h-full'>
 						<div className='mb-6'>
 							<h3 className='text-2xl md:text-3xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary'>

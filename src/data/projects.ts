@@ -54,18 +54,26 @@ import senja3 from '../assets/image/portfolio/senjacare/img-3.webp';
 import senja4 from '../assets/image/portfolio/senjacare/img-4.webp';
 import senja5 from '../assets/image/portfolio/senjacare/img-5.webp';
 
-import saka0 from '../assets/image/portfolio/saka/0.webp';
-import saka1 from '../assets/image/portfolio/saka/1.webp';
-import sakaEisMain from '../assets/image/portfolio/saka/eis-1.webp';
-import sakaEisDetail1 from '../assets/image/portfolio/saka/eis-1.1.webp';
-import sakaEisDetail2 from '../assets/image/portfolio/saka/eis-1.2.webp';
-import sakaEisDetail3 from '../assets/image/portfolio/saka/eis-1.5.webp';
-import sakaEisDetail4 from '../assets/image/portfolio/saka/eis-1.6.webp';
-import sakaJcs1 from '../assets/image/portfolio/saka/jcs-1.1.webp';
-import sakaJcs2 from '../assets/image/portfolio/saka/jcs-1.2.webp';
-import sakaJcs3 from '../assets/image/portfolio/saka/jcs-1.3.webp';
-import sakaJcs4 from '../assets/image/portfolio/saka/jcs-2.1.webp';
-import sakaJcs5 from '../assets/image/portfolio/saka/jcs-2.2.webp';
+import saka0 from '../assets/image/portfolio/saka/saka0.webp';
+import saka1 from '../assets/image/portfolio/saka/saka1.webp';
+import saka2 from '../assets/image/portfolio/saka/saka2.webp';
+import saka3 from '../assets/image/portfolio/saka/saka3.webp';
+import saka4 from '../assets/image/portfolio/saka/saka4.webp';
+import saka5 from '../assets/image/portfolio/saka/saka5.webp';
+import saka6 from '../assets/image/portfolio/saka/saka6.webp';
+import saka7 from '../assets/image/portfolio/saka/saka7.webp';
+import saka8 from '../assets/image/portfolio/saka/saka8.webp';
+import saka9 from '../assets/image/portfolio/saka/saka9.webp';
+import saka10 from '../assets/image/portfolio/saka/saka10.webp';
+import saka11 from '../assets/image/portfolio/saka/saka11.webp';
+import saka12 from '../assets/image/portfolio/saka/saka12.webp';
+import saka13 from '../assets/image/portfolio/saka/saka13.webp';
+import saka14 from '../assets/image/portfolio/saka/saka14.webp';
+import saka15 from '../assets/image/portfolio/saka/saka15.webp';
+import saka16 from '../assets/image/portfolio/saka/saka16.webp';
+import saka17 from '../assets/image/portfolio/saka/saka17.webp';
+import saka18 from '../assets/image/portfolio/saka/saka18.webp';
+import saka19 from '../assets/image/portfolio/saka/saka19.webp';
 
 export interface Project {
 	id: number;
@@ -93,16 +101,24 @@ export const projects: Project[] = [
 		images: [
 			saka0,
 			saka1,
-			sakaEisMain,
-			sakaEisDetail1,
-			sakaEisDetail2,
-			sakaEisDetail3,
-			sakaEisDetail4,
-			sakaJcs1,
-			sakaJcs2,
-			sakaJcs3,
-			sakaJcs4,
-			sakaJcs5,
+			saka2,
+			saka3,
+			saka4,
+			saka5,
+			saka6,
+			saka7,
+			saka8,
+			saka9,
+			saka10,
+			saka11,
+			saka12,
+			saka13,
+			saka14,
+			saka15,
+			saka16,
+			saka17,
+			saka18,
+			saka19,
 		],
 	},
 	{
