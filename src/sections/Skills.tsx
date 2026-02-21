@@ -125,7 +125,7 @@ const SkillRadar = () => {
 			initial={{ opacity: 0, y: 20 }}
 			whileInView={{ opacity: 1, y: 0 }}
 			viewport={{ once: true, amount: 0.3 }}
-			transition={{ duration: 0.6 }}
+			transition={{ duration: 0.6, ease: 'easeOut' }}
 			className='mb-10 flex flex-col md:flex-row gap-4 md:gap-2 items-stretch'
 		>
 			<div className='relative flex h-full shrink-0 md:mr-2'>
@@ -264,7 +264,7 @@ const Skills = () => {
 				initial={{ opacity: 0, y: 20 }}
 				whileInView={{ opacity: 1, y: 0 }}
 				viewport={{ once: true, amount: 0.3 }}
-				transition={{ duration: 0.5 }}
+				transition={{ duration: 0.6, ease: 'easeOut' }}
 				className='mb-8 will-change-[opacity,transform]'
 			>
 				<h2 className='text-3xl font-bold border-b-4 border-primary inline-block pb-1'>Core Technical Skills</h2>
@@ -308,7 +308,7 @@ const Skills = () => {
 				initial={{ opacity: 0, y: 20 }}
 				whileInView={{ opacity: 1, y: 0 }}
 				viewport={{ once: true, amount: 0.3 }}
-				transition={{ duration: 0.5 }}
+				transition={{ duration: 0.6, ease: 'easeOut' }}
 				className='mb-8 will-change-[opacity,transform]'
 			>
 				<h2 className='text-3xl font-bold border-b-4 border-primary inline-block pb-1'>Technical Skills Radar</h2>

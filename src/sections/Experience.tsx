@@ -81,8 +81,9 @@ const ExperienceCard = ({ exp, index }: { exp: (typeof experiences)[0]; index: n
 			{/* Connecting Line to Card (Subtle) */}
 			<span className='absolute left-[-2px] top-[38px] w-8 md:w-12 h-[2px] bg-primary/30'></span>
 
-			<div
-				className={`card bg-base-100/30 backdrop-blur-md shadow-sm border border-white/10 hover:border-primary/30 transition-all duration-300 cursor-pointer group overflow-hidden ${
+			<button
+				type='button'
+				className={`card bg-base-100/30 backdrop-blur-md shadow-sm border border-white/10 hover:border-primary/30 transition-all duration-300 cursor-pointer group overflow-hidden w-full text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-base-100 ${
 					isOpen ? 'bg-base-100/50 shadow-xl ring-1 ring-primary/20' : 'hover:bg-base-100/40'
 				}`}
 				onClick={() => setIsOpen(!isOpen)}
@@ -151,7 +152,7 @@ const ExperienceCard = ({ exp, index }: { exp: (typeof experiences)[0]; index: n
 						</>
 					)}
 				</div>
-			</div>
+			</button>
 		</motion.div>
 	);
 };
@@ -163,7 +164,7 @@ const Experience = () => {
 				initial={{ opacity: 0, y: 20 }}
 				whileInView={{ opacity: 1, y: 0 }}
 				viewport={{ once: true }}
-				transition={{ duration: 0.5 }}
+				transition={{ duration: 0.6, ease: 'easeOut' }}
 				className='mb-10'
 			>
 				<h2 className='text-3xl font-bold border-b-4 border-primary inline-block pb-1'>Professional Experience</h2>
@@ -179,7 +180,7 @@ const Experience = () => {
 				initial={{ opacity: 0, y: 20 }}
 				whileInView={{ opacity: 1, y: 0 }}
 				viewport={{ once: true }}
-				transition={{ duration: 0.6, delay: 0.1 }}
+				transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
 				className='mt-12 grid gap-4 md:grid-cols-4'
 			>
 				{[

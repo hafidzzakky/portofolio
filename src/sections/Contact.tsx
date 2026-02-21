@@ -21,7 +21,7 @@ const Contact = () => {
 				initial={{ opacity: 0, y: 50 }}
 				whileInView={{ opacity: 1, y: 0 }}
 				viewport={{ once: true, amount: 0.3 }}
-				transition={{ duration: 0.8 }}
+				transition={{ duration: 0.6, ease: 'easeOut' }}
 				className='container mx-auto px-4 text-center z-10'
 			>
 				<h2 className='text-4xl md:text-5xl font-bold mb-6'>
@@ -29,8 +29,8 @@ const Contact = () => {
 				</h2>
 
 				<p className='text-lg text-base-content/80 max-w-2xl mx-auto mb-12 leading-relaxed'>
-					I'm currently open to new opportunities and collaborations. Whether you have a project in mind or just want to connect,
-					feel free to reach out!
+					Open to senior frontend roles, freelance product work, and technical consulting. If you're hiring or exploring a
+					collaboration, share a bit about the role or context and I'll respond with relevant work examples.
 				</p>
 
 				<div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto mb-4'>
@@ -90,16 +90,16 @@ const Contact = () => {
 					initial={{ opacity: 0, y: 20 }}
 					whileInView={{ opacity: 1, y: 0 }}
 					viewport={{ once: true }}
-					transition={{ duration: 0.6 }}
+					transition={{ duration: 0.6, ease: 'easeOut' }}
 					className='max-w-5xl mx-auto mb-14'
 				>
-					<div className='rounded-3xl bg-base-100/70 dark:bg-base-100/10 backdrop-blur-md border border-base-content/10 p-6 md:p-7 text-left'>
+					<div className='rounded-3xl bg-base-100/70 dark:bg-base-100/10 backdrop-blur-md border border-base-content/10 p-6 md:p-7 text-center'>
 						<h3 className='text-2xl md:text-3xl font-bold mb-4'>
 							<span className='bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary'>
 								Preferred collaboration & availability
 							</span>
 						</h3>
-						<div className='flex flex-wrap gap-2 mb-4'>
+						<div className='flex flex-wrap justify-center gap-2 mb-4'>
 							{['Full-time / Remote', 'Freelance / Contract', 'Consultation / Code Review'].map((label) => (
 								<motion.span
 									key={label}
@@ -110,11 +110,12 @@ const Contact = () => {
 								</motion.span>
 							))}
 						</div>
-						<p className='text-sm text-base-content/80'>
-							Currently open to new opportunities and collaborations across full-time, freelance, and remote work.
+						<p className='text-sm text-base-content/80 max-w-2xl mx-auto'>
+							Currently open to full-time, freelance, and remote roles. If you're hiring, feel free to share a short
+							context—I'll reply with the most relevant case studies first.
 						</p>
-						<p className='mt-3 text-xs text-base-content/60 flex flex-wrap items-center gap-2'>
-							<span>Response time: fast. I can usually respond at any time, and the fastest way to reach me is via</span>
+						<p className='mt-3 text-xs text-base-content/60 flex flex-wrap items-center justify-center gap-2'>
+							<span>Response time: fast. WhatsApp is usually the quickest way to reach me via</span>
 							<motion.a
 								whileHover={{ scale: 1.05, y: -1 }}
 								href='https://wa.me/6281395212257'
@@ -130,7 +131,13 @@ const Contact = () => {
 				</motion.div>
 
 				{/* Download CV Button */}
-				<motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className='mb-16'>
+				<motion.div
+					initial={{ opacity: 0, y: 20 }}
+					whileInView={{ opacity: 1, y: 0 }}
+					viewport={{ once: true }}
+					transition={{ duration: 0.6, ease: 'easeOut' }}
+					className='mb-16'
+				>
 					<motion.a
 						whileHover={{ scale: 1.05 }}
 						whileTap={{ scale: 0.95 }}

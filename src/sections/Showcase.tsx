@@ -9,14 +9,33 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
 	const [currentImage, setCurrentImage] = useState(0);
 	const [isHovered, setIsHovered] = useState(false);
 	const splideRef = useRef<any>(null);
+	const closeButtonRef = useRef<HTMLButtonElement | null>(null);
 
-	// Lock body scroll when modal is open
 	useEffect(() => {
 		document.body.style.overflow = 'hidden';
+		closeButtonRef.current?.focus();
+
+		const handleKeyDown = (event: KeyboardEvent) => {
+			if (event.key === 'Escape') {
+				onClose();
+			}
+
+			if (event.key === 'ArrowLeft' && splideRef.current) {
+				splideRef.current.go('<');
+			}
+
+			if (event.key === 'ArrowRight' && splideRef.current) {
+				splideRef.current.go('>');
+			}
+		};
+
+		window.addEventListener('keydown', handleKeyDown);
+
 		return () => {
 			document.body.style.overflow = 'unset';
+			window.removeEventListener('keydown', handleKeyDown);
 		};
-	}, []);
+	}, [onClose]);
 
 	return (
 		<motion.div
@@ -25,6 +44,9 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
 			exit={{ opacity: 0 }}
 			className='fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-sm p-4 md:p-8'
 			onClick={onClose}
+			role='dialog'
+			aria-modal='true'
+			aria-label={project.title}
 		>
 			<motion.div
 				initial={{ scale: 0.9, opacity: 0 }}
@@ -36,8 +58,10 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
 			>
 				{/* Close Button */}
 				<button
+					ref={closeButtonRef}
 					onClick={onClose}
 					className='absolute top-4 right-4 z-20 btn btn-circle btn-sm md:btn-md bg-base-100/50 backdrop-blur-md border-none hover:bg-base-100 text-base-content'
+					aria-label='Close project details'
 				>
 					<PiX className='text-lg' />
 				</button>
@@ -183,14 +207,15 @@ const ShowcaseCard = ({ project, onClick }: { project: (typeof showcaseProjects)
 	}, [isHovered, project.images.length]);
 
 	return (
-		<motion.div
+		<motion.button
+			type='button'
 			layout
 			initial={{ opacity: 0, scale: 0.9 }}
 			animate={{ opacity: 1, scale: 1 }}
 			exit={{ opacity: 0, scale: 0.9 }}
 			transition={{ duration: 0.3 }}
 			whileHover={{ y: -5, transition: { duration: 0.3 } }}
-			className='break-inside-avoid mb-6 rounded-2xl overflow-hidden relative group bg-base-200 shadow-lg hover:shadow-2xl transition-shadow duration-300 cursor-pointer'
+			className='break-inside-avoid mb-6 rounded-2xl overflow-hidden relative group bg-base-200 shadow-lg hover:shadow-2xl transition-shadow duration-300 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 focus-visible:ring-offset-2 focus-visible:ring-offset-base-100'
 			onMouseEnter={() => setIsHovered(true)}
 			onMouseLeave={() => {
 				setIsHovered(false);
@@ -222,7 +247,7 @@ const ShowcaseCard = ({ project, onClick }: { project: (typeof showcaseProjects)
 				</div>
 
 				{/* Overlay Gradient */}
-				<div className='absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6'>
+				<div className='absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end items-center p-6 text-center'>
 					<h3 className='text-white text-xl font-bold translate-y-4 group-hover:translate-y-0 transition-transform duration-300'>
 						{project.title}
 					</h3>
@@ -234,7 +259,7 @@ const ShowcaseCard = ({ project, onClick }: { project: (typeof showcaseProjects)
 					</p>
 
 					{/* Progress Indicator */}
-					<div className='flex gap-1 mt-4 translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-200'>
+					<div className='flex gap-1 mt-4 translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-200 justify-center'>
 						{project.images.map((_, idx) => (
 							<div
 								key={idx}
@@ -246,7 +271,7 @@ const ShowcaseCard = ({ project, onClick }: { project: (typeof showcaseProjects)
 					</div>
 				</div>
 			</div>
-		</motion.div>
+		</motion.button>
 	);
 };
 
