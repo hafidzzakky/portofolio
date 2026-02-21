@@ -1,5 +1,5 @@
 import { Canvas } from '@react-three/fiber';
-import { useGLTF, Environment, Float, ContactShadows, OrbitControls } from '@react-three/drei';
+import { useGLTF, Float, OrbitControls } from '@react-three/drei';
 import { Suspense } from 'react';
 import userModelPath from '../assets/model/3d/user.glb';
 
@@ -12,15 +12,13 @@ const Model = () => {
 const User3D = ({ className = 'w-full h-[300px] md:h-[400px]' }: { className?: string }) => {
 	return (
 		<div className={className}>
-			<Canvas camera={{ position: [0, 0, 5], fov: 40 }}>
+			<Canvas dpr={[1, 1.5]} camera={{ position: [0, 0, 5], fov: 40 }}>
 				<ambientLight intensity={0.5} />
 				<spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={1} castShadow />
 				<Suspense fallback={null}>
-					<Float speed={2} rotationIntensity={0.2} floatIntensity={0.2}>
+					<Float speed={1.2} rotationIntensity={0.1} floatIntensity={0.1}>
 						<Model />
 					</Float>
-					<Environment preset='city' />
-					<ContactShadows position={[0, -5, 0]} opacity={0.4} scale={10} blur={2.5} far={4} />
 				</Suspense>
 				<OrbitControls enableZoom={false} autoRotate={false} minPolarAngle={Math.PI / 2} maxPolarAngle={Math.PI / 2} />
 			</Canvas>
