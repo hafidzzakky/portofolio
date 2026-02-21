@@ -19,6 +19,10 @@ html[data-theme='luxury'] {
 	--bg-glow-secondary: 22 33 61;
 }
 
+html[data-theme='luxury'] .showcase-close-btn {
+	@apply bg-base-100/30 shadow-xl hover:bg-base-100/60;
+}
+
 /* Fix for Leaflet grid lines/gaps between tiles - Reverted due to visibility issues */
 /* .leaflet-tile-container img {
 	width: 100.5% !important;

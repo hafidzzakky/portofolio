@@ -1,4 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
+import { FaTachometerAlt, FaCogs, FaSearch, FaGlobeAmericas } from 'react-icons/fa';
 import { useState } from 'react';
 
 const experiences = [
@@ -173,6 +174,50 @@ const Experience = () => {
 					<ExperienceCard key={index} exp={exp} index={index} />
 				))}
 			</div>
+
+			<motion.div
+				initial={{ opacity: 0, y: 20 }}
+				whileInView={{ opacity: 1, y: 0 }}
+				viewport={{ once: true }}
+				transition={{ duration: 0.6, delay: 0.1 }}
+				className='mt-12 grid gap-4 md:grid-cols-4'
+			>
+				{[
+					{
+						icon: <FaTachometerAlt size={16} />,
+						label: 'Performance lab',
+						text: 'Regularly profiling applications using Lighthouse and Web Vitals to keep interactions fast and reliable.',
+					},
+					{
+						icon: <FaCogs size={16} />,
+						label: 'Frontend optimization',
+						text: 'Focused on main-thread performance, lazy loading heavy features, and optimizing 3D, images, and bundles.',
+					},
+					{
+						icon: <FaSearch size={16} />,
+						label: 'SEO optimization',
+						text: 'Optimizing Core Web Vitals, semantic markup, and meta tags to improve discoverability and search engine ranking.',
+					},
+					{
+						icon: <FaGlobeAmericas size={16} />,
+						label: 'This portfolio',
+						text: 'Uses lazy-loaded 3D, code-splitting, WebP assets, SEO meta tags, and a PWA setup to mirror real-world practices.',
+					},
+				].map((item) => (
+					<div
+						key={item.label}
+						className='rounded-2xl bg-base-100/60 dark:bg-base-100/10 backdrop-blur-md border border-base-content/10 p-4 flex flex-col gap-2'
+					>
+						<div className='flex items-center gap-3'>
+							<span className='inline-flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-primary'>
+								{item.icon}
+							</span>
+							<span className='text-xs font-mono uppercase tracking-[0.25em] text-primary'>{item.label}</span>
+						</div>
+						<p className='text-sm text-base-content/80'>{item.text}</p>
+					</div>
+				))}
+			</motion.div>
 		</section>
 	);
 };

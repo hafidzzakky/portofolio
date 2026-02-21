@@ -75,6 +75,15 @@ import saka17 from '../assets/image/portfolio/saka/saka17.webp';
 import saka18 from '../assets/image/portfolio/saka/saka18.webp';
 import saka19 from '../assets/image/portfolio/saka/saka19.webp';
 
+import sakaVessel1 from '../assets/image/portfolio/saka-vessel/1.webp';
+import sakaVessel2 from '../assets/image/portfolio/saka-vessel/2.webp';
+import sakaVessel3 from '../assets/image/portfolio/saka-vessel/3.webp';
+import sakaVessel4 from '../assets/image/portfolio/saka-vessel/4.webp';
+import sakaVessel5 from '../assets/image/portfolio/saka-vessel/5.webp';
+import sakaVessel6 from '../assets/image/portfolio/saka-vessel/6.webp';
+import sakaVessel7 from '../assets/image/portfolio/saka-vessel/7.webp';
+import sakaVessel8 from '../assets/image/portfolio/saka-vessel/8.webp';
+
 export interface Project {
 	id: number;
 	title: string;
@@ -132,9 +141,17 @@ export const projects: Project[] = [
 			demo: '#',
 		},
 		images: [
-			'https://placehold.co/600x800/1a1a1a/ffffff?text=VesselTracker',
-			'https://placehold.co/600x800/2a2a2a/ffffff?text=AdminVessel',
-			'https://placehold.co/600x800/3a3a3a/ffffff?text=ChartPerformance',
+			sakaVessel1,
+			sakaVessel2,
+			sakaVessel3,
+			sakaVessel4,
+			sakaVessel5,
+			sakaVessel6,
+			sakaVessel7,
+			sakaVessel8,
+			// 'https://placehold.co/600x800/1a1a1a/ffffff?text=VesselTracker',
+			// 'https://placehold.co/600x800/2a2a2a/ffffff?text=AdminVessel',
+			// 'https://placehold.co/600x800/3a3a3a/ffffff?text=ChartPerformance',
 		],
 	},
 	{

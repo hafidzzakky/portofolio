@@ -1,5 +1,5 @@
 import { motion, useInView } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaEnvelope, FaInstagram, FaDownload } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope, FaInstagram, FaDownload, FaWhatsapp } from 'react-icons/fa';
 import React, { Suspense, lazy, useRef } from 'react';
 import cvFile from '../assets/file/Hafidz_Zakky_Senior_Front_End_Engineer.pdf';
 
@@ -33,9 +33,7 @@ const Contact = () => {
 					feel free to reach out!
 				</p>
 
-				{/* Bento Grid Layout */}
-				<div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto mb-16'>
-					{/* Large Block - LinkedIn (Replaces Twitter) */}
+				<div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto mb-4'>
 					<BentoCard
 						href='https://www.linkedin.com/in/hafidzzakkyd/'
 						className='col-span-1 sm:col-span-2 lg:col-span-2 lg:row-span-2 flex flex-col justify-between bg-[#0077b5] text-white hover:bg-[#006396] min-h-[250px]'
@@ -53,7 +51,6 @@ const Contact = () => {
 						</div>
 					</BentoCard>
 
-					{/* 3D Model Box (Replaces WhatsApp) */}
 					<motion.div
 						whileHover={{ scale: 1.02 }}
 						className='aspect-square relative overflow-hidden rounded-3xl bg-gradient-to-br from-white via-indigo-50 to-purple-100 dark:from-white/10 dark:via-indigo-900/20 dark:to-purple-900/20 shadow-lg'
@@ -64,7 +61,6 @@ const Contact = () => {
 						</Suspense>
 					</motion.div>
 
-					{/* Email (Small) */}
 					<BentoCard
 						href='mailto:hafidzzakky@gmail.com'
 						className='aspect-square flex flex-col justify-center items-center bg-red-500 text-white hover:bg-red-600'
@@ -73,7 +69,6 @@ const Contact = () => {
 						<span className='font-bold text-xl'>Email</span>
 					</BentoCard>
 
-					{/* Instagram (Replaces LinkedIn Small) */}
 					<BentoCard
 						href='https://instagram.com/hafidzzakkyd'
 						className='aspect-square flex flex-col justify-center items-center bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-500 text-white'
@@ -82,7 +77,6 @@ const Contact = () => {
 						<span className='font-bold text-xl'>Instagram</span>
 					</BentoCard>
 
-					{/* Github (Small) */}
 					<BentoCard
 						href='https://github.com/hafidzzakky'
 						className='aspect-square flex flex-col justify-center items-center bg-[#24292e] text-white hover:bg-[#1b1f23]'
@@ -91,6 +85,49 @@ const Contact = () => {
 						<span className='font-bold text-xl'>Github</span>
 					</BentoCard>
 				</div>
+
+				<motion.div
+					initial={{ opacity: 0, y: 20 }}
+					whileInView={{ opacity: 1, y: 0 }}
+					viewport={{ once: true }}
+					transition={{ duration: 0.6 }}
+					className='max-w-5xl mx-auto mb-14'
+				>
+					<div className='rounded-3xl bg-base-100/70 dark:bg-base-100/10 backdrop-blur-md border border-base-content/10 p-6 md:p-7 text-left'>
+						<h3 className='text-2xl md:text-3xl font-bold mb-4'>
+							<span className='bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary'>
+								Preferred collaboration & availability
+							</span>
+						</h3>
+						<div className='flex flex-wrap gap-2 mb-4'>
+							{['Full-time / Remote', 'Freelance / Contract', 'Consultation / Code Review'].map((label) => (
+								<motion.span
+									key={label}
+									whileHover={{ scale: 1.05, y: -2 }}
+									className='px-3 py-1 rounded-full text-xs font-semibold bg-base-200/80 dark:bg-base-200/20 text-base-content/80 border border-base-content/10 shadow-sm'
+								>
+									{label}
+								</motion.span>
+							))}
+						</div>
+						<p className='text-sm text-base-content/80'>
+							Currently open to new opportunities and collaborations across full-time, freelance, and remote work.
+						</p>
+						<p className='mt-3 text-xs text-base-content/60 flex flex-wrap items-center gap-2'>
+							<span>Response time: fast. I can usually respond at any time, and the fastest way to reach me is via</span>
+							<motion.a
+								whileHover={{ scale: 1.05, y: -1 }}
+								href='https://wa.me/6281395212257'
+								target='_blank'
+								rel='noopener noreferrer'
+								className='inline-flex items-center gap-1 rounded-full bg-[#25D366] text-xs font-semibold text-white px-3 py-1 shadow-sm'
+							>
+								<FaWhatsapp className='text-sm' />
+								<span>WhatsApp</span>
+							</motion.a>
+						</p>
+					</div>
+				</motion.div>
 
 				{/* Download CV Button */}
 				<motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className='mb-16'>
