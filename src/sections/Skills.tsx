@@ -308,7 +308,7 @@ const SkillRadar = () => {
 									cx={vertex.x}
 									cy={vertex.y}
 									r={activeIndex === index ? 8 : 3}
-									className={activeIndex === index ? 'fill-primary' : 'fill-primary/80'}
+									className={activeIndex === index ? 'fill-primary cursor-pointer' : 'fill-primary/80 cursor-pointer'}
 									onMouseEnter={() => {
 										setActiveIndex(index);
 										setTooltipPos({ x: vertex.x, y: vertex.y });
@@ -316,6 +316,15 @@ const SkillRadar = () => {
 									onMouseLeave={() => {
 										setActiveIndex(null);
 										setTooltipPos(null);
+									}}
+									onClick={() => {
+										if (activeIndex === index) {
+											setActiveIndex(null);
+											setTooltipPos(null);
+										} else {
+											setActiveIndex(index);
+											setTooltipPos({ x: vertex.x, y: vertex.y });
+										}
 									}}
 								/>
 							))}
@@ -373,12 +382,22 @@ const SkillRadar = () => {
 								setActiveIndex(null);
 								setTooltipPos(null);
 							}}
-							className={`relative w-full text-left px-3 py-2 rounded-2xl border text-sm transition-all overflow-hidden ${
+							onClick={() => {
+								if (activeIndex === index) {
+									setActiveIndex(null);
+									setTooltipPos(null);
+								} else {
+									setActiveIndex(index);
+									setTooltipPos(vertices[index]);
+								}
+							}}
+							className={`relative w-full text-left pl-4 pr-3 py-2 rounded-2xl border text-sm transition-all overflow-hidden ${
 								activeIndex === index
 									? 'bg-primary/10 border-primary/40 text-base-content'
 									: 'bg-base-100/40 border-base-content/10 text-base-content/80 hover:bg-base-100/70'
 							}`}
 						>
+							{activeIndex === index && <span className='absolute left-0 top-0 bottom-0 w-1 bg-primary/70' />}
 							{axisIconMap[axis.label] && (
 								<div className='pointer-events-none absolute -right-1 -bottom-1 text-base-content/10'>
 									{(() => {

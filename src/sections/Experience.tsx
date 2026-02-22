@@ -91,11 +91,11 @@ const ExperienceCard = ({ exp, index }: { exp: (typeof experiences)[0]; index: n
 				<div className='card-body p-5 md:p-6'>
 					<div className='flex flex-col md:flex-row md:items-center md:justify-between gap-2'>
 						<div className='flex-1'>
-							<h3 className='text-lg md:text-xl font-bold text-base-content group-hover:text-primary transition-colors flex items-center gap-2'>
+							<h3 className='text-xl md:text-2xl font-bold text-base-content group-hover:text-primary transition-colors flex items-center gap-2'>
 								{exp.role}
 								<span className={`text-xs transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}>▼</span>
 							</h3>
-							<h4 className='text-base md:text-lg text-base-content/70 font-medium'>{exp.company}</h4>
+							<h4 className='text-sm md:text-base text-base-content/70 font-medium mt-0.5'>{exp.company}</h4>
 						</div>
 						<div className='text-sm font-mono text-primary/80 bg-primary/5 px-3 py-1 rounded-full whitespace-nowrap border border-primary/10'>
 							{exp.period}

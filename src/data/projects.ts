@@ -88,6 +88,8 @@ export interface Project {
 	id: number;
 	title: string;
 	tags: string[];
+	role?: string;
+	context?: string;
 	description: string;
 	links: {
 		github: string;
@@ -101,6 +103,8 @@ export const projects: Project[] = [
 		id: 1,
 		title: 'Saka EIS - Electronic Invoice SAKA',
 		tags: ['React', 'Next JS', 'Tailwind', 'Ant Design'],
+		role: 'Lead Frontend & Architecture',
+		context: 'Oil & Gas • Enterprise Invoicing',
 		description:
 			"An integrated ecosystem of three applications (EIS, Admin, JCS) for end-to-end invoice processing. Features dynamic approval workflows, barcode scanning, vendor management, and JCS tracking. Includes a unique 'Incognito' mode for seamless Vendor POV simulation.",
 		links: {
@@ -134,6 +138,8 @@ export const projects: Project[] = [
 		id: 2,
 		title: 'SAKA Vessel Tracker',
 		tags: ['React', 'Next JS', 'Tailwind', 'Ant Design', 'Leaflet'],
+		role: 'Frontend Engineer',
+		context: 'Oil & Gas • Logistics & Mapping',
 		description:
 			'A comprehensive maritime logistics dashboard for monitoring vessel movements, fuel consumption, and pipeline infrastructure. Features real-time tracking and analytics tailored for Saka Energi operations.',
 		links: {
@@ -158,6 +164,8 @@ export const projects: Project[] = [
 		id: 3,
 		title: 'Tukangku.co',
 		tags: ['React', 'Next JS', 'Tailwind', 'Ant Design'],
+		role: 'Solo Founder / Frontend',
+		context: 'Construction • Marketplace',
 		description:
 			'The initial version of the platform focused exclusively on connecting homeowners with verified professional builders (Tukang). It established the core mission of simplifying renovations by providing reliable, skilled manpower, laying the groundwork for the comprehensive ecosystem in V2.',
 		links: {
@@ -170,6 +178,8 @@ export const projects: Project[] = [
 		id: 4,
 		title: 'Tukangku.co v2',
 		tags: ['React', 'Vite', 'Tailwind', 'Ant Design'],
+		role: 'Product & Frontend Lead',
+		context: 'Construction • One Stop Solution',
 		description:
 			"An integrated 'One Stop Solution' construction ecosystem (Tukangku.co & TokoMandor) simplifying home building and renovation. Connects homeowners with certified professionals and curated materials. V2 features include seamless WhatsApp consultation, a project portfolio showcase, material catalog, and educational resources for a transparent, hassle-free experience.",
 		links: {
@@ -182,6 +192,8 @@ export const projects: Project[] = [
 		id: 5,
 		title: 'Senja Care App',
 		tags: ['React Native', 'Figma', 'UI/UX', 'Native wind', 'Expo'],
+		role: 'UI/UX & Frontend',
+		context: 'Healthcare • Caregiver Platform',
 		description:
 			'A high-fidelity UI/UX implementation for a caregiver booking platform, translating Figma mockups into responsive React Native layouts. Features dual interfaces for Users and Partners (Mitra), covering booking flows, chat/video call simulation, and dashboard management.',
 		links: {
@@ -194,6 +206,8 @@ export const projects: Project[] = [
 		id: 6,
 		title: 'DifaCare',
 		tags: ['React', 'Vite', 'Tailwind', 'Ant Design'],
+		role: 'Frontend Engineer',
+		context: 'Healthcare • Special Needs',
 		description:
 			"A holistic digital ecosystem empowering families with Special Needs Children (ABK). Integrates professional consultation (psychologists, therapists), parental mental health support, a community forum, and educational resources. Acts as a comprehensive 'companion' platform addressing medical, psychological, and social challenges.",
 		links: {
@@ -206,6 +220,8 @@ export const projects: Project[] = [
 		id: 7,
 		title: 'BNI Digi Payroll',
 		tags: ['React', 'Frontend', 'Enterprise'],
+		role: 'Frontend Engineer',
+		context: 'Banking • Payroll',
 		description: 'A payroll management system designed for BNI to streamline salary processing and reporting.',
 		links: {
 			github: '#',
@@ -217,6 +233,8 @@ export const projects: Project[] = [
 		id: 8,
 		title: 'BNI Digimap',
 		tags: ['React', 'Mapping', 'Visualization'],
+		role: 'Frontend Engineer',
+		context: 'Banking • Geospatial Analytics',
 		description: 'An interactive mapping solution for BNI, providing geospatial data visualization and analysis.',
 		links: {
 			github: '#',
@@ -228,6 +246,8 @@ export const projects: Project[] = [
 		id: 9,
 		title: 'BNI Digimudik',
 		tags: ['React', 'Tracking', 'Event'],
+		role: 'Frontend Engineer',
+		context: 'Banking • Event Tracking',
 		description: 'A platform for managing and tracking the annual "Mudik" event, facilitating logistics and participant management.',
 		links: {
 			github: '#',
@@ -239,6 +259,8 @@ export const projects: Project[] = [
 		id: 10,
 		title: 'BNI E-Absensi',
 		tags: ['React', 'HR', 'Management'],
+		role: 'Frontend Engineer',
+		context: 'Banking • Attendance',
 		description: 'An electronic attendance system for BNI employees, featuring real-time tracking and reporting capabilities.',
 		links: {
 			github: '#',
@@ -250,6 +272,8 @@ export const projects: Project[] = [
 		id: 11,
 		title: 'BNI My Office',
 		tags: ['React', 'Office Management', 'Internal Tools'],
+		role: 'Frontend Engineer',
+		context: 'Banking • Internal Tools',
 		description: 'An internal office management suite for BNI, optimizing daily operations and resource allocation.',
 		links: {
 			github: '#',
@@ -261,6 +285,8 @@ export const projects: Project[] = [
 		id: 12,
 		title: 'Merdeka Safety',
 		tags: ['React', 'Safety', 'Industrial'],
+		role: 'Frontend Engineer',
+		context: 'Mining • Safety',
 		description: 'A safety management application for Merdeka Copper Gold, focusing on incident reporting and compliance tracking.',
 		links: {
 			github: '#',

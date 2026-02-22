@@ -166,6 +166,19 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
 							<h3 className='text-2xl md:text-3xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary'>
 								{project.title}
 							</h3>
+							{(project.role || project.context) && (
+								<div className='flex flex-wrap items-center gap-2 mb-3'>
+									{project.role && (
+										<span className='inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold'>
+											<span className='w-1.5 h-1.5 rounded-full bg-primary/70'></span>
+											{project.role}
+										</span>
+									)}
+									{project.context && (
+										<span className='text-[11px] text-base-content/60'>{project.context}</span>
+									)}
+								</div>
+							)}
 							<div className='flex flex-wrap gap-2 mb-4'>
 								{project.tags.map((tag) => (
 									<span key={tag} className='badge badge-outline badge-sm md:badge-md border-primary/20 text-primary'>

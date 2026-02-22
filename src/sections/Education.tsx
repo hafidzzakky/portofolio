@@ -42,18 +42,15 @@ const Education = () => {
 							<FaGraduationCap size={32} />
 						</div>
 						<div className='flex-1'>
-							<div className='flex flex-col md:flex-row md:items-start md:justify-between gap-2 mb-2'>
+							<div className='flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-2'>
 								<h3 className='text-xl md:text-2xl font-bold'>Bachelor of Science in Informatics Engineering</h3>
-								<h3 className='text-xl md:text-2xl font-bold'>2013 - 2017</h3>
-								{/* <div className='group relative bg-base-100/30 hover:bg-primary/20 backdrop-blur-sm border border-white/10 hover:border-primary/50 rounded-lg px-3 py-2 transition-all duration-300 flex items-center gap-2 cursor-default w-fit'>
-									<div className='w-1.5 h-1.5 rounded-full bg-primary/60 group-hover:bg-primary group-hover:shadow-[0_0_8px_rgba(var(--p),0.8)] transition-all'></div>
-									<span className='font-mono font-medium text-base-content/80 group-hover:text-base-content transition-colors'>
-										GPA: 3.3 / 4.0
-									</span>
-								</div> */}
+								<span className='inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold'>
+									<span className='w-1.5 h-1.5 rounded-full bg-primary/70'></span>
+									2013 - 2017
+								</span>
 							</div>
 							<p className='text-lg text-primary font-medium mb-1'>Dian Nuswantoro University, Semarang</p>
-							<p className='text-base text-base-content/70'>Bachelor of Science in Informatics Engineering</p>
+							<p className='text-base text-base-content/70'>Focused on software engineering, algorithms, and web development fundamentals.</p>
 						</div>
 					</div>
 				</motion.div>
