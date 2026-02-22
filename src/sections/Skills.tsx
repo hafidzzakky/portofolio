@@ -108,6 +108,14 @@ const skillAxes: SkillAxis[] = [
 	},
 ];
 
+const axisIconMap: Record<string, IconType> = {
+	Frontend: FaCogs,
+	Architecture: FaProjectDiagram,
+	'Testing & Quality': FaFlask,
+	Performance: FaTachometerAlt,
+	'UI/UX': FaPalette,
+};
+
 type FrontendStackItem = {
 	label: string;
 	icon?: IconType;
@@ -322,20 +330,25 @@ const SkillRadar = () => {
 								animate={{ opacity: 1 }}
 								exit={{ opacity: 0 }}
 								transition={{ duration: 0.18 }}
-								className='pointer-events-none absolute z-10 max-w-[260px] rounded-2xl bg-base-100/95 dark:bg-base-100/30 border border-base-content/15 px-3 py-1.5 shadow-lg text-[11px] text-left'
+								className='pointer-events-none absolute z-10 max-w-[260px] rounded-2xl bg-base-100/95 dark:bg-base-100/30 border border-base-content/15 px-3 py-1.5 shadow-lg text-[11px] text-left overflow-hidden'
 								style={{
 									left: tooltipPos.x + 16,
 									top: tooltipPos.y + 16,
 									transform: 'translate(-50%, -110%)',
 								}}
 							>
-								<div className='flex items-center justify-between gap-2 mb-0.5'>
+								<div className='absolute -right-2 -top-2 text-base-content/10'>
+									<FaTachometerAlt className='w-6 h-6' />
+								</div>
+								<div className='flex items-center justify-between gap-2 mb-0.5 relative'>
 									<span className='font-semibold'>{skillAxes[activeIndex].label}</span>
-									<span className='text-[10px] text-base-content/60'>
+									<span className='font-mono text-[10px] text-base-content/60'>
 										{skillAxes[activeIndex].value.toFixed(1)}/10
 									</span>
 								</div>
-								<p className='text-[10px] text-base-content/70 leading-snug'>{skillAxes[activeIndex].description}</p>
+								<p className='text-[10px] text-base-content/70 leading-snug relative'>
+									{skillAxes[activeIndex].description}
+								</p>
 							</motion.div>
 						)}
 					</AnimatePresence>
@@ -343,11 +356,11 @@ const SkillRadar = () => {
 			</div>
 
 			{/* Content Section */}
-			<div ref={textRef} className='space-y-4 w-full md:flex-1 '>
+			<div ref={textRef} className='space-y-5 w-full md:flex-1 '>
 				<p className='text-base text-base-content/70 mb-2'>
 					A quick snapshot of how I balance frontend, architecture, testing, performance, and UI/UX in day-to-day work.
 				</p>
-				<div className='space-y-3'>
+				<div className='space-y-4'>
 					{skillAxes.map((axis, index) => (
 						<button
 							key={axis.label}
@@ -360,17 +373,25 @@ const SkillRadar = () => {
 								setActiveIndex(null);
 								setTooltipPos(null);
 							}}
-							className={`w-full text-left px-3 py-2 rounded-2xl border text-sm transition-all ${
+							className={`relative w-full text-left px-3 py-2 rounded-2xl border text-sm transition-all overflow-hidden ${
 								activeIndex === index
 									? 'bg-primary/10 border-primary/40 text-base-content'
 									: 'bg-base-100/40 border-base-content/10 text-base-content/80 hover:bg-base-100/70'
 							}`}
 						>
+							{axisIconMap[axis.label] && (
+								<div className='pointer-events-none absolute -right-1 -bottom-1 text-base-content/10'>
+									{(() => {
+										const Icon = axisIconMap[axis.label];
+										return <Icon className='w-10 h-10' />;
+									})()}
+								</div>
+							)}
 							<div className='flex items-center justify-between mb-1'>
-								<span className='text-xl font-semibold'>{axis.label}</span>
-								<span className='text-[14px] text-base-content/60'>{axis.value.toFixed(1)}/10</span>
+								<span className='text-lg font-semibold'>{axis.label}</span>
+								<span className='text-[14px] font-semibold text-base-content/60'>{axis.value.toFixed(1)}/10</span>
 							</div>
-							<p className='text-base text-base-content/70'>{axis.description}</p>
+							<p className='text-[12px] text-base-content/70'>{axis.description}</p>
 						</button>
 					))}
 				</div>
