@@ -481,7 +481,7 @@ const FrontendStack = () => {
 						<div className='md:w-1/3'>
 							<p className='text-xl md:text-xl font-bold text-base-content/80'>{section.title}</p>
 						</div>
-						<div className='md:flex-1 flex flex-wrap gap-3'>
+						<div className='md:flex-1 flex flex-wrap gap-1'>
 							{section.items.map((item) => {
 								const Icon = item.icon;
 								return (
