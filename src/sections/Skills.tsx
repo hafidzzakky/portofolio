@@ -383,7 +383,7 @@ const SkillRadar = () => {
 								<div className='pointer-events-none absolute -right-1 -bottom-1 text-base-content/10'>
 									{(() => {
 										const Icon = axisIconMap[axis.label];
-										return <Icon className='w-10 h-10' />;
+										return <Icon className='w-10 h-10 -rotate-45' />;
 									})()}
 								</div>
 							)}
