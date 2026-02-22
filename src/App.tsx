@@ -224,20 +224,22 @@ function App() {
 						</ul>
 					</div>
 				</div>
-				<div className='container mx-auto px-4'>
-					<Hero theme={theme} />
-					{/* <Summary /> */}
-					<Skills />
-					<Experience />
-					<Education />
-				</div>
+				<main>
+					<div className='container mx-auto px-4'>
+						<Hero theme={theme} />
+						{/* <Summary /> */}
+						<Skills />
+						<Experience />
+						<Education />
+					</div>
 
-				{/* <Projects /> */}
-				<Showcase />
+					{/* <Projects /> */}
+					<Showcase />
 
-				<div className='container mx-auto px-4 pb-20'>
-					<Contact />
-				</div>
+					<div className='container mx-auto px-4 pb-20'>
+						<Contact />
+					</div>
+				</main>
 			</div>
 		</div>
 	);

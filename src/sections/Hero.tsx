@@ -38,7 +38,7 @@ const Hero = ({ theme }: { theme: string }) => {
 
 					<div className='min-h-[8rem] md:min-h-[3rem] mb-6 overflow-hidden flex items-center lg:items-start'>
 						<AnimatePresence mode='wait'>
-							<motion.h3
+							<motion.p
 								key={roleIndex}
 								initial={{ y: 20, opacity: 0 }}
 								animate={{ y: 0, opacity: 1 }}
@@ -49,7 +49,7 @@ const Hero = ({ theme }: { theme: string }) => {
 								}`}
 							>
 								{roles[roleIndex]}
-							</motion.h3>
+							</motion.p>
 						</AnimatePresence>
 					</div>
 
