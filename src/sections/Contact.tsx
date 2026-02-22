@@ -117,7 +117,7 @@ const Contact = () => {
 							<span>Response time: fast. WhatsApp is usually the quickest way to reach me via</span>
 							<motion.a
 								whileHover={{ scale: 1.05, y: -1 }}
-								href='https://wa.me/6281395212257'
+								href='https://wa.me/6285602577078'
 								target='_blank'
 								rel='noopener noreferrer'
 								className='inline-flex items-center gap-1 rounded-full bg-[#25D366] text-xs font-semibold text-white px-3 py-1 shadow-sm'
