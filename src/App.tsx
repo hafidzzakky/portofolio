@@ -102,7 +102,7 @@ function App() {
 	}, []);
 
 	return (
-		<div className='min-h-screen text-base-content font-sans antialiased selection:bg-primary selection:text-primary-content overflow-hidden relative'>
+		<div className='min-h-screen text-base-content font-sans antialiased selection:bg-primary selection:text-primary-content overflow-x-hidden relative'>
 			<AnimatePresence mode='wait'>{isLoading && <Preloader />}</AnimatePresence>
 
 			{/* Scroll Progress Bar */}
