@@ -6,6 +6,7 @@ import Hero from './sections/Hero';
 // import WorldMap from './sections/WorldMap';
 // import Summary from './sections/Summary';
 import Skills from './sections/Skills';
+import Philosophy from './sections/Philosophy';
 import Experience from './sections/Experience';
 import Education from './sections/Education';
 // import Projects from './sections/Projects';
@@ -59,7 +60,7 @@ function App() {
 			},
 		);
 
-		const sections = ['hero', 'skills', 'experience', 'education', 'projects', 'contact'];
+		const sections = ['hero', 'skills', 'philosophy', 'experience', 'education', 'projects', 'contact'];
 		sections.forEach((section) => {
 			const element = document.getElementById(section);
 			if (element) {
@@ -229,6 +230,7 @@ function App() {
 						<Hero theme={theme} />
 						{/* <Summary /> */}
 						<Skills />
+						<Philosophy />
 						<Experience />
 						<Education />
 					</div>

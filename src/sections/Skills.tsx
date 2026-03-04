@@ -303,12 +303,8 @@ const SkillRadar = () => {
 							<polygon points={valuePoints} className='fill-primary/20 stroke-primary/80' strokeWidth={2} />
 
 							{vertices.map((vertex, index) => (
-								<circle
+								<g
 									key={skillAxes[index].label}
-									cx={vertex.x}
-									cy={vertex.y}
-									r={activeIndex === index ? 8 : 3}
-									className={activeIndex === index ? 'fill-primary cursor-pointer' : 'fill-primary/80 cursor-pointer'}
 									onMouseEnter={() => {
 										setActiveIndex(index);
 										setTooltipPos({ x: vertex.x, y: vertex.y });
@@ -326,7 +322,25 @@ const SkillRadar = () => {
 											setTooltipPos({ x: vertex.x, y: vertex.y });
 										}
 									}}
-								/>
+									style={{ cursor: 'pointer' }}
+								>
+									{/* Glow effect ring */}
+									<circle
+										cx={vertex.x}
+										cy={vertex.y}
+										r={activeIndex === index ? 16 : 0}
+										className='fill-primary/20 transition-all duration-300 ease-out'
+									/>
+									{/* Main point */}
+									<circle
+										cx={vertex.x}
+										cy={vertex.y}
+										r={activeIndex === index ? 8 : 4}
+										className={`transition-all duration-300 ease-out ${
+											activeIndex === index ? 'fill-primary' : 'fill-primary/80'
+										}`}
+									/>
+								</g>
 							))}
 						</g>
 					</svg>
@@ -391,18 +405,20 @@ const SkillRadar = () => {
 									setTooltipPos(vertices[index]);
 								}
 							}}
-							className={`relative w-full text-left pl-4 pr-3 py-2 rounded-2xl border text-sm transition-all overflow-hidden ${
+							className={`group relative w-full text-left pl-4 pr-3 py-2 rounded-2xl border text-sm transition-all duration-300 ease-out overflow-hidden hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] ${
 								activeIndex === index
-									? 'bg-primary/10 border-primary/40 text-base-content'
-									: 'bg-base-100/40 border-base-content/10 text-base-content/80 hover:bg-base-100/70'
+									? 'bg-primary/15 border-primary/50 text-base-content shadow-lg scale-[1.02] backdrop-blur-xl'
+									: 'bg-base-100/30 border-base-content/10 text-base-content/80 hover:bg-base-100/50 hover:border-base-content/30 hover:backdrop-blur-xl'
 							}`}
 						>
-							{activeIndex === index && <span className='absolute left-0 top-0 bottom-0 w-1 bg-primary/70' />}
+							{activeIndex === index && (
+								<span className='absolute left-0 top-0 bottom-0 w-1 bg-primary/70 transition-all duration-300' />
+							)}
 							{axisIconMap[axis.label] && (
-								<div className='pointer-events-none absolute -right-1 -bottom-1 text-base-content/10'>
+								<div className='pointer-events-none absolute -right-1 -bottom-1 text-base-content/10 transition-transform duration-500 ease-out group-hover:scale-125 group-hover:-rotate-12'>
 									{(() => {
 										const Icon = axisIconMap[axis.label];
-										return <Icon className='w-10 h-10 -rotate-45' />;
+										return <Icon className='w-10 h-10 -rotate-45 transition-transform duration-500' />;
 									})()}
 								</div>
 							)}
