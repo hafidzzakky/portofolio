@@ -38,7 +38,7 @@ const Education = () => {
 					className='card bg-base-100/30 backdrop-blur-md shadow-xl border border-white/20 hover:bg-base-100/40 transition-colors duration-300 [html[data-theme=luxury]_&]:bg-[rgba(255,255,255,0.05)] [html[data-theme=luxury]_&]:backdrop-blur-[10px] [html[data-theme=luxury]_&]:shadow-[0_4px_30px_rgba(0,0,0,0.1)] [html[data-theme=luxury]_&]:border-none [html[data-theme=luxury]_&]:hover:bg-[rgba(255,255,255,0.1)]'
 				>
 					<div className='card-body p-6 flex flex-col md:flex-row items-start gap-6'>
-						<div className='text-primary p-4 bg-base-100/50 rounded-2xl border border-white/10 shadow-lg backdrop-blur-sm'>
+						<div className='text-primary p-4 bg-primary/10 rounded-2xl shadow-lg backdrop-blur-sm'>
 							<FaGraduationCap size={32} />
 						</div>
 						<div className='flex-1'>
@@ -50,7 +50,9 @@ const Education = () => {
 								</span>
 							</div>
 							<p className='text-lg text-primary font-medium mb-1'>Dian Nuswantoro University, Semarang</p>
-							<p className='text-base text-base-content/70'>Focused on software engineering, algorithms, and web development fundamentals.</p>
+							<p className='text-base text-base-content/70'>
+								Focused on software engineering, algorithms, and web development.
+							</p>
 						</div>
 					</div>
 				</motion.div>
