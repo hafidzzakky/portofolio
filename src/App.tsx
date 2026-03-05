@@ -136,7 +136,7 @@ function App() {
 							transition={{ duration: 0.3 }}
 							className='fixed z-50 flex justify-center px-4 left-0 right-0 top-auto bottom-6 md:top-4 md:bottom-auto'
 						>
-							<div className='px-6 py-2 rounded-full bg-base-100/95 border border-white/20 shadow-lg flex items-center gap-6 md:gap-8'>
+							<div className='px-6 py-2 rounded-full bg-base-100 [html[data-theme=luxury]_&]:bg-base-200 shadow-lg flex items-center gap-6 md:gap-8'>
 								<div
 									className='flex items-center gap-2 cursor-pointer'
 									onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}

@@ -99,7 +99,7 @@ const ExperienceCard = ({ exp, index }: { exp: (typeof experiences)[0]; index: n
 							</h3>
 							<h4 className='text-sm md:text-base text-base-content/70 font-medium mt-0.5'>{exp.company}</h4>
 						</div>
-						<div className='text-sm font-mono text-primary/80 bg-primary/5 px-3 py-1 rounded-full whitespace-nowrap border border-primary/10'>
+						<div className='text-sm font-mono text-primary/80 bg-primary/5 px-3 py-1 rounded-full whitespace-nowrap'>
 							{exp.period}
 						</div>
 					</div>
@@ -127,7 +127,7 @@ const ExperienceCard = ({ exp, index }: { exp: (typeof experiences)[0]; index: n
 									{exp.techStack?.map((tech, idx) => (
 										<span
 											key={idx}
-											className='px-3 py-1 text-xs font-semibold rounded-full bg-primary/10 border border-primary/20 text-primary hover:bg-primary hover:text-primary-content transition-colors cursor-default'
+											className='px-3 py-1 text-xs font-semibold rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-primary-content transition-colors cursor-default'
 										>
 											{tech}
 										</span>
@@ -144,7 +144,7 @@ const ExperienceCard = ({ exp, index }: { exp: (typeof experiences)[0]; index: n
 								{exp.techStack?.map((tech, idx) => (
 									<span
 										key={idx}
-										className='px-3 py-1 text-xs font-semibold rounded-full bg-primary/10 border border-primary/20 text-primary hover:bg-primary hover:text-primary-content transition-colors cursor-default'
+										className='px-3 py-1 text-xs font-semibold rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-primary-content transition-colors cursor-default'
 									>
 										{tech}
 									</span>
