@@ -275,7 +275,7 @@ const SkillRadar = () => {
 			<div className='relative flex h-full w-full md:flex-1 md:mr-2'>
 				<motion.div
 					transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-					className='relative h-full w-full flex items-center justify-center rounded-3xl bg-base-100/40 dark:bg-base-100/10 backdrop-blur-md border border-base-content/10 shadow-lg p-4'
+					className='relative h-full w-full flex items-center justify-center rounded-3xl bg-base-100/30 backdrop-blur-md shadow-lg p-4 border border-base-content/5 [html[data-theme=luxury]_&]:bg-[rgba(255,255,255,0.03)] [html[data-theme=luxury]_&]:backdrop-blur-[10px] [html[data-theme=luxury]_&]:shadow-[0_4px_30px_rgba(0,0,0,0.1)] [html[data-theme=luxury]_&]:border-none'
 				>
 					<svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} className='text-base-content/30'>
 						<g>
@@ -405,15 +405,15 @@ const SkillRadar = () => {
 									setTooltipPos(vertices[index]);
 								}
 							}}
-							className={`group relative w-full text-left pl-4 pr-3 py-2 rounded-2xl border text-sm transition-all duration-300 ease-out overflow-hidden hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] ${
+							className={`group relative w-full text-left pl-4 pr-3 py-2 rounded-2xl text-sm transition-all duration-300 ease-out overflow-hidden hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] ${
 								activeIndex === index
-									? 'bg-primary/15 border-primary/50 text-base-content shadow-lg scale-[1.02] backdrop-blur-xl'
-									: 'bg-base-100/30 border-base-content/10 text-base-content/80 hover:bg-base-100/50 hover:border-base-content/30 hover:backdrop-blur-xl'
+									? 'bg-primary/20 text-base-content shadow-lg scale-[1.02] backdrop-blur-xl border border-transparent'
+									: 'bg-base-100/30 text-base-content/80 hover:bg-base-100/50 hover:backdrop-blur-xl border border-base-content/10 hover:border-base-content/30 [html[data-theme=luxury]_&]:bg-[rgba(255,255,255,0.05)] [html[data-theme=luxury]_&]:backdrop-blur-[10px] [html[data-theme=luxury]_&]:border-none [html[data-theme=luxury]_&]:hover:bg-[rgba(255,255,255,0.15)]'
 							}`}
 						>
-							{activeIndex === index && (
+							{/* {activeIndex === index && (
 								<span className='absolute left-0 top-0 bottom-0 w-1 bg-primary/70 transition-all duration-300' />
-							)}
+							)} */}
 							{axisIconMap[axis.label] && (
 								<div className='pointer-events-none absolute -right-1 -bottom-1 text-base-content/10 transition-transform duration-500 ease-out group-hover:scale-125 group-hover:-rotate-12'>
 									{(() => {
@@ -423,7 +423,13 @@ const SkillRadar = () => {
 								</div>
 							)}
 							<div className='flex items-center justify-between mb-1'>
-								<span className='text-lg font-semibold'>{axis.label}</span>
+								<span
+									className={`text-lg font-semibold transition-colors duration-300 ${
+										activeIndex === index ? 'text-primary' : 'group-hover:text-primary'
+									}`}
+								>
+									{axis.label}
+								</span>
 								<span className='text-[14px] font-semibold text-base-content/60'>{axis.value.toFixed(1)}/10</span>
 							</div>
 							<p className='text-[12px] text-base-content/70'>{axis.description}</p>
@@ -482,7 +488,7 @@ const FrontendStack = () => {
 			whileInView={{ opacity: 1, y: 0 }}
 			viewport={{ once: true, amount: 0.3 }}
 			transition={{ duration: 0.6, ease: 'easeOut' }}
-			className='mb-16 rounded-3xl bg-base-100/10 border border-base-content/10 backdrop-blur-md px-6 py-8 md:px-10 md:py-10'
+			className='mb-16 rounded-3xl bg-base-100/10 border border-base-content/10 backdrop-blur-md px-6 py-8 md:px-10 md:py-10 [html[data-theme=luxury]_&]:bg-[rgba(255,255,255,0.05)] [html[data-theme=luxury]_&]:backdrop-blur-[10px] [html[data-theme=luxury]_&]:shadow-[0_4px_30px_rgba(0,0,0,0.1)] [html[data-theme=luxury]_&]:border-none'
 		>
 			{/* <div className='flex items-center gap-2 text-xl font-semibold tracking-[0.25em] text-primary mb-4 uppercase'>
 				<span className='inline-flex h-6 w-6 items-center justify-center rounded-full bg-primary/20 text-primary'>

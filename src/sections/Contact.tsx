@@ -92,7 +92,7 @@ const Contact = () => {
 					transition={{ duration: 0.6, ease: 'easeOut' }}
 					className='max-w-5xl mx-auto mb-14'
 				>
-					<div className='rounded-3xl bg-base-100/70 dark:bg-base-100/10 backdrop-blur-md border border-base-content/10 p-6 md:p-7 text-center'>
+					<div className='rounded-3xl bg-base-100/70 dark:bg-base-100/10 backdrop-blur-md border border-base-content/10 p-6 md:p-7 text-center [html[data-theme=luxury]_&]:bg-[rgba(255,255,255,0.05)] [html[data-theme=luxury]_&]:backdrop-blur-[10px] [html[data-theme=luxury]_&]:shadow-[0_4px_30px_rgba(0,0,0,0.1)] [html[data-theme=luxury]_&]:border-none'>
 						<h3 className='text-2xl md:text-3xl font-bold mb-4'>
 							<span className='bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary'>
 								Preferred collaboration & availability

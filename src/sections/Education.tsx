@@ -35,7 +35,7 @@ const Education = () => {
 						show: { opacity: 1, y: 0 },
 					}}
 					whileHover={{ y: -5, transition: { duration: 0.3 } }}
-					className='card bg-base-100/30 backdrop-blur-md shadow-xl border border-white/20 hover:bg-base-100/40 transition-colors duration-300'
+					className='card bg-base-100/30 backdrop-blur-md shadow-xl border border-white/20 hover:bg-base-100/40 transition-colors duration-300 [html[data-theme=luxury]_&]:bg-[rgba(255,255,255,0.05)] [html[data-theme=luxury]_&]:backdrop-blur-[10px] [html[data-theme=luxury]_&]:shadow-[0_4px_30px_rgba(0,0,0,0.1)] [html[data-theme=luxury]_&]:border-none [html[data-theme=luxury]_&]:hover:bg-[rgba(255,255,255,0.1)]'
 				>
 					<div className='card-body p-6 flex flex-col md:flex-row items-start gap-6'>
 						<div className='text-primary p-4 bg-base-100/50 rounded-2xl border border-white/10 shadow-lg backdrop-blur-sm'>

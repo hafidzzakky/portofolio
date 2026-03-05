@@ -80,7 +80,7 @@ const Philosophy = () => {
 								className='group relative flex-1 hover:flex-[3] transition-[flex] duration-500 ease-in-out h-full overflow-hidden rounded-3xl'
 							>
 								<div
-									className={`absolute inset-0 bg-base-100/30 backdrop-blur-sm group-hover:backdrop-blur-xl group-hover:bg-base-100/80 border border-base-content/5 transition-all duration-500 bg-gradient-to-br from-transparent to-transparent ${item.bgGradient} h-full w-full`}
+									className={`absolute inset-0 transition-all duration-500 bg-gradient-to-br from-transparent to-transparent ${item.bgGradient} h-full w-full bg-base-100/30 backdrop-blur-md group-hover:bg-base-100/80 group-hover:backdrop-blur-xl`}
 								>
 									{/* Content Container */}
 									<div className='relative h-full p-6 flex flex-col justify-between overflow-hidden'>

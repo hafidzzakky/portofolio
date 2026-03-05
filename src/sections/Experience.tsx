@@ -83,8 +83,10 @@ const ExperienceCard = ({ exp, index }: { exp: (typeof experiences)[0]; index: n
 
 			<button
 				type='button'
-				className={`card bg-base-100/30 backdrop-blur-md shadow-sm border border-white/10 hover:border-primary/30 transition-all duration-300 cursor-pointer group overflow-hidden w-full text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-base-100 ${
-					isOpen ? 'bg-base-100/50 shadow-xl ring-1 ring-primary/20' : 'hover:bg-base-100/40'
+				className={`card bg-base-100/30 backdrop-blur-md shadow-sm border border-white/10 hover:border-primary/30 transition-all duration-300 cursor-pointer group overflow-hidden w-full text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-base-100 [html[data-theme=luxury]_&]:bg-[rgba(255,255,255,0.05)] [html[data-theme=luxury]_&]:backdrop-blur-[10px] [html[data-theme=luxury]_&]:shadow-[0_4px_30px_rgba(0,0,0,0.1)] [html[data-theme=luxury]_&]:border-none ${
+					isOpen
+						? 'bg-base-100/50 shadow-xl border-transparent ring-0'
+						: 'hover:bg-base-100/40 [html[data-theme=luxury]_&]:hover:bg-[rgba(255,255,255,0.1)]'
 				}`}
 				onClick={() => setIsOpen(!isOpen)}
 			>
@@ -207,7 +209,7 @@ const Experience = () => {
 				].map((item) => (
 					<div
 						key={item.label}
-						className='rounded-2xl bg-base-100/60 dark:bg-base-100/10 backdrop-blur-md border border-base-content/10 p-4 flex flex-col gap-2'
+						className='rounded-2xl bg-base-100/60 dark:bg-base-100/10 backdrop-blur-md border border-base-content/10 p-4 flex flex-col gap-2 [html[data-theme=luxury]_&]:bg-[rgba(255,255,255,0.05)] [html[data-theme=luxury]_&]:backdrop-blur-[10px] [html[data-theme=luxury]_&]:shadow-[0_4px_30px_rgba(0,0,0,0.1)] [html[data-theme=luxury]_&]:border-none'
 					>
 						<div className='flex items-center gap-3'>
 							<span className='inline-flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-primary'>
