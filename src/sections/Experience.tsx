@@ -83,9 +83,9 @@ const ExperienceCard = ({ exp, index }: { exp: (typeof experiences)[0]; index: n
 
 			<button
 				type='button'
-				className={`card bg-base-100/30 backdrop-blur-md shadow-sm border border-white/10 hover:border-primary/30 transition-all duration-300 cursor-pointer group overflow-hidden w-full text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-base-100 [html[data-theme=luxury]_&]:bg-[rgba(255,255,255,0.05)] [html[data-theme=luxury]_&]:backdrop-blur-[10px] [html[data-theme=luxury]_&]:shadow-[0_4px_30px_rgba(0,0,0,0.1)] [html[data-theme=luxury]_&]:border-none ${
+				className={`card bg-base-100/30 backdrop-blur-md shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer group overflow-hidden w-full text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-base-100 [html[data-theme=luxury]_&]:bg-[rgba(255,255,255,0.05)] [html[data-theme=luxury]_&]:backdrop-blur-[10px] [html[data-theme=luxury]_&]:shadow-[0_4px_30px_rgba(0,0,0,0.1)] [html[data-theme=luxury]_&]:border-none ${
 					isOpen
-						? 'bg-base-100/50 shadow-xl border-transparent ring-0'
+						? 'bg-base-100/50 shadow-xl ring-0'
 						: 'hover:bg-base-100/40 [html[data-theme=luxury]_&]:hover:bg-[rgba(255,255,255,0.1)]'
 				}`}
 				onClick={() => setIsOpen(!isOpen)}
@@ -123,7 +123,7 @@ const ExperienceCard = ({ exp, index }: { exp: (typeof experiences)[0]; index: n
 								</ul>
 
 								{/* Tech Stack when Open - at the bottom */}
-								<div className='flex flex-wrap gap-2 mt-6 pt-4 border-t border-base-content/10'>
+								<motion.div className='flex flex-wrap gap-2 mt-6 pt-4'>
 									{exp.techStack?.map((tech, idx) => (
 										<span
 											key={idx}
@@ -132,7 +132,7 @@ const ExperienceCard = ({ exp, index }: { exp: (typeof experiences)[0]; index: n
 											{tech}
 										</span>
 									))}
-								</div>
+								</motion.div>
 							</motion.div>
 						)}
 					</AnimatePresence>
@@ -172,18 +172,26 @@ const Experience = () => {
 				<h2 className='text-3xl font-bold border-b-4 border-primary inline-block pb-1'>Professional Experience</h2>
 			</motion.div>
 
-			<div className='relative border-l-2 border-dashed border-primary/20 ml-3 md:ml-6 space-y-6 pb-12'>
+			<motion.div className='relative border-l-2 border-dashed border-primary/20 ml-3 md:ml-6 space-y-6 pb-12'>
 				{experiences.map((exp, index) => (
 					<ExperienceCard key={index} exp={exp} index={index} />
 				))}
-			</div>
+			</motion.div>
 
 			<motion.div
-				initial={{ opacity: 0, y: 20 }}
-				whileInView={{ opacity: 1, y: 0 }}
-				viewport={{ once: true }}
-				transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
 				className='mt-12 grid gap-4 md:grid-cols-4'
+				initial='hidden'
+				whileInView='show'
+				viewport={{ once: true, amount: 0.3 }}
+				variants={{
+					hidden: { opacity: 0 },
+					show: {
+						opacity: 1,
+						transition: {
+							staggerChildren: 0.2,
+						},
+					},
+				}}
 			>
 				{[
 					{
@@ -206,19 +214,26 @@ const Experience = () => {
 						label: 'This portfolio',
 						text: 'Uses lazy-loaded 3D, code-splitting, WebP assets, SEO meta tags, and a PWA setup to mirror real-world practices.',
 					},
-				].map((item) => (
-					<div
+				].map((item, index) => (
+					<motion.div
 						key={item.label}
-						className='rounded-2xl bg-base-100/60 dark:bg-base-100/10 backdrop-blur-md border border-base-content/10 p-4 flex flex-col gap-2 [html[data-theme=luxury]_&]:bg-[rgba(255,255,255,0.05)] [html[data-theme=luxury]_&]:backdrop-blur-[10px] [html[data-theme=luxury]_&]:shadow-[0_4px_30px_rgba(0,0,0,0.1)] [html[data-theme=luxury]_&]:border-none'
+						variants={{
+							hidden: { opacity: 0, y: 20 },
+							show: { opacity: 1, y: 0 },
+						}}
+						transition={{ duration: 0.5 }}
+						className='h-full'
 					>
-						<div className='flex items-center gap-3'>
-							<span className='inline-flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-primary'>
-								{item.icon}
-							</span>
-							<span className='text-xs font-mono uppercase tracking-[0.25em] text-primary'>{item.label}</span>
+						<div className='group card h-full bg-base-100/30 backdrop-blur-md shadow-sm hover:shadow-lg hover:-translate-y-1 hover:bg-base-100/40 transition-all duration-300 p-6 flex flex-col gap-3 [html[data-theme=luxury]_&]:bg-[rgba(255,255,255,0.05)] [html[data-theme=luxury]_&]:backdrop-blur-[10px] [html[data-theme=luxury]_&]:shadow-[0_4px_30px_rgba(0,0,0,0.1)] [html[data-theme=luxury]_&]:border-none [html[data-theme=luxury]_&]:hover:bg-[rgba(255,255,255,0.1)]'>
+							<div className='flex items-center gap-3'>
+								<span className='inline-flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-primary transition-all duration-300 group-hover:scale-110 group-hover:bg-primary group-hover:text-primary-content'>
+									{item.icon}
+								</span>
+								<span className='text-xs font-semibold text-primary'>{item.label}</span>
+							</div>
+							<p className='text-sm text-base-content/80'>{item.text}</p>
 						</div>
-						<p className='text-sm text-base-content/80'>{item.text}</p>
-					</div>
+					</motion.div>
 				))}
 			</motion.div>
 		</section>
