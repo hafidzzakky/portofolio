@@ -275,7 +275,7 @@ const SkillRadar = () => {
 			<div className='relative flex h-full w-full md:flex-1 md:mr-2'>
 				<motion.div
 					transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-					className='relative h-full w-full flex items-center justify-center rounded-3xl bg-base-100/30 backdrop-blur-md shadow-lg p-4 border border-base-content/5 [html[data-theme=luxury]_&]:bg-[rgba(255,255,255,0.03)] [html[data-theme=luxury]_&]:backdrop-blur-[10px] [html[data-theme=luxury]_&]:shadow-[0_4px_30px_rgba(0,0,0,0.1)] [html[data-theme=luxury]_&]:border-none'
+					className='relative h-full w-full flex items-center justify-center rounded-3xl bg-base-100/30 backdrop-blur-md shadow-sm p-4 [html[data-theme=luxury]_&]:bg-[rgba(255,255,255,0.03)] [html[data-theme=luxury]_&]:backdrop-blur-[10px] [html[data-theme=luxury]_&]:shadow-[0_4px_30px_rgba(0,0,0,0.1)] [html[data-theme=luxury]_&]:border-none'
 				>
 					<svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} className='text-base-content/30'>
 						<g>
@@ -353,7 +353,7 @@ const SkillRadar = () => {
 								animate={{ opacity: 1 }}
 								exit={{ opacity: 0 }}
 								transition={{ duration: 0.18 }}
-								className='pointer-events-none absolute z-10 max-w-[260px] rounded-2xl bg-base-100/95 dark:bg-base-100/30 border border-base-content/15 px-3 py-1.5 shadow-lg text-[11px] text-left overflow-hidden'
+								className='pointer-events-none absolute z-10 max-w-[260px] rounded-2xl bg-base-100/95 dark:bg-base-100/30 px-3 py-1.5 shadow-md text-[11px] text-left overflow-hidden'
 								style={{
 									left: tooltipPos.x + 16,
 									top: tooltipPos.y + 16,
@@ -405,10 +405,10 @@ const SkillRadar = () => {
 									setTooltipPos(vertices[index]);
 								}
 							}}
-							className={`group relative w-full text-left pl-4 pr-3 py-2 rounded-2xl text-sm transition-all duration-300 ease-out overflow-hidden hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] ${
+							className={`group relative w-full shadow-sm text-left pl-4 pr-3 py-2 rounded-2xl text-sm transition-all duration-300 ease-out overflow-hidden hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] border-none outline-none ${
 								activeIndex === index
-									? 'bg-primary/20 text-base-content shadow-lg scale-[1.02] backdrop-blur-xl border border-transparent'
-									: 'bg-base-100/30 text-base-content/80 hover:bg-base-100/50 hover:backdrop-blur-xl border border-base-content/10 hover:border-base-content/30 [html[data-theme=luxury]_&]:bg-[rgba(255,255,255,0.05)] [html[data-theme=luxury]_&]:backdrop-blur-[10px] [html[data-theme=luxury]_&]:border-none [html[data-theme=luxury]_&]:hover:bg-[rgba(255,255,255,0.15)]'
+									? 'bg-primary/20 text-base-content shadow-md scale-[1.02] backdrop-blur-xl'
+									: 'bg-base-100/30 text-base-content/80 hover:bg-base-100/50 hover:backdrop-blur-xl [html[data-theme=luxury]_&]:bg-[rgba(255,255,255,0.05)] [html[data-theme=luxury]_&]:backdrop-blur-[10px] [html[data-theme=luxury]_&]:hover:bg-[rgba(255,255,255,0.15)]'
 							}`}
 						>
 							{/* {activeIndex === index && (
@@ -488,7 +488,7 @@ const FrontendStack = () => {
 			whileInView={{ opacity: 1, y: 0 }}
 			viewport={{ once: true, amount: 0.3 }}
 			transition={{ duration: 0.6, ease: 'easeOut' }}
-			className='mb-16 rounded-3xl bg-base-100/10 border border-base-content/10 backdrop-blur-md px-6 py-8 md:px-10 md:py-10 [html[data-theme=luxury]_&]:bg-[rgba(255,255,255,0.05)] [html[data-theme=luxury]_&]:backdrop-blur-[10px] [html[data-theme=luxury]_&]:shadow-[0_4px_30px_rgba(0,0,0,0.1)] [html[data-theme=luxury]_&]:border-none'
+			className='mb-16 rounded-3xl bg-base-100/30 backdrop-blur-md shadow-sm px-6 py-8 md:px-10 md:py-10 [html[data-theme=luxury]_&]:bg-[rgba(255,255,255,0.05)] [html[data-theme=luxury]_&]:backdrop-blur-[10px] [html[data-theme=luxury]_&]:shadow-[0_4px_30px_rgba(0,0,0,0.1)] [html[data-theme=luxury]_&]:border-none'
 		>
 			{/* <div className='flex items-center gap-2 text-xl font-semibold tracking-[0.25em] text-primary mb-4 uppercase'>
 				<span className='inline-flex h-6 w-6 items-center justify-center rounded-full bg-primary/20 text-primary'>
@@ -570,7 +570,7 @@ const Skills = () => {
 						key={index}
 						variants={item}
 						whileHover={{ y: -5, transition: { duration: 0.3 } }}
-						className='card bg-base-100/30 backdrop-blur-md shadow-xl border border-white/20 hover:bg-base-100/40 transition-colors duration-300'
+						className='card bg-base-100/30 backdrop-blur-md shadow-xl hover:bg-base-100/40 transition-colors duration-300'
 					>
 						<div className='card-body p-5'>
 							<h3 className='card-title text-lg text-primary mb-3'>{category.title}</h3>
@@ -578,7 +578,7 @@ const Skills = () => {
 								{category.skills.map((skill, idx) => (
 									<div
 										key={idx}
-										className='group relative bg-primary/10 hover:bg-primary backdrop-blur-sm border border-primary/10 hover:border-primary rounded-lg px-3 py-2 transition-all duration-300 flex items-center gap-2 cursor-default'
+										className='group relative bg-primary/10 hover:bg-primary backdrop-blur-sm rounded-lg px-3 py-2 transition-all duration-300 flex items-center gap-2 cursor-default'
 									>
 										<div className='w-1.5 h-1.5 rounded-full bg-primary/80 group-hover:bg-primary-content group-hover:shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all'></div>
 										<span className='font-medium text-primary group-hover:text-primary-content transition-colors'>

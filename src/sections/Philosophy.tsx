@@ -77,7 +77,7 @@ const Philosophy = () => {
 								whileInView={{ opacity: 1, y: 0 }}
 								viewport={{ once: true, margin: '-50px' }}
 								transition={{ delay: index * 0.1, duration: 0.5, ease: 'easeOut' }}
-								className='group relative flex-1 hover:flex-[3] transition-[flex] duration-500 ease-in-out h-full overflow-hidden rounded-3xl'
+								className='group relative shadow-sm flex-1 hover:flex-[3] transition-[flex] duration-500 ease-in-out h-full overflow-hidden rounded-3xl'
 							>
 								<div
 									className={`absolute inset-0 transition-all duration-500 bg-gradient-to-br from-transparent to-transparent ${item.bgGradient} h-full w-full bg-base-100/30 backdrop-blur-md group-hover:bg-base-100/80 group-hover:backdrop-blur-xl [html[data-theme=luxury]_&]:bg-[rgba(255,255,255,0.05)] [html[data-theme=luxury]_&]:backdrop-blur-[10px] [html[data-theme=luxury]_&]:shadow-[0_4px_30px_rgba(0,0,0,0.1)] [html[data-theme=luxury]_&]:border-none [html[data-theme=luxury]_&]:group-hover:bg-[rgba(255,255,255,0.1)]`}
