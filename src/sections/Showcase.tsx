@@ -181,7 +181,10 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
 							)}
 							<div className='flex flex-wrap gap-2 mb-4'>
 								{project.tags.map((tag) => (
-									<span key={tag} className='badge badge-outline badge-sm md:badge-md border-primary/20 text-primary'>
+									<span
+										key={tag}
+										className='badge badge-sm md:badge-md border-none bg-primary/5 text-primary [html[data-theme=luxury]_&]:bg-base-200'
+									>
 										{tag}
 									</span>
 								))}
