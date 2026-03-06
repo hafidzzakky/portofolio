@@ -214,7 +214,7 @@ const Experience = () => {
 						label: 'This portfolio',
 						text: 'Uses lazy-loaded 3D, code-splitting, WebP assets, SEO meta tags, and a PWA setup to mirror real-world practices.',
 					},
-				].map((item, index) => (
+				].map((item) => (
 					<motion.div
 						key={item.label}
 						variants={{
