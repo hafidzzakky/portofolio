@@ -67,6 +67,7 @@ const Contact = () => {
 
 					<motion.div
 						whileHover={{ scale: 1.02 }}
+						aria-hidden='true'
 						className='aspect-square relative overflow-hidden rounded-3xl bg-gradient-to-br from-white via-indigo-50 to-purple-100 dark:from-white/10 dark:via-indigo-900/20 dark:to-purple-900/20 shadow-lg'
 						ref={modelRef}
 					>
@@ -191,7 +192,7 @@ const Contact = () => {
 				<footer className='mt-16 text-base-content/40 text-sm'>
 					<p>© {new Date().getFullYear()} Hafidz Zakky D. All rights reserved.</p>
 					<p className='mt-2 flex items-center justify-center gap-2'>
-						Made with <span aria-label='love' className='text-red-500 animate-pulse'>❤</span> in Jakarta, Indonesia
+						Made with <span aria-hidden='true' className='text-red-500 animate-pulse'>❤</span><span className='sr-only'>love</span> in Jakarta, Indonesia
 					</p>
 				</footer>
 			</motion.div>

@@ -521,7 +521,7 @@ const FrontendStack = () => {
 								return (
 									<span
 										key={item.label}
-										className='inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm md:text-base font-medium leading-tight bg-base-100/70 dark:bg-base-100/10 text-base-content/80'
+										className='inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm md:text-base font-medium leading-tight bg-base-200/80 text-base-content/80 [html[data-theme=luxury]_&]:bg-[rgba(255,255,255,0.07)]'
 									>
 										{Icon && (
 											<span aria-hidden='true' className={`text-base ${item.colorClass ?? 'text-primary'}`}>
@@ -541,21 +541,6 @@ const FrontendStack = () => {
 };
 
 const Skills = () => {
-	// const container = {
-	// 	hidden: { opacity: 0 },
-	// 	show: {
-	// 		opacity: 1,
-	// 		transition: {
-	// 			staggerChildren: 0.1,
-	// 		},
-	// 	},
-	// };
-
-	// const item = {
-	// 	hidden: { opacity: 0, y: 20 },
-	// 	show: { opacity: 1, y: 0 },
-	// };
-
 	return (
 		<section id='skills' aria-label='Skills' className='py-20'>
 			<motion.div
@@ -571,40 +556,6 @@ const Skills = () => {
 			</motion.div>
 
 			<FrontendStack />
-
-			{/* <motion.div
-				variants={container}
-				initial='hidden'
-				whileInView='show'
-				viewport={{ once: true, amount: 0.1 }}
-				className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 will-change-[opacity] mb-8'
-			>
-				{skillCategories.map((category, index) => (
-					<motion.div
-						key={index}
-						variants={item}
-						whileHover={{ y: -5, transition: { duration: 0.3 } }}
-						className='transition-colors duration-300 shadow-xl card bg-base-100/30 backdrop-blur-md hover:bg-base-100/40'
-					>
-						<div className='p-5 card-body'>
-							<h3 className='mb-3 text-lg card-title text-primary'>{category.title}</h3>
-							<div className='flex flex-wrap gap-2'>
-								{category.skills.map((skill, idx) => (
-									<div
-										key={idx}
-										className='relative flex items-center gap-2 px-3 py-2 transition-all duration-300 rounded-lg cursor-default group bg-primary/10 hover:bg-primary backdrop-blur-sm'
-									>
-										<div className='w-1.5 h-1.5 rounded-full bg-primary/80 group-hover:bg-primary-content group-hover:shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all'></div>
-										<span className='font-medium transition-colors text-primary group-hover:text-primary-content'>
-											{skill}
-										</span>
-									</div>
-								))}
-							</div>
-						</div>
-					</motion.div>
-				))}
-			</motion.div> */}
 
 			<motion.div
 				initial={{ opacity: 0, y: 20 }}

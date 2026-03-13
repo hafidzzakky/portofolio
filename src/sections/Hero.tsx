@@ -17,6 +17,14 @@ const techStack = [
 	{ icon: SiNuxtdotjs, label: 'Nuxt.js', hoverColor: '#00DC82' },
 ];
 
+const roles = [
+	'Senior Front End Engineer',
+	'React Specialist',
+	'UI/UX Enthusiast',
+	'Building Scalable Web Applications',
+	'Building Scalable Mobile Applications',
+];
+
 const ScrollIndicator = ({ className }: { className: string }) => (
 	<motion.div
 		initial={{ opacity: 0, y: 10 }}
@@ -38,13 +46,6 @@ const ScrollIndicator = ({ className }: { className: string }) => (
 
 const Hero = ({ theme }: { theme: string }) => {
 	const { trackHeroCta, trackCvDownload } = useAnalytics();
-	const roles = [
-		'Senior Front End Engineer',
-		'React Specialist',
-		'UI/UX Enthusiast',
-		'Building Scalable Web Applications',
-		'Building Scalable Mobile Applications',
-	];
 	const [roleIndex, setRoleIndex] = useState(0);
 
 	useEffect(() => {
@@ -63,7 +64,7 @@ const Hero = ({ theme }: { theme: string }) => {
 					transition={{ duration: 0.8 }}
 					className='lg:col-span-7 flex flex-col items-start will-change-[opacity,transform]'
 				>
-					<h2 className='text-xl md:text-2xl font-medium text-primary mb-2 tracking-wide'>Hello, I am</h2>
+					<p className='text-xl md:text-2xl font-medium text-primary mb-2 tracking-wide'>Hello, I am</p>
 					<h1 className='text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-4 text-base-content leading-tight'>
 						Hafidz <br /> Zakky D
 					</h1>
