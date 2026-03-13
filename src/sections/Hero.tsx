@@ -4,6 +4,7 @@ import { SiReact, SiTypescript, SiTailwindcss, SiNextdotjs, SiNodedotjs, SiVite,
 import { useState, useEffect } from 'react';
 import HeroParallax from '../components/HeroParallax';
 import cvFile from '../assets/file/Hafidz_Zakky_Senior_Front_End_Engineer.pdf';
+import { useAnalytics } from '../hooks/useAnalytics';
 
 const techStack = [
 	{ icon: SiReact, label: 'React', hoverColor: '#61DAFB' },
@@ -36,6 +37,7 @@ const ScrollIndicator = ({ className }: { className: string }) => (
 );
 
 const Hero = ({ theme }: { theme: string }) => {
+	const { trackHeroCta, trackCvDownload } = useAnalytics();
 	const roles = [
 		'Senior Front End Engineer',
 		'React Specialist',
@@ -98,6 +100,7 @@ const Hero = ({ theme }: { theme: string }) => {
 							target='_blank'
 							rel='noopener noreferrer'
 							aria-label='Visit LinkedIn profile'
+							onClick={() => trackHeroCta('LinkedIn')}
 							className='btn btn-primary btn-lg gap-2 shadow-lg shadow-primary/30 hover:shadow-primary/50 transition-all'
 						>
 							<FaLinkedin aria-hidden='true' /> LinkedIn
@@ -109,6 +112,7 @@ const Hero = ({ theme }: { theme: string }) => {
 							target='_blank'
 							rel='noopener noreferrer'
 							aria-label='Visit GitHub profile'
+							onClick={() => trackHeroCta('GitHub')}
 							className='btn btn-outline btn-lg gap-2 backdrop-blur-sm hover:bg-base-content hover:text-base-100 transition-all'
 						>
 							<FaGithub aria-hidden='true' /> GitHub
@@ -119,6 +123,7 @@ const Hero = ({ theme }: { theme: string }) => {
 							href={cvFile}
 							download='Hafidz_Zakky_CV.pdf'
 							aria-label='Download CV as PDF'
+							onClick={trackCvDownload}
 							className='btn btn-secondary btn-lg gap-2 shadow-lg shadow-secondary/30 hover:shadow-secondary/50 transition-all text-white'
 						>
 							<FaDownload aria-hidden='true' /> Download CV

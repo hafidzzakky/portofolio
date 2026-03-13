@@ -50,5 +50,16 @@ export default defineConfig(() => {
 			}),
 		],
 		assetsInclude: ['**/*.glb'],
+		build: {
+			rollupOptions: {
+				output: {
+					manualChunks: {
+						'vendor-motion': ['framer-motion'],
+						'vendor-three': ['three', '@react-three/fiber', '@react-three/drei'],
+						'vendor-splide': ['@splidejs/react-splide'],
+					},
+				},
+			},
+		},
 	};
 });

@@ -42,5 +42,21 @@ export const useAnalytics = () => {
 		});
 	};
 
-	return { trackCvDownload, trackSocialClick, trackProjectView, trackContactClick };
+	const trackScrollDepth = (depth: number) => {
+		track('scroll_depth', {
+			event_category: 'engagement',
+			event_label: `${depth}%`,
+			depth_percentage: depth,
+		});
+	};
+
+	const trackHeroCta = (label: string) => {
+		track('hero_cta_click', {
+			event_category: 'conversion',
+			event_label: label,
+			cta_label: label,
+		});
+	};
+
+	return { trackCvDownload, trackSocialClick, trackProjectView, trackContactClick, trackScrollDepth, trackHeroCta };
 };

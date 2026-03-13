@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Lenis from 'lenis';
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-motion';
+import { useAnalytics } from './hooks/useAnalytics';
 import { PiCode, PiBriefcase, PiGraduationCap, PiRocketLaunch, PiEnvelopeSimple } from 'react-icons/pi';
 import Hero from './sections/Hero';
 // import WorldMap from './sections/WorldMap';
@@ -22,6 +23,8 @@ function App() {
 	const [isHeaderVisible, setIsHeaderVisible] = useState(false);
 	const [activeSection, setActiveSection] = useState('hero');
 	const [theme, setTheme] = useState(localStorage.getItem('theme') || 'luxury');
+	const { trackScrollDepth } = useAnalytics();
+	const trackedDepths = useRef(new Set<number>());
 
 	useEffect(() => {
 		localStorage.setItem('theme', theme);
@@ -38,11 +41,16 @@ function App() {
 	}, []);
 
 	useMotionValueEvent(scrollY, 'change', (latest) => {
-		if (latest > 100) {
-			setIsHeaderVisible(true);
-		} else {
-			setIsHeaderVisible(false);
-		}
+		setIsHeaderVisible(latest > 100);
+	});
+
+	useMotionValueEvent(scrollYProgress, 'change', (latest) => {
+		[25, 50, 75, 100].forEach((depth) => {
+			if (latest * 100 >= depth && !trackedDepths.current.has(depth)) {
+				trackedDepths.current.add(depth);
+				trackScrollDepth(depth);
+			}
+		});
 	});
 
 	useEffect(() => {
