@@ -320,7 +320,7 @@ const Showcase = () => {
 					className='text-center mb-12'
 				>
 					<h2 className='text-3xl md:text-5xl font-bold mb-4'>
-						<span className='bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary'>Project Showcase</span>
+						<span className='bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-primary bg-300% animate-gradient'>Project Showcase</span>
 					</h2>
 					<p className='text-base-content/60 max-w-2xl mx-auto'>A collection of my work. Click to view details.</p>
 				</motion.div>

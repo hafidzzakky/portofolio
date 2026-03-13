@@ -27,7 +27,7 @@ const Contact = () => {
 				className='container mx-auto px-4 text-center z-10'
 			>
 				<h2 className='text-4xl md:text-5xl font-bold mb-6'>
-					<span className='bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary'>Get In Touch</span>
+					<span className='bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-primary bg-300% animate-gradient'>Get In Touch</span>
 				</h2>
 
 				<p className='text-lg text-base-content/80 max-w-2xl mx-auto mb-12 leading-relaxed'>
@@ -105,7 +105,7 @@ const Contact = () => {
 				>
 					<div className='rounded-3xl bg-base-100/70 dark:bg-base-100/10 backdrop-blur-md p-6 md:p-7 text-center [html[data-theme=luxury]_&]:bg-[rgba(255,255,255,0.05)] [html[data-theme=luxury]_&]:backdrop-blur-[10px] [html[data-theme=luxury]_&]:shadow-[0_4px_30px_rgba(0,0,0,0.1)] [html[data-theme=luxury]_&]:border-none'>
 						<h3 className='text-2xl md:text-3xl font-bold mb-4'>
-							<span className='bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary'>
+							<span className='bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-primary bg-300% animate-gradient'>
 								Preferred collaboration & availability
 							</span>
 						</h3>

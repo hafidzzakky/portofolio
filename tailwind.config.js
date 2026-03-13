@@ -2,7 +2,20 @@
 export default {
 	content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
 	theme: {
-		extend: {},
+		extend: {
+			backgroundSize: {
+				'300%': '300%',
+			},
+			animation: {
+				gradient: 'gradient-shift 6s ease infinite',
+			},
+			keyframes: {
+				'gradient-shift': {
+					'0%, 100%': { backgroundPosition: '0% 50%' },
+					'50%': { backgroundPosition: '100% 50%' },
+				},
+			},
+		},
 	},
 	plugins: [require('daisyui')],
 	daisyui: {
