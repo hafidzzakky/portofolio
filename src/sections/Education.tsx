@@ -24,9 +24,9 @@ const Education = () => {
 						hidden: { opacity: 0, y: 20 },
 						show: { opacity: 1, y: 0 },
 					}}
-					className='text-3xl font-bold mb-8 border-b-4 border-primary inline-block pb-1'
+					className='text-3xl md:text-5xl font-bold mb-8'
 				>
-					Education
+					<span className='bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-primary bg-300% animate-gradient'>Education</span>
 				</motion.h2>
 
 				<motion.div

@@ -565,7 +565,9 @@ const Skills = () => {
 				transition={{ duration: 0.6, ease: 'easeOut' }}
 				className='mb-8 will-change-[opacity,transform]'
 			>
-				<h2 className='inline-block pb-1 text-3xl font-bold border-b-4 border-primary'>Core Technical Skills</h2>
+				<h2 className='text-3xl md:text-5xl font-bold mb-2'>
+					<span className='bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-primary bg-300% animate-gradient'>Core Technical Skills</span>
+				</h2>
 			</motion.div>
 
 			<FrontendStack />
@@ -611,7 +613,9 @@ const Skills = () => {
 				transition={{ duration: 0.6, ease: 'easeOut' }}
 				className='mb-8 will-change-[opacity,transform]'
 			>
-				<h2 className='inline-block pb-1 text-3xl font-bold border-b-4 border-primary'>Technical Skills Radar</h2>
+				<h2 className='text-3xl md:text-5xl font-bold mb-2'>
+					<span className='bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-primary bg-300% animate-gradient'>Technical Skills Radar</span>
+				</h2>
 			</motion.div>
 			<SkillRadar />
 		</section>

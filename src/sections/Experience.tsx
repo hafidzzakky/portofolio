@@ -201,7 +201,9 @@ const Experience = () => {
 				transition={{ duration: 0.6, ease: 'easeOut' }}
 				className='mb-10'
 			>
-				<h2 className='text-3xl font-bold border-b-4 border-primary inline-block pb-1'>Professional Experience</h2>
+				<h2 className='text-3xl md:text-5xl font-bold mb-2'>
+				<span className='bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-primary bg-300% animate-gradient'>Professional Experience</span>
+			</h2>
 			</motion.div>
 
 			<motion.div className='relative border-l-2 border-dashed border-primary/20 ml-3 md:ml-6 space-y-6 pb-12'>

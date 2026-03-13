@@ -29,6 +29,25 @@ function App() {
 	useEffect(() => {
 		localStorage.setItem('theme', theme);
 		document.documentElement.setAttribute('data-theme', theme);
+
+		const themeColors: Record<string, string> = {
+			luxury: '#09090b',
+			dark: '#1d232a',
+			dracula: '#282a36',
+			synthwave: '#2d1b69',
+			cyberpunk: '#ffee00',
+			retro: '#e4d8b4',
+			light: '#ffffff',
+			mytheme: '#ffffff',
+		};
+		const color = themeColors[theme] ?? '#ffffff';
+		let metaTheme = document.querySelector('meta[name="theme-color"]');
+		if (!metaTheme) {
+			metaTheme = document.createElement('meta');
+			metaTheme.setAttribute('name', 'theme-color');
+			document.head.appendChild(metaTheme);
+		}
+		metaTheme.setAttribute('content', color);
 	}, [theme]);
 
 	useEffect(() => {
