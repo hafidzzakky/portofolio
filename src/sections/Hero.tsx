@@ -5,6 +5,36 @@ import { useState, useEffect } from 'react';
 import HeroParallax from '../components/HeroParallax';
 import cvFile from '../assets/file/Hafidz_Zakky_Senior_Front_End_Engineer.pdf';
 
+const techStack = [
+	{ icon: SiReact, label: 'React', hoverColor: '#61DAFB' },
+	{ icon: SiTypescript, label: 'TypeScript', hoverColor: '#3178C6' },
+	{ icon: SiNextdotjs, label: 'Next.js', hoverColor: '#000000', extraClass: 'dark:hover:text-white' },
+	{ icon: SiTailwindcss, label: 'Tailwind CSS', hoverColor: '#06B6D4' },
+	{ icon: SiNodedotjs, label: 'Node.js', hoverColor: '#339933' },
+	{ icon: SiVite, label: 'Vite', hoverColor: '#646CFF' },
+	{ icon: SiVuedotjs, label: 'Vue.js', hoverColor: '#4FC08D' },
+	{ icon: SiNuxtdotjs, label: 'Nuxt.js', hoverColor: '#00DC82' },
+];
+
+const ScrollIndicator = ({ className }: { className: string }) => (
+	<motion.div
+		initial={{ opacity: 0, y: 10 }}
+		animate={{ opacity: 1, y: 0 }}
+		transition={{ delay: 1, duration: 1 }}
+		className={className}
+		aria-hidden='true'
+	>
+		<span className='text-xs uppercase tracking-widest opacity-50'>Scroll Down</span>
+		<div className='w-[30px] h-[50px] rounded-full border-2 border-base-content/30 flex justify-center p-2'>
+			<motion.div
+				animate={{ y: [0, 12, 0] }}
+				transition={{ duration: 1.5, repeat: Infinity, repeatType: 'loop' }}
+				className='w-1.5 h-1.5 rounded-full bg-primary mb-1'
+			/>
+		</div>
+	</motion.div>
+);
+
 const Hero = ({ theme }: { theme: string }) => {
 	const roles = [
 		'Senior Front End Engineer',
@@ -29,7 +59,7 @@ const Hero = ({ theme }: { theme: string }) => {
 					initial={{ opacity: 0, x: -50 }}
 					animate={{ opacity: 1, x: 0 }}
 					transition={{ duration: 0.8 }}
-					className='lg:col-span-7 flex flex-col items-start'
+					className='lg:col-span-7 flex flex-col items-start will-change-[opacity,transform]'
 				>
 					<h2 className='text-xl md:text-2xl font-medium text-primary mb-2 tracking-wide'>Hello, I am</h2>
 					<h1 className='text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-4 text-base-content leading-tight'>
@@ -67,9 +97,10 @@ const Hero = ({ theme }: { theme: string }) => {
 							href='https://www.linkedin.com/in/hafidzzakkyd/'
 							target='_blank'
 							rel='noopener noreferrer'
+							aria-label='Visit LinkedIn profile'
 							className='btn btn-primary btn-lg gap-2 shadow-lg shadow-primary/30 hover:shadow-primary/50 transition-all'
 						>
-							<FaLinkedin /> LinkedIn
+							<FaLinkedin aria-hidden='true' /> LinkedIn
 						</motion.a>
 						<motion.a
 							whileHover={{ scale: 1.05 }}
@@ -77,18 +108,20 @@ const Hero = ({ theme }: { theme: string }) => {
 							href='https://github.com/hafidzzakky'
 							target='_blank'
 							rel='noopener noreferrer'
+							aria-label='Visit GitHub profile'
 							className='btn btn-outline btn-lg gap-2 backdrop-blur-sm hover:bg-base-content hover:text-base-100 transition-all'
 						>
-							<FaGithub /> GitHub
+							<FaGithub aria-hidden='true' /> GitHub
 						</motion.a>
 						<motion.a
 							whileHover={{ scale: 1.05 }}
 							whileTap={{ scale: 0.95 }}
 							href={cvFile}
 							download='Hafidz_Zakky_CV.pdf'
+							aria-label='Download CV as PDF'
 							className='btn btn-secondary btn-lg gap-2 shadow-lg shadow-secondary/30 hover:shadow-secondary/50 transition-all text-white'
 						>
-							<FaDownload /> Download CV
+							<FaDownload aria-hidden='true' /> Download CV
 						</motion.a>
 					</div>
 
@@ -97,11 +130,11 @@ const Hero = ({ theme }: { theme: string }) => {
 							whileHover={{ scale: 1.05, borderColor: 'rgba(var(--p), 0.8)', backgroundColor: 'rgba(var(--b2), 0.8)' }}
 							className='flex items-center gap-2 px-3 py-1 rounded-full bg-base-200/50 backdrop-blur-sm border border-base-300 transition-all cursor-default'
 						>
-							<FaMapMarkerAlt className='text-primary' /> <span>Jakarta, Indonesia</span>
+							<FaMapMarkerAlt aria-hidden='true' className='text-primary' /> <span>Jakarta, Indonesia</span>
 						</motion.div>
 					</div>
 
-					{/* Tech Stack Marquee */}
+					{/* Tech Stack */}
 					<motion.div
 						initial={{ opacity: 0, y: 20 }}
 						whileInView={{ opacity: 1, y: 0 }}
@@ -113,81 +146,23 @@ const Hero = ({ theme }: { theme: string }) => {
 							Tech Stack
 						</p>
 						<div className='flex gap-6 text-3xl text-base-content/40 justify-center lg:justify-start w-full lg:w-auto flex-wrap'>
-							<motion.div
-								whileHover={{ scale: 1.2, color: '#61DAFB', opacity: 1 }}
-								className='transition-all cursor-pointer'
-								title='React'
-							>
-								<SiReact />
-							</motion.div>
-							<motion.div
-								whileHover={{ scale: 1.2, color: '#3178C6', opacity: 1 }}
-								className='transition-all cursor-pointer'
-								title='TypeScript'
-							>
-								<SiTypescript />
-							</motion.div>
-							<motion.div
-								whileHover={{ scale: 1.2, color: '#000000', opacity: 1 }} // Next.js is black/white
-								className='transition-all cursor-pointer dark:hover:text-white'
-								title='Next.js'
-							>
-								<SiNextdotjs />
-							</motion.div>
-							<motion.div
-								whileHover={{ scale: 1.2, color: '#06B6D4', opacity: 1 }}
-								className='transition-all cursor-pointer'
-								title='Tailwind CSS'
-							>
-								<SiTailwindcss />
-							</motion.div>
-							<motion.div
-								whileHover={{ scale: 1.2, color: '#339933', opacity: 1 }}
-								className='transition-all cursor-pointer'
-								title='Node.js'
-							>
-								<SiNodedotjs />
-							</motion.div>
-							<motion.div
-								whileHover={{ scale: 1.2, color: '#646CFF', opacity: 1 }}
-								className='transition-all cursor-pointer'
-								title='Vite'
-							>
-								<SiVite />
-							</motion.div>
-							<motion.div
-								whileHover={{ scale: 1.2, color: '#4FC08D', opacity: 1 }}
-								className='transition-all cursor-pointer'
-								title='Vue.js'
-							>
-								<SiVuedotjs />
-							</motion.div>
-							<motion.div
-								whileHover={{ scale: 1.2, color: '#00DC82', opacity: 1 }}
-								className='transition-all cursor-pointer'
-								title='Nuxt.js'
-							>
-								<SiNuxtdotjs />
-							</motion.div>
+							{techStack.map(({ icon: Icon, label, hoverColor, extraClass }) => (
+								<motion.div
+									key={label}
+									whileHover={{ scale: 1.2, color: hoverColor, opacity: 1 }}
+									className={`transition-all cursor-pointer ${extraClass ?? ''}`}
+									role='img'
+									aria-label={label}
+									title={label}
+								>
+									<Icon aria-hidden='true' />
+								</motion.div>
+							))}
 						</div>
 					</motion.div>
 
-					{/* Scroll Down Indicator - Mobile Only */}
-					<motion.div
-						initial={{ opacity: 0, y: 10 }}
-						animate={{ opacity: 1, y: 0 }}
-						transition={{ delay: 1, duration: 1 }}
-						className='lg:hidden mt-16 w-full flex flex-col items-center gap-2'
-					>
-						<span className='text-xs uppercase tracking-widest opacity-50'>Scroll Down</span>
-						<div className='w-[30px] h-[50px] rounded-full border-2 border-base-content/30 flex justify-center p-2'>
-							<motion.div
-								animate={{ y: [0, 12, 0] }}
-								transition={{ duration: 1.5, repeat: Infinity, repeatType: 'loop' }}
-								className='w-1.5 h-1.5 rounded-full bg-primary mb-1'
-							/>
-						</div>
-					</motion.div>
+					{/* Scroll Down - Mobile */}
+					<ScrollIndicator className='lg:hidden mt-16 w-full flex flex-col items-center gap-2' />
 				</motion.div>
 
 				<div className='hidden lg:block lg:col-span-5'>
@@ -195,22 +170,8 @@ const Hero = ({ theme }: { theme: string }) => {
 				</div>
 			</div>
 
-			{/* Scroll Down Indicator - Desktop Only */}
-			<motion.div
-				initial={{ opacity: 0, y: 10 }}
-				animate={{ opacity: 1, y: 0 }}
-				transition={{ delay: 1, duration: 1 }}
-				className='hidden lg:flex absolute bottom-10 left-1/2 -translate-x-1/2 flex-col items-center gap-2'
-			>
-				<span className='text-xs uppercase tracking-widest opacity-50'>Scroll Down</span>
-				<div className='w-[30px] h-[50px] rounded-full border-2 border-base-content/30 flex justify-center p-2'>
-					<motion.div
-						animate={{ y: [0, 12, 0] }}
-						transition={{ duration: 1.5, repeat: Infinity, repeatType: 'loop' }}
-						className='w-1.5 h-1.5 rounded-full bg-primary mb-1'
-					/>
-				</div>
-			</motion.div>
+			{/* Scroll Down - Desktop */}
+			<ScrollIndicator className='hidden lg:flex absolute bottom-10 left-1/2 -translate-x-1/2 flex-col items-center gap-2' />
 		</section>
 	);
 };

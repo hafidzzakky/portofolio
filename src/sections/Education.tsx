@@ -38,14 +38,14 @@ const Education = () => {
 					className='card bg-base-100/30 backdrop-blur-md shadow-sm hover:bg-base-100/40 transition-colors duration-300 [html[data-theme=luxury]_&]:bg-[rgba(255,255,255,0.05)] [html[data-theme=luxury]_&]:backdrop-blur-[10px] [html[data-theme=luxury]_&]:shadow-[0_4px_30px_rgba(0,0,0,0.1)] [html[data-theme=luxury]_&]:border-none [html[data-theme=luxury]_&]:hover:bg-[rgba(255,255,255,0.1)]'
 				>
 					<div className='card-body p-6 flex flex-col md:flex-row items-start gap-6'>
-						<div className='text-primary p-4 bg-primary/10 rounded-2xl shadow-lg backdrop-blur-sm'>
-							<FaGraduationCap size={32} />
+						<div aria-hidden='true' className='text-primary p-4 bg-primary/10 rounded-2xl shadow-lg backdrop-blur-sm'>
+							<FaGraduationCap size={32} aria-hidden='true' />
 						</div>
 						<div className='flex-1'>
 							<div className='flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-2'>
 								<h3 className='text-xl md:text-2xl font-bold'>Bachelor of Science in Informatics Engineering</h3>
 								<span className='inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold'>
-									<span className='w-1.5 h-1.5 rounded-full bg-primary/70'></span>
+									<span aria-hidden='true' className='w-1.5 h-1.5 rounded-full bg-primary/70'></span>
 									2013 - 2017
 								</span>
 							</div>

@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaTachometerAlt, FaCogs, FaSearch, FaGlobeAmericas } from 'react-icons/fa';
+import { PiCaretDown } from 'react-icons/pi';
 import { useState } from 'react';
 
 const experiences = [
@@ -66,6 +67,7 @@ const experiences = [
 
 const ExperienceCard = ({ exp, index }: { exp: (typeof experiences)[0]; index: number }) => {
 	const [isOpen, setIsOpen] = useState(false);
+	const detailId = `exp-detail-${index}`;
 
 	return (
 		<motion.div
@@ -76,13 +78,16 @@ const ExperienceCard = ({ exp, index }: { exp: (typeof experiences)[0]; index: n
 			className='relative pl-8 md:pl-12 py-2 will-change-[opacity,transform]'
 		>
 			{/* Timeline Dot */}
-			<span className='absolute left-[-5px] top-8 w-3 h-3 rounded-full bg-primary ring-4 ring-base-100/50 shadow-lg shadow-primary/50 z-10 transition-transform duration-300 hover:scale-125'></span>
+			<span aria-hidden='true' className='absolute left-[-5px] top-8 w-3 h-3 rounded-full bg-primary ring-4 ring-base-100/50 shadow-lg shadow-primary/50 z-10 transition-transform duration-300 hover:scale-125'></span>
 
-			{/* Connecting Line to Card (Subtle) */}
-			<span className='absolute left-[-2px] top-[38px] w-8 md:w-12 h-[2px] bg-primary/30'></span>
+			{/* Connecting Line */}
+			<span aria-hidden='true' className='absolute left-[-2px] top-[38px] w-8 md:w-12 h-[2px] bg-primary/30'></span>
 
 			<button
 				type='button'
+				aria-expanded={isOpen}
+				aria-controls={detailId}
+				aria-label={`${exp.role} at ${exp.company} — ${isOpen ? 'collapse' : 'expand'} details`}
 				className={`card bg-base-100/30 backdrop-blur-md shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer group overflow-hidden w-full text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-base-100 [html[data-theme=luxury]_&]:bg-[rgba(255,255,255,0.05)] [html[data-theme=luxury]_&]:backdrop-blur-[10px] [html[data-theme=luxury]_&]:shadow-[0_4px_30px_rgba(0,0,0,0.1)] [html[data-theme=luxury]_&]:border-none ${
 					isOpen
 						? 'bg-base-100/50 shadow-xl ring-0'
@@ -95,7 +100,10 @@ const ExperienceCard = ({ exp, index }: { exp: (typeof experiences)[0]; index: n
 						<div className='flex-1'>
 							<h3 className='text-xl md:text-2xl font-bold text-base-content group-hover:text-primary transition-colors flex items-center gap-2'>
 								{exp.role}
-								<span className={`text-xs transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}>▼</span>
+								<PiCaretDown
+									aria-hidden='true'
+									className={`text-sm transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
+								/>
 							</h3>
 							<h4 className='text-sm md:text-base text-base-content/70 font-medium mt-0.5'>{exp.company}</h4>
 						</div>
@@ -107,6 +115,7 @@ const ExperienceCard = ({ exp, index }: { exp: (typeof experiences)[0]; index: n
 					<AnimatePresence>
 						{isOpen && (
 							<motion.div
+								id={detailId}
 								initial={{ height: 0, opacity: 0, marginTop: 0 }}
 								animate={{ height: 'auto', opacity: 1, marginTop: 16 }}
 								exit={{ height: 0, opacity: 0, marginTop: 0 }}
@@ -116,14 +125,14 @@ const ExperienceCard = ({ exp, index }: { exp: (typeof experiences)[0]; index: n
 								<ul className='list-none space-y-2 text-base-content/80 text-sm md:text-base'>
 									{exp.points.map((point, idx) => (
 										<li key={idx} className='pl-5 relative leading-relaxed'>
-											<span className='absolute left-0 top-2 w-1.5 h-1.5 rounded-full bg-primary/60'></span>
+											<span aria-hidden='true' className='absolute left-0 top-2 w-1.5 h-1.5 rounded-full bg-primary/60'></span>
 											{point}
 										</li>
 									))}
 								</ul>
 
-								{/* Tech Stack when Open - at the bottom */}
-								<motion.div className='flex flex-wrap gap-2 mt-6 pt-4'>
+								{/* Tech Stack when Open */}
+								<div className='flex flex-wrap gap-2 mt-6 pt-4'>
 									{exp.techStack?.map((tech, idx) => (
 										<span
 											key={idx}
@@ -132,14 +141,14 @@ const ExperienceCard = ({ exp, index }: { exp: (typeof experiences)[0]; index: n
 											{tech}
 										</span>
 									))}
-								</motion.div>
+								</div>
 							</motion.div>
 						)}
 					</AnimatePresence>
 
 					{!isOpen && (
 						<>
-							{/* Tech Stack when Closed - above click to view */}
+							{/* Tech Stack when Closed */}
 							<div className='flex flex-wrap gap-2 mt-4 mb-2'>
 								{exp.techStack?.map((tech, idx) => (
 									<span
@@ -158,6 +167,29 @@ const ExperienceCard = ({ exp, index }: { exp: (typeof experiences)[0]; index: n
 		</motion.div>
 	);
 };
+
+const statCards = [
+	{
+		icon: FaTachometerAlt,
+		label: 'Performance lab',
+		text: 'Regularly profiling applications using Lighthouse and Web Vitals to keep interactions fast and reliable.',
+	},
+	{
+		icon: FaCogs,
+		label: 'Frontend optimization',
+		text: 'Focused on main-thread performance, lazy loading heavy features, and optimizing 3D, images, and bundles.',
+	},
+	{
+		icon: FaSearch,
+		label: 'SEO optimization',
+		text: 'Optimizing Core Web Vitals, semantic markup, and meta tags to improve discoverability and search engine ranking.',
+	},
+	{
+		icon: FaGlobeAmericas,
+		label: 'This portfolio',
+		text: 'Uses lazy-loaded 3D, code-splitting, WebP assets, SEO meta tags, and a PWA setup to mirror real-world practices.',
+	},
+];
 
 const Experience = () => {
 	return (
@@ -187,54 +219,36 @@ const Experience = () => {
 					hidden: { opacity: 0 },
 					show: {
 						opacity: 1,
-						transition: {
-							staggerChildren: 0.2,
-						},
+						transition: { staggerChildren: 0.2 },
 					},
 				}}
 			>
-				{[
-					{
-						icon: <FaTachometerAlt size={16} />,
-						label: 'Performance lab',
-						text: 'Regularly profiling applications using Lighthouse and Web Vitals to keep interactions fast and reliable.',
-					},
-					{
-						icon: <FaCogs size={16} />,
-						label: 'Frontend optimization',
-						text: 'Focused on main-thread performance, lazy loading heavy features, and optimizing 3D, images, and bundles.',
-					},
-					{
-						icon: <FaSearch size={16} />,
-						label: 'SEO optimization',
-						text: 'Optimizing Core Web Vitals, semantic markup, and meta tags to improve discoverability and search engine ranking.',
-					},
-					{
-						icon: <FaGlobeAmericas size={16} />,
-						label: 'This portfolio',
-						text: 'Uses lazy-loaded 3D, code-splitting, WebP assets, SEO meta tags, and a PWA setup to mirror real-world practices.',
-					},
-				].map((item) => (
-					<motion.div
-						key={item.label}
-						variants={{
-							hidden: { opacity: 0, y: 20 },
-							show: { opacity: 1, y: 0 },
-						}}
-						transition={{ duration: 0.5 }}
-						className='h-full'
-					>
-						<div className='group card h-full bg-base-100/30 backdrop-blur-md shadow-sm hover:shadow-lg hover:-translate-y-1 hover:bg-base-100/40 transition-all duration-300 p-6 flex flex-col gap-3 [html[data-theme=luxury]_&]:bg-[rgba(255,255,255,0.05)] [html[data-theme=luxury]_&]:backdrop-blur-[10px] [html[data-theme=luxury]_&]:shadow-[0_4px_30px_rgba(0,0,0,0.1)] [html[data-theme=luxury]_&]:border-none [html[data-theme=luxury]_&]:hover:bg-[rgba(255,255,255,0.1)]'>
-							<div className='flex items-center gap-3'>
-								<span className='inline-flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-primary transition-all duration-300 group-hover:scale-110 group-hover:bg-primary group-hover:text-primary-content'>
-									{item.icon}
-								</span>
-								<span className='text-xs font-semibold text-primary'>{item.label}</span>
+				{statCards.map((item) => {
+					const Icon = item.icon;
+					return (
+						<motion.div
+							key={item.label}
+							variants={{
+								hidden: { opacity: 0, y: 20 },
+								show: { opacity: 1, y: 0 },
+							}}
+							className='h-full'
+						>
+							<div className='group card h-full bg-base-100/30 backdrop-blur-md shadow-sm hover:shadow-lg hover:-translate-y-1 hover:bg-base-100/40 transition-all duration-300 p-6 flex flex-col gap-3 [html[data-theme=luxury]_&]:bg-[rgba(255,255,255,0.05)] [html[data-theme=luxury]_&]:backdrop-blur-[10px] [html[data-theme=luxury]_&]:shadow-[0_4px_30px_rgba(0,0,0,0.1)] [html[data-theme=luxury]_&]:border-none [html[data-theme=luxury]_&]:hover:bg-[rgba(255,255,255,0.1)]'>
+								<div className='flex items-center gap-3'>
+									<span
+										aria-hidden='true'
+										className='inline-flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-primary transition-all duration-300 group-hover:scale-110 group-hover:bg-primary group-hover:text-primary-content'
+									>
+										<Icon size={16} />
+									</span>
+									<span className='text-xs font-semibold text-primary'>{item.label}</span>
+								</div>
+								<p className='text-sm text-base-content/80'>{item.text}</p>
 							</div>
-							<p className='text-sm text-base-content/80'>{item.text}</p>
-						</div>
-					</motion.div>
-				))}
+						</motion.div>
+					);
+				})}
 			</motion.div>
 		</section>
 	);

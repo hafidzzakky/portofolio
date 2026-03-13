@@ -270,14 +270,25 @@ const SkillRadar = () => {
 			whileInView={{ opacity: 1, y: 0 }}
 			viewport={{ once: true, amount: 0.3 }}
 			transition={{ duration: 0.6, ease: 'easeOut' }}
-			className='mb-10 flex flex-col md:flex-row gap-4 md:gap-2 items-stretch'
+			className='flex flex-col items-stretch gap-4 mb-10 md:flex-row md:gap-2'
 		>
-			<div className='relative flex h-full w-full md:flex-1 md:mr-2'>
+			<div className='relative flex w-full h-full md:flex-1 md:mr-2'>
 				<motion.div
 					transition={{ type: 'spring', stiffness: 200, damping: 20 }}
 					className='relative h-full w-full flex items-center justify-center rounded-3xl bg-base-100/30 backdrop-blur-md shadow-sm p-4 [html[data-theme=luxury]_&]:bg-[rgba(255,255,255,0.03)] [html[data-theme=luxury]_&]:backdrop-blur-[10px] [html[data-theme=luxury]_&]:shadow-[0_4px_30px_rgba(0,0,0,0.1)] [html[data-theme=luxury]_&]:border-none'
 				>
-					<svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} className='text-base-content/30'>
+					<svg
+						width={size}
+						height={size}
+						viewBox={`0 0 ${size} ${size}`}
+						className='text-base-content/30'
+						role='img'
+						aria-label='Technical skills radar chart'
+					>
+						<title>
+							Technical Skills Radar — Frontend 9/10, Architecture 8.5/10, Testing & Quality 7.5/10, Performance 8.5/10, UI/UX
+							8/10
+						</title>
 						<g>
 							{levelPolygons.map((points, index) => (
 								<polygon key={index} points={points} fill='none' className='stroke-base-content/15' strokeWidth={1} />
@@ -329,7 +340,7 @@ const SkillRadar = () => {
 										cx={vertex.x}
 										cy={vertex.y}
 										r={activeIndex === index ? 16 : 0}
-										className='fill-primary/20 transition-all duration-300 ease-out'
+										className='transition-all duration-300 ease-out fill-primary/20'
 									/>
 									{/* Main point */}
 									<circle
@@ -353,7 +364,8 @@ const SkillRadar = () => {
 								animate={{ opacity: 1 }}
 								exit={{ opacity: 0 }}
 								transition={{ duration: 0.18 }}
-								className='pointer-events-none absolute z-10 max-w-[260px] rounded-2xl bg-base-100/95 dark:bg-base-100/30 px-3 py-1.5 shadow-md text-[11px] text-left overflow-hidden'
+								className='pointer-events-none absolute z-10 max-w-[260px] rounded-2xl bg-base-100/30  dark:bg-base-100/90 px-3 py-1.5 shadow-md text-[11px] text-left overflow-hidden'
+								// className='bg-base-100/30 text-base-content/80 hover:bg-base-100/50 hover:backdrop-blur-xl [html[data-theme=luxury]_&]:bg-[rgba(255,255,255,0.05)] [html[data-theme=luxury]_&]:backdrop-blur-[10px] [html[data-theme=luxury]_&]:hover:bg-[rgba(255,255,255,0.15)]'
 								style={{
 									left: tooltipPos.x + 16,
 									top: tooltipPos.y + 16,
@@ -379,8 +391,8 @@ const SkillRadar = () => {
 			</div>
 
 			{/* Content Section */}
-			<div ref={textRef} className='space-y-5 w-full md:flex-1 '>
-				<p className='text-base text-base-content/70 mb-2'>
+			<div ref={textRef} className='w-full space-y-5 md:flex-1 '>
+				<p className='mb-2 text-base text-base-content/70'>
 					A quick snapshot of how I balance frontend, architecture, testing, performance, and UI/UX in day-to-day work.
 				</p>
 				<div className='space-y-4'>
@@ -412,13 +424,13 @@ const SkillRadar = () => {
 							}`}
 						>
 							{/* {activeIndex === index && (
-								<span className='absolute left-0 top-0 bottom-0 w-1 bg-primary/70 transition-all duration-300' />
+								<span className='absolute top-0 bottom-0 left-0 w-1 transition-all duration-300 bg-primary/70' />
 							)} */}
 							{axisIconMap[axis.label] && (
-								<div className='pointer-events-none absolute -right-1 -bottom-1 text-base-content/10 transition-transform duration-500 ease-out group-hover:scale-125 group-hover:-rotate-12'>
+								<div className='absolute transition-transform duration-500 ease-out pointer-events-none -right-1 -bottom-1 text-base-content/10 group-hover:scale-125 group-hover:-rotate-12'>
 									{(() => {
 										const Icon = axisIconMap[axis.label];
-										return <Icon className='w-10 h-10 -rotate-45 transition-transform duration-500' />;
+										return <Icon className='w-10 h-10 transition-transform duration-500 -rotate-45' />;
 									})()}
 								</div>
 							)}
@@ -491,7 +503,7 @@ const FrontendStack = () => {
 			className='mb-16 rounded-3xl bg-base-100/30 backdrop-blur-md shadow-sm px-6 py-8 md:px-10 md:py-10 [html[data-theme=luxury]_&]:bg-[rgba(255,255,255,0.05)] [html[data-theme=luxury]_&]:backdrop-blur-[10px] [html[data-theme=luxury]_&]:shadow-[0_4px_30px_rgba(0,0,0,0.1)] [html[data-theme=luxury]_&]:border-none'
 		>
 			{/* <div className='flex items-center gap-2 text-xl font-semibold tracking-[0.25em] text-primary mb-4 uppercase'>
-				<span className='inline-flex h-6 w-6 items-center justify-center rounded-full bg-primary/20 text-primary'>
+				<span className='inline-flex items-center justify-center w-6 h-6 rounded-full bg-primary/20 text-primary'>
 					<HiOutlineSparkles size={14} />
 				</span>
 				<span className='font-bold'>My Stack</span>
@@ -499,11 +511,11 @@ const FrontendStack = () => {
 
 			<div className='space-y-8 md:space-y-12'>
 				{sections.map((section) => (
-					<div key={section.title} className='flex flex-col md:flex-row md:items-start gap-4 md:gap-8'>
+					<div key={section.title} className='flex flex-col gap-4 md:flex-row md:items-start md:gap-8'>
 						<div className='md:w-1/3'>
-							<p className='text-xl md:text-xl font-bold text-base-content/80'>{section.title}</p>
+							<p className='text-xl font-bold md:text-xl text-base-content/80'>{section.title}</p>
 						</div>
-						<div className='md:flex-1 flex flex-wrap gap-1'>
+						<div className='flex flex-wrap gap-1 md:flex-1'>
 							{section.items.map((item) => {
 								const Icon = item.icon;
 								return (
@@ -512,7 +524,7 @@ const FrontendStack = () => {
 										className='inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm md:text-base font-medium leading-tight bg-base-100/70 dark:bg-base-100/10 text-base-content/80'
 									>
 										{Icon && (
-											<span className={`text-base ${item.colorClass ?? 'text-primary'}`}>
+											<span aria-hidden='true' className={`text-base ${item.colorClass ?? 'text-primary'}`}>
 												<Icon />
 											</span>
 										)}
@@ -553,7 +565,7 @@ const Skills = () => {
 				transition={{ duration: 0.6, ease: 'easeOut' }}
 				className='mb-8 will-change-[opacity,transform]'
 			>
-				<h2 className='text-3xl font-bold border-b-4 border-primary inline-block pb-1'>Core Technical Skills</h2>
+				<h2 className='inline-block pb-1 text-3xl font-bold border-b-4 border-primary'>Core Technical Skills</h2>
 			</motion.div>
 
 			<FrontendStack />
@@ -570,18 +582,18 @@ const Skills = () => {
 						key={index}
 						variants={item}
 						whileHover={{ y: -5, transition: { duration: 0.3 } }}
-						className='card bg-base-100/30 backdrop-blur-md shadow-xl hover:bg-base-100/40 transition-colors duration-300'
+						className='transition-colors duration-300 shadow-xl card bg-base-100/30 backdrop-blur-md hover:bg-base-100/40'
 					>
-						<div className='card-body p-5'>
-							<h3 className='card-title text-lg text-primary mb-3'>{category.title}</h3>
+						<div className='p-5 card-body'>
+							<h3 className='mb-3 text-lg card-title text-primary'>{category.title}</h3>
 							<div className='flex flex-wrap gap-2'>
 								{category.skills.map((skill, idx) => (
 									<div
 										key={idx}
-										className='group relative bg-primary/10 hover:bg-primary backdrop-blur-sm rounded-lg px-3 py-2 transition-all duration-300 flex items-center gap-2 cursor-default'
+										className='relative flex items-center gap-2 px-3 py-2 transition-all duration-300 rounded-lg cursor-default group bg-primary/10 hover:bg-primary backdrop-blur-sm'
 									>
 										<div className='w-1.5 h-1.5 rounded-full bg-primary/80 group-hover:bg-primary-content group-hover:shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all'></div>
-										<span className='font-medium text-primary group-hover:text-primary-content transition-colors'>
+										<span className='font-medium transition-colors text-primary group-hover:text-primary-content'>
 											{skill}
 										</span>
 									</div>
@@ -599,7 +611,7 @@ const Skills = () => {
 				transition={{ duration: 0.6, ease: 'easeOut' }}
 				className='mb-8 will-change-[opacity,transform]'
 			>
-				<h2 className='text-3xl font-bold border-b-4 border-primary inline-block pb-1'>Technical Skills Radar</h2>
+				<h2 className='inline-block pb-1 text-3xl font-bold border-b-4 border-primary'>Technical Skills Radar</h2>
 			</motion.div>
 			<SkillRadar />
 		</section>

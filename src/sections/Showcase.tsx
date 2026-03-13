@@ -5,10 +5,12 @@ import '@splidejs/react-splide/css';
 import { projects as showcaseProjects, type Project } from '../data/projects';
 import { PiX, PiCaretLeft, PiCaretRight } from 'react-icons/pi';
 
+type SplideInstance = { go: (index: number | '<' | '>') => void };
+
 const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => void }) => {
 	const [currentImage, setCurrentImage] = useState(0);
 	const [isHovered, setIsHovered] = useState(false);
-	const splideRef = useRef<any>(null);
+	const splideRef = useRef<SplideInstance | null>(null);
 	const closeButtonRef = useRef<HTMLButtonElement | null>(null);
 
 	useEffect(() => {
@@ -19,11 +21,9 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
 			if (event.key === 'Escape') {
 				onClose();
 			}
-
 			if (event.key === 'ArrowLeft' && splideRef.current) {
 				splideRef.current.go('<');
 			}
-
 			if (event.key === 'ArrowRight' && splideRef.current) {
 				splideRef.current.go('>');
 			}
@@ -46,7 +46,7 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
 			onClick={onClose}
 			role='dialog'
 			aria-modal='true'
-			aria-label={project.title}
+			aria-label={`${project.title} project details`}
 		>
 			<motion.div
 				initial={{ scale: 0.9, opacity: 0 }}
@@ -63,7 +63,7 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
 					className='absolute top-4 right-4 z-20 btn btn-circle btn-sm md:btn-md bg-base-100/50 backdrop-blur-md border-none hover:bg-base-100 text-base-content'
 					aria-label='Close project details'
 				>
-					<PiX className='text-lg' />
+					<PiX aria-hidden='true' className='text-lg' />
 				</button>
 
 				{/* Image Section */}
@@ -93,14 +93,14 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
 						}}
 						onMoved={(_, newIndex: number) => setCurrentImage(newIndex)}
 						ref={(splide) => {
-							splideRef.current = splide;
+							splideRef.current = splide as unknown as SplideInstance;
 						}}
 						className='w-full h-full'
 					>
 						{project.images.map((src, idx) => (
 							<SplideSlide key={idx} className='flex items-center justify-center'>
 								<div className='w-full h-full flex items-center justify-center rounded-3xl overflow-hidden bg-base-100/5'>
-									<img src={src} alt={`${project.title} view ${idx + 1}`} className='w-full h-full object-cover block' />
+									<img src={src} alt={`${project.title} screenshot ${idx + 1} of ${project.images.length}`} className='w-full h-full object-cover block' />
 								</div>
 							</SplideSlide>
 						))}
@@ -108,35 +108,37 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
 
 					{/* Navigation Arrows */}
 					<button
+						aria-label='Previous image'
 						onClick={(e) => {
 							e.stopPropagation();
 							splideRef.current && splideRef.current.go('<');
 						}}
-						className='hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 items-center justify-center rounded-full bg-black/20 backdrop-blur-md text-white hover:bg-black/50 transition-all opacity-0 group-hover:opacity-100'
+						className='hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 items-center justify-center rounded-full bg-black/20 backdrop-blur-md text-white hover:bg-black/50 transition-all opacity-0 group-hover:opacity-100 focus-visible:opacity-100 focus-visible:ring-2 focus-visible:ring-white/50 outline-none'
 					>
-						<PiCaretLeft className='text-xl' />
+						<PiCaretLeft aria-hidden='true' className='text-xl' />
 					</button>
 					<button
+						aria-label='Next image'
 						onClick={(e) => {
 							e.stopPropagation();
 							splideRef.current && splideRef.current.go('>');
 						}}
-						className='hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 items-center justify-center rounded-full bg-black/20 backdrop-blur-md text-white hover:bg-black/50 transition-all opacity-0 group-hover:opacity-100'
+						className='hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 items-center justify-center rounded-full bg-black/20 backdrop-blur-md text-white hover:bg-black/50 transition-all opacity-0 group-hover:opacity-100 focus-visible:opacity-100 focus-visible:ring-2 focus-visible:ring-white/50 outline-none'
 					>
-						<PiCaretRight className='text-xl' />
+						<PiCaretRight aria-hidden='true' className='text-xl' />
 					</button>
 
-					{/* Progress Indicator Overlay */}
-					<div className='absolute bottom-4 left-0 right-0 flex justify-center items-center gap-2 px-4 z-20'>
+					{/* Progress Indicator */}
+					<div className='absolute bottom-4 left-0 right-0 flex justify-center items-center gap-2 px-4 z-20' role='group' aria-label='Image navigation'>
 						{project.images.map((_, idx) => (
-							<motion.div
+							<motion.button
 								key={idx}
 								layout
 								initial={false}
-								animate={{
-									width: currentImage === idx ? 32 : 8,
-								}}
-								className={`relative h-2 rounded-full overflow-hidden cursor-pointer backdrop-blur-sm transition-colors duration-300 ${
+								animate={{ width: currentImage === idx ? 32 : 8 }}
+								aria-label={`Go to image ${idx + 1}`}
+								aria-pressed={currentImage === idx}
+								className={`relative h-2 rounded-full overflow-hidden cursor-pointer backdrop-blur-sm transition-colors duration-300 focus-visible:ring-2 focus-visible:ring-white/70 outline-none ${
 									currentImage === idx ? 'bg-primary/10' : 'bg-base-content/80 hover:bg-base-content/30'
 								}`}
 								onClick={(e) => {
@@ -154,7 +156,7 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
 										transition={{ duration: 3, ease: 'linear' }}
 									/>
 								)}
-							</motion.div>
+							</motion.button>
 						))}
 					</div>
 				</div>
@@ -170,7 +172,7 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
 								<div className='flex flex-wrap items-center gap-2 mb-3'>
 									{project.role && (
 										<span className='inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold'>
-											<span className='w-1.5 h-1.5 rounded-full bg-primary/70'></span>
+											<span aria-hidden='true' className='w-1.5 h-1.5 rounded-full bg-primary/70'></span>
 											{project.role}
 										</span>
 									)}
@@ -195,9 +197,8 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
 							<p className='text-base-content/80 whitespace-pre-line'>{project.description}</p>
 						</div>
 
-						{/* Links (if available) */}
 						<div className='mt-8 pt-6 border-t border-base-content/10 flex gap-4'>
-							{/* Add links here if needed based on project data structure */}
+							{/* Links placeholder */}
 						</div>
 					</div>
 				</div>
@@ -231,6 +232,7 @@ const ShowcaseCard = ({ project, onClick }: { project: (typeof showcaseProjects)
 			exit={{ opacity: 0, scale: 0.9 }}
 			transition={{ duration: 0.3 }}
 			whileHover={{ y: -5, transition: { duration: 0.3 } }}
+			aria-label={`View ${project.title} project details`}
 			className='break-inside-avoid mb-6 rounded-2xl overflow-hidden relative group bg-base-200 shadow-lg hover:shadow-2xl transition-shadow duration-300 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 focus-visible:ring-offset-2 focus-visible:ring-offset-base-100'
 			onMouseEnter={() => setIsHovered(true)}
 			onMouseLeave={() => {
@@ -241,12 +243,12 @@ const ShowcaseCard = ({ project, onClick }: { project: (typeof showcaseProjects)
 		>
 			{/* Image Container */}
 			<div className='relative w-full overflow-hidden bg-base-300'>
-				{/* Aspect Ratio Maintainer based on first image */}
 				<div className='relative'>
 					<img
 						src={project.images[0]}
-						alt={project.title}
-						className='w-full h-auto object-cover opacity-0' // Invisible spacer
+						alt=''
+						aria-hidden='true'
+						className='w-full h-auto object-cover opacity-0'
 					/>
 					<AnimatePresence mode='popLayout'>
 						<motion.img
@@ -275,7 +277,7 @@ const ShowcaseCard = ({ project, onClick }: { project: (typeof showcaseProjects)
 					</p>
 
 					{/* Progress Indicator */}
-					<div className='flex gap-1 mt-4 translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-200 justify-center'>
+					<div aria-hidden='true' className='flex gap-1 mt-4 translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-200 justify-center'>
 						{project.images.map((_, idx) => (
 							<div
 								key={idx}
@@ -297,16 +299,13 @@ const Showcase = () => {
 	const sectionRef = useRef(null);
 	const isInView = useInView(sectionRef, { amount: 0.1, margin: '-10% 0px -10% 0px' });
 
-	// Extract unique categories from all projects
 	const categories = ['All', ...Array.from(new Set(showcaseProjects.flatMap((project) => project.tags)))];
 
-	// Filter projects based on selected category
 	const filteredProjects =
 		selectedCategory === 'All' ? showcaseProjects : showcaseProjects.filter((project) => project.tags.includes(selectedCategory));
 
 	return (
 		<section ref={sectionRef} className='py-20 relative' id='projects'>
-			{/* Project Modal */}
 			<AnimatePresence>
 				{selectedProject && <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />}
 			</AnimatePresence>
@@ -325,10 +324,12 @@ const Showcase = () => {
 				</motion.div>
 
 				{/* Category Filter - Desktop */}
-				<div className='hidden md:flex flex-wrap justify-center gap-2 mb-12'>
+				<div className='hidden md:flex flex-wrap justify-center gap-2 mb-12' role='group' aria-label='Filter projects by category'>
 					{categories.map((category) => (
 						<button
 							key={category}
+							type='button'
+							aria-pressed={selectedCategory === category}
 							onClick={() => setSelectedCategory(category)}
 							className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
 								selectedCategory === category
@@ -341,7 +342,7 @@ const Showcase = () => {
 					))}
 				</div>
 
-				{/* Mobile Horizontal Filter - Above Navbar */}
+				{/* Mobile Horizontal Filter */}
 				<AnimatePresence>
 					{isInView && (
 						<motion.div
@@ -349,11 +350,15 @@ const Showcase = () => {
 							animate={{ y: 0, opacity: 1 }}
 							exit={{ y: 50, opacity: 0 }}
 							transition={{ duration: 0.3 }}
+							role='group'
+							aria-label='Filter projects by category'
 							className='md:hidden fixed left-4 right-4 bottom-24 z-40 flex gap-2 p-2 bg-base-100/90 backdrop-blur-md rounded-2xl border border-base-content/10 shadow-xl overflow-x-auto scrollbar-hide'
 						>
 							{categories.map((category) => (
 								<button
 									key={category}
+									type='button'
+									aria-pressed={selectedCategory === category}
 									onClick={() => setSelectedCategory(category)}
 									className={`flex-shrink-0 px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all duration-200 ${
 										selectedCategory === category
@@ -368,7 +373,7 @@ const Showcase = () => {
 					)}
 				</AnimatePresence>
 
-				{/* Masonry Layout using CSS Columns */}
+				{/* Masonry Layout */}
 				<div className='columns-1 sm:columns-2 lg:columns-3 gap-6'>
 					<AnimatePresence mode='popLayout'>
 						{filteredProjects.map((project) => (
