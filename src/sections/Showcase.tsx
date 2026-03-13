@@ -13,6 +13,7 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
 	const [isHovered, setIsHovered] = useState(false);
 	const splideRef = useRef<SplideInstance | null>(null);
 	const closeButtonRef = useRef<HTMLButtonElement | null>(null);
+	const modalRef = useRef<HTMLDivElement | null>(null);
 
 	useEffect(() => {
 		document.body.style.overflow = 'hidden';
@@ -27,6 +28,24 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
 			}
 			if (event.key === 'ArrowRight' && splideRef.current) {
 				splideRef.current.go('>');
+			}
+			if (event.key === 'Tab' && modalRef.current) {
+				const focusable = modalRef.current.querySelectorAll<HTMLElement>(
+					'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+				);
+				const first = focusable[0];
+				const last = focusable[focusable.length - 1];
+				if (event.shiftKey) {
+					if (document.activeElement === first) {
+						event.preventDefault();
+						last.focus();
+					}
+				} else {
+					if (document.activeElement === last) {
+						event.preventDefault();
+						first.focus();
+					}
+				}
 			}
 		};
 
@@ -50,6 +69,7 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
 			aria-label={`${project.title} project details`}
 		>
 			<motion.div
+				ref={modalRef}
 				initial={{ scale: 0.9, opacity: 0 }}
 				animate={{ scale: 1, opacity: 1 }}
 				exit={{ scale: 0.9, opacity: 0 }}

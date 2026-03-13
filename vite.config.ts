@@ -20,7 +20,8 @@ export default defineConfig(() => {
 					name: 'Hafidz Zakky - Portfolio',
 					short_name: 'Hafidz Porto',
 					description: 'Portfolio of Hafidz Zakky, Senior Front End Engineer',
-					theme_color: '#ffffff',
+					theme_color: '#09090b',
+					background_color: '#09090b',
 					start_url: baseUrl,
 					scope: baseUrl,
 					icons: [
@@ -45,14 +46,14 @@ export default defineConfig(() => {
 					],
 					screenshots: [
 						{
-							src: 'og-image.jpg',
+							src: 'pwa-192x192.png',
 							sizes: '1200x630',
 							type: 'image/jpeg',
 							form_factor: 'wide',
 							label: 'Desktop',
 						},
 						{
-							src: 'og-image.jpg',
+							src: 'pwa-192x192.png',
 							sizes: '1200x630',
 							type: 'image/jpeg',
 							label: 'Mobile',

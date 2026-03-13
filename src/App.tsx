@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import Lenis from 'lenis';
-import { motion, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-motion';
+import { motion, useScroll, useMotionValueEvent, AnimatePresence, MotionConfig } from 'framer-motion';
 import { useAnalytics } from './hooks/useAnalytics';
 import { PiCode, PiBriefcase, PiGraduationCap, PiRocketLaunch, PiEnvelopeSimple } from 'react-icons/pi';
 import Hero from './sections/Hero';
@@ -139,6 +139,7 @@ function App() {
 	}, []);
 
 	return (
+		<MotionConfig reducedMotion='user'>
 		<div className='min-h-screen text-base-content font-sans antialiased selection:bg-primary selection:text-primary-content overflow-x-hidden relative'>
 			<AnimatePresence mode='wait'>{isLoading && <Preloader />}</AnimatePresence>
 
@@ -280,6 +281,7 @@ function App() {
 				</main>
 			</div>
 		</div>
+		</MotionConfig>
 	);
 }
 
