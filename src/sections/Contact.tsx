@@ -2,12 +2,14 @@ import { motion, useInView } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaEnvelope, FaInstagram, FaDownload, FaWhatsapp } from 'react-icons/fa';
 import React, { Suspense, lazy, useRef } from 'react';
 import cvFile from '../assets/file/Hafidz_Zakky_Senior_Front_End_Engineer.pdf';
+import { useAnalytics } from '../hooks/useAnalytics';
 
 const User3D = lazy(() => import('../components/User3D'));
 
 const Contact = () => {
 	const modelRef = useRef<HTMLDivElement | null>(null);
 	const isModelInView = useInView(modelRef, { once: true, margin: '0px 0px -20% 0px' });
+	const { trackCvDownload, trackSocialClick, trackContactClick } = useAnalytics();
 
 	return (
 		<section className='relative py-20 min-h-[50vh] flex items-center justify-center' id='contact'>
@@ -38,6 +40,7 @@ const Contact = () => {
 						href='https://www.linkedin.com/in/hafidzzakkyd/'
 						ariaLabel='Connect on LinkedIn'
 						className='col-span-1 sm:col-span-2 lg:col-span-2 lg:row-span-2 flex flex-col justify-between bg-[#0077b5] text-white hover:bg-[#006396] min-h-[250px]'
+						onClick={() => trackSocialClick('LinkedIn')}
 					>
 						<div className='flex justify-between items-start w-full'>
 							<span className='text-lg font-bold'>LinkedIn</span>
@@ -66,6 +69,7 @@ const Contact = () => {
 						href='mailto:hafidzzakky@gmail.com'
 						ariaLabel='Send email to Hafidz'
 						className='aspect-square flex flex-col justify-center items-center bg-red-500 text-white hover:bg-red-600'
+						onClick={() => trackContactClick('Email')}
 					>
 						<FaEnvelope aria-hidden='true' className='text-5xl mb-4' />
 						<span className='font-bold text-xl'>Email</span>
@@ -75,6 +79,7 @@ const Contact = () => {
 						href='https://instagram.com/hafidzzakkyd'
 						ariaLabel='Follow on Instagram'
 						className='aspect-square flex flex-col justify-center items-center bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-500 text-white'
+						onClick={() => trackSocialClick('Instagram')}
 					>
 						<FaInstagram aria-hidden='true' className='text-5xl mb-4' />
 						<span className='font-bold text-xl'>Instagram</span>
@@ -84,6 +89,7 @@ const Contact = () => {
 						href='https://github.com/hafidzzakky'
 						ariaLabel='View GitHub profile'
 						className='aspect-square flex flex-col justify-center items-center bg-[#24292e] text-white hover:bg-[#1b1f23]'
+						onClick={() => trackSocialClick('GitHub')}
 					>
 						<FaGithub aria-hidden='true' className='text-5xl mb-4' />
 						<span className='font-bold text-xl'>Github</span>
@@ -126,7 +132,8 @@ const Contact = () => {
 								target='_blank'
 								rel='noopener noreferrer'
 								aria-label='Contact via WhatsApp'
-								className='inline-flex items-center gap-1 rounded-full bg-[#25D366] text-xs font-semibold text-white px-3 py-1 shadow-sm'
+								onClick={() => trackContactClick('WhatsApp')}
+							className='inline-flex items-center gap-1 rounded-full bg-[#25D366] text-xs font-semibold text-white px-3 py-1 shadow-sm'
 							>
 								<FaWhatsapp aria-hidden='true' className='text-sm' />
 								<span>WhatsApp</span>
@@ -149,6 +156,7 @@ const Contact = () => {
 						href={cvFile}
 						download='Hafidz_Zakky_CV.pdf'
 						aria-label='Download CV as PDF'
+						onClick={trackCvDownload}
 						className='btn btn-secondary btn-lg gap-2 shadow-lg shadow-secondary/30 hover:shadow-secondary/50 transition-all rounded-full text-white px-8'
 					>
 						<FaDownload aria-hidden='true' /> Download CV
@@ -171,14 +179,16 @@ interface BentoCardProps {
 	className?: string;
 	href: string;
 	ariaLabel: string;
+	onClick?: () => void;
 }
 
-const BentoCard: React.FC<BentoCardProps> = ({ children, className, href, ariaLabel }) => (
+const BentoCard: React.FC<BentoCardProps> = ({ children, className, href, ariaLabel, onClick }) => (
 	<motion.a
 		href={href}
 		target='_blank'
 		rel='noopener noreferrer'
 		aria-label={ariaLabel}
+		onClick={onClick}
 		whileHover={{ scale: 1.02 }}
 		whileTap={{ scale: 0.98 }}
 		className={`relative overflow-hidden rounded-3xl p-8 shadow-lg transition-all duration-300 ${className}`}

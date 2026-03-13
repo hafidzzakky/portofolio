@@ -4,6 +4,7 @@ import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
 import { projects as showcaseProjects, type Project } from '../data/projects';
 import { PiX, PiCaretLeft, PiCaretRight } from 'react-icons/pi';
+import { useAnalytics } from '../hooks/useAnalytics';
 
 type SplideInstance = { go: (index: number | '<' | '>') => void };
 
@@ -298,6 +299,7 @@ const Showcase = () => {
 	const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 	const sectionRef = useRef(null);
 	const isInView = useInView(sectionRef, { amount: 0.1, margin: '-10% 0px -10% 0px' });
+	const { trackProjectView } = useAnalytics();
 
 	const categories = ['All', ...Array.from(new Set(showcaseProjects.flatMap((project) => project.tags)))];
 
@@ -377,7 +379,7 @@ const Showcase = () => {
 				<div className='columns-1 sm:columns-2 lg:columns-3 gap-6'>
 					<AnimatePresence mode='popLayout'>
 						{filteredProjects.map((project) => (
-							<ShowcaseCard key={project.id} project={project} onClick={() => setSelectedProject(project)} />
+							<ShowcaseCard key={project.id} project={project} onClick={() => { setSelectedProject(project); trackProjectView(project.title); }} />
 						))}
 					</AnimatePresence>
 				</div>
