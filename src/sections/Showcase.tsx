@@ -101,7 +101,7 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
 						{project.images.map((src, idx) => (
 							<SplideSlide key={idx} className='flex items-center justify-center'>
 								<div className='w-full h-full flex items-center justify-center rounded-3xl overflow-hidden bg-base-100/5'>
-									<img src={src} alt={`${project.title} screenshot ${idx + 1} of ${project.images.length}`} className='w-full h-full object-cover block' />
+									<img src={src} alt={`${project.title} screenshot ${idx + 1} of ${project.images.length}`} loading='lazy' className='w-full h-full object-cover block' />
 								</div>
 							</SplideSlide>
 						))}
@@ -249,7 +249,8 @@ const ShowcaseCard = ({ project, onClick }: { project: (typeof showcaseProjects)
 						src={project.images[0]}
 						alt=''
 						aria-hidden='true'
-						className='w-full h-auto object-cover opacity-0'
+						loading='lazy'
+					className='w-full h-auto object-cover opacity-0'
 					/>
 					<AnimatePresence mode='popLayout'>
 						<motion.img
@@ -307,7 +308,7 @@ const Showcase = () => {
 		selectedCategory === 'All' ? showcaseProjects : showcaseProjects.filter((project) => project.tags.includes(selectedCategory));
 
 	return (
-		<section ref={sectionRef} className='py-20 relative' id='projects'>
+		<section ref={sectionRef} aria-label='Project Showcase' className='py-20 relative' id='projects'>
 			<AnimatePresence>
 				{selectedProject && <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />}
 			</AnimatePresence>

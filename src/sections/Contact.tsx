@@ -1,6 +1,7 @@
 import { motion, useInView } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaEnvelope, FaInstagram, FaDownload, FaWhatsapp } from 'react-icons/fa';
-import React, { Suspense, lazy, useRef } from 'react';
+import { PiCopy, PiCheck } from 'react-icons/pi';
+import React, { Suspense, lazy, useRef, useState } from 'react';
 import cvFile from '../assets/file/Hafidz_Zakky_Senior_Front_End_Engineer.pdf';
 import { useAnalytics } from '../hooks/useAnalytics';
 
@@ -10,9 +11,18 @@ const Contact = () => {
 	const modelRef = useRef<HTMLDivElement | null>(null);
 	const isModelInView = useInView(modelRef, { once: true, margin: '0px 0px -20% 0px' });
 	const { trackCvDownload, trackSocialClick, trackContactClick } = useAnalytics();
+	const [copied, setCopied] = useState(false);
+
+	const copyEmail = () => {
+		navigator.clipboard.writeText('hafidzzakky@gmail.com').then(() => {
+			setCopied(true);
+			trackContactClick('Email Copy');
+			setTimeout(() => setCopied(false), 2000);
+		});
+	};
 
 	return (
-		<section className='relative py-20 min-h-[50vh] flex items-center justify-center' id='contact'>
+		<section aria-label='Contact' className='relative py-20 min-h-[50vh] flex items-center justify-center' id='contact'>
 			{/* Background decoration */}
 			<div className='absolute inset-0 overflow-hidden pointer-events-none' aria-hidden='true'>
 				<div className='absolute -top-24 -right-24 w-96 h-96 bg-primary/10 rounded-full blur-3xl opacity-30'></div>
@@ -65,15 +75,30 @@ const Contact = () => {
 						</Suspense>
 					</motion.div>
 
-					<BentoCard
-						href='mailto:hafidzzakky@gmail.com'
-						ariaLabel='Send email to Hafidz'
-						className='aspect-square flex flex-col justify-center items-center bg-red-500 text-white hover:bg-red-600'
-						onClick={() => trackContactClick('Email')}
-					>
-						<FaEnvelope aria-hidden='true' className='text-5xl mb-4' />
-						<span className='font-bold text-xl'>Email</span>
-					</BentoCard>
+					<div className='aspect-square relative overflow-hidden rounded-3xl bg-red-500 text-white shadow-lg'>
+						<motion.a
+							href='mailto:hafidzzakky@gmail.com'
+							aria-label='Send email to Hafidz'
+							onClick={() => trackContactClick('Email')}
+							whileHover={{ scale: 1.02 }}
+							whileTap={{ scale: 0.98 }}
+							className='flex flex-col justify-center items-center w-full h-full p-8 transition-all duration-300 hover:bg-red-600'
+						>
+							<FaEnvelope aria-hidden='true' className='text-5xl mb-4' />
+							<span className='font-bold text-xl'>Email</span>
+						</motion.a>
+						<motion.button
+							aria-label={copied ? 'Email copied!' : 'Copy email address'}
+							onClick={copyEmail}
+							whileTap={{ scale: 0.9 }}
+							className='absolute top-3 right-3 p-2 rounded-xl bg-white/20 hover:bg-white/30 backdrop-blur-sm transition-colors'
+						>
+							{copied
+								? <PiCheck aria-hidden='true' className='text-lg' />
+								: <PiCopy aria-hidden='true' className='text-lg' />
+							}
+						</motion.button>
+					</div>
 
 					<BentoCard
 						href='https://instagram.com/hafidzzakkyd'

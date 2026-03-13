@@ -53,7 +53,7 @@ const Philosophy = () => {
 	};
 
 	return (
-		<section id='philosophy' className='py-32 relative overflow-hidden'>
+		<section id='philosophy' aria-label='Engineering Mindset' className='py-32 relative overflow-hidden'>
 			{/* Dynamic Background Elements */}
 			<div className='absolute inset-0 overflow-hidden pointer-events-none' aria-hidden='true'>
 				<div className='absolute top-0 left-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px] -translate-y-1/2' />

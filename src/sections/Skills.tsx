@@ -557,7 +557,7 @@ const Skills = () => {
 	// };
 
 	return (
-		<section id='skills' className='py-20'>
+		<section id='skills' aria-label='Skills' className='py-20'>
 			<motion.div
 				initial={{ opacity: 0, y: 20 }}
 				whileInView={{ opacity: 1, y: 0 }}

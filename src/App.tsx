@@ -51,12 +51,21 @@ function App() {
 	}, [theme]);
 
 	useEffect(() => {
-		// Simulate initial loading time for assets/3D models
-		const timer = setTimeout(() => {
-			setIsLoading(false);
-		}, 2000);
+		const minDelay = 800;
+		const start = Date.now();
 
-		return () => clearTimeout(timer);
+		const dismiss = () => {
+			const elapsed = Date.now() - start;
+			const remaining = Math.max(0, minDelay - elapsed);
+			setTimeout(() => setIsLoading(false), remaining);
+		};
+
+		if (document.readyState === 'complete') {
+			dismiss();
+		} else {
+			window.addEventListener('load', dismiss, { once: true });
+			return () => window.removeEventListener('load', dismiss);
+		}
 	}, []);
 
 	useMotionValueEvent(scrollY, 'change', (latest) => {
