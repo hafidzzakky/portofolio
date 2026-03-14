@@ -78,7 +78,10 @@ const ExperienceCard = ({ exp, index }: { exp: (typeof experiences)[0]; index: n
 			className='relative pl-8 md:pl-12 py-2 will-change-[opacity,transform]'
 		>
 			{/* Timeline Dot */}
-			<span aria-hidden='true' className='absolute left-[-5px] top-8 w-3 h-3 rounded-full bg-primary ring-4 ring-base-100/50 shadow-lg shadow-primary/50 z-10 transition-transform duration-300 hover:scale-125'></span>
+			<span
+				aria-hidden='true'
+				className='absolute left-[-5px] top-8 w-3 h-3 rounded-full bg-primary ring-4 ring-base-100/50 shadow-lg shadow-primary/50 z-10 transition-transform duration-300 hover:scale-125'
+			></span>
 
 			{/* Connecting Line */}
 			<span aria-hidden='true' className='absolute left-[-2px] top-[38px] w-8 md:w-12 h-[2px] bg-primary/30'></span>
@@ -95,10 +98,10 @@ const ExperienceCard = ({ exp, index }: { exp: (typeof experiences)[0]; index: n
 				}`}
 				onClick={() => setIsOpen(!isOpen)}
 			>
-				<div className='card-body p-5 md:p-6'>
-					<div className='flex flex-col md:flex-row md:items-center md:justify-between gap-2'>
+				<div className='p-5 card-body md:p-6'>
+					<div className='flex flex-col gap-2 md:flex-row md:items-center md:justify-between'>
 						<div className='flex-1'>
-							<h3 className='text-xl md:text-2xl font-bold text-base-content group-hover:text-primary transition-colors flex items-center gap-2'>
+							<h3 className='flex items-center gap-2 text-xl font-bold transition-colors md:text-2xl text-base-content group-hover:text-primary'>
 								{exp.role}
 								<PiCaretDown
 									aria-hidden='true'
@@ -107,7 +110,7 @@ const ExperienceCard = ({ exp, index }: { exp: (typeof experiences)[0]; index: n
 							</h3>
 							<h4 className='text-sm md:text-base text-base-content/70 font-medium mt-0.5'>{exp.company}</h4>
 						</div>
-						<div className='text-sm font-mono text-primary/80 bg-primary/5 px-3 py-1 rounded-full whitespace-nowrap'>
+						<div className='px-3 py-1 text-sm rounded-full text-primary/80 bg-primary/5 whitespace-nowrap w-fit'>
 							{exp.period}
 						</div>
 					</div>
@@ -122,21 +125,24 @@ const ExperienceCard = ({ exp, index }: { exp: (typeof experiences)[0]; index: n
 								transition={{ duration: 0.3 }}
 								className='overflow-hidden'
 							>
-								<ul className='list-none space-y-2 text-base-content/80 text-sm md:text-base'>
+								<ul className='space-y-2 text-sm list-none text-base-content/80 md:text-base'>
 									{exp.points.map((point, idx) => (
-										<li key={idx} className='pl-5 relative leading-relaxed'>
-											<span aria-hidden='true' className='absolute left-0 top-2 w-1.5 h-1.5 rounded-full bg-primary/60'></span>
+										<li key={idx} className='relative pl-5 leading-relaxed'>
+											<span
+												aria-hidden='true'
+												className='absolute left-0 top-2 w-1.5 h-1.5 rounded-full bg-primary/60'
+											></span>
 											{point}
 										</li>
 									))}
 								</ul>
 
 								{/* Tech Stack when Open */}
-								<div className='flex flex-wrap gap-2 mt-6 pt-4'>
+								<div className='flex flex-wrap gap-2 pt-4 mt-6'>
 									{exp.techStack?.map((tech, idx) => (
 										<span
 											key={idx}
-											className='px-3 py-1 text-xs font-semibold rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-primary-content transition-colors cursor-default'
+											className='px-3 py-1 text-xs font-semibold transition-colors rounded-full cursor-default bg-primary/10 text-primary hover:bg-primary hover:text-primary-content'
 										>
 											{tech}
 										</span>
@@ -153,13 +159,13 @@ const ExperienceCard = ({ exp, index }: { exp: (typeof experiences)[0]; index: n
 								{exp.techStack?.map((tech, idx) => (
 									<span
 										key={idx}
-										className='px-3 py-1 text-xs font-semibold rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-primary-content transition-colors cursor-default'
+										className='px-3 py-1 text-xs font-semibold transition-colors rounded-full cursor-default bg-primary/10 text-primary hover:bg-primary hover:text-primary-content'
 									>
 										{tech}
 									</span>
 								))}
 							</div>
-							<p className='text-xs text-base-content/40 mt-2 italic'>Click to view details...</p>
+							<p className='mt-2 text-xs italic text-base-content/40'>Click to view details...</p>
 						</>
 					)}
 				</div>
@@ -201,19 +207,21 @@ const Experience = () => {
 				transition={{ duration: 0.6, ease: 'easeOut' }}
 				className='mb-10'
 			>
-				<h2 className='text-3xl md:text-5xl font-bold mb-2'>
-				<span className='bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-primary bg-300% animate-gradient'>Professional Experience</span>
-			</h2>
+				<h2 className='mb-2 text-3xl font-bold md:text-5xl'>
+					<span className='bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-primary bg-300% animate-gradient'>
+						Professional Experience
+					</span>
+				</h2>
 			</motion.div>
 
-			<motion.div className='relative border-l-2 border-dashed border-primary/20 ml-3 md:ml-6 space-y-6 pb-12'>
+			<motion.div className='relative pb-12 ml-3 space-y-6 border-l-2 border-dashed border-primary/20 md:ml-6'>
 				{experiences.map((exp, index) => (
 					<ExperienceCard key={index} exp={exp} index={index} />
 				))}
 			</motion.div>
 
 			<motion.div
-				className='mt-12 grid gap-4 md:grid-cols-4'
+				className='grid gap-4 mt-12 md:grid-cols-4'
 				initial='hidden'
 				whileInView='show'
 				viewport={{ once: true, amount: 0.3 }}
@@ -240,7 +248,7 @@ const Experience = () => {
 								<div className='flex items-center gap-3'>
 									<span
 										aria-hidden='true'
-										className='inline-flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-primary transition-all duration-300 group-hover:scale-110 group-hover:bg-primary group-hover:text-primary-content'
+										className='inline-flex items-center justify-center w-8 h-8 transition-all duration-300 rounded-full bg-primary/10 text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-primary-content'
 									>
 										<Icon size={16} />
 									</span>

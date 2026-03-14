@@ -24,9 +24,11 @@ const Education = () => {
 						hidden: { opacity: 0, y: 20 },
 						show: { opacity: 1, y: 0 },
 					}}
-					className='text-3xl md:text-5xl font-bold mb-8'
+					className='mb-8 text-3xl font-bold md:text-5xl'
 				>
-					<span className='bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-primary bg-300% animate-gradient'>Education</span>
+					<span className='bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-primary bg-300% animate-gradient'>
+						Education
+					</span>
 				</motion.h2>
 
 				<motion.div
@@ -37,19 +39,19 @@ const Education = () => {
 					whileHover={{ y: -5, transition: { duration: 0.3 } }}
 					className='card bg-base-100/30 backdrop-blur-md shadow-sm hover:bg-base-100/40 transition-colors duration-300 [html[data-theme=luxury]_&]:bg-[rgba(255,255,255,0.05)] [html[data-theme=luxury]_&]:backdrop-blur-[10px] [html[data-theme=luxury]_&]:shadow-[0_4px_30px_rgba(0,0,0,0.1)] [html[data-theme=luxury]_&]:border-none [html[data-theme=luxury]_&]:hover:bg-[rgba(255,255,255,0.1)]'
 				>
-					<div className='card-body p-6 flex flex-col md:flex-row items-start gap-6'>
-						<div aria-hidden='true' className='text-primary p-4 bg-primary/10 rounded-2xl shadow-lg backdrop-blur-sm'>
+					<div className='flex flex-col items-start gap-6 p-6 card-body md:flex-row'>
+						<div aria-hidden='true' className='p-4 shadow-lg text-primary bg-primary/10 rounded-2xl backdrop-blur-sm'>
 							<FaGraduationCap size={32} aria-hidden='true' />
 						</div>
 						<div className='flex-1'>
-							<div className='flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-2'>
-								<h3 className='text-xl md:text-2xl font-bold'>Bachelor of Science in Informatics Engineering</h3>
-								<span className='inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold'>
+							<div className='flex flex-col gap-2 mb-2 md:flex-row md:items-center md:justify-between'>
+								<h3 className='text-xl font-bold md:text-2xl'>Bachelor of Science in Informatics Engineering</h3>
+								<span className='inline-flex items-center gap-2 px-3 py-1 text-xs font-semibold rounded-full bg-primary/10 text-primary w-fit'>
 									<span aria-hidden='true' className='w-1.5 h-1.5 rounded-full bg-primary/70'></span>
 									2013 - 2017
 								</span>
 							</div>
-							<p className='text-lg text-primary font-medium mb-1'>Dian Nuswantoro University, Semarang</p>
+							<p className='mb-1 text-lg font-medium text-primary'>Dian Nuswantoro University, Semarang</p>
 							<p className='text-base text-base-content/70'>
 								Focused on software engineering, algorithms, and web development.
 							</p>

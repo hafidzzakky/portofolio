@@ -377,9 +377,7 @@ const SkillRadar = () => {
 								</div>
 								<div className='flex items-center justify-between gap-2 mb-0.5 relative'>
 									<span className='font-semibold'>{skillAxes[activeIndex].label}</span>
-									<span className='font-mono text-[10px] text-base-content/60'>
-										{skillAxes[activeIndex].value.toFixed(1)}/10
-									</span>
+									<span className='text-[10px] text-base-content/60'>{skillAxes[activeIndex].value.toFixed(1)}/10</span>
 								</div>
 								<p className='text-[10px] text-base-content/70 leading-snug relative'>
 									{skillAxes[activeIndex].description}
@@ -550,8 +548,10 @@ const Skills = () => {
 				transition={{ duration: 0.6, ease: 'easeOut' }}
 				className='mb-8 will-change-[opacity,transform]'
 			>
-				<h2 className='text-3xl md:text-5xl font-bold mb-2'>
-					<span className='bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-primary bg-300% animate-gradient'>Core Technical Skills</span>
+				<h2 className='mb-2 text-3xl font-bold md:text-5xl'>
+					<span className='bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-primary bg-300% animate-gradient'>
+						Core Technical Skills
+					</span>
 				</h2>
 			</motion.div>
 
@@ -564,8 +564,10 @@ const Skills = () => {
 				transition={{ duration: 0.6, ease: 'easeOut' }}
 				className='mb-8 will-change-[opacity,transform]'
 			>
-				<h2 className='text-3xl md:text-5xl font-bold mb-2'>
-					<span className='bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-primary bg-300% animate-gradient'>Technical Skills Radar</span>
+				<h2 className='mb-2 text-3xl font-bold md:text-5xl'>
+					<span className='bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-primary bg-300% animate-gradient'>
+						Technical Skills Radar
+					</span>
 				</h2>
 			</motion.div>
 			<SkillRadar />

@@ -33,7 +33,7 @@ const ScrollIndicator = ({ className }: { className: string }) => (
 		className={className}
 		aria-hidden='true'
 	>
-		<span className='text-xs uppercase tracking-widest opacity-50'>Scroll Down</span>
+		<span className='text-xs tracking-widest uppercase opacity-50'>Scroll Down</span>
 		<div className='w-[30px] h-[50px] rounded-full border-2 border-base-content/30 flex justify-center p-2'>
 			<motion.div
 				animate={{ y: [0, 12, 0] }}
@@ -57,15 +57,15 @@ const Hero = ({ theme }: { theme: string }) => {
 
 	return (
 		<section id='hero' aria-label='Hero' className='min-h-[100vh] flex items-start pt-[20px] lg:items-center lg:pt-0 relative'>
-			<div className='grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full'>
+			<div className='grid items-center w-full grid-cols-1 gap-12 lg:grid-cols-12'>
 				<motion.div
 					initial={{ opacity: 0, x: -50 }}
 					animate={{ opacity: 1, x: 0 }}
 					transition={{ duration: 0.8 }}
 					className='lg:col-span-7 flex flex-col items-start will-change-[opacity,transform]'
 				>
-					<p className='text-xl md:text-2xl font-medium text-primary mb-2 tracking-wide'>Hello, I am</p>
-					<h1 className='text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-4 text-base-content leading-tight'>
+					<p className='mb-2 text-xl font-medium tracking-wide md:text-2xl text-primary'>Hello, I am</p>
+					<h1 className='mb-4 text-5xl font-bold leading-tight tracking-tight md:text-7xl lg:text-8xl text-base-content'>
 						Hafidz <br /> Zakky D
 					</h1>
 
@@ -86,7 +86,7 @@ const Hero = ({ theme }: { theme: string }) => {
 						</AnimatePresence>
 					</div>
 
-					<p className='text-lg md:text-xl text-base-content/80 max-w-2xl mb-8 leading-relaxed font-light'>
+					<p className='max-w-2xl mb-8 text-lg font-light leading-relaxed md:text-xl text-base-content/80'>
 						Specializing in <span className='font-semibold text-primary'>React</span>,{' '}
 						<span className='font-semibold text-primary'>TypeScript</span>, and{' '}
 						<span className='font-semibold text-primary'>Frontend Architecture</span>. Building scalable enterprise applications
@@ -102,7 +102,7 @@ const Hero = ({ theme }: { theme: string }) => {
 							rel='noopener noreferrer'
 							aria-label='Visit LinkedIn profile'
 							onClick={() => trackHeroCta('LinkedIn')}
-							className='btn btn-primary btn-lg gap-2 shadow-lg shadow-primary/30 hover:shadow-primary/50 transition-all'
+							className='gap-2 transition-all shadow-lg btn btn-primary btn-lg shadow-primary/30 hover:shadow-primary/50'
 						>
 							<FaLinkedin aria-hidden='true' /> LinkedIn
 						</motion.a>
@@ -114,7 +114,7 @@ const Hero = ({ theme }: { theme: string }) => {
 							rel='noopener noreferrer'
 							aria-label='Visit GitHub profile'
 							onClick={() => trackHeroCta('GitHub')}
-							className='btn btn-outline btn-lg gap-2 backdrop-blur-sm hover:bg-base-content hover:text-base-100 transition-all'
+							className='gap-2 transition-all btn btn-outline btn-lg backdrop-blur-sm hover:bg-base-content hover:text-base-100'
 						>
 							<FaGithub aria-hidden='true' /> GitHub
 						</motion.a>
@@ -125,16 +125,16 @@ const Hero = ({ theme }: { theme: string }) => {
 							download='Hafidz_Zakky_CV.pdf'
 							aria-label='Download CV as PDF'
 							onClick={trackCvDownload}
-							className='btn btn-secondary btn-lg gap-2 shadow-lg shadow-secondary/30 hover:shadow-secondary/50 transition-all text-white'
+							className='gap-2 text-white transition-all shadow-lg btn btn-secondary btn-lg shadow-secondary/30 hover:shadow-secondary/50'
 						>
 							<FaDownload aria-hidden='true' /> Download CV
 						</motion.a>
 					</div>
 
-					<div className='flex flex-wrap gap-6 mt-12 text-base-content/70 font-mono text-sm'>
+					<div className='flex flex-wrap gap-6 mt-12 text-sm text-base-content/70'>
 						<motion.div
 							whileHover={{ scale: 1.05, borderColor: 'rgba(var(--p), 0.8)', backgroundColor: 'rgba(var(--b2), 0.8)' }}
-							className='flex items-center gap-2 px-3 py-1 rounded-full bg-base-200/50 backdrop-blur-sm border border-base-300 transition-all cursor-default'
+							className='flex items-center gap-2 px-3 py-1 transition-all border rounded-full cursor-default bg-base-200/50 backdrop-blur-sm border-base-300'
 						>
 							<FaMapMarkerAlt aria-hidden='true' className='text-primary' /> <span>Jakarta, Indonesia</span>
 						</motion.div>
@@ -146,12 +146,10 @@ const Hero = ({ theme }: { theme: string }) => {
 						whileInView={{ opacity: 1, y: 0 }}
 						viewport={{ once: true }}
 						transition={{ delay: 0.5, duration: 0.8 }}
-						className='mt-12 w-full flex flex-col items-center lg:items-start'
+						className='flex flex-col items-center w-full mt-12 lg:items-start'
 					>
-						<p className='text-sm text-base-content font-mono mb-4 uppercase tracking-widest text-center lg:text-left'>
-							Tech Stack
-						</p>
-						<div className='flex gap-6 text-3xl text-base-content/40 justify-center lg:justify-start w-full lg:w-auto flex-wrap'>
+						<p className='mb-4 text-sm tracking-widest text-center uppercase text-base-content lg:text-left'>Tech Stack</p>
+						<div className='flex flex-wrap justify-center w-full gap-6 text-3xl text-base-content/40 lg:justify-start lg:w-auto'>
 							{techStack.map(({ icon: Icon, label, hoverColor, extraClass }) => (
 								<motion.div
 									key={label}
@@ -168,7 +166,7 @@ const Hero = ({ theme }: { theme: string }) => {
 					</motion.div>
 
 					{/* Scroll Down - Mobile */}
-					<ScrollIndicator className='lg:hidden mt-16 w-full flex flex-col items-center gap-2' />
+					<ScrollIndicator className='flex flex-col items-center w-full gap-2 mt-16 lg:hidden' />
 				</motion.div>
 
 				<div className='hidden lg:block lg:col-span-5'>
@@ -177,7 +175,7 @@ const Hero = ({ theme }: { theme: string }) => {
 			</div>
 
 			{/* Scroll Down - Desktop */}
-			<ScrollIndicator className='hidden lg:flex absolute bottom-10 left-1/2 -translate-x-1/2 flex-col items-center gap-2' />
+			<ScrollIndicator className='absolute flex-col items-center hidden gap-2 -translate-x-1/2 lg:flex bottom-10 left-1/2' />
 		</section>
 	);
 };
