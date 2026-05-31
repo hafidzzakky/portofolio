@@ -5,6 +5,7 @@ import {
 	FaBolt,
 	FaCodeBranch,
 	FaCogs,
+	FaDatabase,
 	FaDocker,
 	FaFlask,
 	FaGitlab,
@@ -46,7 +47,7 @@ import { AiOutlineAntDesign } from 'react-icons/ai';
 const skillCategories = [
 	{
 		title: 'Frontend',
-		skills: ['React', 'React Native', 'TypeScript', 'JavaScript (ES6+)', 'HTML5', 'CSS3', 'SCSS', 'SASS'],
+		skills: ['React', 'React Native', 'TypeScript', 'JavaScript (ES6+)', 'HTML5', 'CSS3', 'SCSS', 'SASS', 'TanStack Query'],
 	},
 	{
 		title: 'UI Kits & Styling',
@@ -138,6 +139,7 @@ const frontendIconMap: Record<string, { icon: IconType; colorClass: string }> = 
 	NuxtJS: { icon: SiNuxtdotjs, colorClass: 'text-[#42b883]' },
 	Ionic: { icon: SiIonic, colorClass: 'text-[#3b82f6]' },
 	Leaflet: { icon: SiLeaflet, colorClass: 'text-[#42b883]' },
+	'TanStack Query': { icon: FaDatabase, colorClass: 'text-[#FF4154]' },
 };
 
 const categoryIconMap: Record<string, IconType> = {
@@ -200,6 +202,7 @@ const frontendStack: FrontendStackItem[] = [
 	'NuxtJS',
 	'Ionic',
 	'Redux Toolkit',
+	'TanStack Query',
 	'Leaflet',
 ].map((label) => {
 	const mapped = frontendIconMap[label];
