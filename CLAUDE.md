@@ -15,7 +15,6 @@ Portfolio website milik **Hafidz Zakky D** — Senior Front End Engineer, Jakart
 | UI Kit | DaisyUI | ^4.12.10 |
 | Animation | Framer Motion | ^12.33.0 |
 | Smooth Scroll | Lenis | ^1.3.17 |
-| 3D | Three.js + @react-three/fiber + @react-three/drei | ^0.182.0 |
 | Carousel | @splidejs/react-splide | ^0.7.12 |
 | Map | Leaflet + react-leaflet | ^1.9.4 / ^5.0.0 |
 | PWA | vite-plugin-pwa | ^1.2.0 |
@@ -46,7 +45,7 @@ src/
     Experience.tsx                # Timeline cards (click to expand)
     Education.tsx                 # Single education card
     Showcase.tsx                  # Masonry project grid + modal
-    Contact.tsx                   # Bento grid + 3D avatar
+    Contact.tsx                   # Bento grid + portrait photo
     StaticAbstractBackground.tsx  # Fixed decorative background
     AbstractBackground.tsx        # (disabled)
     WorldMap.tsx                  # (disabled)
@@ -54,8 +53,8 @@ src/
     Projects.tsx                  # (disabled - old version)
   components/
     HeroParallax.tsx              # Javanese SVG parallax (wayang, gunungan, awan)
-    User3D.tsx                    # 3D GLB avatar via Three.js
     Preloader.tsx                 # Fullscreen loader (gunungan animation)
+    SectionHeading.tsx            # Shared section header (headline + animated rule + lead)
   data/
     projects.ts                   # Project[] array — 12 active projects
   assets/
@@ -70,7 +69,6 @@ src/
         saka/                     # Saka EIS (20 images)
         saka-vessel/              # Saka Vessel Tracker
       traditional/v2/             # SVG: wayang, gunungan 1&2, awan 1-5, bg circle
-    model/3d/user.glb             # 3D avatar model
     file/                         # CV PDF
 ```
 
@@ -105,9 +103,9 @@ bg-base-100/30 backdrop-blur-md shadow-sm
 ```
 
 ### Section heading
-```html
-<h2 class="text-3xl font-bold border-b-4 border-primary inline-block pb-1">Title</h2>
-```
+Use `<SectionHeading title lead? level={2|3} align={'left'|'center'} />`.
+Plain `text-base-content` headline + a primary rule that draws itself on entry.
+No gradient/animated text headings — they were removed in the redesign.
 
 ### Framer Motion standard entrance
 ```tsx
@@ -145,10 +143,11 @@ html[data-theme='luxury'] {
 - Assets: `src/assets/image/traditional/v2/`
 
 ### Skills (`src/sections/Skills.tsx`)
-- **FrontendStack**: category label (1/3 width) + skill badges (flex-wrap) with brand icons
-- **SkillRadar**: custom SVG pentagon chart, 5 axes:
-  - Frontend 9/10 | Architecture 8.5/10 | Testing 7.5/10 | Performance 8.5/10 | UI/UX 8/10
-- Interactive radar: hover vertex → floating tooltip
+- **StackExplorer**: 7 categories as a tab rail (vertical on desktop, scroll-snap row on mobile)
+  + panel of skill chips. Active marker uses `layoutId='stack-active'`; chips stagger in per category.
+- **SkillRadar**: fixed-viewBox SVG pentagon (no resize listener), labels sit on the chart itself,
+  one detail readout below. 5 axes:
+  Frontend 9/10 | Architecture 8.5/10 | Testing 7.5/10 | Performance 8.5/10 | UI/UX 8/10
 
 ### Philosophy (`src/sections/Philosophy.tsx`)
 - 4 cards in horizontal flex row, `hover:flex-[3]` accordion expand
@@ -156,31 +155,28 @@ html[data-theme='luxury'] {
 - Cards: User-Centric, Performance-Obsessed, Scalable Architecture, Security & Quality
 
 ### Experience (`src/sections/Experience.tsx`)
-- Dashed border-left timeline
+- Timeline rail that fills with `useScroll` progress; first role expanded by default
 - 3 jobs (click to expand bullet points):
   1. **PT. Petrosea, Tbk** — Senior FE Engineer | May 2020 – Present
   2. **PT. Merdeka Copper Gold** — FE Engineer | Jun 2019 – May 2020
   3. **PT. Mitra Integrasi Informatika** — FE Engineer | Jan 2018 – Jun 2019
-- Tech stack badges always visible; 4 stat cards below
+- Closed state shows 6 tech chips + "+N more"; 4 highlights below as a divided row (no cards)
 
 ### Education (`src/sections/Education.tsx`)
-- BSc Informatics Engineering, Dian Nuswantoro University, Semarang | 2013–2017
+- Editorial band: large 2013 / 2017 numerals + degree, no card
+- BSc Informatics Engineering, Dian Nuswantoro University, Semarang | 2013-2017
 
 ### Showcase (`src/sections/Showcase.tsx`)
-- Masonry layout: CSS columns 1→2→3
-- Category filter from project tags (desktop: pills above; mobile: floating fixed bar)
-- `ShowcaseCard`: image cycle on hover (1500ms interval)
+- Desktop: `ProjectRow` index list + `IndexPreview`, a cursor-tracked image preview
+  (pointermove writes motion values only; `PreviewFrames` cycles screenshots every 1200ms)
+- Mobile: `ProjectCard` grid with the image always visible
+- Category filter from project tags (desktop: underlined text links; mobile: floating fixed bar)
 - `ProjectModal`: Splide.js carousel (autoplay 3000ms), keyboard nav (←→ Esc)
 
 ### Contact (`src/sections/Contact.tsx`)
-- Bento grid: LinkedIn (2×2), 3D avatar, Email, Instagram, GitHub
-- `User3D` lazy-loaded (only when InView)
+- Bento grid: LinkedIn (2×2), portrait photo, Email, Instagram, GitHub
+- Portrait: `src/assets/image/me/portrait.jpg` (replaced the 3D avatar)
 - Links: LinkedIn, GitHub, Email hafidzzakky@gmail.com, Instagram, WhatsApp wa.me/6285602577078
-
-### User3D (`src/components/User3D.tsx`)
-- React Three Fiber, GLB: `src/assets/model/3d/user.glb`
-- Scale 4.5, position [0, -7.6, 0] (shows upper body)
-- Float animation, OrbitControls (no zoom, locked horizontal)
 
 ---
 

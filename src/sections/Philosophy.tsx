@@ -68,11 +68,10 @@ const Philosophy = () => {
 					transition={{ duration: 0.8, ease: 'easeOut' }}
 					className='text-center mb-20'
 				>
-					<h2 className='text-4xl md:text-6xl font-bold mb-6 tracking-tight'>
-						<span className='bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-primary bg-300% animate-gradient'>
-							Engineering Mindset
-						</span>
+					<h2 className='mb-5 text-[clamp(1.85rem,5vw,3.25rem)] font-bold leading-[1.05] tracking-tight text-base-content'>
+						Engineering Mindset
 					</h2>
+					<span aria-hidden='true' className='mx-auto mb-6 block h-[3px] w-14 rounded-full bg-primary' />
 					<p className='text-lg md:text-xl text-base-content/60 max-w-2xl mx-auto leading-relaxed'>
 						Beyond code syntax, these are the core principles that drive my decision-making process.
 					</p>

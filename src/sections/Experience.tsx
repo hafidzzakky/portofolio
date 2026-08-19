@@ -1,13 +1,14 @@
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { FaTachometerAlt, FaCogs, FaSearch, FaGlobeAmericas } from 'react-icons/fa';
-import { PiCaretDown } from 'react-icons/pi';
-import { useState } from 'react';
+import { PiPlus } from 'react-icons/pi';
+import { useRef, useState } from 'react';
+import SectionHeading from '../components/SectionHeading';
 
 const experiences = [
 	{
-		company: 'PT. Petrosea, Tbk – Jakarta',
+		company: 'PT. Petrosea, Tbk - Jakarta',
 		role: 'Senior Front End Engineer',
-		period: 'May 2020 – Present',
+		period: 'May 2020 - Present',
 		techStack: [
 			'React',
 			'React Native',
@@ -19,7 +20,6 @@ const experiences = [
 			'Vite',
 			'Redux',
 			'leaflet',
-
 			'Tailwind CSS',
 			'Ant Design',
 			'Material UI',
@@ -42,9 +42,9 @@ const experiences = [
 		],
 	},
 	{
-		company: 'PT. Merdeka Copper Gold, Tbk – Jakarta',
+		company: 'PT. Merdeka Copper Gold, Tbk - Jakarta',
 		role: 'Front End Engineer',
-		period: 'Jun 2019 – May 2020',
+		period: 'Jun 2019 - May 2020',
 		techStack: ['React Native', 'JavaScript', 'Redux', 'Mobile Dev', 'Real-time Systems'],
 		points: [
 			'Developed React Native applications for procurement monitoring and approvals, improving efficiency by 35%.',
@@ -53,9 +53,9 @@ const experiences = [
 		],
 	},
 	{
-		company: 'PT. Mitra Integrasi Informatika – Jakarta',
+		company: 'PT. Mitra Integrasi Informatika - Jakarta',
 		role: 'Front End Engineer',
-		period: 'Jan 2018 – Jun 2019',
+		period: 'Jan 2018 - Jun 2019',
 		techStack: ['React', 'Hybrid Apps', 'Geolocation', 'Banking Ecosystem'],
 		points: [
 			'Developed React-based and hybrid mobile applications for enterprise banking clients within the BNI ecosystem.',
@@ -65,116 +65,87 @@ const experiences = [
 	},
 ];
 
-const ExperienceCard = ({ exp, index }: { exp: (typeof experiences)[0]; index: number }) => {
-	const [isOpen, setIsOpen] = useState(false);
+const TechChip = ({ label }: { label: string }) => (
+	<span className='rounded-full bg-base-content/[0.06] px-3 py-1 text-xs font-medium text-base-content/70 [html[data-theme=luxury]_&]:bg-[rgba(255,255,255,0.07)]'>
+		{label}
+	</span>
+);
+
+const ExperienceEntry = ({ exp, index }: { exp: (typeof experiences)[0]; index: number }) => {
+	const [isOpen, setIsOpen] = useState(index === 0);
 	const detailId = `exp-detail-${index}`;
+	const preview = exp.techStack.slice(0, 6);
+	const rest = exp.techStack.length - preview.length;
 
 	return (
-		<motion.div
-			initial={{ opacity: 0, x: -20 }}
-			whileInView={{ opacity: 1, x: 0 }}
-			viewport={{ once: true, amount: 0.2 }}
-			transition={{ duration: 0.5, delay: index * 0.1 }}
-			className='relative pl-8 md:pl-12 py-2 will-change-[opacity,transform]'
+		<motion.article
+			initial={{ opacity: 0, y: 24 }}
+			whileInView={{ opacity: 1, y: 0 }}
+			viewport={{ once: true, amount: 0.25 }}
+			transition={{ duration: 0.55, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
+			className='relative pb-14 last:pb-0 will-change-[opacity,transform]'
 		>
-			{/* Timeline Dot */}
-			<span
+			{/* Node on the rail */}
+			<motion.span
 				aria-hidden='true'
-				className='absolute left-[-5px] top-8 w-3 h-3 rounded-full bg-primary ring-4 ring-base-100/50 shadow-lg shadow-primary/50 z-10 transition-transform duration-300 hover:scale-125'
-			></span>
+				initial={{ scale: 0 }}
+				whileInView={{ scale: 1 }}
+				viewport={{ once: true, amount: 0.5 }}
+				transition={{ type: 'spring', stiffness: 300, damping: 20, delay: 0.1 }}
+				className='absolute -left-[calc(2rem+5px)] top-2 h-2.5 w-2.5 rounded-full bg-primary ring-4 ring-base-100 md:-left-[calc(3.5rem+5px)]'
+			/>
 
-			{/* Connecting Line */}
-			<span aria-hidden='true' className='absolute left-[-2px] top-[38px] w-8 md:w-12 h-[2px] bg-primary/30'></span>
+			<p className='text-sm font-medium tabular-nums text-primary'>{exp.period}</p>
+			<h3 className='mt-1 text-2xl font-bold leading-tight tracking-tight text-base-content md:text-3xl'>{exp.role}</h3>
+			<p className='mt-1 text-base text-base-content/55'>{exp.company}</p>
+
+			<div className='mt-4 flex flex-wrap items-center gap-2'>
+				{(isOpen ? exp.techStack : preview).map((tech) => (
+					<TechChip key={tech} label={tech} />
+				))}
+				{!isOpen && rest > 0 && <span className='text-xs text-base-content/40'>+{rest} more</span>}
+			</div>
 
 			<button
 				type='button'
 				aria-expanded={isOpen}
 				aria-controls={detailId}
-				aria-label={`${exp.role} at ${exp.company} — ${isOpen ? 'collapse' : 'expand'} details`}
-				className={`card bg-base-100/30 backdrop-blur-md shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer group overflow-hidden w-full text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-base-100 [html[data-theme=luxury]_&]:bg-[rgba(255,255,255,0.05)] [html[data-theme=luxury]_&]:backdrop-blur-[10px] [html[data-theme=luxury]_&]:shadow-[0_4px_30px_rgba(0,0,0,0.1)] [html[data-theme=luxury]_&]:border-none ${
-					isOpen
-						? 'bg-base-100/50 shadow-xl ring-0'
-						: 'hover:bg-base-100/40 [html[data-theme=luxury]_&]:hover:bg-[rgba(255,255,255,0.1)]'
-				}`}
 				onClick={() => setIsOpen(!isOpen)}
+				className='group mt-5 inline-flex items-center gap-2 rounded-full border border-base-content/15 px-4 py-2 text-sm font-semibold text-base-content/75 transition-colors duration-300 hover:border-primary/60 hover:text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 active:scale-[0.98]'
 			>
-				<div className='p-5 card-body md:p-6'>
-					<div className='flex flex-col gap-2 md:flex-row md:items-center md:justify-between'>
-						<div className='flex-1'>
-							<h3 className='flex items-center gap-2 text-xl font-bold transition-colors md:text-2xl text-base-content group-hover:text-primary'>
-								{exp.role}
-								<PiCaretDown
-									aria-hidden='true'
-									className={`text-sm transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
-								/>
-							</h3>
-							<h4 className='text-sm md:text-base text-base-content/70 font-medium mt-0.5'>{exp.company}</h4>
-						</div>
-						<div className='px-3 py-1 text-sm rounded-full text-primary/80 bg-primary/5 whitespace-nowrap w-fit'>
-							{exp.period}
-						</div>
-					</div>
-
-					<AnimatePresence>
-						{isOpen && (
-							<motion.div
-								id={detailId}
-								initial={{ height: 0, opacity: 0, marginTop: 0 }}
-								animate={{ height: 'auto', opacity: 1, marginTop: 16 }}
-								exit={{ height: 0, opacity: 0, marginTop: 0 }}
-								transition={{ duration: 0.3 }}
-								className='overflow-hidden'
-							>
-								<ul className='space-y-2 text-sm list-none text-base-content/80 md:text-base'>
-									{exp.points.map((point, idx) => (
-										<li key={idx} className='relative pl-5 leading-relaxed'>
-											<span
-												aria-hidden='true'
-												className='absolute left-0 top-2 w-1.5 h-1.5 rounded-full bg-primary/60'
-											></span>
-											{point}
-										</li>
-									))}
-								</ul>
-
-								{/* Tech Stack when Open */}
-								<div className='flex flex-wrap gap-2 pt-4 mt-6'>
-									{exp.techStack?.map((tech, idx) => (
-										<span
-											key={idx}
-											className='px-3 py-1 text-xs font-semibold transition-colors rounded-full cursor-default bg-primary/10 text-primary hover:bg-primary hover:text-primary-content'
-										>
-											{tech}
-										</span>
-									))}
-								</div>
-							</motion.div>
-						)}
-					</AnimatePresence>
-
-					{!isOpen && (
-						<>
-							{/* Tech Stack when Closed */}
-							<div className='flex flex-wrap gap-2 mt-4 mb-2'>
-								{exp.techStack?.map((tech, idx) => (
-									<span
-										key={idx}
-										className='px-3 py-1 text-xs font-semibold transition-colors rounded-full cursor-default bg-primary/10 text-primary hover:bg-primary hover:text-primary-content'
-									>
-										{tech}
-									</span>
-								))}
-							</div>
-							<p className='mt-2 text-xs italic text-base-content/40'>Click to view details...</p>
-						</>
-					)}
-				</div>
+				<PiPlus
+					aria-hidden='true'
+					className={`text-base transition-transform duration-300 ${isOpen ? 'rotate-45' : 'group-hover:rotate-90'}`}
+				/>
+				{isOpen ? 'Hide details' : 'What I did here'}
 			</button>
-		</motion.div>
+
+			<AnimatePresence initial={false}>
+				{isOpen && (
+					<motion.div
+						id={detailId}
+						initial={{ height: 0, opacity: 0 }}
+						animate={{ height: 'auto', opacity: 1 }}
+						exit={{ height: 0, opacity: 0 }}
+						transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+						className='overflow-hidden'
+					>
+						<ul className='mt-6 max-w-[68ch] space-y-3'>
+							{exp.points.map((point) => (
+								<li key={point} className='relative pl-5 text-sm leading-relaxed text-base-content/75 md:text-base'>
+									<span aria-hidden='true' className='absolute left-0 top-[0.6em] h-1.5 w-1.5 rounded-full bg-primary/50' />
+									{point}
+								</li>
+							))}
+						</ul>
+					</motion.div>
+				)}
+			</AnimatePresence>
+		</motion.article>
 	);
 };
 
-const statCards = [
+const highlights = [
 	{
 		icon: FaTachometerAlt,
 		label: 'Performance lab',
@@ -188,78 +159,75 @@ const statCards = [
 	{
 		icon: FaSearch,
 		label: 'SEO optimization',
-		text: 'Optimizing Core Web Vitals, semantic markup, and meta tags to improve discoverability and search engine ranking.',
+		text: 'Optimizing Core Web Vitals, semantic markup, and meta tags to improve discoverability and search ranking.',
 	},
 	{
 		icon: FaGlobeAmericas,
 		label: 'This portfolio',
-		text: 'Uses lazy-loaded 3D, code-splitting, WebP assets, SEO meta tags, and a PWA setup to mirror real-world practices.',
+		text: 'Uses lazy-loaded assets, code-splitting, WebP images, SEO meta tags, and a PWA setup to mirror real practice.',
 	},
 ];
 
 const Experience = () => {
+	const trackRef = useRef<HTMLDivElement | null>(null);
+	const { scrollYProgress } = useScroll({
+		target: trackRef,
+		offset: ['start 80%', 'end 65%'],
+	});
+	// Rail fills as the reader moves through the career timeline.
+	const railScale = useTransform(scrollYProgress, [0, 1], [0, 1]);
+
 	return (
-		<section id='experience' aria-label='Professional Experience' className='py-20'>
-			<motion.div
-				initial={{ opacity: 0, y: 20 }}
-				whileInView={{ opacity: 1, y: 0 }}
-				viewport={{ once: true }}
-				transition={{ duration: 0.6, ease: 'easeOut' }}
-				className='mb-10'
-			>
-				<h2 className='mb-2 text-3xl font-bold md:text-5xl'>
-					<span className='bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-primary bg-300% animate-gradient'>
-						Professional Experience
-					</span>
-				</h2>
-			</motion.div>
+		<section id='experience' aria-label='Professional Experience' className='py-20 md:py-28'>
+			<SectionHeading
+				title='Professional Experience'
+				lead='Eight years building front ends for mining, banking, and enterprise operations teams.'
+			/>
 
-			<motion.div className='relative pb-12 ml-3 space-y-6 border-l-2 border-dashed border-primary/20 md:ml-6'>
+			<div ref={trackRef} className='relative mt-14 pl-8 md:pl-14'>
+				<div aria-hidden='true' className='absolute left-0 top-2 bottom-0 w-px bg-base-content/10' />
+				<motion.div
+					aria-hidden='true'
+					style={{ scaleY: railScale }}
+					className='absolute left-0 top-2 bottom-0 w-px origin-top bg-primary/70'
+				/>
+
 				{experiences.map((exp, index) => (
-					<ExperienceCard key={index} exp={exp} index={index} />
+					<ExperienceEntry key={exp.company} exp={exp} index={index} />
 				))}
-			</motion.div>
+			</div>
 
-			<motion.div
-				className='grid gap-4 mt-12 md:grid-cols-4'
+			{/* How I work: dividers instead of card boxes */}
+			<motion.dl
 				initial='hidden'
 				whileInView='show'
-				viewport={{ once: true, amount: 0.3 }}
-				variants={{
-					hidden: { opacity: 0 },
-					show: {
-						opacity: 1,
-						transition: { staggerChildren: 0.2 },
-					},
-				}}
+				viewport={{ once: true, amount: 0.2 }}
+				variants={{ hidden: {}, show: { transition: { staggerChildren: 0.12 } } }}
+				className='mt-20 grid divide-y divide-base-content/10 border-t border-base-content/10 md:grid-cols-4 md:divide-y-0 md:divide-x'
 			>
-				{statCards.map((item) => {
+				{highlights.map((item) => {
 					const Icon = item.icon;
 					return (
 						<motion.div
 							key={item.label}
-							variants={{
-								hidden: { opacity: 0, y: 20 },
-								show: { opacity: 1, y: 0 },
-							}}
-							className='h-full'
+							variants={{ hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0 } }}
+							transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+							className='group px-0 py-7 md:px-7 md:first:pl-0 md:last:pr-0'
 						>
-							<div className='group card h-full bg-base-100/30 backdrop-blur-md shadow-sm hover:shadow-lg hover:-translate-y-1 hover:bg-base-100/40 transition-all duration-300 p-6 flex flex-col gap-3 [html[data-theme=luxury]_&]:bg-[rgba(255,255,255,0.05)] [html[data-theme=luxury]_&]:backdrop-blur-[10px] [html[data-theme=luxury]_&]:shadow-[0_4px_30px_rgba(0,0,0,0.1)] [html[data-theme=luxury]_&]:border-none [html[data-theme=luxury]_&]:hover:bg-[rgba(255,255,255,0.1)]'>
-								<div className='flex items-center gap-3'>
-									<span
-										aria-hidden='true'
-										className='inline-flex items-center justify-center w-8 h-8 transition-all duration-300 rounded-full bg-primary/10 text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-primary-content'
-									>
-										<Icon size={16} />
-									</span>
-									<span className='text-xs font-semibold text-primary'>{item.label}</span>
-								</div>
-								<p className='text-sm text-base-content/80'>{item.text}</p>
-							</div>
+							<dt className='flex items-center gap-3'>
+								<span
+									aria-hidden='true'
+									className='inline-flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-primary transition-transform duration-300 group-hover:scale-110'
+								>
+									<Icon size={15} />
+								</span>
+								<span className='text-sm font-semibold text-base-content'>{item.label}</span>
+							</dt>
+							<dd className='mt-3 text-sm leading-relaxed text-base-content/60'>{item.text}</dd>
 						</motion.div>
 					);
 				})}
-			</motion.div>
+			</motion.dl>
 		</section>
 	);
 };

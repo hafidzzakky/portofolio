@@ -1,63 +1,70 @@
 import { motion } from 'framer-motion';
 import { FaGraduationCap } from 'react-icons/fa';
+import SectionHeading from '../components/SectionHeading';
+
+const focusAreas = ['Software Engineering', 'Algorithms', 'Web Development'];
 
 const Education = () => {
 	return (
-		<section id='education' aria-label='Education' className='py-20'>
-			<motion.div
-				initial='hidden'
-				whileInView='show'
-				viewport={{ once: true, amount: 0.3 }}
-				variants={{
-					hidden: { opacity: 0 },
-					show: {
-						opacity: 1,
-						transition: {
-							staggerChildren: 0.2,
-						},
-					},
-				}}
-				className='will-change-[opacity,transform]'
-			>
-				<motion.h2
-					variants={{
-						hidden: { opacity: 0, y: 20 },
-						show: { opacity: 1, y: 0 },
-					}}
-					className='mb-8 text-3xl font-bold md:text-5xl'
-				>
-					<span className='bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-primary bg-300% animate-gradient'>
-						Education
-					</span>
-				</motion.h2>
+		<section id='education' aria-label='Education' className='py-20 md:py-28'>
+			<SectionHeading title='Education' />
 
-				<motion.div
-					variants={{
-						hidden: { opacity: 0, y: 20 },
-						show: { opacity: 1, y: 0 },
-					}}
-					whileHover={{ y: -5, transition: { duration: 0.3 } }}
-					className='card bg-base-100/30 backdrop-blur-md shadow-sm hover:bg-base-100/40 transition-colors duration-300 [html[data-theme=luxury]_&]:bg-[rgba(255,255,255,0.05)] [html[data-theme=luxury]_&]:backdrop-blur-[10px] [html[data-theme=luxury]_&]:shadow-[0_4px_30px_rgba(0,0,0,0.1)] [html[data-theme=luxury]_&]:border-none [html[data-theme=luxury]_&]:hover:bg-[rgba(255,255,255,0.1)]'
-				>
-					<div className='flex flex-col items-start gap-6 p-6 card-body md:flex-row'>
-						<div aria-hidden='true' className='p-4 shadow-lg text-primary bg-primary/10 rounded-2xl backdrop-blur-sm'>
-							<FaGraduationCap size={32} aria-hidden='true' />
-						</div>
-						<div className='flex-1'>
-							<div className='flex flex-col gap-2 mb-2 md:flex-row md:items-center md:justify-between'>
-								<h3 className='text-xl font-bold md:text-2xl'>Bachelor of Science in Informatics Engineering</h3>
-								<span className='inline-flex items-center gap-2 px-3 py-1 text-xs font-semibold rounded-full bg-primary/10 text-primary w-fit'>
-									<span aria-hidden='true' className='w-1.5 h-1.5 rounded-full bg-primary/70'></span>
-									2013 - 2017
-								</span>
-							</div>
-							<p className='mb-1 text-lg font-medium text-primary'>Dian Nuswantoro University, Semarang</p>
-							<p className='text-base text-base-content/70'>
-								Focused on software engineering, algorithms, and web development.
-							</p>
-						</div>
-					</div>
-				</motion.div>
+			<motion.div
+				initial={{ opacity: 0, y: 24 }}
+				whileInView={{ opacity: 1, y: 0 }}
+				viewport={{ once: true, amount: 0.4 }}
+				transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+				className='group mt-12 grid gap-10 border-t border-base-content/10 pt-10 md:grid-cols-12 md:gap-14 will-change-[opacity,transform]'
+			>
+				{/* Years, stacked and joined by a rule that grows on entry */}
+				<div className='flex items-center gap-5 md:col-span-4 md:flex-col md:items-start md:gap-3'>
+					<span className='text-5xl font-bold leading-none tabular-nums tracking-tight text-base-content/25 transition-colors duration-500 group-hover:text-primary/70 md:text-7xl'>
+						2013
+					</span>
+					<motion.span
+						aria-hidden='true'
+						initial={{ scaleX: 0, scaleY: 0 }}
+						whileInView={{ scaleX: 1, scaleY: 1 }}
+						viewport={{ once: true }}
+						transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+						className='h-px w-10 origin-left bg-primary/50 md:ml-2 md:h-10 md:w-px md:origin-top'
+					/>
+					<span className='text-5xl font-bold leading-none tabular-nums tracking-tight text-base-content/25 transition-colors duration-500 group-hover:text-primary/70 md:text-7xl'>
+						2017
+					</span>
+				</div>
+
+				<div className='md:col-span-8'>
+					<span
+						aria-hidden='true'
+						className='inline-flex h-11 w-11 items-center justify-center rounded-full bg-primary/10 text-primary transition-transform duration-500 group-hover:scale-110'
+					>
+						<FaGraduationCap size={20} />
+					</span>
+					<h3 className='mt-5 text-2xl font-bold leading-tight tracking-tight text-base-content md:text-4xl'>
+						Bachelor of Science in Informatics Engineering
+					</h3>
+					<p className='mt-3 text-lg font-medium text-primary'>Dian Nuswantoro University, Semarang</p>
+					<p className='mt-4 max-w-[58ch] leading-relaxed text-base-content/60'>
+						Four years spent on the fundamentals that still hold up daily: data structures, systems thinking, and building
+						for the web.
+					</p>
+
+					<ul className='mt-6 flex flex-wrap gap-x-6 gap-y-2'>
+						{focusAreas.map((area, index) => (
+							<motion.li
+								key={area}
+								initial={{ opacity: 0, y: 8 }}
+								whileInView={{ opacity: 1, y: 0 }}
+								viewport={{ once: true }}
+								transition={{ duration: 0.4, delay: 0.25 + index * 0.08 }}
+								className='text-sm font-medium text-base-content/70'
+							>
+								{area}
+							</motion.li>
+						))}
+					</ul>
+				</div>
 			</motion.div>
 		</section>
 	);

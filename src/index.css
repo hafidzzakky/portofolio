@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+	/* Horizontal scroll rails (category pickers) keep the gesture, drop the bar. */
+	.scrollbar-hide {
+		-ms-overflow-style: none;
+		scrollbar-width: none;
+	}
+	.scrollbar-hide::-webkit-scrollbar {
+		display: none;
+	}
+}
+
 .leaflet-tile {
 	filter: inherit;
 	visibility: inherit;

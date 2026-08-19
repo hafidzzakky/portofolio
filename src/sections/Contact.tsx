@@ -1,15 +1,13 @@
-import { motion, useInView } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaEnvelope, FaInstagram, FaDownload, FaWhatsapp } from 'react-icons/fa';
 import { PiCopy, PiCheck } from 'react-icons/pi';
-import React, { Suspense, lazy, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import cvFile from '../assets/file/Hafidz_Zakky_Senior_Front_End_Engineer.pdf';
+import portrait from '../assets/image/me/portrait.jpg';
 import { useAnalytics } from '../hooks/useAnalytics';
-
-const User3D = lazy(() => import('../components/User3D'));
+import SectionHeading from '../components/SectionHeading';
 
 const Contact = () => {
-	const modelRef = useRef<HTMLDivElement | null>(null);
-	const isModelInView = useInView(modelRef, { once: true, margin: '0px 0px -20% 0px' });
 	const { trackCvDownload, trackSocialClick, trackContactClick } = useAnalytics();
 	const [copied, setCopied] = useState(false);
 
@@ -36,14 +34,12 @@ const Contact = () => {
 				transition={{ duration: 0.6, ease: 'easeOut' }}
 				className='container mx-auto px-4 text-center z-10'
 			>
-				<h2 className='text-4xl md:text-5xl font-bold mb-6'>
-					<span className='bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-primary bg-300% animate-gradient'>Get In Touch</span>
-				</h2>
-
-				<p className='text-lg text-base-content/80 max-w-2xl mx-auto mb-12 leading-relaxed'>
-					Open to senior frontend roles, freelance product work, and technical consulting. If you're hiring or exploring a
-					collaboration, share a bit about the role or context and I'll respond with relevant work examples.
-				</p>
+				<SectionHeading
+					title='Get In Touch'
+					align='center'
+					className='mb-12'
+					lead="Open to senior frontend roles, freelance product work, and technical consulting. Share a bit about the role or context and I'll respond with relevant work examples."
+				/>
 
 				<div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto mb-4'>
 					<BentoCard
@@ -65,16 +61,22 @@ const Contact = () => {
 						</div>
 					</BentoCard>
 
-					<motion.div
+					<motion.figure
 						whileHover={{ scale: 1.02 }}
-						aria-hidden='true'
-						className='aspect-square relative overflow-hidden rounded-3xl bg-gradient-to-br from-white via-indigo-50 to-purple-100 dark:from-white/10 dark:via-indigo-900/20 dark:to-purple-900/20 shadow-lg'
-						ref={modelRef}
+						className='group relative aspect-square overflow-hidden rounded-3xl bg-base-300 shadow-lg'
 					>
-						<Suspense fallback={<div className='w-full h-full animate-pulse bg-gray-200/20' />}>
-							{isModelInView && <User3D className='w-full h-full' />}
-						</Suspense>
-					</motion.div>
+						<img
+							src={portrait}
+							alt='Hafidz Zakky D'
+							loading='lazy'
+							decoding='async'
+							className='h-full w-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-110'
+						/>
+						<figcaption className='absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 to-transparent p-4 text-left'>
+							<span className='block text-sm font-semibold text-white'>Hafidz Zakky D</span>
+							<span className='block text-xs text-white/70'>Senior Front End Engineer</span>
+						</figcaption>
+					</motion.figure>
 
 					<div className='aspect-square relative overflow-hidden rounded-3xl bg-red-500 text-white shadow-lg'>
 						<motion.a
@@ -130,10 +132,8 @@ const Contact = () => {
 					className='max-w-5xl mx-auto mb-14'
 				>
 					<div className='rounded-3xl bg-base-100/70 dark:bg-base-100/10 backdrop-blur-md p-6 md:p-7 text-center [html[data-theme=luxury]_&]:bg-[rgba(255,255,255,0.05)] [html[data-theme=luxury]_&]:backdrop-blur-[10px] [html[data-theme=luxury]_&]:shadow-[0_4px_30px_rgba(0,0,0,0.1)] [html[data-theme=luxury]_&]:border-none'>
-						<h3 className='text-2xl md:text-3xl font-bold mb-4'>
-							<span className='bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-primary bg-300% animate-gradient'>
-								Preferred collaboration & availability
-							</span>
+						<h3 className='mb-4 text-2xl font-bold tracking-tight text-base-content md:text-3xl'>
+							Preferred collaboration & availability
 						</h3>
 						<div className='flex flex-wrap justify-center gap-2 mb-4'>
 							{['Full-time / Remote', 'Freelance / Contract', 'Consultation / Code Review'].map((label) => (
@@ -148,7 +148,7 @@ const Contact = () => {
 						</div>
 						<p className='text-sm text-base-content/80 max-w-2xl mx-auto'>
 							Currently open to full-time, freelance, and remote roles. If you're hiring, feel free to share a short
-							context—I'll reply with the most relevant case studies first.
+							context, and I'll reply with the most relevant case studies first.
 						</p>
 						<p className='mt-3 text-xs text-base-content/60 flex flex-wrap items-center justify-center gap-2'>
 							<span>Response time: fast. WhatsApp is usually the quickest way to reach me via</span>

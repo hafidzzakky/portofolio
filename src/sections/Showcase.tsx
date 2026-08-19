@@ -1,10 +1,11 @@
 import { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence, useInView } from 'framer-motion';
+import { motion, AnimatePresence, useInView, useMotionValue, useSpring } from 'framer-motion';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
 import { projects as showcaseProjects, type Project } from '../data/projects';
-import { PiX, PiCaretLeft, PiCaretRight } from 'react-icons/pi';
+import { PiX, PiCaretLeft, PiCaretRight, PiArrowUpRight } from 'react-icons/pi';
 import { useAnalytics } from '../hooks/useAnalytics';
+import SectionHeading from '../components/SectionHeading';
 
 type SplideInstance = { go: (index: number | '<' | '>') => void };
 
@@ -62,7 +63,7 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
 			initial={{ opacity: 0 }}
 			animate={{ opacity: 1 }}
 			exit={{ opacity: 0 }}
-			className='fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-sm p-4 md:p-8'
+			className='fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm md:p-8'
 			onClick={onClose}
 			role='dialog'
 			aria-modal='true'
@@ -70,18 +71,18 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
 		>
 			<motion.div
 				ref={modalRef}
-				initial={{ scale: 0.9, opacity: 0 }}
+				initial={{ scale: 0.94, opacity: 0 }}
 				animate={{ scale: 1, opacity: 1 }}
-				exit={{ scale: 0.9, opacity: 0 }}
+				exit={{ scale: 0.94, opacity: 0 }}
 				transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-				className='relative w-full max-w-6xl bg-base-100 rounded-3xl overflow-hidden shadow-2xl flex flex-col md:flex-row md:items-stretch max-h-[90vh]'
+				className='relative flex max-h-[90vh] w-full max-w-6xl flex-col overflow-hidden rounded-2xl bg-base-100 shadow-2xl md:flex-row md:items-stretch'
 				onClick={(e) => e.stopPropagation()}
 			>
 				{/* Close Button */}
 				<button
 					ref={closeButtonRef}
 					onClick={onClose}
-					className='absolute top-4 right-4 z-20 btn btn-circle btn-sm md:btn-md bg-base-100/50 backdrop-blur-md border-none hover:bg-base-100 text-base-content'
+					className='btn btn-circle btn-sm absolute right-4 top-4 z-20 border-none bg-base-100/50 text-base-content backdrop-blur-md hover:bg-base-100 md:btn-md'
 					aria-label='Close project details'
 				>
 					<PiX aria-hidden='true' className='text-lg' />
@@ -89,7 +90,7 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
 
 				{/* Image Section */}
 				<div
-					className='w-full md:w-7/12 relative flex items-center justify-center overflow-hidden h-auto min-h-[300px] md:max-h-[80vh] group'
+					className='group relative flex h-auto min-h-[300px] w-full items-center justify-center overflow-hidden md:max-h-[80vh] md:w-7/12'
 					onMouseEnter={() => setIsHovered(true)}
 					onMouseLeave={() => setIsHovered(false)}
 				>
@@ -116,12 +117,17 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
 						ref={(splide) => {
 							splideRef.current = splide as unknown as SplideInstance;
 						}}
-						className='w-full h-full'
+						className='h-full w-full'
 					>
 						{project.images.map((src, idx) => (
 							<SplideSlide key={idx} className='flex items-center justify-center'>
-								<div className='w-full h-full flex items-center justify-center rounded-3xl overflow-hidden bg-base-100/5'>
-									<img src={src} alt={`${project.title} screenshot ${idx + 1} of ${project.images.length}`} loading='lazy' className='w-full h-full object-cover block' />
+								<div className='flex h-full w-full items-center justify-center overflow-hidden rounded-2xl bg-base-100/5'>
+									<img
+										src={src}
+										alt={`${project.title} screenshot ${idx + 1} of ${project.images.length}`}
+										loading='lazy'
+										className='block h-full w-full object-cover'
+									/>
 								</div>
 							</SplideSlide>
 						))}
@@ -132,9 +138,9 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
 						aria-label='Previous image'
 						onClick={(e) => {
 							e.stopPropagation();
-							splideRef.current && splideRef.current.go('<');
+							splideRef.current?.go('<');
 						}}
-						className='hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 items-center justify-center rounded-full bg-black/20 backdrop-blur-md text-white hover:bg-black/50 transition-all opacity-0 group-hover:opacity-100 focus-visible:opacity-100 focus-visible:ring-2 focus-visible:ring-white/50 outline-none'
+						className='absolute left-4 top-1/2 z-20 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-black/20 text-white opacity-0 outline-none backdrop-blur-md transition-all hover:bg-black/50 focus-visible:opacity-100 focus-visible:ring-2 focus-visible:ring-white/50 group-hover:opacity-100 md:flex'
 					>
 						<PiCaretLeft aria-hidden='true' className='text-xl' />
 					</button>
@@ -142,15 +148,19 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
 						aria-label='Next image'
 						onClick={(e) => {
 							e.stopPropagation();
-							splideRef.current && splideRef.current.go('>');
+							splideRef.current?.go('>');
 						}}
-						className='hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 items-center justify-center rounded-full bg-black/20 backdrop-blur-md text-white hover:bg-black/50 transition-all opacity-0 group-hover:opacity-100 focus-visible:opacity-100 focus-visible:ring-2 focus-visible:ring-white/50 outline-none'
+						className='absolute right-4 top-1/2 z-20 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-black/20 text-white opacity-0 outline-none backdrop-blur-md transition-all hover:bg-black/50 focus-visible:opacity-100 focus-visible:ring-2 focus-visible:ring-white/50 group-hover:opacity-100 md:flex'
 					>
 						<PiCaretRight aria-hidden='true' className='text-xl' />
 					</button>
 
 					{/* Progress Indicator */}
-					<div className='absolute bottom-4 left-0 right-0 flex justify-center items-center gap-2 px-4 z-20' role='group' aria-label='Image navigation'>
+					<div
+						className='absolute bottom-4 left-0 right-0 z-20 flex items-center justify-center gap-2 px-4'
+						role='group'
+						aria-label='Image navigation'
+					>
 						{project.images.map((_, idx) => (
 							<motion.button
 								key={idx}
@@ -159,7 +169,7 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
 								animate={{ width: currentImage === idx ? 32 : 8 }}
 								aria-label={`Go to image ${idx + 1}`}
 								aria-pressed={currentImage === idx}
-								className={`relative h-2 rounded-full overflow-hidden cursor-pointer backdrop-blur-sm transition-colors duration-300 focus-visible:ring-2 focus-visible:ring-white/70 outline-none ${
+								className={`relative h-2 cursor-pointer overflow-hidden rounded-full outline-none backdrop-blur-sm transition-colors duration-300 focus-visible:ring-2 focus-visible:ring-white/70 ${
 									currentImage === idx ? 'bg-primary/10' : 'bg-base-content/80 hover:bg-base-content/30'
 								}`}
 								onClick={(e) => {
@@ -171,7 +181,7 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
 							>
 								{currentImage === idx && !isHovered && (
 									<motion.div
-										className='absolute top-0 left-0 h-full bg-secondary/90'
+										className='absolute left-0 top-0 h-full bg-secondary/90'
 										initial={{ width: '0%' }}
 										animate={{ width: '100%' }}
 										transition={{ duration: 3, ease: 'linear' }}
@@ -183,30 +193,25 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
 				</div>
 
 				{/* Content Section */}
-				<div className='w-full md:w-5/12 p-6 md:p-8 bg-base-100 flex flex-col md:h-full md:max-h-[80vh] overflow-y-auto'>
-					<div className='flex flex-col h-full'>
+				<div className='flex w-full flex-col overflow-y-auto bg-base-100 p-6 md:h-full md:max-h-[80vh] md:w-5/12 md:p-8'>
+					<div className='flex h-full flex-col'>
 						<div className='mb-6'>
-							<h3 className='text-2xl md:text-3xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary'>
-								{project.title}
-							</h3>
+							<h3 className='mb-2 text-2xl font-bold tracking-tight text-base-content md:text-3xl'>{project.title}</h3>
 							{(project.role || project.context) && (
-								<div className='flex flex-wrap items-center gap-2 mb-3'>
+								<div className='mb-3 flex flex-wrap items-center gap-2'>
 									{project.role && (
-										<span className='inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold'>
-											<span aria-hidden='true' className='w-1.5 h-1.5 rounded-full bg-primary/70'></span>
+										<span className='inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary'>
 											{project.role}
 										</span>
 									)}
-									{project.context && (
-										<span className='text-[11px] text-base-content/60'>{project.context}</span>
-									)}
+									{project.context && <span className='text-[11px] text-base-content/60'>{project.context}</span>}
 								</div>
 							)}
-							<div className='flex flex-wrap gap-2 mb-4'>
+							<div className='mb-4 flex flex-wrap gap-2'>
 								{project.tags.map((tag) => (
 									<span
 										key={tag}
-										className='badge badge-sm md:badge-md border-none bg-primary/5 text-primary [html[data-theme=luxury]_&]:bg-base-200'
+										className='rounded-full bg-base-content/[0.06] px-3 py-1 text-xs font-medium text-base-content/70'
 									>
 										{tag}
 									</span>
@@ -214,12 +219,8 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
 							</div>
 						</div>
 
-						<div className='prose prose-sm md:prose-base overflow-y-auto flex-grow pr-2'>
-							<p className='text-base-content/80 whitespace-pre-line'>{project.description}</p>
-						</div>
-
-						<div className='mt-8 pt-6 border-t border-base-content/10 flex gap-4'>
-							{/* Links placeholder */}
+						<div className='prose prose-sm flex-grow overflow-y-auto pr-2 md:prose-base'>
+							<p className='whitespace-pre-line text-base-content/80'>{project.description}</p>
 						</div>
 					</div>
 				</div>
@@ -228,96 +229,152 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
 	);
 };
 
-const ShowcaseCard = ({ project, onClick }: { project: (typeof showcaseProjects)[0]; onClick: () => void }) => {
-	const [currentImage, setCurrentImage] = useState(0);
-	const [isHovered, setIsHovered] = useState(false);
+/** Cycles a project's screenshots inside the hover preview. */
+const PreviewFrames = ({ images }: { images: string[] }) => {
+	const [frame, setFrame] = useState(0);
 
 	useEffect(() => {
-		if (!isHovered || project.images.length <= 1) {
-			return;
-		}
-
-		const interval = setInterval(() => {
-			setCurrentImage((prev) => (prev + 1) % project.images.length);
-		}, 1500);
-
-		return () => clearInterval(interval);
-	}, [isHovered, project.images.length]);
+		if (images.length <= 1) return;
+		const id = setInterval(() => setFrame((prev) => (prev + 1) % images.length), 1200);
+		return () => clearInterval(id);
+	}, [images]);
 
 	return (
-		<motion.button
-			type='button'
-			layout
-			initial={{ opacity: 0, scale: 0.9 }}
-			animate={{ opacity: 1, scale: 1 }}
-			exit={{ opacity: 0, scale: 0.9 }}
-			transition={{ duration: 0.3 }}
-			whileHover={{ y: -5, transition: { duration: 0.3 } }}
-			aria-label={`View ${project.title} project details`}
-			className='break-inside-avoid mb-6 rounded-2xl overflow-hidden relative group bg-base-200 shadow-lg hover:shadow-2xl transition-shadow duration-300 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 focus-visible:ring-offset-2 focus-visible:ring-offset-base-100'
-			onMouseEnter={() => setIsHovered(true)}
-			onMouseLeave={() => {
-				setIsHovered(false);
-				setCurrentImage(0);
-			}}
-			onClick={onClick}
-		>
-			{/* Image Container */}
-			<div className='relative w-full overflow-hidden bg-base-300'>
-				<div className='relative'>
-					<img
-						src={project.images[0]}
-						alt=''
-						aria-hidden='true'
-						loading='lazy'
-					className='w-full h-auto object-cover opacity-0'
-					/>
-					<AnimatePresence mode='popLayout'>
-						<motion.img
-							key={currentImage}
-							src={project.images[currentImage]}
-							alt={`${project.title} view ${currentImage + 1}`}
-							initial={{ opacity: 0 }}
-							animate={{ opacity: 1 }}
-							exit={{ opacity: 0 }}
-							transition={{ duration: 0.5 }}
-							className='absolute inset-0 w-full h-full object-cover'
-						/>
-					</AnimatePresence>
-				</div>
-
-				{/* Overlay Gradient */}
-				<div className='absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end items-center p-6 text-center'>
-					<h3 className='text-white text-xl font-bold translate-y-4 group-hover:translate-y-0 transition-transform duration-300'>
-						{project.title}
-					</h3>
-					<p className='text-white/80 text-xs mt-1 translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75'>
-						{project.tags.join(', ')}
-					</p>
-					<p className='text-white/70 text-sm mt-3 line-clamp-3 translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-100'>
-						{project.description}
-					</p>
-
-					{/* Progress Indicator */}
-					<div aria-hidden='true' className='flex gap-1 mt-4 translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-200 justify-center'>
-						{project.images.map((_, idx) => (
-							<div
-								key={idx}
-								className={`h-1 rounded-full transition-all duration-300 ${
-									currentImage === idx ? 'w-4 bg-primary' : 'w-1 bg-white/30'
-								}`}
-							/>
-						))}
-					</div>
-				</div>
-			</div>
-		</motion.button>
+		<div className='relative aspect-[16/10] w-full bg-base-300'>
+			<AnimatePresence mode='popLayout'>
+				<motion.img
+					key={frame}
+					src={images[frame]}
+					alt=''
+					initial={{ opacity: 0 }}
+					animate={{ opacity: 1 }}
+					exit={{ opacity: 0 }}
+					transition={{ duration: 0.35 }}
+					className='absolute inset-0 h-full w-full object-cover'
+				/>
+			</AnimatePresence>
+		</div>
 	);
 };
+
+/** Cursor-tracked preview shown while browsing the desktop project index. */
+const IndexPreview = ({ project }: { project: Project | null }) => {
+	const x = useMotionValue(0);
+	const y = useMotionValue(0);
+	const springX = useSpring(x, { stiffness: 220, damping: 26, mass: 0.4 });
+	const springY = useSpring(y, { stiffness: 220, damping: 26, mass: 0.4 });
+
+	useEffect(() => {
+		// Writes motion values only, so tracking the pointer costs no re-renders.
+		const move = (event: PointerEvent) => {
+			x.set(event.clientX + 40);
+			y.set(event.clientY);
+		};
+		window.addEventListener('pointermove', move, { passive: true });
+		return () => window.removeEventListener('pointermove', move);
+	}, [x, y]);
+
+	useEffect(() => {
+		// Appear at the cursor instead of springing in from the page corner.
+		if (!project) return;
+		springX.jump(x.get());
+		springY.jump(y.get());
+	}, [project, springX, springY, x, y]);
+
+	return (
+		<AnimatePresence>
+			{project && (
+				<motion.div
+					aria-hidden='true'
+					initial={{ opacity: 0, scale: 0.92 }}
+					animate={{ opacity: 1, scale: 1 }}
+					exit={{ opacity: 0, scale: 0.92 }}
+					transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+					style={{ x: springX, y: springY, translateY: '-50%' }}
+					className='pointer-events-none fixed left-0 top-0 z-40 hidden w-[360px] overflow-hidden rounded-2xl shadow-2xl lg:block'
+				>
+					{/* Keyed by project so the cycle restarts on each new hover. */}
+					<PreviewFrames key={project.id} images={project.images} />
+				</motion.div>
+			)}
+		</AnimatePresence>
+	);
+};
+
+const ProjectRow = ({ project, onOpen, onHover }: { project: Project; onOpen: () => void; onHover: (p: Project | null) => void }) => (
+	<motion.li
+		layout
+		initial={{ opacity: 0, y: 16 }}
+		animate={{ opacity: 1, y: 0 }}
+		exit={{ opacity: 0, y: -8 }}
+		transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+		className='border-b border-base-content/10'
+	>
+		<button
+			type='button'
+			onClick={onOpen}
+			onMouseEnter={() => onHover(project)}
+			onMouseLeave={() => onHover(null)}
+			onFocus={() => onHover(project)}
+			onBlur={() => onHover(null)}
+			aria-label={`View ${project.title} project details`}
+			className='group flex w-full items-center gap-6 py-6 text-left transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 md:py-7'
+		>
+			<span className='min-w-0 flex-1'>
+				<span className='block text-xl font-semibold tracking-tight text-base-content/85 transition-all duration-300 group-hover:translate-x-2 group-hover:text-primary md:text-3xl'>
+					{project.title}
+				</span>
+				{project.role && <span className='mt-1 block text-sm text-base-content/45'>{project.role}</span>}
+			</span>
+
+			<span className='hidden shrink-0 items-center gap-2 lg:flex'>
+				{project.tags.slice(0, 3).map((tag) => (
+					<span
+						key={tag}
+						className='rounded-full bg-base-content/[0.06] px-3 py-1 text-xs font-medium text-base-content/60 [html[data-theme=luxury]_&]:bg-[rgba(255,255,255,0.07)]'
+					>
+						{tag}
+					</span>
+				))}
+			</span>
+
+			<PiArrowUpRight
+				aria-hidden='true'
+				className='shrink-0 text-xl text-base-content/30 transition-all duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-primary md:text-2xl'
+			/>
+		</button>
+	</motion.li>
+);
+
+const ProjectCard = ({ project, onOpen }: { project: Project; onOpen: () => void }) => (
+	<motion.button
+		type='button'
+		layout
+		initial={{ opacity: 0, y: 16 }}
+		animate={{ opacity: 1, y: 0 }}
+		exit={{ opacity: 0, y: -8 }}
+		transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+		onClick={onOpen}
+		aria-label={`View ${project.title} project details`}
+		className='w-full text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60'
+	>
+		<div className='aspect-[4/3] w-full overflow-hidden rounded-2xl bg-base-300'>
+			<img
+				src={project.images[0]}
+				alt={`${project.title} preview`}
+				loading='lazy'
+				className='h-full w-full object-cover transition-transform duration-500 active:scale-[1.03]'
+			/>
+		</div>
+		<h3 className='mt-3 text-lg font-semibold tracking-tight text-base-content'>{project.title}</h3>
+		<p className='mt-1 text-sm text-base-content/50'>{project.tags.slice(0, 3).join(' / ')}</p>
+	</motion.button>
+);
 
 const Showcase = () => {
 	const [selectedCategory, setSelectedCategory] = useState('All');
 	const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+	const [hoveredProject, setHoveredProject] = useState<Project | null>(null);
 	const sectionRef = useRef(null);
 	const isInView = useInView(sectionRef, { amount: 0.1, margin: '-10% 0px -10% 0px' });
 	const { trackProjectView } = useAnalytics();
@@ -325,86 +382,115 @@ const Showcase = () => {
 	const categories = ['All', ...Array.from(new Set(showcaseProjects.flatMap((project) => project.tags)))];
 
 	const filteredProjects =
-		selectedCategory === 'All' ? showcaseProjects : showcaseProjects.filter((project) => project.tags.includes(selectedCategory));
+		selectedCategory === 'All'
+			? showcaseProjects
+			: showcaseProjects.filter((project) => project.tags.includes(selectedCategory));
+
+	const openProject = (project: Project) => {
+		setSelectedProject(project);
+		setHoveredProject(null);
+		trackProjectView(project.title);
+	};
 
 	return (
-		<section ref={sectionRef} aria-label='Project Showcase' className='py-20 relative' id='projects'>
+		<section ref={sectionRef} aria-label='Project Showcase' className='relative py-20 md:py-28' id='projects'>
 			<AnimatePresence>
 				{selectedProject && <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />}
 			</AnimatePresence>
 
-			<div className='container mx-auto px-4'>
-				<motion.div
-					initial={{ opacity: 0, y: 20 }}
-					whileInView={{ opacity: 1, y: 0 }}
-					viewport={{ once: true }}
-					className='text-center mb-12'
-				>
-					<h2 className='text-3xl md:text-5xl font-bold mb-4'>
-						<span className='bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-primary bg-300% animate-gradient'>Project Showcase</span>
-					</h2>
-					<p className='text-base-content/60 max-w-2xl mx-auto'>A collection of my work. Click to view details.</p>
-				</motion.div>
+			<IndexPreview project={selectedProject ? null : hoveredProject} />
 
-				{/* Category Filter - Desktop */}
-				<div className='hidden md:flex flex-wrap justify-center gap-2 mb-12' role='group' aria-label='Filter projects by category'>
-					{categories.map((category) => (
+			<div className='container mx-auto px-4'>
+			<SectionHeading
+				title='Project Showcase'
+				lead='Twelve products shipped for mining, banking, healthcare, and marketplace teams. Open one to see the screens.'
+			/>
+
+			{/* Category filter - desktop */}
+			<div className='mt-10 hidden flex-wrap gap-x-6 gap-y-3 md:flex' role='group' aria-label='Filter projects by category'>
+				{categories.map((category) => {
+					const isActive = selectedCategory === category;
+					return (
 						<button
 							key={category}
 							type='button'
-							aria-pressed={selectedCategory === category}
+							aria-pressed={isActive}
 							onClick={() => setSelectedCategory(category)}
-							className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-								selectedCategory === category
-									? 'bg-primary text-primary-content shadow-lg scale-105'
-									: 'bg-base-200 text-base-content/70 hover:bg-base-300 hover:text-base-content'
+							className={`relative pb-1 text-sm font-semibold transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 ${
+								isActive ? 'text-primary' : 'text-base-content/45 hover:text-base-content/80'
 							}`}
 						>
 							{category}
+							{isActive && (
+								<motion.span
+									layoutId='filter-underline'
+									transition={{ type: 'spring', stiffness: 320, damping: 30 }}
+									className='absolute inset-x-0 -bottom-px h-[2px] rounded-full bg-primary'
+								/>
+							)}
 						</button>
-					))}
-				</div>
-
-				{/* Mobile Horizontal Filter */}
-				<AnimatePresence>
-					{isInView && (
-						<motion.div
-							initial={{ y: 50, opacity: 0 }}
-							animate={{ y: 0, opacity: 1 }}
-							exit={{ y: 50, opacity: 0 }}
-							transition={{ duration: 0.3 }}
-							role='group'
-							aria-label='Filter projects by category'
-							className='md:hidden fixed left-4 right-4 bottom-24 z-40 flex gap-2 p-2 bg-base-100/90 backdrop-blur-md rounded-2xl border border-base-content/10 shadow-xl overflow-x-auto scrollbar-hide'
-						>
-							{categories.map((category) => (
-								<button
-									key={category}
-									type='button'
-									aria-pressed={selectedCategory === category}
-									onClick={() => setSelectedCategory(category)}
-									className={`flex-shrink-0 px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all duration-200 ${
-										selectedCategory === category
-											? 'bg-primary text-primary-content shadow-md'
-											: 'hover:bg-base-200 text-base-content/70 bg-base-200/50'
-									}`}
-								>
-									{category}
-								</button>
-							))}
-						</motion.div>
-					)}
-				</AnimatePresence>
-
-				{/* Masonry Layout */}
-				<div className='columns-1 sm:columns-2 lg:columns-3 gap-6'>
-					<AnimatePresence mode='popLayout'>
-						{filteredProjects.map((project) => (
-							<ShowcaseCard key={project.id} project={project} onClick={() => { setSelectedProject(project); trackProjectView(project.title); }} />
-						))}
-					</AnimatePresence>
-				</div>
+					);
+				})}
 			</div>
+
+			{/* Desktop: work index with cursor preview */}
+			<ul className='mt-8 hidden border-t border-base-content/10 md:block'>
+				<AnimatePresence mode='popLayout'>
+					{filteredProjects.map((project) => (
+						<ProjectRow
+							key={project.id}
+							project={project}
+							onOpen={() => openProject(project)}
+							onHover={setHoveredProject}
+						/>
+					))}
+				</AnimatePresence>
+			</ul>
+
+			{/* Mobile: image-led cards */}
+			<div className='mt-8 grid grid-cols-1 gap-8 sm:grid-cols-2 md:hidden'>
+				<AnimatePresence mode='popLayout'>
+					{filteredProjects.map((project) => (
+						<ProjectCard key={project.id} project={project} onOpen={() => openProject(project)} />
+					))}
+				</AnimatePresence>
+			</div>
+
+			{filteredProjects.length === 0 && (
+				<p className='mt-10 text-base-content/50'>No projects tagged {selectedCategory} yet.</p>
+			)}
+			</div>
+
+			{/* Mobile floating filter */}
+			<AnimatePresence>
+				{isInView && (
+					<motion.div
+						initial={{ y: 50, opacity: 0 }}
+						animate={{ y: 0, opacity: 1 }}
+						exit={{ y: 50, opacity: 0 }}
+						transition={{ duration: 0.3 }}
+						role='group'
+						aria-label='Filter projects by category'
+						className='scrollbar-hide fixed bottom-24 left-4 right-4 z-40 flex gap-2 overflow-x-auto rounded-2xl border border-base-content/10 bg-base-100/90 p-2 shadow-xl backdrop-blur-md md:hidden'
+					>
+						{categories.map((category) => (
+							<button
+								key={category}
+								type='button'
+								aria-pressed={selectedCategory === category}
+								onClick={() => setSelectedCategory(category)}
+								className={`shrink-0 whitespace-nowrap rounded-xl px-4 py-2 text-xs font-bold transition-all duration-200 ${
+									selectedCategory === category
+										? 'bg-primary text-primary-content shadow-md'
+										: 'bg-base-200/50 text-base-content/70 hover:bg-base-200'
+								}`}
+							>
+								{category}
+							</button>
+						))}
+					</motion.div>
+				)}
+			</AnimatePresence>
 		</section>
 	);
 };
