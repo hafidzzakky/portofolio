@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import Lenis from 'lenis';
 import { motion, useScroll, useMotionValueEvent, AnimatePresence, MotionConfig } from 'framer-motion';
 import { useAnalytics } from './hooks/useAnalytics';
-import { PiCode, PiBriefcase, PiGraduationCap, PiRocketLaunch, PiEnvelopeSimple } from 'react-icons/pi';
+import { PiCode, PiBriefcase, PiGraduationCap, PiRocketLaunch, PiEnvelopeSimple, PiMoonStars, PiSunDim } from 'react-icons/pi';
 import Hero from './sections/Hero';
 // import WorldMap from './sections/WorldMap';
 // import Summary from './sections/Summary';
@@ -15,13 +15,19 @@ import Contact from './sections/Contact';
 import Preloader from './components/Preloader';
 import StaticAbstractBackground from './sections/StaticAbstractBackground';
 
+const DARK = 'luxury';
+const LIGHT = 'mytheme';
+
 function App() {
 	const { scrollY, scrollYProgress } = useScroll();
 
 	const [isLoading, setIsLoading] = useState(true);
 	const [isHeaderVisible, setIsHeaderVisible] = useState(false);
 	const [activeSection, setActiveSection] = useState('hero');
-	const [theme, setTheme] = useState(localStorage.getItem('theme') || 'luxury');
+	// Two themes only: luxury (dark) and mytheme (light). Anything else in
+	// localStorage is from the old multi-theme picker and falls back to dark.
+	const [theme, setTheme] = useState(() => (localStorage.getItem('theme') === LIGHT ? LIGHT : DARK));
+	const isDark = theme === DARK;
 	const { trackScrollDepth } = useAnalytics();
 	const trackedDepths = useRef(new Set<number>());
 
@@ -29,17 +35,7 @@ function App() {
 		localStorage.setItem('theme', theme);
 		document.documentElement.setAttribute('data-theme', theme);
 
-		const themeColors: Record<string, string> = {
-			luxury: '#09090b',
-			dark: '#1d232a',
-			dracula: '#282a36',
-			synthwave: '#2d1b69',
-			cyberpunk: '#ffee00',
-			retro: '#e4d8b4',
-			light: '#ffffff',
-			mytheme: '#ffffff',
-		};
-		const color = themeColors[theme] ?? '#ffffff';
+		const color = theme === DARK ? '#09090b' : '#ffffff';
 		let metaTheme = document.querySelector('meta[name="theme-color"]');
 		if (!metaTheme) {
 			metaTheme = document.createElement('meta');
@@ -212,57 +208,31 @@ function App() {
 				</AnimatePresence>
 
 				<div className='fixed top-4 right-4 z-50'>
-					<div className='dropdown dropdown-end'>
-						<motion.div
-							whileHover={{ scale: 1.05 }}
-							whileTap={{ scale: 0.95 }}
-							tabIndex={0}
-							role='button'
-							className='btn btn-ghost m-1 bg-base-100/30 backdrop-blur-sm border border-white/10 shadow-lg'
-						>
-							Theme
-							<svg
-								width='12px'
-								height='12px'
-								className='h-2 w-2 fill-current opacity-60 inline-block'
-								xmlns='http://www.w3.org/2000/svg'
-								viewBox='0 0 2048 2048'
-							>
-								<path d='M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z'></path>
-							</svg>
-						</motion.div>
-						<ul
-							tabIndex={0}
-							className='dropdown-content z-[1] p-2 shadow-2xl bg-base-300 rounded-box w-52 max-h-96 overflow-y-auto'
-						>
-							{[
-								{ id: 'mytheme', label: 'Professional' },
-								{ id: 'light', label: 'Light' },
-								{ id: 'dark', label: 'Dark' },
-								{ id: 'cyberpunk', label: 'Cyberpunk' },
-								{ id: 'retro', label: 'Retro' },
-								{ id: 'synthwave', label: 'Synthwave' },
-								{ id: 'luxury', label: 'Luxury' },
-								{ id: 'dracula', label: 'Dracula' },
-							].map((t) => (
-								<li key={t.id}>
-									<input
-										type='radio'
-										name='theme-dropdown'
-										className='theme-controller btn btn-sm btn-block btn-ghost justify-start'
-										aria-label={t.label}
-										value={t.id}
-										checked={theme === t.id}
-										onChange={() => setTheme(t.id)}
-									/>
-								</li>
-							))}
-						</ul>
-					</div>
+					<motion.button
+						type='button'
+						role='switch'
+						aria-checked={isDark}
+						aria-label={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
+						title={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
+						onClick={() => setTheme(isDark ? LIGHT : DARK)}
+						whileTap={{ scale: 0.95 }}
+						className='relative flex h-10 w-[76px] items-center rounded-full border border-base-content/10 bg-base-100/60 shadow-lg backdrop-blur-md focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60'
+					>
+						<motion.span
+							aria-hidden='true'
+							animate={{ x: isDark ? 0 : 36 }}
+							transition={{ type: 'spring', stiffness: 420, damping: 34 }}
+							className='absolute left-1 h-8 w-8 rounded-full bg-primary shadow'
+						/>
+						<span aria-hidden='true' className='relative z-10 flex w-full items-center justify-between px-[14px]'>
+							<PiMoonStars className={`text-lg ${isDark ? 'text-primary-content' : 'text-base-content/45'}`} />
+							<PiSunDim className={`text-lg ${isDark ? 'text-base-content/45' : 'text-primary-content'}`} />
+						</span>
+					</motion.button>
 				</div>
 				<main>
 					<div className='container mx-auto px-4'>
-						<Hero theme={theme} />
+						<Hero />
 						{/* <Summary /> */}
 						<Skills />
 						<Philosophy />

@@ -13,7 +13,7 @@ const roles = [
 	'Building Scalable Mobile Applications',
 ];
 
-const Hero = ({ theme }: { theme: string }) => {
+const Hero = () => {
 	const { trackHeroCta, trackCvDownload } = useAnalytics();
 	const [roleIndex, setRoleIndex] = useState(0);
 
@@ -28,7 +28,7 @@ const Hero = ({ theme }: { theme: string }) => {
 		<section
 			id='hero'
 			aria-label='Hero'
-			className='relative flex min-h-[100dvh] items-start pt-[20px] lg:items-center lg:pt-0'
+			className='relative flex min-h-[100dvh] items-center'
 		>
 			<div className='grid items-center w-full grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12'>
 				<motion.div
@@ -49,9 +49,7 @@ const Hero = ({ theme }: { theme: string }) => {
 								animate={{ y: 0, opacity: 1 }}
 								exit={{ y: -20, opacity: 0 }}
 								transition={{ duration: 0.5 }}
-								className={`text-2xl md:text-3xl font-semibold inline-block ${
-									theme === 'luxury' ? 'text-primary' : 'text-secondary'
-								}`}
+								className='inline-block text-2xl font-semibold text-primary md:text-3xl'
 							>
 								{roles[roleIndex]}
 							</motion.p>
@@ -92,11 +90,9 @@ const Hero = ({ theme }: { theme: string }) => {
 					</div>
 				</motion.div>
 
-				{/* Scaled down rather than dropped on small screens: this is the page's signature asset. */}
-				<div className='flex h-[280px] w-full justify-center overflow-hidden sm:h-[420px] lg:col-span-5 lg:h-auto lg:overflow-visible'>
-					<div className='w-full origin-top scale-[0.55] sm:scale-[0.8] lg:scale-100'>
-						<HeroParallax />
-					</div>
+				{/* Desktop only: the fixed-size artwork does not hold up below lg. */}
+				<div className='hidden lg:col-span-5 lg:block'>
+					<HeroParallax />
 				</div>
 			</div>
 		</section>

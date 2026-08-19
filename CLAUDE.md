@@ -76,7 +76,9 @@ src/
 
 ## App.tsx — Key Behaviors
 
-- **Theme**: persisted to `localStorage`, default `luxury`. 8 options: `mytheme`, `light`, `dark`, `cyberpunk`, `retro`, `synthwave`, `luxury`, `dracula`
+- **Theme**: two only, persisted to `localStorage`, default dark. `luxury` = dark, `mytheme` = light.
+  Toggled by a `role="switch"` button (top right), not a dropdown. Any other stored value falls back to dark.
+  `tailwind.config.js` ships only these two DaisyUI themes.
 - **Lenis smooth scroll**: duration 1.2, easing `Math.min(1, 1.001 - Math.pow(2, -10 * t))`
 - **Sticky nav**: appears after scroll > 100px. Bottom on mobile, top on desktop.
 - **Active section**: `IntersectionObserver` with `rootMargin: '-40% 0px -40% 0px'`
@@ -137,7 +139,7 @@ html[data-theme='luxury'] {
 
 ### Hero (`src/sections/Hero.tsx`)
 - Rotating roles (3000ms): "Senior Front End Engineer", "React Specialist", "UI/UX Enthusiast", + 2 more
-- Left 7-col (text) + right 5-col (HeroParallax, scaled down on mobile, never hidden)
+- Left 7-col (text) + right 5-col (HeroParallax, `hidden lg:block` - the artwork is fixed-size)
 - Two CTAs only: Download CV (primary) + LinkedIn (outline). No scroll cue, no tech-stack strip.
 
 ### HeroParallax (`src/components/HeroParallax.tsx`)
