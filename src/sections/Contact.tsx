@@ -20,7 +20,7 @@ const Contact = () => {
 	};
 
 	return (
-		<section aria-label='Contact' className='relative py-20 min-h-[50vh] flex items-center justify-center' id='contact'>
+		<section aria-label='Contact' className='relative flex min-h-[50vh] items-center justify-center py-20 md:py-28' id='contact'>
 			{/* Background decoration */}
 			<div className='absolute inset-0 overflow-hidden pointer-events-none' aria-hidden='true'>
 				<div className='absolute -top-24 -right-24 w-96 h-96 bg-primary/10 rounded-full blur-3xl opacity-30'></div>
@@ -32,7 +32,7 @@ const Contact = () => {
 				whileInView={{ opacity: 1, y: 0 }}
 				viewport={{ once: true, amount: 0.2 }}
 				transition={{ duration: 0.6, ease: 'easeOut' }}
-				className='container mx-auto px-4 text-center z-10'
+				className='z-10 w-full text-center'
 			>
 				<SectionHeading
 					title='Get In Touch'
@@ -63,7 +63,7 @@ const Contact = () => {
 
 					<motion.figure
 						whileHover={{ scale: 1.02 }}
-						className='group relative aspect-square overflow-hidden rounded-3xl bg-base-300 shadow-lg'
+						className='group relative aspect-square overflow-hidden rounded-2xl bg-base-300 shadow-lg'
 					>
 						<img
 							src={portrait}
@@ -78,7 +78,7 @@ const Contact = () => {
 						</figcaption>
 					</motion.figure>
 
-					<div className='aspect-square relative overflow-hidden rounded-3xl bg-red-500 text-white shadow-lg'>
+					<div className='aspect-square relative overflow-hidden rounded-2xl bg-red-500 text-white shadow-lg'>
 						<motion.a
 							href='mailto:hafidzzakky@gmail.com'
 							aria-label='Send email to Hafidz'
@@ -131,7 +131,7 @@ const Contact = () => {
 					transition={{ duration: 0.6, ease: 'easeOut' }}
 					className='max-w-5xl mx-auto mb-14'
 				>
-					<div className='rounded-3xl bg-base-100/70 dark:bg-base-100/10 backdrop-blur-md p-6 md:p-7 text-center [html[data-theme=luxury]_&]:bg-[rgba(255,255,255,0.05)] [html[data-theme=luxury]_&]:backdrop-blur-[10px] [html[data-theme=luxury]_&]:shadow-[0_4px_30px_rgba(0,0,0,0.1)] [html[data-theme=luxury]_&]:border-none'>
+					<div className='border-t border-base-content/10 pt-10 text-center'>
 						<h3 className='mb-4 text-2xl font-bold tracking-tight text-base-content md:text-3xl'>
 							Preferred collaboration & availability
 						</h3>
@@ -140,7 +140,7 @@ const Contact = () => {
 								<motion.span
 									key={label}
 									whileHover={{ scale: 1.05, y: -2 }}
-									className='px-3 py-1 rounded-full text-xs font-semibold bg-base-200/80 dark:bg-base-200/20 text-base-content/80 shadow-sm'
+									className='rounded-full bg-base-content/[0.06] px-3 py-1 text-xs font-semibold text-base-content/70 [html[data-theme=luxury]_&]:bg-[rgba(255,255,255,0.07)]'
 								>
 									{label}
 								</motion.span>
@@ -217,7 +217,7 @@ const BentoCard: React.FC<BentoCardProps> = ({ children, className, href, ariaLa
 		onClick={onClick}
 		whileHover={{ scale: 1.02 }}
 		whileTap={{ scale: 0.98 }}
-		className={`relative overflow-hidden rounded-3xl p-8 shadow-lg transition-all duration-300 ${className}`}
+		className={`relative overflow-hidden rounded-2xl p-8 shadow-lg transition-all duration-300 ${className}`}
 	>
 		{children}
 	</motion.a>
