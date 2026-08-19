@@ -19,6 +19,7 @@ Portfolio website milik **Hafidz Zakky D** — Senior Front End Engineer, Jakart
 | Map | Leaflet + react-leaflet | ^1.9.4 / ^5.0.0 |
 | PWA | vite-plugin-pwa | ^1.2.0 |
 | Icons | react-icons | ^5.5.0 |
+| Font | @fontsource-variable/plus-jakarta-sans | ^5.3.0 |
 
 ## Build Commands
 
@@ -50,7 +51,6 @@ src/
     AbstractBackground.tsx        # (disabled)
     WorldMap.tsx                  # (disabled)
     Summary.tsx                   # (disabled)
-    Projects.tsx                  # (disabled - old version)
   components/
     HeroParallax.tsx              # Javanese SVG parallax (wayang, gunungan, awan)
     Preloader.tsx                 # Fullscreen loader (gunungan animation)
@@ -115,6 +115,10 @@ viewport={{ once: true, amount: 0.3 }}
 transition={{ duration: 0.6, ease: 'easeOut' }}
 ```
 
+### Typography
+`Plus Jakarta Sans Variable`, self-hosted via `@fontsource-variable/...` imported at the top of
+`index.css` and wired into `theme.extend.fontFamily.sans`. Never link Google Fonts from `index.html`.
+
 ### CSS Variables (index.css)
 ```css
 html[data-theme] {
@@ -133,8 +137,8 @@ html[data-theme='luxury'] {
 
 ### Hero (`src/sections/Hero.tsx`)
 - Rotating roles (3000ms): "Senior Front End Engineer", "React Specialist", "UI/UX Enthusiast", + 2 more
-- Left 7-col (text) + right 5-col (HeroParallax, desktop only)
-- Buttons: LinkedIn, GitHub, Download CV
+- Left 7-col (text) + right 5-col (HeroParallax, scaled down on mobile, never hidden)
+- Two CTAs only: Download CV (primary) + LinkedIn (outline). No scroll cue, no tech-stack strip.
 
 ### HeroParallax (`src/components/HeroParallax.tsx`)
 - Javanese cultural SVGs: wayang, gunungan 1 & 2, 5 types of awan (clouds), bg circle
@@ -209,7 +213,8 @@ interface Project {
 11. BNI My Office — Internal office tools
 12. Merdeka Safety — Mining safety management
 
-All images: `.webp` format. All `links.github` and `links.demo` are currently `#`.
+All images: `.webp` format. Showcase filters are a curated list (`All, React, Next JS, React Native, Vite`),
+not derived from every tag.
 
 ---
 

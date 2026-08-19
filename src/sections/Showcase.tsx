@@ -379,7 +379,9 @@ const Showcase = () => {
 	const isInView = useInView(sectionRef, { amount: 0.1, margin: '-10% 0px -10% 0px' });
 	const { trackProjectView } = useAnalytics();
 
-	const categories = ['All', ...Array.from(new Set(showcaseProjects.flatMap((project) => project.tags)))];
+	// Curated rather than derived from every tag: the raw tag set produces 22 filters,
+	// most of which are domain labels that already show on each row.
+	const categories = ['All', 'React', 'Next JS', 'React Native', 'Vite'];
 
 	const filteredProjects =
 		selectedCategory === 'All'

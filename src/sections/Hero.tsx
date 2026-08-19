@@ -1,21 +1,9 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaMapMarkerAlt, FaDownload } from 'react-icons/fa';
-import { SiReact, SiTypescript, SiTailwindcss, SiNextdotjs, SiNodedotjs, SiVite, SiNuxtdotjs, SiVuedotjs } from 'react-icons/si';
+import { FaLinkedin, FaDownload } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
 import HeroParallax from '../components/HeroParallax';
 import cvFile from '../assets/file/Hafidz_Zakky_Senior_Front_End_Engineer.pdf';
 import { useAnalytics } from '../hooks/useAnalytics';
-
-const techStack = [
-	{ icon: SiReact, label: 'React', hoverColor: '#61DAFB' },
-	{ icon: SiTypescript, label: 'TypeScript', hoverColor: '#3178C6' },
-	{ icon: SiNextdotjs, label: 'Next.js', hoverColor: '#000000', extraClass: 'dark:hover:text-white' },
-	{ icon: SiTailwindcss, label: 'Tailwind CSS', hoverColor: '#06B6D4' },
-	{ icon: SiNodedotjs, label: 'Node.js', hoverColor: '#339933' },
-	{ icon: SiVite, label: 'Vite', hoverColor: '#646CFF' },
-	{ icon: SiVuedotjs, label: 'Vue.js', hoverColor: '#4FC08D' },
-	{ icon: SiNuxtdotjs, label: 'Nuxt.js', hoverColor: '#00DC82' },
-];
 
 const roles = [
 	'Senior Front End Engineer',
@@ -24,25 +12,6 @@ const roles = [
 	'Building Scalable Web Applications',
 	'Building Scalable Mobile Applications',
 ];
-
-const ScrollIndicator = ({ className }: { className: string }) => (
-	<motion.div
-		initial={{ opacity: 0, y: 10 }}
-		animate={{ opacity: 1, y: 0 }}
-		transition={{ delay: 1, duration: 1 }}
-		className={className}
-		aria-hidden='true'
-	>
-		<span className='text-xs tracking-widest uppercase opacity-50'>Scroll Down</span>
-		<div className='w-[30px] h-[50px] rounded-full border-2 border-base-content/30 flex justify-center p-2'>
-			<motion.div
-				animate={{ y: [0, 12, 0] }}
-				transition={{ duration: 1.5, repeat: Infinity, repeatType: 'loop' }}
-				className='w-1.5 h-1.5 rounded-full bg-primary mb-1'
-			/>
-		</div>
-	</motion.div>
-);
 
 const Hero = ({ theme }: { theme: string }) => {
 	const { trackHeroCta, trackCvDownload } = useAnalytics();
@@ -56,20 +25,23 @@ const Hero = ({ theme }: { theme: string }) => {
 	}, []);
 
 	return (
-		<section id='hero' aria-label='Hero' className='min-h-[100vh] flex items-start pt-[20px] lg:items-center lg:pt-0 relative'>
-			<div className='grid items-center w-full grid-cols-1 gap-12 lg:grid-cols-12'>
+		<section
+			id='hero'
+			aria-label='Hero'
+			className='relative flex min-h-[100dvh] items-start pt-[20px] lg:items-center lg:pt-0'
+		>
+			<div className='grid items-center w-full grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12'>
 				<motion.div
 					initial={{ opacity: 0, x: -50 }}
 					animate={{ opacity: 1, x: 0 }}
 					transition={{ duration: 0.8 }}
 					className='lg:col-span-7 flex flex-col items-start will-change-[opacity,transform]'
 				>
-					<p className='mb-2 text-xl font-medium tracking-wide md:text-2xl text-primary'>Hello, I am</p>
 					<h1 className='mb-4 text-5xl font-bold leading-tight tracking-tight md:text-7xl lg:text-8xl text-base-content'>
 						Hafidz <br /> Zakky D
 					</h1>
 
-					<div className='min-h-[8rem] md:min-h-[3rem] mb-6 overflow-hidden flex items-center lg:items-start'>
+					<div className='mb-6 flex min-h-[4rem] items-center overflow-hidden md:min-h-[3rem] lg:items-start'>
 						<AnimatePresence mode='wait'>
 							<motion.p
 								key={roleIndex}
@@ -87,13 +59,24 @@ const Hero = ({ theme }: { theme: string }) => {
 					</div>
 
 					<p className='max-w-2xl mb-8 text-lg font-light leading-relaxed md:text-xl text-base-content/80'>
-						Specializing in <span className='font-semibold text-primary'>React</span>,{' '}
+						Based in Jakarta. Specializing in <span className='font-semibold text-primary'>React</span>,{' '}
 						<span className='font-semibold text-primary'>TypeScript</span>, and{' '}
-						<span className='font-semibold text-primary'>Frontend Architecture</span>. Building scalable enterprise applications
-						with a focus on performance, design systems, and user experience.
+						<span className='font-semibold text-primary'>frontend architecture</span> for enterprise applications, with a
+						focus on performance and design systems.
 					</p>
 
 					<div className='flex flex-wrap gap-4'>
+						<motion.a
+							whileHover={{ scale: 1.05 }}
+							whileTap={{ scale: 0.95 }}
+							href={cvFile}
+							download='Hafidz_Zakky_CV.pdf'
+							aria-label='Download CV as PDF'
+							onClick={trackCvDownload}
+							className='gap-2 transition-all shadow-lg btn btn-primary btn-lg shadow-primary/30 hover:shadow-primary/50'
+						>
+							<FaDownload aria-hidden='true' /> Download CV
+						</motion.a>
 						<motion.a
 							whileHover={{ scale: 1.05 }}
 							whileTap={{ scale: 0.95 }}
@@ -102,80 +85,20 @@ const Hero = ({ theme }: { theme: string }) => {
 							rel='noopener noreferrer'
 							aria-label='Visit LinkedIn profile'
 							onClick={() => trackHeroCta('LinkedIn')}
-							className='gap-2 transition-all shadow-lg btn btn-primary btn-lg shadow-primary/30 hover:shadow-primary/50'
+							className='gap-2 transition-all btn btn-outline btn-lg backdrop-blur-sm hover:bg-base-content hover:text-base-100'
 						>
 							<FaLinkedin aria-hidden='true' /> LinkedIn
 						</motion.a>
-						<motion.a
-							whileHover={{ scale: 1.05 }}
-							whileTap={{ scale: 0.95 }}
-							href='https://github.com/hafidzzakky'
-							target='_blank'
-							rel='noopener noreferrer'
-							aria-label='Visit GitHub profile'
-							onClick={() => trackHeroCta('GitHub')}
-							className='gap-2 transition-all btn btn-outline btn-lg backdrop-blur-sm hover:bg-base-content hover:text-base-100'
-						>
-							<FaGithub aria-hidden='true' /> GitHub
-						</motion.a>
-						<motion.a
-							whileHover={{ scale: 1.05 }}
-							whileTap={{ scale: 0.95 }}
-							href={cvFile}
-							download='Hafidz_Zakky_CV.pdf'
-							aria-label='Download CV as PDF'
-							onClick={trackCvDownload}
-							className='gap-2 text-white transition-all shadow-lg btn btn-secondary btn-lg shadow-secondary/30 hover:shadow-secondary/50'
-						>
-							<FaDownload aria-hidden='true' /> Download CV
-						</motion.a>
 					</div>
-
-					<div className='flex flex-wrap gap-6 mt-12 text-sm text-base-content/70'>
-						<motion.div
-							whileHover={{ scale: 1.05, borderColor: 'rgba(var(--p), 0.8)', backgroundColor: 'rgba(var(--b2), 0.8)' }}
-							className='flex items-center gap-2 px-3 py-1 transition-all border rounded-full cursor-default bg-base-200/50 backdrop-blur-sm border-base-300'
-						>
-							<FaMapMarkerAlt aria-hidden='true' className='text-primary' /> <span>Jakarta, Indonesia</span>
-						</motion.div>
-					</div>
-
-					{/* Tech Stack */}
-					<motion.div
-						initial={{ opacity: 0, y: 20 }}
-						whileInView={{ opacity: 1, y: 0 }}
-						viewport={{ once: true }}
-						transition={{ delay: 0.5, duration: 0.8 }}
-						className='flex flex-col items-center w-full mt-12 lg:items-start'
-					>
-						<p className='mb-4 text-sm tracking-widest text-center uppercase text-base-content lg:text-left'>Tech Stack</p>
-						<div className='flex flex-wrap justify-center w-full gap-6 text-3xl text-base-content/40 lg:justify-start lg:w-auto'>
-							{techStack.map(({ icon: Icon, label, hoverColor, extraClass }) => (
-								<motion.div
-									key={label}
-									whileHover={{ scale: 1.2, color: hoverColor, opacity: 1 }}
-									className={`transition-all cursor-pointer ${extraClass ?? ''}`}
-									role='img'
-									aria-label={label}
-									title={label}
-								>
-									<Icon aria-hidden='true' />
-								</motion.div>
-							))}
-						</div>
-					</motion.div>
-
-					{/* Scroll Down - Mobile */}
-					<ScrollIndicator className='flex flex-col items-center w-full gap-2 mt-16 lg:hidden' />
 				</motion.div>
 
-				<div className='hidden lg:block lg:col-span-5'>
-					<HeroParallax />
+				{/* Scaled down rather than dropped on small screens: this is the page's signature asset. */}
+				<div className='flex h-[280px] w-full justify-center overflow-hidden sm:h-[420px] lg:col-span-5 lg:h-auto lg:overflow-visible'>
+					<div className='w-full origin-top scale-[0.55] sm:scale-[0.8] lg:scale-100'>
+						<HeroParallax />
+					</div>
 				</div>
 			</div>
-
-			{/* Scroll Down - Desktop */}
-			<ScrollIndicator className='absolute flex-col items-center hidden gap-2 -translate-x-1/2 lg:flex bottom-10 left-1/2' />
 		</section>
 	);
 };

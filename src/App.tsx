@@ -10,7 +10,6 @@ import Skills from './sections/Skills';
 import Philosophy from './sections/Philosophy';
 import Experience from './sections/Experience';
 import Education from './sections/Education';
-// import Projects from './sections/Projects';
 import Showcase from './sections/Showcase';
 import Contact from './sections/Contact';
 import Preloader from './components/Preloader';
@@ -178,8 +177,7 @@ function App() {
 									className='flex items-center gap-2 cursor-pointer'
 									onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
 								>
-									<div className='w-3 h-3 rounded-full bg-primary animate-pulse'></div>
-									<span className='text-base-content font-bold text-lg hidden md:block'>Hafidz Zakky D</span>
+										<span className='text-base-content font-bold text-lg hidden md:block'>Hafidz Zakky D</span>
 									<span className='text-base-content font-bold text-lg md:hidden'>HZD</span>
 								</div>
 

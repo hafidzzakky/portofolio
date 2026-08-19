@@ -91,10 +91,6 @@ export interface Project {
 	role?: string;
 	context?: string;
 	description: string;
-	links: {
-		github: string;
-		demo: string;
-	};
 	images: string[];
 }
 
@@ -106,11 +102,7 @@ export const projects: Project[] = [
 		role: 'Lead Frontend & Architecture',
 		context: 'Oil & Gas • Enterprise Invoicing',
 		description:
-			"An integrated ecosystem of three applications (EIS, Admin, JCS) for end-to-end invoice processing. Features dynamic approval workflows, barcode scanning, vendor management, and JCS tracking. Includes a unique 'Incognito' mode for seamless Vendor POV simulation.",
-		links: {
-			github: '#',
-			demo: '#',
-		},
+			"An integrated ecosystem of three applications (EIS, Admin, JCS) for end-to-end invoice processing. Features dynamic approval workflows, barcode scanning, vendor management, and JCS tracking. Includes a unique 'Incognito' mode so vendors can be previewed without a second login.",
 		images: [
 			saka0,
 			saka1,
@@ -142,10 +134,6 @@ export const projects: Project[] = [
 		context: 'Oil & Gas • Logistics & Mapping',
 		description:
 			'A comprehensive maritime logistics dashboard for monitoring vessel movements, fuel consumption, and pipeline infrastructure. Features real-time tracking and analytics tailored for Saka Energi operations.',
-		links: {
-			github: '#',
-			demo: '#',
-		},
 		images: [
 			sakaVessel1,
 			sakaVessel2,
@@ -168,10 +156,6 @@ export const projects: Project[] = [
 		context: 'Construction • Marketplace',
 		description:
 			'The initial version of the platform focused exclusively on connecting homeowners with verified professional builders (Tukang). It established the core mission of simplifying renovations by providing reliable, skilled manpower, laying the groundwork for the comprehensive ecosystem in V2.',
-		links: {
-			github: '#',
-			demo: '#',
-		},
 		images: [tukangkuV1_1, tukangkuV1_2, tukangkuV1_3, tukangkuV1_4, tukangkuV1_5, tukangkuV1_6, tukangkuV1_7, tukangkuV1_8],
 	},
 	{
@@ -181,11 +165,7 @@ export const projects: Project[] = [
 		role: 'Product & Frontend Lead',
 		context: 'Construction • One Stop Solution',
 		description:
-			"An integrated 'One Stop Solution' construction ecosystem (Tukangku.co & TokoMandor) simplifying home building and renovation. Connects homeowners with certified professionals and curated materials. V2 features include seamless WhatsApp consultation, a project portfolio showcase, material catalog, and educational resources for a transparent, hassle-free experience.",
-		links: {
-			github: '#',
-			demo: '#',
-		},
+			"An integrated 'One Stop Solution' construction ecosystem (Tukangku.co & TokoMandor) simplifying home building and renovation. Connects homeowners with certified professionals and curated materials. V2 adds WhatsApp consultation, a project portfolio showcase, material catalog, and educational resources for a transparent, hassle-free experience.",
 		images: [tukangkuV2_1, tukangkuV2_2, tukangkuV2_3, tukangkuV2_4, tukangkuV2_5, tukangkuV2_6, tukangkuV2_7, tukangkuV2_8],
 	},
 	{
@@ -196,10 +176,6 @@ export const projects: Project[] = [
 		context: 'Healthcare • Caregiver Platform',
 		description:
 			'A high-fidelity UI/UX implementation for a caregiver booking platform, translating Figma mockups into responsive React Native layouts. Features dual interfaces for Users and Partners (Mitra), covering booking flows, chat/video call simulation, and dashboard management.',
-		links: {
-			github: '#',
-			demo: '#',
-		},
 		images: [senja1, senja2, senja3, senja4, senja5],
 	},
 	{
@@ -210,10 +186,6 @@ export const projects: Project[] = [
 		context: 'Healthcare • Special Needs',
 		description:
 			"A holistic digital ecosystem empowering families with Special Needs Children (ABK). Integrates professional consultation (psychologists, therapists), parental mental health support, a community forum, and educational resources. Acts as a comprehensive 'companion' platform addressing medical, psychological, and social challenges.",
-		links: {
-			github: '#',
-			demo: '#',
-		},
 		images: [difacare1, difacare2, difacare3, difacare4, difacare5, difacare6],
 	},
 	{
@@ -223,10 +195,6 @@ export const projects: Project[] = [
 		role: 'Frontend Engineer',
 		context: 'Banking • Payroll',
 		description: 'A payroll management system designed for BNI to streamline salary processing and reporting.',
-		links: {
-			github: '#',
-			demo: '#',
-		},
 		images: [digiPayroll, digiPayroll1, digiPayroll2],
 	},
 	{
@@ -236,10 +204,6 @@ export const projects: Project[] = [
 		role: 'Frontend Engineer',
 		context: 'Banking • Geospatial Analytics',
 		description: 'An interactive mapping solution for BNI, providing geospatial data visualization and analysis.',
-		links: {
-			github: '#',
-			demo: '#',
-		},
 		images: [digimap, digimap1, digimap2],
 	},
 	{
@@ -249,10 +213,6 @@ export const projects: Project[] = [
 		role: 'Frontend Engineer',
 		context: 'Banking • Event Tracking',
 		description: 'A platform for managing and tracking the annual "Mudik" event, facilitating logistics and participant management.',
-		links: {
-			github: '#',
-			demo: '#',
-		},
 		images: [digimudik, digimudik1, digimudik2],
 	},
 	{
@@ -262,10 +222,6 @@ export const projects: Project[] = [
 		role: 'Frontend Engineer',
 		context: 'Banking • Attendance',
 		description: 'An electronic attendance system for BNI employees, featuring real-time tracking and reporting capabilities.',
-		links: {
-			github: '#',
-			demo: '#',
-		},
 		images: [eAbsensi, eAbsensi1, eAbsensi2],
 	},
 	{
@@ -275,10 +231,6 @@ export const projects: Project[] = [
 		role: 'Frontend Engineer',
 		context: 'Banking • Internal Tools',
 		description: 'An internal office management suite for BNI, optimizing daily operations and resource allocation.',
-		links: {
-			github: '#',
-			demo: '#',
-		},
 		images: [myOffice, myOffice1, myOffice2],
 	},
 	{
@@ -288,10 +240,6 @@ export const projects: Project[] = [
 		role: 'Frontend Engineer',
 		context: 'Mining • Safety',
 		description: 'A safety management application for Merdeka Copper Gold, focusing on incident reporting and compliance tracking.',
-		links: {
-			github: '#',
-			demo: '#',
-		},
 		images: [merdekaSafety, merdekaSafety1, merdekaSafety2, merdekaSafety3],
 	},
 	// {

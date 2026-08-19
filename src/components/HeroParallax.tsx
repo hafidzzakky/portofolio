@@ -30,7 +30,7 @@ const HeroParallax = () => {
 
 		window.addEventListener('mousemove', handleMouseMove);
 		return () => window.removeEventListener('mousemove', handleMouseMove);
-	}, []);
+	}, [mouseX, mouseY]);
 
 	// Scroll Layers
 	// layerBack: Moves down (positive Y) to simulate distance/sticking
@@ -105,7 +105,7 @@ const HeroParallax = () => {
 			initial={{ opacity: 0, scale: 0.8 }}
 			animate={{ opacity: 1, scale: 1 }}
 			transition={{ duration: 0.8, delay: 0.2 }}
-			className='lg:col-span-5 relative h-[500px] flex justify-center items-center perspective-1000'
+			className='relative flex h-[500px] w-full items-center justify-center perspective-1000'
 		>
 			{/* Background Circle */}
 			<motion.img
