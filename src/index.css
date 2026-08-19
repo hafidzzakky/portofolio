@@ -20,16 +20,16 @@
 	visibility: inherit;
 }
 
+/* daisyUI v4 exposes colours as oklch components, so these must be read with oklch(),
+   not rgb(). Kept in-family (primary + accent) so the wash never introduces a new hue. */
 html[data-theme] {
-	--bg-glow-primary: var(--p);
-	--bg-glow-secondary: var(--s);
-	--bg-spot-1: rgb(var(--in) / 0.16);
-	--bg-spot-2: rgb(var(--su) / 0.14);
+	--bg-spot-1: oklch(var(--p) / 0.09);
+	--bg-spot-2: oklch(var(--a) / 0.07);
 }
 
 html[data-theme='luxury'] {
-	--bg-glow-primary: 22 33 61;
-	--bg-glow-secondary: 22 33 61;
+	--bg-spot-1: oklch(var(--p) / 0.05);
+	--bg-spot-2: oklch(var(--bc) / 0.05);
 }
 
 html[data-theme='luxury'] .showcase-close-btn {

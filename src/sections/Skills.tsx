@@ -166,7 +166,7 @@ const StackExplorer = () => {
 							onClick={() => setActive(index)}
 							onMouseEnter={() => setActive(index)}
 							className={`group relative flex shrink-0 snap-start items-center gap-3 rounded-xl px-4 py-3 text-left transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 md:w-full ${
-								isActive ? 'text-base-content' : 'text-base-content/55 hover:text-base-content/85'
+								isActive ? 'text-base-content' : 'text-base-content/75 hover:text-base-content/85'
 							}`}
 						>
 							{isActive && (
@@ -181,7 +181,7 @@ const StackExplorer = () => {
 								className={`shrink-0 text-base transition-colors duration-300 ${isActive ? 'text-primary' : 'text-base-content/35'}`}
 							/>
 							<span className='whitespace-nowrap text-sm font-semibold md:text-base'>{category.title}</span>
-							<span className='ml-auto hidden text-xs tabular-nums text-base-content/40 md:inline'>
+							<span className='ml-auto hidden text-xs tabular-nums text-base-content/65 md:inline'>
 								{category.skills.length}
 							</span>
 						</button>
@@ -199,7 +199,7 @@ const StackExplorer = () => {
 						exit={{ opacity: 0, y: -8 }}
 						transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
 					>
-						<p className='mb-5 text-sm text-base-content/50'>
+						<p className='mb-5 text-sm text-base-content/65'>
 							{current.skills.length} tools in <span className='text-base-content/80'>{current.title}</span>
 						</p>
 						<ul className='flex flex-wrap gap-2'>
@@ -420,15 +420,15 @@ const SkillRadar = () => {
 					>
 						<div className='flex items-baseline justify-center gap-2'>
 							<span className='text-4xl font-bold tabular-nums text-primary md:text-5xl'>{axis.value.toFixed(1)}</span>
-							<span className='text-base text-base-content/40'>/ 10</span>
+							<span className='text-base text-base-content/65'>/ 10</span>
 						</div>
 						<h4 className='mt-2 text-lg font-semibold text-base-content'>{axis.label}</h4>
-						<p className='mx-auto mt-2 max-w-md text-sm leading-relaxed text-base-content/60'>{axis.description}</p>
+						<p className='mx-auto mt-2 max-w-md text-sm leading-relaxed text-base-content/75'>{axis.description}</p>
 					</motion.div>
 				</AnimatePresence>
 			</div>
 
-			<p className='mt-4 text-xs text-base-content/40'>Hover or tap a point to read the breakdown.</p>
+			<p className='mt-4 text-xs text-base-content/65'>Hover or tap a point to read the breakdown.</p>
 		</div>
 	);
 };

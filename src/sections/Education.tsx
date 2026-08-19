@@ -45,7 +45,7 @@ const Education = () => {
 						Bachelor of Science in Informatics Engineering
 					</h3>
 					<p className='mt-3 text-lg font-medium text-primary'>Dian Nuswantoro University, Semarang</p>
-					<p className='mt-4 max-w-[58ch] leading-relaxed text-base-content/60'>
+					<p className='mt-4 max-w-[58ch] leading-relaxed text-base-content/75'>
 						Four years spent on the fundamentals that still hold up daily: data structures, systems thinking, and building
 						for the web.
 					</p>

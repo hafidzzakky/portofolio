@@ -24,14 +24,20 @@ export default {
 	daisyui: {
 		themes: [
 			{
+				// Sampled from the hero artwork (gunungan #b0682d, highlight #ef9344) so the
+				// light theme shares one warm identity with it, the way luxury's gold already does.
 				mytheme: {
-					primary: '#0055FF',
-					secondary: '#FF6600',
-					accent: '#00D4FF',
-					neutral: '#1f2937',
-					'base-100': '#ffffff',
-					'base-200': '#f8fafc',
-					'base-300': '#f1f5f9',
+					primary: '#A05E26', // 5.1:1 on base-100, passes AA as text and as a button fill
+					'primary-content': '#FFFFFF',
+					secondary: '#7C4A1E',
+					'secondary-content': '#FFFFFF',
+					accent: '#EF9344',
+					'accent-content': '#241305',
+					neutral: '#2A211B',
+					'base-100': '#FCFBF9',
+					'base-200': '#F4F1EC',
+					'base-300': '#E7E2DA',
+					'base-content': '#1C1917',
 					info: '#3abff8',
 					success: '#36d399',
 					warning: '#fbbd23',

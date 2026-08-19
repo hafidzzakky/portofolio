@@ -121,6 +121,12 @@ transition={{ duration: 0.6, ease: 'easeOut' }}
 `Plus Jakarta Sans Variable`, self-hosted via `@fontsource-variable/...` imported at the top of
 `index.css` and wired into `theme.extend.fontFamily.sans`. Never link Google Fonts from `index.html`.
 
+### Light theme palette
+`mytheme` is sampled from the hero artwork (gunungan `#b0682d`, highlight `#ef9344`) so light mode
+shares one warm identity with it, the way `luxury`'s gold already does. Primary `#A05E26` clears
+AA on `base-100` (5.1:1) as both text and button fill. Neutrals are warm, never slate.
+Muted text uses `text-base-content/65` (5.3:1) and `/75` (7.5:1) - nothing below /65, which fails AA.
+
 ### CSS Variables (index.css)
 ```css
 html[data-theme] {

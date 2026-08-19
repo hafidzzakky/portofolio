@@ -41,7 +41,7 @@ const SectionHeading = ({ title, lead, level = 2, align = 'left', className = ''
 					level === 2 ? 'w-14' : 'w-9'
 				}`}
 			/>
-			{lead && <p className='mt-5 max-w-[62ch] leading-relaxed text-base-content/60'>{lead}</p>}
+			{lead && <p className='mt-5 max-w-[62ch] leading-relaxed text-base-content/75'>{lead}</p>}
 		</motion.div>
 	);
 };

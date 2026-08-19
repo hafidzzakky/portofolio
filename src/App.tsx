@@ -191,7 +191,7 @@ function App() {
 											className={`relative flex items-center justify-center p-2.5 md:px-4 md:py-2 rounded-full transition-all duration-300 ${
 												activeSection === item.id
 													? 'bg-primary text-primary-content shadow-lg shadow-primary/25 scale-105'
-													: 'text-base-content/60 hover:text-primary hover:bg-base-200/30'
+													: 'text-base-content/75 hover:text-primary hover:bg-base-200/30'
 											}`}
 											title={item.label}
 										>
@@ -228,13 +228,13 @@ function App() {
 							aria-hidden='true'
 							className='absolute left-1 top-[3px] z-10 flex h-8 w-8 items-center justify-center'
 						>
-							<PiMoonStars className={`text-lg ${isDark ? 'text-primary-content' : 'text-base-content/45'}`} />
+							<PiMoonStars className={`text-lg ${isDark ? 'text-primary-content' : 'text-base-content/65'}`} />
 						</span>
 						<span
 							aria-hidden='true'
 							className='absolute left-1 top-[3px] z-10 flex h-8 w-8 translate-x-[34px] items-center justify-center'
 						>
-							<PiSunDim className={`text-lg ${isDark ? 'text-base-content/45' : 'text-primary-content'}`} />
+							<PiSunDim className={`text-lg ${isDark ? 'text-base-content/65' : 'text-primary-content'}`} />
 						</span>
 					</motion.button>
 				</div>

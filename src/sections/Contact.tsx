@@ -150,7 +150,7 @@ const Contact = () => {
 							Currently open to full-time, freelance, and remote roles. If you're hiring, feel free to share a short
 							context, and I'll reply with the most relevant case studies first.
 						</p>
-						<p className='mt-3 text-xs text-base-content/60 flex flex-wrap items-center justify-center gap-2'>
+						<p className='mt-3 text-xs text-base-content/75 flex flex-wrap items-center justify-center gap-2'>
 							<span>Response time: fast. WhatsApp is usually the quickest way to reach me via</span>
 							<motion.a
 								whileHover={{ scale: 1.05, y: -1 }}
@@ -189,7 +189,7 @@ const Contact = () => {
 					</motion.a>
 				</motion.div>
 
-				<footer className='mt-16 text-base-content/40 text-sm'>
+				<footer className='mt-16 text-base-content/65 text-sm'>
 					<p>© {new Date().getFullYear()} Hafidz Zakky D. All rights reserved.</p>
 					<p className='mt-2 flex items-center justify-center gap-2'>
 						Made with <span aria-hidden='true' className='text-red-500 animate-pulse'>❤</span><span className='sr-only'>love</span> in Jakarta, Indonesia

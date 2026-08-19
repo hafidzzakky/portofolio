@@ -204,7 +204,7 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
 											{project.role}
 										</span>
 									)}
-									{project.context && <span className='text-[11px] text-base-content/60'>{project.context}</span>}
+									{project.context && <span className='text-[11px] text-base-content/75'>{project.context}</span>}
 								</div>
 							)}
 							<div className='mb-4 flex flex-wrap gap-2'>
@@ -324,14 +324,14 @@ const ProjectRow = ({ project, onOpen, onHover }: { project: Project; onOpen: ()
 				<span className='block text-xl font-semibold tracking-tight text-base-content/85 transition-all duration-300 group-hover:translate-x-2 group-hover:text-primary md:text-3xl'>
 					{project.title}
 				</span>
-				{project.role && <span className='mt-1 block text-sm text-base-content/45'>{project.role}</span>}
+				{project.role && <span className='mt-1 block text-sm text-base-content/65'>{project.role}</span>}
 			</span>
 
 			<span className='hidden shrink-0 items-center gap-2 lg:flex'>
 				{project.tags.slice(0, 3).map((tag) => (
 					<span
 						key={tag}
-						className='rounded-full bg-base-content/[0.06] px-3 py-1 text-xs font-medium text-base-content/60 [html[data-theme=luxury]_&]:bg-[rgba(255,255,255,0.07)]'
+						className='rounded-full bg-base-content/[0.06] px-3 py-1 text-xs font-medium text-base-content/75 [html[data-theme=luxury]_&]:bg-[rgba(255,255,255,0.07)]'
 					>
 						{tag}
 					</span>
@@ -367,7 +367,7 @@ const ProjectCard = ({ project, onOpen }: { project: Project; onOpen: () => void
 			/>
 		</div>
 		<h3 className='mt-3 text-lg font-semibold tracking-tight text-base-content'>{project.title}</h3>
-		<p className='mt-1 text-sm text-base-content/50'>{project.tags.slice(0, 3).join(' / ')}</p>
+		<p className='mt-1 text-sm text-base-content/65'>{project.tags.slice(0, 3).join(' / ')}</p>
 	</motion.button>
 );
 
@@ -419,7 +419,7 @@ const Showcase = () => {
 							aria-pressed={isActive}
 							onClick={() => setSelectedCategory(category)}
 							className={`relative pb-1 text-sm font-semibold transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 ${
-								isActive ? 'text-primary' : 'text-base-content/45 hover:text-base-content/80'
+								isActive ? 'text-primary' : 'text-base-content/65 hover:text-base-content/80'
 							}`}
 						>
 							{category}
@@ -459,7 +459,7 @@ const Showcase = () => {
 			</div>
 
 			{filteredProjects.length === 0 && (
-				<p className='mt-10 text-base-content/50'>No projects tagged {selectedCategory} yet.</p>
+				<p className='mt-10 text-base-content/65'>No projects tagged {selectedCategory} yet.</p>
 			)}
 			</div>
 

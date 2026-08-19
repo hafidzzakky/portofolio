@@ -97,13 +97,13 @@ const ExperienceEntry = ({ exp, index }: { exp: (typeof experiences)[0]; index: 
 
 			<p className='text-sm font-medium tabular-nums text-primary'>{exp.period}</p>
 			<h3 className='mt-1 text-2xl font-bold leading-tight tracking-tight text-base-content md:text-3xl'>{exp.role}</h3>
-			<p className='mt-1 text-base text-base-content/55'>{exp.company}</p>
+			<p className='mt-1 text-base text-base-content/75'>{exp.company}</p>
 
 			<div className='mt-4 flex flex-wrap items-center gap-2'>
 				{(isOpen ? exp.techStack : preview).map((tech) => (
 					<TechChip key={tech} label={tech} />
 				))}
-				{!isOpen && rest > 0 && <span className='text-xs text-base-content/40'>+{rest} more</span>}
+				{!isOpen && rest > 0 && <span className='text-xs text-base-content/65'>+{rest} more</span>}
 			</div>
 
 			<button
@@ -223,7 +223,7 @@ const Experience = () => {
 								</span>
 								<span className='text-sm font-semibold text-base-content'>{item.label}</span>
 							</dt>
-							<dd className='mt-3 text-sm leading-relaxed text-base-content/60'>{item.text}</dd>
+							<dd className='mt-3 text-sm leading-relaxed text-base-content/75'>{item.text}</dd>
 						</motion.div>
 					);
 				})}
