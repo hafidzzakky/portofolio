@@ -63,7 +63,7 @@ const Contact = () => {
 
 					<motion.figure
 						whileHover={{ scale: 1.02 }}
-						className='group relative aspect-square overflow-hidden rounded-2xl bg-base-300 shadow-lg'
+						className='group relative order-first aspect-square overflow-hidden rounded-2xl bg-base-300 shadow-lg sm:order-none'
 					>
 						<img
 							src={portrait}

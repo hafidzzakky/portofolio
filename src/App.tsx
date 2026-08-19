@@ -216,16 +216,24 @@ function App() {
 						title={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
 						onClick={() => setTheme(isDark ? LIGHT : DARK)}
 						whileTap={{ scale: 0.95 }}
-						className='relative flex h-10 w-[76px] items-center rounded-full border border-base-content/10 bg-base-100/60 shadow-lg backdrop-blur-md focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60'
+						className='relative h-10 w-[76px] rounded-full border border-base-content/10 bg-base-100/60 shadow-lg backdrop-blur-md focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60'
 					>
 						<motion.span
 							aria-hidden='true'
-							animate={{ x: isDark ? 0 : 36 }}
+							animate={{ x: isDark ? 0 : 34 }}
 							transition={{ type: 'spring', stiffness: 420, damping: 34 }}
-							className='absolute left-1 h-8 w-8 rounded-full bg-primary shadow'
+							className='absolute left-1 top-[3px] h-8 w-8 rounded-full bg-primary shadow'
 						/>
-						<span aria-hidden='true' className='relative z-10 flex w-full items-center justify-between px-[14px]'>
+						<span
+							aria-hidden='true'
+							className='absolute left-1 top-[3px] z-10 flex h-8 w-8 items-center justify-center'
+						>
 							<PiMoonStars className={`text-lg ${isDark ? 'text-primary-content' : 'text-base-content/45'}`} />
+						</span>
+						<span
+							aria-hidden='true'
+							className='absolute left-1 top-[3px] z-10 flex h-8 w-8 translate-x-[34px] items-center justify-center'
+						>
 							<PiSunDim className={`text-lg ${isDark ? 'text-base-content/45' : 'text-primary-content'}`} />
 						</span>
 					</motion.button>
