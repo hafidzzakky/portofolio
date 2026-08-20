@@ -15,11 +15,6 @@
 	}
 }
 
-.leaflet-tile {
-	filter: inherit;
-	visibility: inherit;
-}
-
 /* daisyUI v4 exposes colours as oklch components, so these must be read with oklch(),
    not rgb(). Kept in-family (primary + accent) so the wash never introduces a new hue. */
 html[data-theme] {
@@ -32,13 +27,3 @@ html[data-theme='luxury'] {
 	--bg-spot-2: oklch(var(--bc) / 0.05);
 }
 
-html[data-theme='luxury'] .showcase-close-btn {
-	@apply bg-base-100/30 shadow-xl hover:bg-base-100/60;
-}
-
-/* Fix for Leaflet grid lines/gaps between tiles - Reverted due to visibility issues */
-/* .leaflet-tile-container img {
-	width: 100.5% !important;
-	height: 100.5% !important;
-	transform: translate3d(0, 0, 0);
-} */

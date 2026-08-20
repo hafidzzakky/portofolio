@@ -91,10 +91,31 @@ export interface Project {
 	role?: string;
 	context?: string;
 	description: string;
+	/** Empty for internal work whose screens cannot be published. */
 	images: string[];
 }
 
 export const projects: Project[] = [
+	{
+		id: 13,
+		title: 'Minerva - Mining Operations SaaS',
+		tags: ['React', 'Next JS', 'TypeScript', 'Enterprise'],
+		role: 'Lead Frontend & Architecture',
+		context: 'Mining • Enterprise SaaS',
+		description:
+			'A SaaS platform serving mining operations across multiple Petrosea sites. Built with React, TypeScript, and Next.js, using SSR and SSG so large operational dashboards stay fast on site connections, and a shared component layer so every site gets the same patterns instead of a fork per project. Contributed to an estimated 30% increase in production efficiency.',
+		images: [],
+	},
+	{
+		id: 14,
+		title: 'Risk Monitoring Dashboards',
+		tags: ['React', 'TypeScript', 'Enterprise'],
+		role: 'Senior Frontend Engineer',
+		context: 'Mining • Risk & Safety',
+		description:
+			'Dashboards that surface incident, inspection, and observation reports from the field so leadership can act on them the same day rather than at the next weekly review. Work focused on the information hierarchy and the alerting views. Management response time improved by 20%.',
+		images: [],
+	},
 	{
 		id: 1,
 		title: 'Saka EIS - Electronic Invoice SAKA',

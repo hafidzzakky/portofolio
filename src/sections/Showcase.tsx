@@ -15,6 +15,7 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
 	const splideRef = useRef<SplideInstance | null>(null);
 	const closeButtonRef = useRef<HTMLButtonElement | null>(null);
 	const modalRef = useRef<HTMLDivElement | null>(null);
+	const hasImages = project.images.length > 0;
 
 	useEffect(() => {
 		document.body.style.overflow = 'hidden';
@@ -75,7 +76,9 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
 				animate={{ scale: 1, opacity: 1 }}
 				exit={{ scale: 0.94, opacity: 0 }}
 				transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-				className='relative flex max-h-[90vh] w-full max-w-6xl flex-col overflow-hidden rounded-2xl bg-base-100 shadow-2xl md:flex-row md:items-stretch'
+				className={`relative flex max-h-[90vh] w-full flex-col overflow-hidden rounded-2xl bg-base-100 shadow-2xl md:flex-row md:items-stretch ${
+					hasImages ? 'max-w-6xl' : 'max-w-2xl'
+				}`}
 				onClick={(e) => e.stopPropagation()}
 			>
 				{/* Close Button */}
@@ -89,6 +92,7 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
 				</button>
 
 				{/* Image Section */}
+				{hasImages && (
 				<div
 					className='group relative flex h-auto min-h-[300px] w-full items-center justify-center overflow-hidden md:max-h-[80vh] md:w-7/12'
 					onMouseEnter={() => setIsHovered(true)}
@@ -191,9 +195,14 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
 						))}
 					</div>
 				</div>
+				)}
 
 				{/* Content Section */}
-				<div className='flex w-full flex-col overflow-y-auto bg-base-100 p-6 md:h-full md:max-h-[80vh] md:w-5/12 md:p-8'>
+				<div
+					className={`flex w-full flex-col overflow-y-auto bg-base-100 p-6 md:h-full md:max-h-[80vh] md:p-8 ${
+						hasImages ? 'md:w-5/12' : 'md:w-full'
+					}`}
+				>
 					<div className='flex h-full flex-col'>
 						<div className='mb-6'>
 							<h3 className='mb-2 text-2xl font-bold tracking-tight text-base-content md:text-3xl'>{project.title}</h3>
@@ -222,6 +231,11 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
 						<div className='prose prose-sm flex-grow overflow-y-auto pr-2 md:prose-base'>
 							<p className='whitespace-pre-line text-base-content/80'>{project.description}</p>
 						</div>
+						{!hasImages && (
+							<p className='mt-6 border-t border-base-content/10 pt-4 text-sm text-base-content/65'>
+								Internal platform. The screens cannot be published.
+							</p>
+						)}
 					</div>
 				</div>
 			</motion.div>
@@ -358,14 +372,21 @@ const ProjectCard = ({ project, onOpen }: { project: Project; onOpen: () => void
 		aria-label={`View ${project.title} project details`}
 		className='w-full text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60'
 	>
-		<div className='aspect-[4/3] w-full overflow-hidden rounded-2xl bg-base-300'>
-			<img
-				src={project.images[0]}
-				alt={`${project.title} preview`}
-				loading='lazy'
-				className='h-full w-full object-cover transition-transform duration-500 active:scale-[1.03]'
-			/>
-		</div>
+		{project.images.length > 0 ? (
+			<div className='aspect-[4/3] w-full overflow-hidden rounded-2xl bg-base-300'>
+				<img
+					src={project.images[0]}
+					alt={`${project.title} preview`}
+					loading='lazy'
+					className='h-full w-full object-cover transition-transform duration-500 active:scale-[1.03]'
+				/>
+			</div>
+		) : (
+			<div className='flex aspect-[4/3] w-full flex-col justify-center rounded-2xl bg-base-200 p-5 [html[data-theme=luxury]_&]:bg-[rgba(255,255,255,0.05)]'>
+				<p className='line-clamp-4 text-sm leading-relaxed text-base-content/75'>{project.description}</p>
+				<p className='mt-3 text-xs text-base-content/50'>Internal platform</p>
+			</div>
+		)}
 		<h3 className='mt-3 text-lg font-semibold tracking-tight text-base-content'>{project.title}</h3>
 		<p className='mt-1 text-sm text-base-content/65'>{project.tags.slice(0, 3).join(' / ')}</p>
 	</motion.button>
@@ -400,12 +421,12 @@ const Showcase = () => {
 				{selectedProject && <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />}
 			</AnimatePresence>
 
-			<IndexPreview project={selectedProject ? null : hoveredProject} />
+			<IndexPreview project={selectedProject || !hoveredProject?.images.length ? null : hoveredProject} />
 
 			<div className='container mx-auto px-4'>
 			<SectionHeading
 				title='Project Showcase'
-				lead='Twelve products shipped for mining, banking, healthcare, and marketplace teams. Open one to see the screens.'
+				lead='Fourteen products shipped for mining, banking, oil and gas, healthcare, and marketplace teams. Open one to read the detail.'
 			/>
 
 			{/* Category filter - desktop */}

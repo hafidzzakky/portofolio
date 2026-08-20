@@ -16,7 +16,6 @@ Portfolio website milik **Hafidz Zakky D** — Senior Front End Engineer, Jakart
 | Animation | Framer Motion | ^12.33.0 |
 | Smooth Scroll | Lenis | ^1.3.17 |
 | Carousel | @splidejs/react-splide | ^0.7.12 |
-| Map | Leaflet + react-leaflet | ^1.9.4 / ^5.0.0 |
 | PWA | vite-plugin-pwa | ^1.2.0 |
 | Icons | react-icons | ^5.5.0 |
 | Font | @fontsource-variable/plus-jakarta-sans | ^5.3.0 |
@@ -48,9 +47,6 @@ src/
     Showcase.tsx                  # Masonry project grid + modal
     Contact.tsx                   # Bento grid + portrait photo
     StaticAbstractBackground.tsx  # Fixed decorative background
-    AbstractBackground.tsx        # (disabled)
-    WorldMap.tsx                  # (disabled)
-    Summary.tsx                   # (disabled)
   components/
     HeroParallax.tsx              # Javanese SVG parallax (wayang, gunungan, awan)
     Preloader.tsx                 # Fullscreen loader (gunungan animation)
@@ -207,8 +203,13 @@ interface Project {
 }
 ```
 
-**12 Active Projects:**
-1. Saka EIS — Oil & Gas invoicing (React/Next.js, Lead Frontend)
+**14 Active Projects.** Two Petrosea entries carry `images: []` because the screens are internal;
+Showcase renders those as a text tile on mobile, a narrow modal on desktop, and no hover preview.
+
+Projects:
+1. Minerva - Mining Operations SaaS (no images)
+2. Risk Monitoring Dashboards (no images)
+3. Saka EIS — Oil & Gas invoicing (React/Next.js, Lead Frontend)
 2. SAKA Vessel Tracker — Maritime logistics + Leaflet map
 3. Tukangku.co v1 — Construction marketplace (Solo Founder)
 4. Tukangku.co v2 — One-stop construction solution

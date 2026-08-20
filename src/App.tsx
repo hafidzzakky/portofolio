@@ -4,8 +4,6 @@ import { motion, useScroll, useMotionValueEvent, AnimatePresence, MotionConfig }
 import { useAnalytics } from './hooks/useAnalytics';
 import { PiCode, PiBriefcase, PiGraduationCap, PiRocketLaunch, PiEnvelopeSimple, PiMoonStars, PiSunDim } from 'react-icons/pi';
 import Hero from './sections/Hero';
-// import WorldMap from './sections/WorldMap';
-// import Summary from './sections/Summary';
 import Skills from './sections/Skills';
 import Philosophy from './sections/Philosophy';
 import Experience from './sections/Experience';
@@ -152,10 +150,7 @@ function App() {
 
 			{/* Static abstract background clone (no motion, fixed to viewport) */}
 			<StaticAbstractBackground isLuxury={theme === 'luxury'} />
-			{/* <AbstractBackground scrollY={scrollY} /> */}
 
-			{/* World Map Background with Zoom Effect - Disabled for now */}
-			{/* <WorldMap scrollY={scrollY} /> */}
 
 			<div className='relative z-10'>
 				{/* Sticky Header */}
@@ -241,14 +236,12 @@ function App() {
 				<main>
 					<div className='container mx-auto px-4'>
 						<Hero />
-						{/* <Summary /> */}
 						<Skills />
 						<Philosophy />
 						<Experience />
 						<Education />
 					</div>
 
-					{/* <Projects /> */}
 					<Showcase />
 
 					<div className='container mx-auto px-4 pb-20'>
