@@ -27,3 +27,16 @@ html[data-theme='luxury'] {
 	--bg-spot-2: oklch(var(--bc) / 0.05);
 }
 
+
+/* MotionConfig covers Framer only. This catches the CSS side: the Philosophy
+   flex accordion, the pulsing footer heart, and every hover transition. */
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+}

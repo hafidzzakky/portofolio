@@ -392,9 +392,23 @@ const ProjectCard = ({ project, onOpen }: { project: Project; onOpen: () => void
 	</motion.button>
 );
 
+const slugify = (title: string) =>
+	title
+		.toLowerCase()
+		.replace(/[^a-z0-9]+/g, '-')
+		.replace(/^-|-$/g, '');
+
+/** A project is addressable as #project-<slug>, so a modal can be linked and dismissed with Back. */
+const projectFromHash = () => {
+	const slug = window.location.hash.replace(/^#project-/, '');
+	if (!slug || slug === window.location.hash) return null;
+	return showcaseProjects.find((project) => slugify(project.title) === slug) ?? null;
+};
+
 const Showcase = () => {
 	const [selectedCategory, setSelectedCategory] = useState('All');
-	const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+	// Lazy initial state so a deep link opens on first paint, with no effect round trip.
+	const [selectedProject, setSelectedProject] = useState<Project | null>(projectFromHash);
 	const [hoveredProject, setHoveredProject] = useState<Project | null>(null);
 	const sectionRef = useRef(null);
 	const isInView = useInView(sectionRef, { amount: 0.1, margin: '-10% 0px -10% 0px' });
@@ -409,16 +423,32 @@ const Showcase = () => {
 			? showcaseProjects
 			: showcaseProjects.filter((project) => project.tags.includes(selectedCategory));
 
+	useEffect(() => {
+		const onPopState = () => setSelectedProject(projectFromHash());
+		window.addEventListener('popstate', onPopState);
+		return () => window.removeEventListener('popstate', onPopState);
+	}, []);
+
 	const openProject = (project: Project) => {
 		setSelectedProject(project);
 		setHoveredProject(null);
 		trackProjectView(project.title);
+		window.history.pushState(null, '', `#project-${slugify(project.title)}`);
+	};
+
+	const closeProject = () => {
+		// Back unwinds the entry we pushed, which fires popstate and clears the state.
+		if (window.location.hash.startsWith('#project-')) {
+			window.history.back();
+			return;
+		}
+		setSelectedProject(null);
 	};
 
 	return (
 		<section ref={sectionRef} aria-label='Project Showcase' className='relative py-20 md:py-28' id='projects'>
 			<AnimatePresence>
-				{selectedProject && <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />}
+				{selectedProject && <ProjectModal project={selectedProject} onClose={closeProject} />}
 			</AnimatePresence>
 
 			<IndexPreview project={selectedProject || !hoveredProject?.images.length ? null : hoveredProject} />

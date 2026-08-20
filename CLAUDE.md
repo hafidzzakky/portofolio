@@ -105,6 +105,11 @@ Use `<SectionHeading title lead? level={2|3} align={'left'|'center'} />`.
 Plain `text-base-content` headline + a primary rule that draws itself on entry.
 No gradient/animated text headings — they were removed in the redesign.
 
+### Reduced motion
+`MotionConfig reducedMotion='user'` in `App.tsx` covers Framer only. Lenis is **not initialised**
+when `prefers-reduced-motion: reduce` (it replaces native scrolling), and `index.css` carries a
+`@media (prefers-reduced-motion: reduce)` block that flattens CSS animations and transitions.
+
 ### Framer Motion standard entrance
 ```tsx
 initial={{ opacity: 0, y: 20 }}
@@ -141,7 +146,9 @@ html[data-theme='luxury'] {
 
 ### Hero (`src/sections/Hero.tsx`)
 - Rotating roles (3000ms): "Senior Front End Engineer", "React Specialist", "UI/UX Enthusiast", + 2 more
-- Left 7-col (text) + right 5-col (HeroParallax, `hidden lg:block` - the artwork is fixed-size)
+- Left 7-col (text) + right 5-col (HeroParallax). The artwork is **mounted** behind a
+  `matchMedia('(min-width: 1024px)')` check, not just `hidden` - a display:none `<img>` is still
+  fetched, and the eight SVGs are 384kB that phones would never see.
 - Two CTAs only: Download CV (primary) + LinkedIn (outline). No scroll cue, no tech-stack strip.
 
 ### HeroParallax (`src/components/HeroParallax.tsx`)
@@ -181,6 +188,9 @@ html[data-theme='luxury'] {
 - Mobile: `ProjectCard` grid with the image always visible
 - Category filter from project tags (desktop: underlined text links; mobile: floating fixed bar)
 - `ProjectModal`: Splide.js carousel (autoplay 3000ms), keyboard nav (←→ Esc)
+- Projects are addressable as `#project-<slug>`: `openProject` pushes the hash, `closeProject`
+  calls `history.back()`, and a `popstate` listener syncs state. Deep links open on first paint via
+  lazy `useState`, and the browser Back button closes the modal instead of leaving the site.
 
 ### Contact (`src/sections/Contact.tsx`)
 - Bento grid: LinkedIn (2×2), portrait photo, Email, Instagram, GitHub

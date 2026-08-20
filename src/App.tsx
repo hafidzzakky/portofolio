@@ -108,6 +108,9 @@ function App() {
 	};
 
 	useEffect(() => {
+		// Lenis replaces native scrolling; that is the motion reduced-motion users opt out of.
+		if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
 		const lenis = new Lenis({
 			duration: 1.2,
 			easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -134,6 +137,13 @@ function App() {
 	return (
 		<MotionConfig reducedMotion='user'>
 		<div className='min-h-screen text-base-content font-sans antialiased selection:bg-primary selection:text-primary-content overflow-x-hidden relative'>
+			<a
+				href='#main'
+				className='sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[200] focus:rounded-full focus:bg-primary focus:px-4 focus:py-2 focus:font-semibold focus:text-primary-content'
+			>
+				Skip to content
+			</a>
+
 			<AnimatePresence mode='wait'>{isLoading && <Preloader />}</AnimatePresence>
 
 			{/* Scroll Progress Bar */}
@@ -233,7 +243,7 @@ function App() {
 						</span>
 					</motion.button>
 				</div>
-				<main>
+				<main id='main' tabIndex={-1}>
 					<div className='container mx-auto px-4'>
 						<Hero />
 						<Skills />

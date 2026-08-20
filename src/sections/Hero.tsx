@@ -13,15 +13,27 @@ const roles = [
 	'Building Scalable Mobile Applications',
 ];
 
+const DESKTOP = '(min-width: 1024px)';
+
 const Hero = () => {
 	const { trackHeroCta, trackCvDownload } = useAnalytics();
 	const [roleIndex, setRoleIndex] = useState(0);
+	// Mounted, not just hidden: a display:none <img> is still fetched, and the
+	// artwork is 384kB that phones would never see.
+	const [isDesktop, setIsDesktop] = useState(() => window.matchMedia(DESKTOP).matches);
 
 	useEffect(() => {
 		const interval = setInterval(() => {
 			setRoleIndex((prev) => (prev + 1) % roles.length);
 		}, 3000);
 		return () => clearInterval(interval);
+	}, []);
+
+	useEffect(() => {
+		const mq = window.matchMedia(DESKTOP);
+		const onChange = (event: MediaQueryListEvent) => setIsDesktop(event.matches);
+		mq.addEventListener('change', onChange);
+		return () => mq.removeEventListener('change', onChange);
 	}, []);
 
 	return (
@@ -91,9 +103,11 @@ const Hero = () => {
 				</motion.div>
 
 				{/* Desktop only: the fixed-size artwork does not hold up below lg. */}
-				<div className='hidden lg:col-span-5 lg:block'>
-					<HeroParallax />
-				</div>
+				{isDesktop && (
+					<div className='lg:col-span-5'>
+						<HeroParallax />
+					</div>
+				)}
 			</div>
 		</section>
 	);
