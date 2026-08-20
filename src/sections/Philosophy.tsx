@@ -107,7 +107,7 @@ const Philosophy = () => {
 										{/* Title */}
 										<div className='relative z-20'>
 											<h3
-												className={`text-lg md:text-2xl font-bold text-base-content/90 mb-2 leading-tight whitespace-nowrap overflow-hidden text-ellipsis transition-all duration-500 ease-out
+												className={`mb-2 text-lg font-bold leading-snug text-base-content/90 transition-all duration-500 ease-out md:text-xl
 													group-hover:translate-x-4 group-hover:text-primary
 													group-focus-visible:translate-x-4 group-focus-visible:text-primary
 													${isActive ? 'max-md:translate-x-4 max-md:text-primary' : ''}`}

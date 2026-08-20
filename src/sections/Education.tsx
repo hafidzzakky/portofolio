@@ -17,7 +17,7 @@ const Education = () => {
 				className='group mt-12 grid gap-10 border-t border-base-content/10 pt-10 md:grid-cols-12 md:gap-14 will-change-[opacity,transform]'
 			>
 				{/* Years, stacked and joined by a rule that grows on entry */}
-				<div className='flex items-center gap-5 md:col-span-4 md:flex-col md:items-start md:gap-3'>
+				<div className='flex items-center gap-5 md:col-span-3 md:flex-col md:items-start md:gap-3'>
 					<span className='text-5xl font-bold leading-none tabular-nums tracking-tight text-base-content/25 transition-colors duration-500 group-hover:text-primary/70 md:text-7xl'>
 						2013
 					</span>
@@ -27,14 +27,14 @@ const Education = () => {
 						whileInView={{ scaleX: 1, scaleY: 1 }}
 						viewport={{ once: true }}
 						transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-						className='h-px w-10 origin-left bg-primary/50 md:ml-2 md:h-10 md:w-px md:origin-top'
+						className='h-px w-10 origin-left bg-primary/60 md:ml-2 md:h-16 md:w-px md:origin-top'
 					/>
 					<span className='text-5xl font-bold leading-none tabular-nums tracking-tight text-base-content/25 transition-colors duration-500 group-hover:text-primary/70 md:text-7xl'>
 						2017
 					</span>
 				</div>
 
-				<div className='md:col-span-8'>
+				<div className='md:col-span-9'>
 					<span
 						aria-hidden='true'
 						className='inline-flex h-11 w-11 items-center justify-center rounded-full bg-primary/10 text-primary transition-transform duration-500 group-hover:scale-110'

@@ -21,12 +21,6 @@ const Contact = () => {
 
 	return (
 		<section aria-label='Contact' className='relative flex min-h-[50vh] items-center justify-center py-20 md:py-28' id='contact'>
-			{/* Background decoration */}
-			<div className='absolute inset-0 overflow-hidden pointer-events-none' aria-hidden='true'>
-				<div className='absolute -top-24 -right-24 w-96 h-96 bg-primary/10 rounded-full blur-3xl opacity-30'></div>
-				<div className='absolute -bottom-24 -left-24 w-96 h-96 bg-secondary/10 rounded-full blur-3xl opacity-30'></div>
-			</div>
-
 			<motion.div
 				initial={{ opacity: 0, y: 50 }}
 				whileInView={{ opacity: 1, y: 0 }}
@@ -183,7 +177,7 @@ const Contact = () => {
 						download='Hafidz_Zakky_CV.pdf'
 						aria-label='Download CV as PDF'
 						onClick={trackCvDownload}
-						className='btn btn-secondary btn-lg gap-2 shadow-lg shadow-secondary/30 hover:shadow-secondary/50 transition-all rounded-full text-white px-8'
+						className='btn btn-primary btn-lg gap-2 rounded-full px-8 shadow-lg shadow-primary/30 transition-all hover:shadow-primary/50'
 					>
 						<FaDownload aria-hidden='true' /> Download CV
 					</motion.a>
