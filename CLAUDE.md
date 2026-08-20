@@ -151,10 +151,11 @@ html[data-theme='luxury'] {
 - Assets: `src/assets/image/traditional/v2/`
 
 ### Skills (`src/sections/Skills.tsx`)
-- **StackExplorer**: 7 categories as a tab rail (vertical on desktop, scroll-snap row on mobile)
-  + panel of skill chips. Active marker uses `layoutId='stack-active'`; chips stagger in per category.
-- **SkillRadar**: fixed-viewBox SVG pentagon (no resize listener), labels sit on the chart itself,
-  one detail readout below. 5 axes:
+- **StackExplorer**: category pills wrap across the top, chips fill the full width below with a
+  one-line blurb per category. A side rail was tried first and forced the panel to match a 7-row
+  column, leaving 236-300px of dead space. Active marker uses `layoutId='stack-active'`.
+- **SkillRadar**: fixed-viewBox SVG pentagon (no resize listener), labels on the chart, readout and
+  a value table in the right column so the numbers are reachable without hovering. 5 axes:
   Frontend 9/10 | Architecture 8.5/10 | Testing 7.5/10 | Performance 8.5/10 | UI/UX 8/10
 
 ### Philosophy (`src/sections/Philosophy.tsx`)

@@ -47,6 +47,7 @@ import SectionHeading from '../components/SectionHeading';
 const skillCategories = [
 	{
 		title: 'Frontend',
+		blurb: 'Languages and frameworks I write production code in every day.',
 		skills: [
 			'HTML5',
 			'CSS3',
@@ -67,26 +68,32 @@ const skillCategories = [
 	},
 	{
 		title: 'UI Kits & Styling',
+		blurb: 'Design-system layers I build on instead of restyling from scratch each project.',
 		skills: ['Ant Design', 'Material UI (MUI)', 'DaisyUI', 'Framer Motion', 'Tailwind CSS', 'Styled-Components'],
 	},
 	{
 		title: 'Performance & SEO',
+		blurb: 'Keeping render fast and pages discoverable once the app is a SPA.',
 		skills: ['Lighthouse', 'SSR/SSG', 'SEO for SPA', 'Server-rendered apps'],
 	},
 	{
 		title: 'Tooling & Build',
+		blurb: 'Local dev speed and builds that come out the same every time.',
 		skills: ['Vite', 'Webpack', 'Git', 'Docker'],
 	},
 	{
 		title: 'Testing & Accessibility',
+		blurb: 'Guardrails so refactors stay safe and interfaces stay usable.',
 		skills: ['Jest', 'Accessibility (a11y)'],
 	},
 	{
 		title: 'Architecture & Design',
+		blurb: 'How the codebase is organised so it survives more than one team.',
 		skills: ['Component-based architecture', 'Reusable UI components', 'Design systems'],
 	},
 	{
 		title: 'CI/CD & Security',
+		blurb: 'The automated checks that sit between a merge request and production.',
 		skills: ['GitLab CI/CD', 'ESLint', 'SonarQube', 'Aikido Security'],
 	},
 ];
@@ -147,12 +154,13 @@ const StackExplorer = () => {
 	const current = skillCategories[active];
 
 	return (
-		<div className='mt-12 grid gap-8 md:grid-cols-12 md:gap-10'>
-			{/* Category index: vertical rail on desktop, scroll-snap row on mobile */}
+		<div className='mt-12'>
+			{/* Categories run across the top so the panel below owns the full width.
+			    A side rail forced the panel to match a 7-row column and left it half empty. */}
 			<div
 				role='tablist'
 				aria-label='Skill categories'
-				className='-mx-4 flex snap-x snap-mandatory gap-2 overflow-x-auto px-4 pb-2 md:mx-0 md:col-span-4 md:flex-col md:gap-1 md:overflow-visible md:px-0 md:pb-0 scrollbar-hide'
+				className='-mx-4 flex snap-x snap-mandatory gap-2 overflow-x-auto px-4 pb-2 md:mx-0 md:flex-wrap md:overflow-visible md:px-0 md:pb-0 scrollbar-hide'
 			>
 				{skillCategories.map((category, index) => {
 					const Icon = categoryIconMap[category.title] ?? FaCogs;
@@ -165,7 +173,7 @@ const StackExplorer = () => {
 							aria-selected={isActive}
 							onClick={() => setActive(index)}
 							onMouseEnter={() => setActive(index)}
-							className={`group relative flex shrink-0 snap-start items-center gap-3 rounded-xl px-4 py-3 text-left transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 md:w-full ${
+							className={`group relative flex shrink-0 snap-start items-center gap-2.5 rounded-full px-4 py-2.5 text-left transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 ${
 								isActive ? 'text-base-content' : 'text-base-content/75 hover:text-base-content/85'
 							}`}
 						>
@@ -173,24 +181,21 @@ const StackExplorer = () => {
 								<motion.span
 									layoutId='stack-active'
 									transition={{ type: 'spring', stiffness: 320, damping: 32 }}
-									className='absolute inset-0 -z-10 rounded-xl bg-primary/10 [html[data-theme=luxury]_&]:bg-[rgba(255,255,255,0.07)]'
+									className='absolute inset-0 -z-10 rounded-full bg-primary/10 [html[data-theme=luxury]_&]:bg-[rgba(255,255,255,0.07)]'
 								/>
 							)}
 							<Icon
 								aria-hidden='true'
 								className={`shrink-0 text-base transition-colors duration-300 ${isActive ? 'text-primary' : 'text-base-content/35'}`}
 							/>
-							<span className='whitespace-nowrap text-sm font-semibold md:text-base'>{category.title}</span>
-							<span className='ml-auto hidden text-xs tabular-nums text-base-content/65 md:inline'>
-								{category.skills.length}
-							</span>
+							<span className='whitespace-nowrap text-sm font-semibold'>{category.title}</span>
+							<span className='text-xs tabular-nums text-base-content/65'>{category.skills.length}</span>
 						</button>
 					);
 				})}
 			</div>
 
-			{/* Active category panel */}
-			<div className='md:col-span-8 md:border-l md:border-base-content/10 md:pl-10'>
+			<div className='mt-8 min-h-[170px] border-t border-base-content/10 pt-8'>
 				<AnimatePresence mode='wait'>
 					<motion.div
 						key={current.title}
@@ -199,10 +204,8 @@ const StackExplorer = () => {
 						exit={{ opacity: 0, y: -8 }}
 						transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
 					>
-						<p className='mb-5 text-sm text-base-content/65'>
-							{current.skills.length} tools in <span className='text-base-content/80'>{current.title}</span>
-						</p>
-						<ul className='flex flex-wrap gap-2'>
+						<p className='max-w-[62ch] leading-relaxed text-base-content/75'>{current.blurb}</p>
+						<ul className='mt-6 flex flex-wrap gap-2'>
 							{current.skills.map((skill, index) => {
 								const mapped = skillIconMap[skill];
 								const Icon = mapped?.icon ?? categoryIconMap[current.title] ?? FaCogs;
@@ -308,13 +311,13 @@ const SkillRadar = () => {
 	const axis = skillAxes[active];
 
 	return (
-		<div className='mt-10 flex flex-col items-center'>
+		<div className='mt-10 grid items-center gap-10 lg:grid-cols-12 lg:gap-14'>
 			<motion.div
 				initial={{ opacity: 0, scale: 0.94 }}
 				whileInView={{ opacity: 1, scale: 1 }}
 				viewport={{ once: true, amount: 0.4 }}
 				transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-				className='w-full max-w-[520px]'
+				className='mx-auto w-full max-w-[560px] lg:col-span-7 lg:mx-0'
 			>
 				<svg
 					viewBox={`0 0 ${VB_W} ${VB_H}`}
@@ -408,27 +411,51 @@ const SkillRadar = () => {
 				</svg>
 			</motion.div>
 
-			{/* Detail readout for the selected axis */}
-			<div className='mt-2 min-h-[132px] w-full max-w-xl text-center'>
-				<AnimatePresence mode='wait'>
-					<motion.div
-						key={axis.label}
-						initial={{ opacity: 0, y: 10 }}
-						animate={{ opacity: 1, y: 0 }}
-						exit={{ opacity: 0, y: -8 }}
-						transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-					>
-						<div className='flex items-baseline justify-center gap-2'>
-							<span className='text-4xl font-bold tabular-nums text-primary md:text-5xl'>{axis.value.toFixed(1)}</span>
-							<span className='text-base text-base-content/65'>/ 10</span>
-						</div>
-						<h4 className='mt-2 text-lg font-semibold text-base-content'>{axis.label}</h4>
-						<p className='mx-auto mt-2 max-w-md text-sm leading-relaxed text-base-content/75'>{axis.description}</p>
-					</motion.div>
-				</AnimatePresence>
-			</div>
+			{/* Readout beside the chart, plus every axis as a row so the numbers are
+			    reachable without hovering the SVG. */}
+			<div className='lg:col-span-5'>
+				<div className='min-h-[150px]'>
+					<AnimatePresence mode='wait'>
+						<motion.div
+							key={axis.label}
+							initial={{ opacity: 0, y: 10 }}
+							animate={{ opacity: 1, y: 0 }}
+							exit={{ opacity: 0, y: -8 }}
+							transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+						>
+							<div className='flex items-baseline gap-2'>
+								<span className='text-5xl font-bold tabular-nums text-primary'>{axis.value.toFixed(1)}</span>
+								<span className='text-base text-base-content/65'>/ 10</span>
+							</div>
+							<h4 className='mt-2 text-lg font-semibold text-base-content'>{axis.label}</h4>
+							<p className='mt-2 max-w-[46ch] text-sm leading-relaxed text-base-content/75'>{axis.description}</p>
+						</motion.div>
+					</AnimatePresence>
+				</div>
 
-			<p className='mt-4 text-xs text-base-content/65'>Hover or tap a point to read the breakdown.</p>
+				<ul className='mt-6 border-t border-base-content/10'>
+					{skillAxes.map((item, index) => {
+						const isActive = index === active;
+						return (
+							<li key={item.label}>
+								<button
+									type='button'
+									aria-pressed={isActive}
+									onMouseEnter={() => setActive(index)}
+									onFocus={() => setActive(index)}
+									onClick={() => setActive(index)}
+									className={`flex w-full items-center justify-between border-b border-base-content/10 py-2.5 text-left text-sm transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 ${
+										isActive ? 'text-primary' : 'text-base-content/75 hover:text-base-content'
+									}`}
+								>
+									<span className='font-medium'>{item.label}</span>
+									<span className='tabular-nums'>{item.value.toFixed(1)}</span>
+								</button>
+							</li>
+						);
+					})}
+				</ul>
+			</div>
 		</div>
 	);
 };
