@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaEnvelope, FaInstagram, FaDownload, FaWhatsapp } from 'react-icons/fa';
 import { PiCopy, PiCheck } from 'react-icons/pi';
 import React, { useState } from 'react';
-import cvFile from '../assets/file/Hafidz_Zakky_Senior_Front_End_Engineer.pdf';
+import cvFile from '../assets/file/Hafidz_Zakky_Senior_Front_End_Engineer-2.pdf';
 import portrait from '../assets/image/me/portrait.jpg';
 import { useAnalytics } from '../hooks/useAnalytics';
 import SectionHeading from '../components/SectionHeading';

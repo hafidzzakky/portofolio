@@ -2,7 +2,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FaLinkedin, FaDownload } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
 import HeroParallax from '../components/HeroParallax';
-import cvFile from '../assets/file/Hafidz_Zakky_Senior_Front_End_Engineer.pdf';
+import cvFile from '../assets/file/Hafidz_Zakky_Senior_Front_End_Engineer-2.pdf';
 import { useAnalytics } from '../hooks/useAnalytics';
 
 const roles = [
