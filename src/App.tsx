@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import Lenis from 'lenis';
 import { motion, useScroll, useMotionValueEvent, AnimatePresence, MotionConfig } from 'framer-motion';
 import { useAnalytics } from './hooks/useAnalytics';
-import { PiCode, PiBriefcase, PiGraduationCap, PiRocketLaunch, PiEnvelopeSimple, PiMoonStars, PiSunDim } from 'react-icons/pi';
+import { PiCode, PiCompass, PiBriefcase, PiGraduationCap, PiRocketLaunch, PiEnvelopeSimple, PiMoonStars, PiSunDim } from 'react-icons/pi';
 import Hero from './sections/Hero';
 import Skills from './sections/Skills';
 import Philosophy from './sections/Philosophy';
@@ -33,7 +33,8 @@ function App() {
 		localStorage.setItem('theme', theme);
 		document.documentElement.setAttribute('data-theme', theme);
 
-		const color = theme === DARK ? '#09090b' : '#ffffff';
+		// Matches each theme's base-100 so the mobile address bar blends with the page.
+		const color = theme === DARK ? '#09090b' : '#FCFBF9';
 		let metaTheme = document.querySelector('meta[name="theme-color"]');
 		if (!metaTheme) {
 			metaTheme = document.createElement('meta');
@@ -171,20 +172,25 @@ function App() {
 							animate={{ opacity: 1, scale: 1 }}
 							exit={{ opacity: 0, scale: 0.9 }}
 							transition={{ duration: 0.3 }}
-							className='fixed z-50 flex justify-center px-4 left-0 right-0 top-auto bottom-6 md:top-4 md:bottom-auto'
+							className='fixed z-50 flex justify-center px-4 left-0 right-0 top-auto bottom-6 lg:top-4 lg:bottom-auto'
 						>
-							<div className='px-6 py-2 rounded-full bg-base-100 [html[data-theme=luxury]_&]:bg-base-200 shadow-lg flex items-center gap-6 md:gap-8'>
-								<div
-									className='flex items-center gap-2 cursor-pointer'
+							<div className='px-4 py-2 lg:px-6 rounded-full bg-base-100 [html[data-theme=luxury]_&]:bg-base-200 shadow-lg flex items-center gap-5 lg:gap-6'>
+								<button
+									type='button'
+									aria-label='Back to top'
+									className='hidden items-center gap-2 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 lg:flex'
 									onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
 								>
-										<span className='text-base-content font-bold text-lg hidden md:block'>Hafidz Zakky D</span>
-									<span className='text-base-content font-bold text-lg md:hidden'>HZD</span>
-								</div>
+									<span className='text-base-content font-bold text-lg hidden lg:block'>Hafidz Zakky D</span>
+									<span className='text-base-content font-bold text-lg lg:hidden'>HZD</span>
+								</button>
 
-								<nav className='flex items-center gap-2 md:gap-4 text-sm font-medium'>
+								<nav className='flex items-center gap-2 text-sm font-medium'>
 									{[
 										{ id: 'skills', icon: PiCode, label: 'Skills' },
+										// Labelled after the section's own heading ("Engineering Mindset"),
+										// not after its id, and kept short so the bar stays on one line.
+										{ id: 'philosophy', icon: PiCompass, label: 'Mindset' },
 										{ id: 'experience', icon: PiBriefcase, label: 'Experience' },
 										{ id: 'education', icon: PiGraduationCap, label: 'Education' },
 										{ id: 'projects', icon: PiRocketLaunch, label: 'Projects' },
@@ -193,15 +199,15 @@ function App() {
 										<button
 											key={item.id}
 											onClick={() => scrollToSection(item.id)}
-											className={`relative flex items-center justify-center p-2.5 md:px-4 md:py-2 rounded-full transition-all duration-300 ${
+											className={`relative flex items-center justify-center p-2 lg:px-3 lg:py-2 rounded-full transition-all duration-300 ${
 												activeSection === item.id
 													? 'bg-primary text-primary-content shadow-lg shadow-primary/25 scale-105'
 													: 'text-base-content/75 hover:text-primary hover:bg-base-200/30'
 											}`}
 											title={item.label}
 										>
-											<span className='hidden md:inline'>{item.label}</span>
-											<span className='md:hidden'>
+											<span className='hidden lg:inline'>{item.label}</span>
+											<span className='lg:hidden'>
 												<item.icon size={22} />
 											</span>
 										</button>
