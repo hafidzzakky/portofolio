@@ -25,3 +25,5 @@ dist-ssr
 
 # PWA dev artifacts
 dev-dist
+
+.claude/
